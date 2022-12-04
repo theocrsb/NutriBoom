@@ -43,10 +43,34 @@
 }
 
 .background{
-  background-color: #282c34;
+
+  background-color: #dfa530
+  ;
+  background-repeat: no-repeat;
+  width: 35%;
+  height: 2000px;
+}
+  
+
+
+.liste{
+  margin-left: 305px;
 }
 
 
+.espacement{
+  width: 190px;
+  text-align: center;
+}
 
+li{
+  margin-left: 50px;
+  margin-bottom: 50px
+}
 
+.buttonStyle{
+  border-style: solid;
+  border-radius: 25% 10% ;
+  background-color:#afb563;
+}
 

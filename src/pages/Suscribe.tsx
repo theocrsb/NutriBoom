@@ -1,6 +1,6 @@
 const Suscribe = ()=>{
     return(
-        <div></div>
+        <div>Souscrire</div>
     )
 }
 export default Suscribe;

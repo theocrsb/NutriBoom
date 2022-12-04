@@ -1,6 +1,8 @@
 const Main = ()=>{
     return(
-        <div></div>
+        <div>
+           Tableau de bord
+        </div>
     )
 }
 export default Main;
