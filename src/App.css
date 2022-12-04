@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +37,16 @@
     transform: rotate(360deg);
   }
 }
+
+.logo{
+  width: 250px;
+}
+
+.background{
+  background-color: #282c34;
+}
+
+
+
+
+
