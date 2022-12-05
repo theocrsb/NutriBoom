@@ -8,13 +8,11 @@ import Suscribe from './pages/Suscribe';
 import AboutUs from './pages/AboutUs';
 import Main from './pages/Main';
 
+
 const App = ()=>{
-
-  
-
-
+ 
   return(
-    <div className='background'>
+    <div>
       <BrowserRouter>
       <NavBar/>
       <Routes>

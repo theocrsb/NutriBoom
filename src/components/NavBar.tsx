@@ -41,9 +41,7 @@ const NavBar = ()=>{
         </div>
          <div className="espacement">
         <li className="nav-item">
-           <NavLink className= "nav-link buttonStyle" to ="/main">
-            Tableau de bord
-           </NavLink>
+           <NavLink className= "nav-link buttonStyle" to ="/main"></NavLink>
         </li>
         </div>
       </ul>
