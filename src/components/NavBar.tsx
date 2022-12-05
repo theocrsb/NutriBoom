@@ -1,55 +1,82 @@
-import nutriBoom from "../assets/nutriboom.png"
-import '../App.css';
-import {NavLink} from "react-router-dom"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./Navbar.css";
+import AboutUs from "../pages/AboutUs";
 
-const NavBar = ()=>{
-    return (
-        <div>
-            <nav className="navbar navbar-expand-lg ">
-  <div className="container-fluid">
-     <img className="logo" src={nutriBoom} alt="" />
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse espaceOnglets " id="navbarNav">
-      <ul className="navbar-nav liste ">
-        <div className="espacement">
-        <li className="nav-item">
-        <NavLink className= "nav-link buttonStyle" to ="/welcome  ">
-          Accueil
+const Navbar = () => {
+  return (
+    <div>
+      <nav className="navbar navbar-expand-lg bg-transparent p-0">
+        <div className="container-fluid p-0">
+          {/* <a className="navbar-brand" href="#">
+            Navbar
+          </a> */}
+          <NavLink to="Home" className="navbar-brand p-0 m-0">
+            <div className="bg-logo">
+              <div className="container-logo">
+                {/* <img
+                className="logo"
+                src={process.env.PUBLIC_URL + `/assets/nutriboom.png`}
+                alt="logo"
+              /> */}
+              </div>
+            </div>
           </NavLink>
-        </li>
-        </div>
-         <div className="espacement">
-        <li className="nav-item">
-          <a className="nav-link buttonStyle" href="#">Calculateur</a>
-        </li>
-        </div>
-        <div className="espacement">
-        <li className="nav-item">
-          <NavLink className= "nav-link buttonStyle" to ="/aboutus">
-            A propos
-          </NavLink>
-        </li>
-        </div>
-         <div className="espacement">
-        <li className="nav-item">
-           <NavLink className= "nav-link buttonStyle" to ="/suscribe">
-            Inscription
-           </NavLink>
-        </li>
-        </div>
-         <div className="espacement">
-        <li className="nav-item">
-           <NavLink className= "nav-link buttonStyle" to ="/main"></NavLink>
-        </li>
-        </div>
-      </ul>
-    </div>
-  </div>
-</nav>
-        </div>
-    )
-    
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse " id="navbarNav">
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                {/* <a className="nav-link active" aria-current="page" href="#">
+                  Home
+                </a> */}
+                <NavLink to="welcome" className="nav-link buttonStyle">
+                  <strong>Accueil</strong>
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                {/* <a className="nav-link" href="#">
+                  Features
+                </a> */}
+                <NavLink to="main" className="nav-link buttonStyle ">
+                  Profil
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                {/* <a className="nav-link" href="#">
+                  Pricing
+                </a> */}
+                <NavLink to="subscribe" className="nav-link buttonStyle ">
+                  Inscription
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                {/* <a className="nav-link disabled">Disabled</a> */}
+                <NavLink to="Dashboard" className="nav-link buttonStyle ">
+                  Calculateur
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                {/* <a className="nav-link disabled">Disabled</a> */}
+                <NavLink to="Dashboard" className="nav-link buttonStyle ">
+                  About Us
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          </div>
+          </nav>
+          </div>
+          )
 }
-export default NavBar;
+
+export default Navbar;
