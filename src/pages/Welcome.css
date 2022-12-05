@@ -1,0 +1,9 @@
+.saladePicture{
+background-image: url("/public/assets/salade.jpg");
+ background-size: cover;
+  background-position: center;
+  margin-top: 50px;
+
+  height: 230px;
+  width: 300px;
+}
