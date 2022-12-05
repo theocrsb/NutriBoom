@@ -1,13 +1,16 @@
 import SuscribeButton from "../components/SuscribeButton";
 import ConnexionButton from "../components/ConnexionButton";
 import ImcButton from "../components/ImcButton";
+import {HashLink as Link} from "react-router-hash-link"
 import "./Welcome.css"
 
 const Welcome = ()=>{
     return(
         <div> 
           <div className="imcButtonStyle">
-   <ImcButton/>
+            <Link to="#ok">
+               <ImcButton/>
+            </Link>
    </div> 
           <div className = "saladePicture">
             {/* image avec salade */}
@@ -26,6 +29,25 @@ const Welcome = ()=>{
 <br />Soumettez vos aliments/exercices afin de nous permettre d'améliorervotre expérience utilisateur
 </p>
      </div>
+     <form className="imcForm">
+  <div id="ok" className="mb-3">
+    <label htmlFor="exampleInputTaille" className="htmlForm-label"/>
+    <input type="taille" className="htmlForm-control" id="exampleInputTaille"placeholder="taille"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputPoids" className="htmlForm-label"/>
+    <input type="poids" className="htmlForm-control" id="exampleInputPoids" placeholder="poids"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputAge" className="htmlForm-label"/>
+    <input type="age" className="htmlForm-control" id="exampleInputAge" placeholder="age"/>
+  </div>
+  <div className="mb-3">
+    <label htmlFor="exampleInputSexe" className="htmlForm-label"/>
+    <input type="sexe" className="htmlForm-control" id="exampleInputSexe" placeholder="sexe"/>
+  </div>
+  <ImcButton/>
+</form>
      
       </div>
     )

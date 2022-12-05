@@ -7,9 +7,8 @@
 background-image: url("/public/assets/salade.jpg");
  background-size: cover;
   background-position: center;
-  margin-top: 50px;
+  margin-top: 30px;
   margin-left: 35px;
-
   height: 230px;
   width: 300px;
 }
@@ -17,7 +16,7 @@ background-image: url("/public/assets/salade.jpg");
 .containerButton{
   display: flex;
   justify-content: space-around;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .containerText{
@@ -27,10 +26,12 @@ background-image: url("/public/assets/salade.jpg");
   width: 90%;
   margin-left: 18px;
   border-radius: 20px;
+
+  
 }
 
 .nboomText{
-  padding-top: 40px;
+  padding-top: 25px;
   font-weight: bold;
   font-size:15px;
   text-align: center;
@@ -40,4 +41,9 @@ background-image: url("/public/assets/salade.jpg");
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
+}
+
+.imcForm{
+  padding-top: 40px;
+  text-align: center;
 }
