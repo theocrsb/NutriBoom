@@ -23,7 +23,7 @@ const Navbar = () => {
             </div>
           </NavLink>
           <button
-            className="navbar-toggler"
+            className="navbar-toggler "
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -31,7 +31,7 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon m-10"></span>
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav">
@@ -40,7 +40,7 @@ const Navbar = () => {
                   Home
                 </a> */}
                 <NavLink to="welcome" className="nav-link buttonStyle">
-                  Accueil
+                  <strong>Accueil</strong>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -48,7 +48,7 @@ const Navbar = () => {
                   Features
                 </a> */}
                 <NavLink to="main" className="nav-link buttonStyle ">
-                  Profil
+                  <strong>Profil</strong>
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -56,19 +56,19 @@ const Navbar = () => {
                   Pricing
                 </a> */}
                 <NavLink to="subscribe" className="nav-link buttonStyle ">
-                  Inscription
+                  <strong>Inscription</strong>
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link disabled">Disabled</a> */}
                 <NavLink to="Dashboard" className="nav-link buttonStyle ">
-                  Calculateur
+                  <strong>Calculateur</strong>
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link disabled">Disabled</a> */}
                 <NavLink to="Dashboard" className="nav-link buttonStyle ">
-                  About Us
+                  <strong>About Us</strong>
                 </NavLink>
               </li>
             </ul>
