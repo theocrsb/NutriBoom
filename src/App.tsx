@@ -2,18 +2,19 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Welcome from './pages/Welcome';
 import Suscribe from './pages/Suscribe';
 import AboutUs from './pages/AboutUs';
 import Main from './pages/Main';
 
-
-
-
 const App = ()=>{
 
- 
+ const redirection =()=>{
+  let history = useHistory()
+  history.push("/welcome")
+ }
   
   
 
