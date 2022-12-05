@@ -1,0 +1,30 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.bg-logo {
+  background-color: #afb563;
+  border-radius: 0px 0px 10px 0px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.container-logo {
+  background-image: url("/public/assets/nutriboom.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  height: 90px;
+  width: 300px;
+  border-radius: 0 0 10px 0;
+}
+.navbar {
+  color: #afb563;
+}
+.buttonStyle {
+  text-align: center;
+  border-style: solid;
+  border-radius: 25% 10%;
+  background-color: #afb563;
+  width: 100px;
+  margin: 20px;
+}
