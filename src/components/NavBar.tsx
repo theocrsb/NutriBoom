@@ -23,7 +23,7 @@ const Navbar = () => {
             </div>
           </NavLink>
           <button
-            className="navbar-toggler "
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -31,7 +31,7 @@ const Navbar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon m-10"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav">
@@ -48,7 +48,7 @@ const Navbar = () => {
                   Features
                 </a> */}
                 <NavLink to="main" className="nav-link buttonStyle ">
-                  <strong>Profil</strong>
+                  Profil
                 </NavLink>
               </li>
               <li className="nav-item">
@@ -56,27 +56,27 @@ const Navbar = () => {
                   Pricing
                 </a> */}
                 <NavLink to="subscribe" className="nav-link buttonStyle ">
-                  <strong>Inscription</strong>
+                  Inscription
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link disabled">Disabled</a> */}
                 <NavLink to="Dashboard" className="nav-link buttonStyle ">
-                  <strong>Calculateur</strong>
+                  Calculateur
                 </NavLink>
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link disabled">Disabled</a> */}
                 <NavLink to="Dashboard" className="nav-link buttonStyle ">
-                  <strong>About Us</strong>
+                  About Us
                 </NavLink>
               </li>
             </ul>
           </div>
-        </div>
-      </nav>
-    </div>
-  );
-};
+          </div>
+          </nav>
+          </div>
+          )
+}
 
 export default Navbar;

@@ -49,7 +49,10 @@
   background-position: center;
   background-size: 100%;
 }
-
+* {
+  padding: 0;
+  margin: 0;
+}
 *,
 ::after,
 ::before {

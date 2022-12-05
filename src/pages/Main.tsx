@@ -22,13 +22,13 @@ const dataCal = {
       ],
       borderColor: [
         "rgba(97, 255, 51, 1)",
-        "rgba(0, 0, 0, 0.2)",
+        "rgba(0, 0, 0, 0.5)",
         // "rgba(255, 206, 86, 1)",
         // "rgba(75, 192, 192, 1)",
         // "rgba(153, 102, 255, 1)",
         // "rgba(255, 159, 64, 1)",
       ],
-      borderWidth: 0,
+      borderWidth: 1,
     },
   ],
 };
@@ -48,13 +48,13 @@ const dataLip = {
       ],
       borderColor: [
         "rgba(252, 255, 50, 1)",
-        "rgba(0, 0, 0, 0.2)",
+        "rgba(0, 0, 0, 0.5)",
         // "rgba(255, 206, 86, 1)",
         // "rgba(75, 192, 192, 1)",
         // "rgba(153, 102, 255, 1)",
         // "rgba(255, 159, 64, 1)",
       ],
-      borderWidth: 0,
+      borderWidth: 1,
     },
   ],
 };
@@ -74,13 +74,13 @@ const dataProt = {
       ],
       borderColor: [
         "rgba(255, 99, 95, 1)",
-        "rgba(0, 0, 0, 0.2)",
+        "rgba(0, 0, 0, 0.5)",
         // "rgba(255, 206, 86, 1)",
         // "rgba(75, 192, 192, 1)",
         // "rgba(153, 102, 255, 1)",
         // "rgba(255, 159, 64, 1)",
       ],
-      borderWidth: 0,
+      borderWidth: 1,
     },
   ],
 };
@@ -100,13 +100,13 @@ const dataGlu = {
       ],
       borderColor: [
         "rgba(51, 181, 255, 1)",
-        "rgba(0, 0, 0, 0.2)",
+        "rgba(0, 0, 0, 0.5)",
         // "rgba(255, 206, 86, 1)",
         // "rgba(75, 192, 192, 1)",
         // "rgba(153, 102, 255, 1)",
         // "rgba(255, 159, 64, 1)",
       ],
-      borderWidth: 0,
+      borderWidth: 1,
     },
   ],
 };
@@ -120,22 +120,22 @@ const Main = () => {
       />
       <div className="container-chart">
         <div className="container-chartCal text-center">
-          <p className="title-chart">Calories</p>
+          <p>Calories</p>
           <section className="donutCal">
             <Doughnut data={dataCal} />
           </section>
         </div>
         <div className="d-flex container-nutri">
           <section className="donutProt text-center">
-            <p className="title-chart">Protein</p>
+            <p>Protein</p>
             <Doughnut data={dataProt} />
           </section>
           <section className="donutGlu text-center ">
-            <p className="title-chart">Glucide</p>
+            <p>Glucide</p>
             <Doughnut data={dataGlu} />
           </section>
           <section className="donutLip text-center">
-            <p className="title-chart">Lipide</p>
+            <p>Lipide</p>
             <Doughnut data={dataLip} />
           </section>
         </div>
@@ -173,7 +173,7 @@ const Main = () => {
               aria-expanded="false"
               aria-controls="collapseTwo"
             >
-              Dejeuner
+              dejeuner
             </button>
           </h2>
           <div
