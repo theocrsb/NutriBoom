@@ -16,8 +16,12 @@ const Welcome = ()=>{
             {/* image avec salade */}
           </div>
           <div className="containerButton">
+              <Link to = "/connexion">
     <ConnexionButton/>
+    </Link>
+    <Link to = "/suscribe">
      <SuscribeButton/>
+     </Link>
      </div>
      <p className = "nboomText">Avec NutriBoom, boostez votre hygiène de vie !</p>
      <div className="containerText">

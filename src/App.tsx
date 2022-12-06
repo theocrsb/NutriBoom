@@ -7,7 +7,8 @@ import Welcome from './pages/Welcome';
 import Suscribe from './pages/Suscribe';
 import AboutUs from './pages/AboutUs';
 import Main from './pages/Main';
-import Footer from "./components/Footer"
+import Footer from "./components/Footer";
+import Connexion from './pages/Connexion';
 
 
 const App = ()=>{
@@ -21,6 +22,7 @@ const App = ()=>{
       <Route path = "/suscribe" element = {<Suscribe/>}/>
       <Route path = "/aboutus" element = {<AboutUs/>}/>
       <Route path = "/main" element = {<Main/>}/>
+      <Route path = "/connexion" element = {<Connexion/>}/>
       </Routes>
       </BrowserRouter>
        <Footer/>

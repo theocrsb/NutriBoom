@@ -64,7 +64,7 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 {/* <a className="nav-link disabled">Disabled</a> */}
-                <NavLink to="Dashboard" className="nav-link buttonStyle ">
+                <NavLink to="aboutus" className="nav-link buttonStyle ">
                   About Us
                 </NavLink>
               </li>

@@ -1,0 +1,13 @@
+.photoHomme{
+      background-image: url("/public/assets/man.jpg") ;
+       background-size: cover;
+  background-position: center;
+  margin-top: 30px;
+  margin-left: 35px;
+  height: 230px;
+  width: 300px; 
+}
+
+.textApropos{
+    padding-top : 30px;
+}
