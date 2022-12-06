@@ -49,44 +49,11 @@
   background-position: center;
   background-size: 100%;
 }
-* {
-  padding: 0;
-  margin: 0;
-}
-*,
-::after,
-::before {
-  box-sizing: border-box;
-}
+
 .navbar-toggler:focus {
   color: #dfa530;
 }
 
-b,
-strong {
-  font-weight: bolder;
-}
-*,
-::after,
-::before {
-  box-sizing: border-box;
-}
-* {
-  padding: 0;
-  margin: 0;
-}
-* {
-  padding: 0;
-  margin: 0;
-}
-*,
-::after,
-::before {
-  box-sizing: border-box;
-}
-feuille de style user-agent strong {
-  font-weight: bold;
-}
 .navbar-nav .nav-link.active {
   color: rgba(0, 0, 0, 0.515);
 }

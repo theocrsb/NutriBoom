@@ -1,7 +1,8 @@
-.donutCal {
+#donutCal {
   display: flex;
   justify-content: center;
-  height: 200px;
+  max-height: 200px;
+  width: auto;
 }
 .donutProt {
   height: 80px;
@@ -61,15 +62,23 @@
   background-size: 100%;
 }
 
-*,
-::after,
-::before {
-  box-sizing: border-box;
-}
 .navbar-toggler:focus {
   color: #dfa530;
 }
 
 h2 {
   text-align: center;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+.petit-dej li:nth-child(odd) {
+  background-color: #afb563;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+#collapseOne {
+  padding: 0;
 }
