@@ -4,11 +4,17 @@
 }
 
 .carotteFond{
-    background-image: url("/public/assets/missCarotte.png");
-    background-size: cover;
-transform: rotate();
+    background-image: url("/public/assets/missCarottePenchee.png");
+    background-repeat: no-repeat;
+    background-size: 600px;
+    background-position: 0px;
+    
 }
 
-/* .suscribeForm{
-  transform: ;
-} */
+.suscribeForm{
+    text-align: center;
+}
+
+
+
+

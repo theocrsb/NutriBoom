@@ -4,12 +4,10 @@ import SuscribeButton from "../components/SuscribeButton";
 const Suscribe = ()=>{
     return(
         <div>
-            <div>
-            
             <div className = "suscribe">
             <h1 >Inscris toi gratuitement!</h1>
-            <form className="suscribeForm">
-                <div className="carotteFond">
+            </div>
+            <form className="suscribeForm carotteFond">
   <div className="mb-3">
     <label htmlFor="inputNom" className="htmlForm-label"/>
     <input type="nom" className="htmlForm-control" id="inputNom"placeholder="nom"/>
@@ -43,10 +41,7 @@ const Suscribe = ()=>{
     <input type="gender" className="htmlForm-control" id="inputGender" placeholder="sexe"/>
   </div>
 <SuscribeButton/>
-</div>
 </form>
-             </div> 
-            </div>
         </div>
     )
 }
