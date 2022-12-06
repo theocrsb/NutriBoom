@@ -1,7 +1,10 @@
 const ImcButton =()=>{
+          const imcFunction =()=>{
+ return;
+        }
     return(
         <div>
-            <button type="button" className="btn inscription">Calcule ton IMC</button>
+            <button onClick={imcFunction} type="button" className="btn inscription">Calcule ton IMC</button>
         </div>
     )
 }

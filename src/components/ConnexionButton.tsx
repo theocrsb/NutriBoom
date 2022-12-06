@@ -1,7 +1,12 @@
-const ConnexionButton = ()=>{
+  
+    const ConnexionButton = ()=>{
+
+        const connectFunction =()=>{
+ return;
+        }
     return(
         <div>
-         <button type="button" className="btn inscription">Se connecter</button>   
+         <button onClick={connectFunction} type="button" className="btn inscription">Se connecter</button>   
         </div>
     )
 }

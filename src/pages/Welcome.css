@@ -44,6 +44,25 @@ background-image: url("/public/assets/salade.jpg");
 }
 
 .imcForm{
-  padding-top: 40px;
+margin-top: 30px;
+width: 300px;
+height : 270px;
+background-color: #dfa530;
+padding-top: 30px;
+padding-left: 48px;
+margin-left: 36px; 
+ 
+}
+
+.imcButton2{
+  padding-top: 10px;
+    padding-left: 30px;
+}
+
+.hautPage{
+    padding-top: 25px;
+  font-weight: bold;
+  font-size:15px;
   text-align: center;
+  color: black;
 }

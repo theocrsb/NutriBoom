@@ -6,9 +6,9 @@ import "./Welcome.css"
 
 const Welcome = ()=>{
     return(
-        <div> 
+        <div  id = "haut"> 
           <div className="imcButtonStyle">
-            <Link to="#ok">
+            <Link to="#imc">
                <ImcButton/>
             </Link>
    </div> 
@@ -30,7 +30,7 @@ const Welcome = ()=>{
 </p>
      </div>
      <form className="imcForm">
-  <div id="ok" className="mb-3">
+  <div id="imc" className="mb-3">
     <label htmlFor="exampleInputTaille" className="htmlForm-label"/>
     <input type="taille" className="htmlForm-control" id="exampleInputTaille"placeholder="taille"/>
   </div>
@@ -46,9 +46,13 @@ const Welcome = ()=>{
     <label htmlFor="exampleInputSexe" className="htmlForm-label"/>
     <input type="sexe" className="htmlForm-control" id="exampleInputSexe" placeholder="sexe"/>
   </div>
+  <div className="imcButton2">
   <ImcButton/>
+  </div>
 </form>
-     
+<Link to="#haut">
+ <p className="hautPage"> Revenir en haut de page </p>
+ </Link>
       </div>
     )
 }

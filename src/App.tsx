@@ -7,6 +7,7 @@ import Welcome from './pages/Welcome';
 import Suscribe from './pages/Suscribe';
 import AboutUs from './pages/AboutUs';
 import Main from './pages/Main';
+import Footer from "./components/Footer"
 
 
 const App = ()=>{
@@ -22,7 +23,7 @@ const App = ()=>{
       <Route path = "/main" element = {<Main/>}/>
       </Routes>
       </BrowserRouter>
-
+       <Footer/>
     </div>
   )
 }
