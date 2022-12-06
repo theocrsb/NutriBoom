@@ -1,0 +1,14 @@
+.suscribe{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.carotteFond{
+    background-image: url("/public/assets/missCarotte.png");
+    background-size: cover;
+transform: rotate();
+}
+
+/* .suscribeForm{
+  transform: ;
+} */

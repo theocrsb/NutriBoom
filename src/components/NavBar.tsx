@@ -52,7 +52,7 @@ const Navbar = () => {
                 {/* <a className="nav-link" href="#">
                   Pricing
                 </a> */}
-                <NavLink to="subscribe" className="nav-link buttonStyle ">
+                <NavLink to="suscribe" className="nav-link buttonStyle ">
                   Inscription
                 </NavLink>
               </li>
