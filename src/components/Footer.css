@@ -1,13 +1,21 @@
-.footer{
- background-color: grey;
- margin-top: 35px;
-height: 100%;
+.footer {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px 10px 0px 0px;
+
+  background-color: #afb563;
+  margin-top: 35px;
+  height: 100%;
+}
+.textFooter {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
 }
 
-.logoFooter{
-    width: 150px;
-    margin-left: 110px;
+.logoFooter {
+  width: 200px;
+  margin-right: 3%;
 }
-
-
-
