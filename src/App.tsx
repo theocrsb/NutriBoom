@@ -18,6 +18,7 @@ const App = ()=>{
       <BrowserRouter>
       <NavBar/>
       <Routes>
+      <Route path = "/" element = {<Welcome/>}/>
       <Route path = "/welcome" element = {<Welcome/>}/>
       <Route path = "/suscribe" element = {<Suscribe/>}/>
       <Route path = "/aboutus" element = {<AboutUs/>}/>
