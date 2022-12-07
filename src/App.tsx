@@ -9,6 +9,7 @@ import AboutUs from './pages/AboutUs';
 import Main from './pages/Main';
 import Footer from "./components/Footer";
 import Connexion from './pages/Connexion';
+import AddBreakfast from './pages/AddBreakfast';
 
 
 const App = ()=>{
@@ -24,6 +25,7 @@ const App = ()=>{
       <Route path = "/aboutus" element = {<AboutUs/>}/>
       <Route path = "/main" element = {<Main/>}/>
       <Route path = "/connexion" element = {<Connexion/>}/>
+      <Route path = "/petitdejeuner" element = {<AddBreakfast/>}></Route>
       </Routes>
       </BrowserRouter>
        <Footer/>

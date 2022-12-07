@@ -82,3 +82,12 @@ ul {
 #collapseOne {
   padding: 0;
 }
+
+.buttonAdd{
+  margin-top: 20px;
+  text-align: center; 
+}
+
+.textAjout{
+ padding-left: 30%;
+}

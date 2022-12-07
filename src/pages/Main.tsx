@@ -3,6 +3,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "./Main.css";
 import axios from "axios";
+import PlusAddButton from "../components/PlusAddButton";
+import {Link} from "react-router-dom";
 
 interface User {
   id?: string;
@@ -223,6 +225,10 @@ const Main = () => {
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
+                    <Link to="/petitdejeuner">
+                <div className="buttonAdd"><PlusAddButton/></div>
+                </Link>
+                <span className = "textAjout"> Ajouter un aliment</span>
               </ul>
             </div>
           </div>
@@ -246,7 +252,19 @@ const Main = () => {
             aria-labelledby="headingTwo"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body"></div>
+            <div className="accordion-body">
+              <ul className="petit-dej">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem.</li>
+                <li>Lorem, ipsum.</li>
+                <Link to="/petitdejeuner">
+                <div className="buttonAdd"><PlusAddButton/></div>
+                </Link>
+                <span className = "textAjout"> Ajouter un aliment</span>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="accordion-item">
@@ -268,7 +286,19 @@ const Main = () => {
             aria-labelledby="headingThree"
             data-bs-parent="#accordionExample"
           >
-            <div className="accordion-body"></div>
+            <div className="accordion-body">
+              <ul className="petit-dej">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem.</li>
+                <li>Lorem, ipsum.</li>
+                  <Link to="/petitdejeuner">
+                <div className="buttonAdd"><PlusAddButton/></div>
+                </Link>
+                <span className = "textAjout"> Ajouter un aliment</span>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
