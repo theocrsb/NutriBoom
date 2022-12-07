@@ -170,7 +170,7 @@ const Main = () => {
   };
 
   return (
-    <div>
+    <div className="mainPage">
       <img
         id="onglet"
         src={process.env.PUBLIC_URL + `/assets/dashboard.svg`}
