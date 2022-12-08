@@ -3,7 +3,9 @@
   margin: 0;
 }
 .bg-logo {
-  background-color: #afb563;
+  border-right: solid 1mm #dfa530;
+  border-bottom: solid 1mm #dfa530;
+  background-color: transparent;
   border-radius: 0px 0px 10px 0px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -12,48 +14,78 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
   height: 90px;
   width: 300px;
   border-radius: 0 0 10px 0;
 }
 .navbar {
+  background-color: transparent;
+  /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
   color: #afb563;
 }
+
 .buttonStyle {
-  color: white;
+  color: #afb563;
   text-align: center;
-  border: solid 0.7mm rgba(0, 0, 0, 0.25);
-  border-radius: 25% 10%;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  background-color: #afb563;
-  width: 100px;
-  margin: 20px;
+  font-weight: bold;
+  font-size: small;
+  /* border: solid 0.7mm rgba(0, 0, 0, 0.25); */
+  /* border-radius: 25% 10%; */
+  /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  /* background-color: #afb563; */
+  /* width: 100px; */
+  /* margin: 20px; */
+  padding: 6px;
 }
 .navbar-toggler {
-  margin-right: 15px;
-  background-color: #afb563;
+  border: solid 1mm #dfa530;
+  margin-right: 5px;
+  background-color: #b0b563;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .navbar-toggler-icon {
   color: #dfa530;
+}
+.test-toggler {
+  height: 100%;
 }
 
 .navbar-toggler-icon {
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
-  vertical-align: middle;
-  background-image: var(--bs-navbar-toggler-icon-bg);
+  /* vertical-align: middle; */
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
 }
 
 .navbar-toggler:focus {
-  color: #dfa530;
+  color: #b0b56355;
 }
 
 .navbar-nav .nav-link.active {
-  color: rgba(0, 0, 0, 0.515);
+  text-decoration: underline 0.5mm;
+  color: #dfa530;
+}
+
+.navbar-nav {
+  /* --bs-nav-link-padding-x: 0;
+  --bs-nav-link-padding-y: 0.5rem;
+  --bs-nav-link-font-weight: ;
+  --bs-nav-link-color: var(--bs-navbar-color);
+  --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+  --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color); */
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+  background-color: transparent;
 }

@@ -1,3 +1,8 @@
-.inscription{
-background-color: #afb563;
+.inscription {
+  color: #dfa530;
+  font-weight: bold;
+  margin: 20px;
+  background-color: rgba(0, 0, 0, 0.505);
+  border: solid 1mm #afb563;
+  border-radius: 50px;
 }

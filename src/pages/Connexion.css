@@ -1,22 +1,21 @@
-.textConnect{
-    text-align: center;
-    margin-top: 80px;
+.textConnect {
+  text-align: center;
+  margin-top: 80px;
 }
 
-.formConnexion{
-    text-align: center;  
+.formConnexion {
+  text-align: center;
 }
 
-.fondCarotte{
-   background-image: url("/public/assets/carotteBgLol.png") ;
-   background-repeat: no-repeat;
-   background-size: 400px;
-   background-position: 700% 0%  ;
-   height: 60vh;
-  
+.fondCarotte {
+  /* background-image: url("/public/assets/carotteBgLol.png") ; */
+  background-repeat: no-repeat;
+  background-size: 400px;
+  background-position: 700% 0%;
+  height: 60vh;
 }
 
-.connexionButton{
-    padding-top: 30px;
-    text-align: center;
+.connexionButton {
+  padding-top: 30px;
+  text-align: center;
 }

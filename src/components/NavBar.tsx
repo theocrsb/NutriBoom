@@ -29,7 +29,7 @@ const Navbar = () => {
   };
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-transparent p-0">
+      <nav className="navbar navbar-expand-lg  p-0">
         <div className="container-fluid p-0">
           <NavLink to="welcome" className="navbar-brand p-0 m-0">
             <div className="bg-logo">
@@ -42,18 +42,20 @@ const Navbar = () => {
               </div>
             </div>
           </NavLink>
-          <button
-            // onClick={handleClickbtn}
-            className="navbar-toggler "
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <div className="test-toggler">
+            <button
+              // onClick={handleClickbtn}
+              className="navbar-toggler "
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">

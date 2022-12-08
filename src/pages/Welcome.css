@@ -1,68 +1,114 @@
-.imcButtonStyle{
- margin-left: 120px;
- margin-top : 40px
+* {
+  outline: 0;
+}
+.imcButtonStyle {
+  text-align: center;
 }
 
-.saladePicture{
-background-image: url("/public/assets/salade.jpg");
- background-size: cover;
+.saladePicture {
+  background-image: url("/public/assets/salade.jpg");
+  opacity: 0.8;
+  background-size: cover;
   background-position: center;
   margin-top: 30px;
-  margin-left: 35px;
+  /* margin-left: 35px; */
   height: 230px;
-  width: 300px;
+  /* width: 300px; */
+  width: 100%;
 }
 
-.containerButton{
+.containerButton {
   display: flex;
   justify-content: space-around;
   margin-top: 30px;
 }
 
-.containerText{
+.containerText {
+  color: #dfa530;
   border-style: solid;
   border-color: #dfa530;
-  background-color: #dfa530;
+  background-color: rgba(0, 0, 0, 0.536);
   width: 90%;
   margin-left: 18px;
   border-radius: 20px;
-
-  
 }
 
-.nboomText{
+.nboomText {
+  color: #afb563;
   padding-top: 25px;
   font-weight: bold;
-  font-size:15px;
+  font-size: 15px;
   text-align: center;
 }
 
-.description{
+.description {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.imcForm{
-margin-top: 30px;
-width: 300px;
-height : 270px;
-background-color: #dfa530;
-padding-top: 30px;
-padding-left: 48px;
-margin-left: 36px; 
- 
+.imcForm {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  justify-content: center;
+  border-color: #dfa530;
+  border-radius: 10px;
+  margin-top: 30px;
+  width: 300px;
+  height: 300px;
+  background-color: transparent;
+  padding-top: 30px;
+  padding-left: 48px;
+  margin-left: 36px;
 }
 
-.imcButton2{
+.imcButton2 {
   padding-top: 10px;
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
-.hautPage{
-    padding-top: 25px;
+.hautPage {
+  padding-top: 25px;
   font-weight: bold;
-  font-size:15px;
+  font-size: 15px;
   text-align: center;
-  color: black;
+  color: #afb563;
 }
+.wordStyle {
+  color: #afb563;
+  font-weight: bold;
+}
+
+.imcForm input {
+  color: #dfa530;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background-color: rgba(0, 0, 0, 0.515);
+  border-radius: 50px;
+  text-align: center;
+  border: solid 1mm #dfa530;
+}
+.linkUp + p {
+  text-decoration: none;
+}
+
+/* .missCarotteImg {
+  position: absolute;
+  left: 0px;
+  top: 700px;
+  transform: rotate(-12deg);
+  height: 850px;
+  width: 700px;
+  z-index: -5;
+}
+.misterCarotteImg {
+  position: absolute;
+  right: 0px;
+  top: 80px;
+  height: 850px;
+  width: 700px;
+  z-index: -5;
+} */

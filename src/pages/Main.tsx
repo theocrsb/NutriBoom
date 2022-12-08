@@ -4,7 +4,7 @@ import { Doughnut } from "react-chartjs-2";
 import "./Main.css";
 import axios from "axios";
 import PlusAddButton from "../components/PlusAddButton";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface User {
   id?: string;
@@ -221,14 +221,14 @@ const Main = () => {
             <div className="accordion-body">
               <ul className="petit-dej">
                 <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
-                    <Link to="/petitdejeuner">
-                <div className="buttonAdd"><PlusAddButton/></div>
+                <Link className="buttonAdd" to="/petitdejeuner">
+                  <PlusAddButton />
                 </Link>
-                <span className = "textAjout"> Ajouter un aliment</span>
+                <span className="textAjout"> Ajouter un aliment</span>
               </ul>
             </div>
           </div>
@@ -255,14 +255,14 @@ const Main = () => {
             <div className="accordion-body">
               <ul className="petit-dej">
                 <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
-                <Link to="/petitdejeuner">
-                <div className="buttonAdd"><PlusAddButton/></div>
+                <Link className="buttonAdd" to="/petitdejeuner">
+                  <PlusAddButton />
                 </Link>
-                <span className = "textAjout"> Ajouter un aliment</span>
+                <span className="textAjout"> Ajouter un aliment</span>
               </ul>
             </div>
           </div>
@@ -289,14 +289,82 @@ const Main = () => {
             <div className="accordion-body">
               <ul className="petit-dej">
                 <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
+                <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
-                  <Link to="/petitdejeuner">
-                <div className="buttonAdd"><PlusAddButton/></div>
+                <Link className="buttonAdd" to="/petitdejeuner">
+                  <PlusAddButton />
                 </Link>
-                <span className = "textAjout"> Ajouter un aliment</span>
+                <span className="textAjout"> Ajouter un aliment</span>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header text-center" id="headingFour">
+            <button
+              className="accordion-button collapsed "
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              Collation
+            </button>
+          </h2>
+          <div
+            id="collapseFour"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingFour"
+            data-bs-parent="#accordionExample"
+          >
+            <div className="accordion-body">
+              <ul className="petit-dej">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem, ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem.</li>
+                <li>Lorem, ipsum.</li>
+                <Link className="buttonAdd" to="/petitdejeuner">
+                  <PlusAddButton />
+                </Link>
+                <span className="textAjout"> Ajouter un aliment</span>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="accordion-item">
+          <h2 className="accordion-header text-center" id="headingFive">
+            <button
+              className="accordion-button collapsed "
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFive"
+              aria-expanded="false"
+              aria-controls="collapseFive"
+            >
+              Activité Physique
+            </button>
+          </h2>
+          <div
+            id="collapseFive"
+            className="accordion-collapse collapse"
+            aria-labelledby="headingFive"
+            data-bs-parent="#accordionExample"
+          >
+            <div className="accordion-body">
+              <ul className="petit-dej">
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem, ipsum dolor sit amet.</li>
+                <li>Lorem ipsum dolor sit amet.</li>
+                <li>Lorem.</li>
+                <li>Lorem, ipsum.</li>
+                <Link className="buttonAdd" to="/petitdejeuner">
+                  <PlusAddButton />
+                </Link>
+                <span className="textAjout"> Ajouter une activitée</span>
               </ul>
             </div>
           </div>

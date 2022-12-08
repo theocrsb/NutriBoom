@@ -1,30 +1,31 @@
-.addButton{
-  border-radius: 50px;
- border-style: none;
+.addButton {
+  border-radius: 40px;
+  border: #dfa530 1mm solid;
   width: 40px;
   height: 40px;
-  text-align: center;
   font-size: 30px;
   color: white;
   background-color: #afb563;
   display: flex;
   justify-content: center;
-  align-self: center;
   align-items: center;
-text-decoration: none;
-
+}
+.addButton:hover {
+  background-color: #dfa530;
+  color: black;
 }
 
-button:focus {outline-style:none;}
-
-.divAddButton{
-     display: flex;
-     justify-content: center;
-     text-decoration: none;
+.divAddButton {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
 }
 
-.croix{
-    position: relative;
-    bottom: 5%;
-    text-decoration: none;
+.croix {
+  font-weight: bolder;
+  color: black;
+  position: relative;
+  bottom: 5%;
+  text-decoration: none;
 }
