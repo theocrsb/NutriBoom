@@ -1,22 +1,23 @@
 import AlimentAddButton from "../components/AlimentAddButton";
 import "./Add.css"
 
-const AddExercice = ()=>{
+const AddDinner=()=>{
 
-    //  PROPS----------------------------------------
-     const exerciceFunction=(e:React.FormEvent)=>{
- console.log("props dans les exercices",e)
+//  PROPS----------------------------------------
+     const dinnerFunction=(e:React.FormEvent)=>{
+ console.log("props dans le diner")
      }
 //  PROPS----------------------------------------
+ 
     return(
-          <div>
+      <div>
             <div className="list">
             <li className ="listeRecherche">
-                <span className="text"> Exercice</span>      
+                <span className="text"> Diner</span>      
             </li>
             <span className ="buttonValidate"><AlimentAddButton/></span>
             </div>
         </div>
     )
 }
-export default AddExercice;
+export default AddDinner;

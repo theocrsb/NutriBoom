@@ -28,3 +28,17 @@
   /* border-radius: 10px; */
   border-radius: 10px 0px 0px 0px;
 }
+
+.aPropos{
+  box-shadow: none;
+  text-decoration: none;
+  color: black;
+}
+
+.aPropos:visited{
+color: black;
+}
+
+.aPropos:hover{
+cursor:pointer;
+}
