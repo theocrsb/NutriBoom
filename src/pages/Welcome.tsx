@@ -12,11 +12,13 @@ const Welcome = ()=>{
  const [ageState, setAgeState] = useState<string>();
  const [sexeState, setSexeState] = useState<string>();
  const [message, setMessage] =useState<string>()
+ const [messageBis, setMessageBis] =useState<string>()
  
   const imcSubmit=(e:React.FormEvent)=>{
      e.preventDefault()
   if(!tailleState || !poidsState){
     setMessage("un élément est manquant pour le calcul")
+
   }else{
    
     let taille = Number(tailleState)
@@ -27,7 +29,33 @@ const Welcome = ()=>{
     let resultImc = poids / (tailleDivise * tailleDivise);
     let resultatImc = resultImc.toFixed(2)
     console.log("resultat de l'imc",resultImc)
-    setMessage(`Votre IMC est de ${resultatImc} ! `)
+    setMessage(`Ton IMC est de ${resultatImc} `)
+
+switch(true){
+ case Number(resultatImc)<18.5:
+    setMessageBis("D'après l'échelle de l'OMS, tu es en situation d'insuffisance pondérale (maigreur)")
+    break;
+
+  case Number(resultatImc)>=18.5 && Number(resultatImc) <=25:
+    setMessageBis("D'après l'échelle de l'OMS, tu es de corpulence normale")
+    break;
+ 
+    case Number(resultatImc)>25 && Number(resultatImc) <=30:
+      setMessageBis("D'après l'échelle de l'OMS, tu es en situation de surpoids")
+      break;
+    
+      case Number(resultatImc)>30 && Number(resultatImc) <=35:
+      setMessageBis("D'après l'échelle de l'OMS, tu es en situation d'obésité modérée")
+      break;
+
+      case Number(resultatImc)>35 && Number(resultatImc) <=40:
+      setMessageBis("D'après l'échelle de l'OMS, tu es en situation d'obésité sévère")
+      break;
+
+      case Number(resultatImc)>40:
+      setMessageBis("D'après l'échelle de l'OMS, tu es en situation d'obésité morbide ou massive")
+      break;
+}
   }
     
   }
@@ -84,23 +112,16 @@ setSexeState(e.currentTarget.value)
      <form className="imcForm" onSubmit={imcSubmit}>
   <div id="imc" className="mb-3">
     <label htmlFor="exampleInputTaille" className="htmlForm-label"/>
-    <input type="taille" className="htmlForm-control" id="exampleInputTaille"placeholder="taille" onChange={tailleFunction}/>
+    <input type="tel" min={100} max={230} className="htmlForm-control" id="exampleInputTaille"placeholder="taille (cm)" onChange={tailleFunction}/>
   </div>
   <div className="mb-3">
     <label htmlFor="exampleInputPoids" className="htmlForm-label"/>
-    <input type="poids" className="htmlForm-control" id="exampleInputPoids" placeholder="poids" onChange={poidsFunction}/>
+    <input type="number" className="htmlForm-control" id="exampleInputPoids" placeholder="poids (kg)" onChange={poidsFunction}/>
   </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputAge" className="htmlForm-label"/>
-    <input type="age" className="htmlForm-control" id="exampleInputAge" placeholder="age" onChange={ageFunction}/>
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputSexe" className="htmlForm-label"/>
-    <input type="sexe" className="htmlForm-control" id="exampleInputSexe" placeholder="sexe" onChange={sexeFunction}/>
-  </div>
+  <p className ="message">{message}
+  <br />{messageBis}</p>
   <div className="imcButton2">
   <ImcButton/>
-  <p className ="message">{message}</p>
   </div>
 </form>
 <div>
