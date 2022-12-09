@@ -6,6 +6,7 @@ import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
   let isConnected = false;
+  let isAdmin = true
   return (
     <div id="hautNavBar">
       <nav className="navbar navbar-expand-md bg-transparent p-0">
@@ -112,6 +113,19 @@ const Navbar = () => {
                     >
                       {" "}
                       Nous{" "}
+                    </strong>
+                  </Link>
+                </li>
+              )}
+              {isAdmin && (
+                <li className="nav-item">
+                  <Link to="/admin" className="nav-link buttonStyle ">
+                    <strong
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarNav"
+                    >
+                      {" "}
+                      Admin{" "}
                     </strong>
                   </Link>
                 </li>

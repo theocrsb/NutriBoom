@@ -3,9 +3,11 @@ import ConnexionButton from "../components/ConnexionButton";
 import ImcButton from "../components/ImcButton";
 import { HashLink as Link } from "react-router-hash-link";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Welcome.css";
 
 const Welcome = () => {
+
   const [tailleState, setTailleState] = useState<string>();
   const [poidsState, setPoidsState] = useState<string>();
   const [message, setMessage] = useState<string>();
