@@ -17,6 +17,7 @@ import AddExercice from './pages/AddExercice';
 import UpdateProfil from './pages/UpdateProfil';
 import DeleteAccount from './pages/DeleteAccount';
 import Account from './pages/Account';
+import Admin from "./pages/Admin";
 
 const App = ()=>{
  
@@ -41,6 +42,7 @@ const App = ()=>{
       <Route path = "/modifierprofil" element = {<UpdateProfil/>}></Route>
       <Route path = "/supprimercompte" element = {<DeleteAccount/>}></Route>
       <Route path = "/moncompte" element = {<Account/>}></Route>
+      <Route path = "/admin" element = {<Admin/>}></Route>
       </Routes>
       <Footer/>
       </BrowserRouter>
