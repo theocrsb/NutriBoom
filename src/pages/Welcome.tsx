@@ -12,6 +12,7 @@ const Welcome = ()=>{
  const [ageState, setAgeState] = useState<string>();
  const [sexeState, setSexeState] = useState<string>();
  const [message, setMessage] =useState<string>()
+ const [messageBis, setMessageBis] =useState<string>()
  
   const imcSubmit=(e:React.FormEvent)=>{
      e.preventDefault()
@@ -27,7 +28,18 @@ const Welcome = ()=>{
     let resultImc = poids / (tailleDivise * tailleDivise);
     let resultatImc = resultImc.toFixed(2)
     console.log("resultat de l'imc",resultImc)
-    setMessage(`Votre IMC est de ${resultatImc} ! `)
+    setMessage(`Votre IMC est de ${resultatImc} `)
+//     if(Number(resultatImc) > 25){
+// setMessageBis(", vous rentrez dans la catégorie surpoids")
+//     }
+switch(true){
+  case Number(resultatImc)>18 && Number(resultatImc) <25:
+    setMessageBis("vous rentrez dans la categorie normale")
+    break;
+    case Number(resultatImc)<18:
+      setMessageBis("vous rentrez dans l'insufisance pondérale")
+      break;
+}
   }
     
   }
@@ -99,9 +111,9 @@ setSexeState(e.currentTarget.value)
   </div>
   <div className="imcButton2">
   <ImcButton/>
-  <p className ="message">{message}</p>
   </div>
 </form>
+  <p className ="message">{message}{messageBis}</p>
 <div>
 <Link to="#hautNavBar" className="basDePageLink">
  <p className="hautPage"> Revenir en haut de page </p>
