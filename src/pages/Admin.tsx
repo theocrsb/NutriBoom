@@ -36,7 +36,7 @@ const Admin = ()=>{
 
     return(
         <div>
-            <h1 className="ecriture">Salut Admin ! <br />Voici la liste des users</h1>
+            <h1 className="ecriture">Salut Admin ! <br />Voici la liste des utilisateurs</h1>
             {mesUsers.map((user: User, index)=>(<li key={index} className= "ecritureAdmin">
                 {user.lastname} {user.firstname} {user.email}
             </li> ))}
