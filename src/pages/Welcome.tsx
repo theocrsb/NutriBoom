@@ -46,6 +46,7 @@ setAgeState(e.currentTarget.value)
 setSexeState(e.currentTarget.value)
   }
 
+
   // useEffect pour tester les states car ils sont asynchrones//
   //et affichent avant re-render une première valeur undefined//
   useEffect(() => {
