@@ -38,7 +38,7 @@
   color: #afb563;
   padding-top: 25px;
   font-weight: bold;
-  font-size: 15px;
+  /* font-size: 15px; */
   text-align: center;
 }
 
@@ -61,7 +61,6 @@
   background-color: transparent;
   padding-top: 30px;
   padding-left: 48px;
-  margin-left: 36px;
 }
 
 .imcButton2 {
