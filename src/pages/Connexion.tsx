@@ -1,20 +1,25 @@
 import "./Connexion.css"
 import {Link} from "react-router-dom";
 import ConnexionButton from "../components/ConnexionButton";
-import {useState} from"react";
+import {useState, useEffect} from"react";
 
 const Connexion = ()=>{
 const [mailState, setMailState] =useState<string>()
 const [passwordState, setPasswordState] =useState<string>()
 
 const mailFunction =(e:React.ChangeEvent<HTMLInputElement>)=>{
-console.log("mail", e.currentTarget.value)
 setMailState(e.currentTarget.value)
   }
 const passwordFunction =(e:React.ChangeEvent<HTMLInputElement>)=>{
-console.log("password", e.currentTarget.value)
 setPasswordState(e.currentTarget.value)
   }
+
+   // useEffect pour tester les states car ils sont asynchrones//
+  //et affichent avant re-render une première valeur undefined//
+useEffect(() => {
+  console.log("mail dans useEffect", mailState)
+  console.log("password dans useEffect", passwordState)
+})
     return(
         <div  className="fondCarotte">
             <div className ="textConnect">
