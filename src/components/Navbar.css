@@ -37,6 +37,10 @@
   /* margin: 20px; */
   padding: 6px;
 }
+.buttonStyle:hover {
+  transition: ease-in-out 0.25s;
+  color: #dfa530;
+}
 .navbar-toggler {
   border: solid 1mm #dfa530;
   margin-right: 5px;

@@ -98,9 +98,9 @@ const Welcome = () => {
           <SuscribeButton />
         </Link>
       </div>
-      <p className="nboomText">
+      <h1 className="nboomText">
         Avec NutriBoom, boostez votre hygiène de vie !
-      </p>
+      </h1>
       <div className="containerText">
         <p className="description">
           <span className="wordStyle"> Suivi Journalier</span>
