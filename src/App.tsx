@@ -41,8 +41,8 @@ const App = ()=>{
       <Route path = "/modifierprofil" element = {<UpdateProfil/>}></Route>
       <Route path = "/supprimercompte" element = {<DeleteAccount/>}></Route>
       <Route path = "/moncompte" element = {<Account/>}></Route>
-      
       </Routes>
+      <Footer/>
       </BrowserRouter>
        
     </div>

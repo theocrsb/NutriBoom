@@ -53,12 +53,22 @@ let isConnected = false
                 </NavLink>
               </li>
 )}
+{(!isConnected &&
               <li className="nav-item">
                 <NavLink to="suscribe" className="nav-link buttonStyle ">
                   <strong data-bs-toggle="collapse"
             data-bs-target="#navbarNav"> Inscription </strong> 
                 </NavLink>
               </li>
+              )}
+              {(!isConnected &&
+              <li className="nav-item">
+                <NavLink to="connexion" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"> Connexion </strong> 
+                </NavLink>
+              </li>
+              )}
               <li className="nav-item">
                 <Link to="/welcome/#imc" className="nav-link buttonStyle ">
                   <strong data-bs-toggle="collapse"
@@ -70,6 +80,14 @@ let isConnected = false
                 <Link to="/moncompte" className="nav-link buttonStyle ">
                   <strong data-bs-toggle="collapse"
             data-bs-target="#navbarNav"> Mon compte </strong> 
+                </Link>
+              </li>
+)}
+              {!isConnected &&(
+              <li className="nav-item">
+                <Link to="/aboutus" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"> Nous </strong> 
                 </Link>
               </li>
 )}
