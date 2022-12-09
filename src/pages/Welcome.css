@@ -24,12 +24,13 @@
 }
 
 .containerText {
+  display: flex;
+  justify-content: center;
   color: #dfa530;
   border-style: solid;
   border-color: #dfa530;
   background-color: rgba(0, 0, 0, 0.536);
-  width: 90%;
-  margin-left: 18px;
+  width: 100%;
   border-radius: 20px;
 }
 
@@ -64,9 +65,7 @@
 }
 
 .imcButton2 {
-  padding-left: 5px;
-  padding-bottom: 20px;
-  
+  padding-left: 10px;
 }
 
 .hautPage {
@@ -80,6 +79,11 @@
 .wordStyle {
   color: #afb563;
   font-weight: bold;
+}
+.imc-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .imcForm input {
@@ -97,21 +101,18 @@
   text-decoration: none;
 }
 
-.basDePageLink{
+.basDePageLink {
   text-decoration: none;
 }
 
-.message{
+.message {
   color: #dfa530;
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   text-align: center;
   align-items: center;
   padding-right: 40px;
 }
-
-
-
 
 /* .missCarotteImg {
   position: absolute;

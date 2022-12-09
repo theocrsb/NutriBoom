@@ -33,9 +33,10 @@ const Suscribe = () => {
       <div className="suscribe">
         <h1>Inscris toi gratuitement!</h1>
       </div>
+
       <form className="suscribeForm carotteFond">
         <div className="mb-3">
-          <label htmlFor="inputNom" className="htmlForm-label text-center" />
+          <label htmlFor="inputNom" className="htmlForm-label text-center" />{" "}
           <input
             type="nom"
             className="htmlForm-control text-center "
