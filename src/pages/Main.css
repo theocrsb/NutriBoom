@@ -23,9 +23,27 @@
   justify-content: space-around;
   height: 150px;
 }
+.container-nutri p {
+  border: thick double black;
+  background-color: #dfa530;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #ffffff;
+}
 .container-chartCal {
   padding-top: 2%;
+  padding-bottom: 2%;
   width: 100%;
+}
+.container-chartCal p {
+  display: inline-block;
+  color: #dfa530;
+  border: thick double black;
+  background-color: #dfa530;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 0 5px;
 }
 
 .container-chart {
