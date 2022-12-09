@@ -1,7 +1,5 @@
 import "./PlusAddButton.css"
-export interface clickProps{
-onClickProps : (value:boolean)=>void
-}
+
 
 const AlimentAddButton =()=>{
 

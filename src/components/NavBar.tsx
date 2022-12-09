@@ -5,7 +5,7 @@ import "./Navbar.css";
 import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
-let isConnected = false
+let isConnected = true
   return (
     <div id="hautNavBar">
       <nav className="navbar navbar-expand-lg bg-transparent p-0">

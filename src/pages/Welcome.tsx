@@ -16,13 +16,14 @@ const Welcome = ()=>{
  
   const imcSubmit=(e:React.FormEvent)=>{
      e.preventDefault()
+       let taille = Number(tailleState)
+    let poids = Number(poidsState)
+   
   if(!tailleState || !poidsState){
     setMessage("un élément est manquant pour le calcul")
-
+    setMessageBis("")
   }else{
    
-    let taille = Number(tailleState)
-    let poids = Number(poidsState)
     console.log("taille convertie en number",taille)
     let tailleDivise = taille /100
     console.log ("taille divisée par 100", tailleDivise)
@@ -112,11 +113,11 @@ setSexeState(e.currentTarget.value)
      <form className="imcForm" onSubmit={imcSubmit}>
   <div id="imc" className="mb-3">
     <label htmlFor="exampleInputTaille" className="htmlForm-label"/>
-    <input type="tel" min={100} max={230} className="htmlForm-control" id="exampleInputTaille"placeholder="taille (cm)" onChange={tailleFunction}/>
+    <input type="number" min={100}  className="htmlForm-control" id="exampleInputTaille"placeholder="taille (cm)" onChange={tailleFunction}/>
   </div>
   <div className="mb-3">
     <label htmlFor="exampleInputPoids" className="htmlForm-label"/>
-    <input type="number" className="htmlForm-control" id="exampleInputPoids" placeholder="poids (kg)" onChange={poidsFunction}/>
+    <input type="number" min={10} className="htmlForm-control" id="exampleInputPoids" placeholder="poids (kg)" onChange={poidsFunction}/>
   </div>
   <p className ="message">{message}
   <br />{messageBis}</p>
