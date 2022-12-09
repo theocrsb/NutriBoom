@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import {HashLink as Link} from "react-router-hash-link"
+import { HashLink as Link } from "react-router-hash-link";
 import "./Navbar.css";
 import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
-let isConnected = false
+  let isConnected = true;
   return (
     <div id="hautNavBar">
-      <nav className="navbar navbar-expand-lg bg-transparent p-0">
+      <nav className="navbar navbar-expand-md bg-transparent p-0">
         <div className="container-fluid p-0">
           <NavLink to="welcome" className="navbar-brand p-0 m-0">
             <div className="bg-logo">
@@ -36,43 +36,56 @@ let isConnected = false
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-             
                 <NavLink
                   to="welcome"
                   className="nav-link buttonStyle navbar-collapse"
                 >
-                  <strong data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">Accueil</strong>
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    Accueil
+                  </strong>
                 </NavLink>
               </li>
               {isConnected && (
-              <li className="nav-item">
-                <NavLink to="main" className="nav-link buttonStyle ">
-                 <strong data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" >Profil </strong> 
-                </NavLink>
-              </li>
-)}
+                <li className="nav-item">
+                  <NavLink to="main" className="nav-link buttonStyle ">
+                    <strong
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarNav"
+                    >
+                      Profil{" "}
+                    </strong>
+                  </NavLink>
+                </li>
+              )}
               <li className="nav-item">
                 <NavLink to="suscribe" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"> Inscription </strong> 
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Inscription{" "}
+                  </strong>
                 </NavLink>
               </li>
               <li className="nav-item">
                 <Link to="/welcome/#imc" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"> Calculateur </strong> 
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Calculateur{" "}
+                  </strong>
                 </Link>
               </li>
-              {isConnected &&(
-              <li className="nav-item">
-                <Link to="/moncompte" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"> Mon compte </strong> 
-                </Link>
-              </li>
-)}
+              {isConnected && (
+                <li className="nav-item">
+                  <Link to="/moncompte" className="nav-link buttonStyle ">
+                    <strong
+                      data-bs-toggle="collapse"
+                      data-bs-target="#navbarNav"
+                    >
+                      {" "}
+                      Mon compte{" "}
+                    </strong>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>

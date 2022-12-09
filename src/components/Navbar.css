@@ -89,5 +89,8 @@
   align-items: center;
   background-color: transparent;
 }
-
-
+@media screen and (min-width: 650px) {
+  .buttonStyle {
+    font-size: 1rem;
+  }
+}
