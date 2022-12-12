@@ -296,79 +296,12 @@ const Main = () => {
                 <Link className="buttonAdd" to="/diner">
                   <PlusAddButton />
                 </Link>
-                <span className = "textAjout"> Ajouter un aliment</span>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item">
-          <h2 className="accordion-header text-center" id="headingFour">
-            <button
-              className="accordion-button collapsed "
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFour"
-              aria-expanded="false"
-              aria-controls="collapseFour"
-            >
-              Collation
-            </button>
-          </h2>
-          <div
-            id="collapseFour"
-            className="accordion-collapse collapse"
-            aria-labelledby="headingFour"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body">
-              <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
-                <Link className="buttonAdd" to="/collation">
-                  <PlusAddButton />
-                </Link>
-                <span className = "textAjout"> Ajouter un aliment</span>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="accordion-item">
-          <h2 className="accordion-header text-center" id="headingFive">
-            <button
-              className="accordion-button collapsed "
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#collapseFive"
-              aria-expanded="false"
-              aria-controls="collapseFive"
-            >
-              Exercice
-            </button>
-          </h2>
-          <div
-            id="collapseFive"
-            className="accordion-collapse collapse"
-            aria-labelledby="headingFive"
-            data-bs-parent="#accordionExample"
-          >
-            <div className="accordion-body">
-              <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
-                <Link className="buttonAdd" to="/exercices">
-                  <PlusAddButton />
-                </Link>
                 <span className="textAjout"> Ajouter un aliment</span>
               </ul>
             </div>
           </div>
         </div>
+
         <div className="accordion-item">
           <h2 className="accordion-header text-center" id="headingFour">
             <button
