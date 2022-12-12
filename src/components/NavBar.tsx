@@ -6,7 +6,7 @@ import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
   let isConnected = false;
-  let isAdmin = true
+  let isAdmin = true;
   return (
     <div id="hautNavBar">
       <nav className="navbar navbar-expand-md bg-transparent p-0">
