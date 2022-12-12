@@ -9,7 +9,7 @@ import jwt_decode from "jwt-decode";
 import _ from "lodash";
 import { type } from "os";
 
-//  creation des interface pour le typage des differentes table de la base de donnée
+//  creation des interfaces pour le typage des differentes table de la base de donnée
 interface User {
   id?: string;
   lastname?: string;
@@ -41,9 +41,9 @@ interface Type {
   name: string;
 }
 interface Food {
-  glucide: number;
+  glucides: number;
   id: number;
-  lipide: number;
+  lipides: number;
   name: string;
   nombre_calories: number;
   proteines: number;
@@ -69,7 +69,6 @@ interface PayloadToken {
 }
 // element de parametrage du graphique
 ChartJS.register(ArcElement, Tooltip);
-const calorieTotal = 2500;
 let calorieEnCour = 0;
 
 const Main = () => {
@@ -162,6 +161,76 @@ const Main = () => {
     console.log("resultat de la consomation de calorie =", sumConsoCal);
   }
   calorieEnCour = sumConsoCal;
+  // calcul des besoins proteine,glucide,lipide journalier
+  // glucide
+  let resultUserGlu;
+  if (resultUserCal) {
+    resultUserGlu = ((resultUserCal / 100) * 50) / 4;
+    console.log("resultat des besoins en glucide =", resultUserGlu);
+  }
+  // proteine
+  let resultUserProt;
+  if (resultUserCal) {
+    resultUserProt = ((resultUserCal / 100) * 15) / 4;
+    console.log("resultat des besoins en proteine =", resultUserProt);
+  }
+  // lipide
+  let resultUserLip;
+  if (resultUserCal) {
+    resultUserLip = ((resultUserCal / 100) * 35) / 9;
+    console.log("resultat des besoins en lipide =", resultUserLip);
+  }
+
+  //  on refait la meme logique pour calculer la conso journaliere en proteine ,lipide,glucide
+  // proteine
+  let tabConsoProt = consoCal?.map((aliment) => aliment.food.proteines);
+  console.log("voici le tableau des proteines consommé", tabConsoProt);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoProt = 0;
+  if (tabConsoProt) {
+    for (let i = 0; i < tabConsoProt.length; i++) {
+      sumConsoProt += tabConsoProt[i];
+    }
+    console.log("resultat de la consomation de proteine =", sumConsoProt);
+  }
+  // lipide
+  let tabConsoLip = consoCal?.map((aliment) => aliment.food.lipides);
+  console.log("voici le tableau des lipides consommé", tabConsoLip);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoLip = 0;
+  if (tabConsoLip) {
+    for (let i = 0; i < tabConsoLip.length; i++) {
+      sumConsoLip += tabConsoLip[i];
+    }
+    console.log("resultat de la consomation de lipide =", sumConsoLip);
+  }
+  //  glucide
+  let tabConsoGlu = consoCal?.map((aliment) => aliment.food.glucides);
+  console.log("voici le tableau des glucides consommé", tabConsoGlu);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoGlu = 0;
+  if (tabConsoGlu) {
+    for (let i = 0; i < tabConsoGlu.length; i++) {
+      sumConsoGlu += tabConsoGlu[i];
+    }
+    console.log("resultat de la consomation de glucide =", sumConsoGlu);
+  }
+  //  Recuperation du repas et des aliments consommé correspondant
+  // petit dejeuner du jour
+  let petitDejToday;
+  let tabPetitDej = userSearch?.eatenfood.filter(
+    (typeDej) =>
+      typeDej.type.id === 2 &&
+      new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeDej.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
+  const valeurJour = new Date("2022-12-12T20:29:21.759Z").getDate();
+  console.log("tableau de tout les petits dej ", tabPetitDej);
+  console.log("jour", valeurJour);
+  console.log("mois", new Date("2022-12-12T20:29:21.759Z").getMonth());
+  console.log("année", new Date("2022-12-12T20:29:21.759Z").getFullYear());
 
   // Gaphique calories
   const dataCal = {
@@ -199,8 +268,11 @@ const Main = () => {
     labels: ["Consommé", "Restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal - calorieEnCour}`],
+        label: "g",
+        data: [
+          `${sumConsoLip}`,
+          `${(resultUserLip ? Math.floor(resultUserLip) : 0) - sumConsoLip}`,
+        ],
         backgroundColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
@@ -212,8 +284,11 @@ const Main = () => {
     labels: ["consommé", "restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal}`],
+        label: "g",
+        data: [
+          `${sumConsoProt}`,
+          `${(resultUserProt ? Math.floor(resultUserProt) : 0) - sumConsoProt}`,
+        ],
         backgroundColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
@@ -225,8 +300,11 @@ const Main = () => {
     labels: ["Consommé", "Restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal}`],
+        label: "g",
+        data: [
+          `${sumConsoGlu}`,
+          `${(resultUserGlu ? Math.floor(resultUserGlu) : 0) - sumConsoGlu}`,
+        ],
         backgroundColor: [
           "rgba(51, 181, 255, 1)",
           "rgba(0, 0, 0, 0.5)",
@@ -299,11 +377,16 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {tabPetitDej?.map((aliment) => (
+                  <li>
+                    [{aliment.name}] {aliment.food.name}
+                  </li>
+                ))}
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>
@@ -333,11 +416,12 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
+                {}
                 <Link className="buttonAdd" to="/dejeuner">
                   <PlusAddButton />
                 </Link>
