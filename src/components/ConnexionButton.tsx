@@ -1,12 +1,9 @@
-  
-    const ConnexionButton = ()=>{
+import { useState } from "react"
 
-        const connectFunction =()=>{
- return;
-        }
+    const ConnexionButton = ()=>{
     return(
         <div>
-         <button onClick={connectFunction} type="button" className="btn inscription">Se connecter</button>   
+         <button type="submit" className="btn inscription">Se connecter</button>   
         </div>
     )
 }

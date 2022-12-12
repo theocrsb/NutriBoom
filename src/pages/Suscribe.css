@@ -138,6 +138,10 @@ select {
   font-weight: bold;
 }
 
+.select{
+width:250px
+}
+
 @media screen and (min-width: 470px) {
   .carotteFond {
     background-image: url("/public/assets/bg-test.png");

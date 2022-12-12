@@ -1,7 +1,8 @@
 import "./Connexion.css";
 import { Link } from "react-router-dom";
 import ConnexionButton from "../components/ConnexionButton";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { E } from "chart.js/dist/chunks/helpers.core";
 
 const Connexion = () => {
   const [mailState, setMailState] = useState<string>();
@@ -13,6 +14,10 @@ const Connexion = () => {
   const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordState(e.currentTarget.value);
   };
+
+  const submitFunction=()=>{
+    console.log("submit")
+  }
 
   // useEffect pour tester les states car ils sont asynchrones//
   //et affichent avant re-render une première valeur undefined//
@@ -33,7 +38,7 @@ const Connexion = () => {
         </Link>
       </div>
       <div>
-        <form className="formConnexion">
+        <form className="formConnexion" onSubmit={submitFunction}>
           <div className="mb-3">
             <label htmlFor="inputMail" className="htmlForm-label" />
             <input
@@ -54,11 +59,12 @@ const Connexion = () => {
               onChange={passwordFunction}
             />
           </div>
-        </form>
-      </div>
-      <div className="connexionButton">
+             <div className="connexionButton">
         <ConnexionButton />
       </div>
+        </form>
+      </div>
+   
     </div>
   );
 };

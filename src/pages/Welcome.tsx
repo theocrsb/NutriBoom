@@ -25,7 +25,7 @@ const Welcome = () => {
       console.log("taille convertie en number", taille);
       let tailleDivise = taille / 100;
       console.log("taille divisée par 100", tailleDivise);
-      let resultImc = poids / (tailleDivise * tailleDivise);
+      let resultImc = poids / (tailleDivise * tailleDivise); 
       let resultatImc = resultImc.toFixed(2);
       console.log("resultat de l'imc", resultImc);
       setMessage(`Ton IMC est de ${resultatImc} `);
