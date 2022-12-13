@@ -261,6 +261,16 @@ const Main = () => {
       new Date(`${typeDej.createdAt}`).getFullYear() ===
         new Date().getFullYear()
   );
+  //  Recuperation des differentes activités physique du jour
+  let tabActivity = userSearch?.exercices.filter(
+    // filtre en fonction de la date (jour/mois/année)
+    (typeSport) =>
+      new Date(`${typeSport.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeSport.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeSport.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
+  console.log("voici les activités physique", tabActivity);
 
   // Gaphique calories
   const dataCal = {
@@ -273,22 +283,8 @@ const Main = () => {
           `${calorieEnCour}`,
           `${(resultUserCal ? Math.floor(resultUserCal) : 0) - calorieEnCour}`,
         ],
-        backgroundColor: [
-          "rgba(97, 255, 51, 1)",
-          "rgba(0, 0, 0, 0.5)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-        ],
-        borderColor: [
-          "rgba(97, 255, 51, 1)",
-          "rgba(0, 0, 0, 0.5)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-        ],
+        backgroundColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
+        borderColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
       },
     ],
@@ -335,22 +331,8 @@ const Main = () => {
           `${sumConsoGlu}`,
           `${(resultUserGlu ? Math.floor(resultUserGlu) : 0) - sumConsoGlu}`,
         ],
-        backgroundColor: [
-          "rgba(51, 181, 255, 1)",
-          "rgba(0, 0, 0, 0.5)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-        ],
-        borderColor: [
-          "rgba(51, 181, 255, 1)",
-          "rgba(0, 0, 0, 0.5)",
-          // "rgba(255, 206, 86, 1)",
-          // "rgba(75, 192, 192, 1)",
-          // "rgba(153, 102, 255, 1)",
-          // "rgba(255, 159, 64, 1)",
-        ],
+        backgroundColor: ["rgba(51, 181, 255, 1)", "rgba(0, 0, 0, 0.5)"],
+        borderColor: ["rgba(51, 181, 255, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
       },
     ],
@@ -420,11 +402,7 @@ const Main = () => {
                     [{aliment.name}] {aliment.food.name}
                   </li>
                 ))}
-                {/* <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li> */}
+
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>
@@ -459,12 +437,7 @@ const Main = () => {
                     [{aliment.name}] {aliment.food.name}
                   </li>
                 ))}
-                {/* <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li> */}
-                {}
+
                 <Link className="buttonAdd" to="/dejeuner">
                   <PlusAddButton />
                 </Link>
@@ -499,11 +472,7 @@ const Main = () => {
                     [{aliment.name}] {aliment.food.name}
                   </li>
                 ))}
-                {/* <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li> */}
+
                 <Link className="buttonAdd" to="/diner">
                   <PlusAddButton />
                 </Link>
@@ -539,11 +508,7 @@ const Main = () => {
                     [{aliment.name}] {aliment.food.name}
                   </li>
                 ))}
-                {/* <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li> */}
+
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>
@@ -573,11 +538,12 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem, ipsum dolor sit amet.</li>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                {tabActivity?.map((sport) => (
+                  <li key={uuidv4()}>
+                    [{sport.activity.name}] {sport.time}min
+                  </li>
+                ))}
+
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>

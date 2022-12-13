@@ -2,89 +2,88 @@ import "./Suscribe.css";
 import SuscribeButton from "../components/SuscribeButton";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
-import {useState, useEffect} from "react";
-
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../contexts/Auth-context";
 
 const Suscribe = () => {
-const [lastNameState, setLastNameState] = useState<string>()
-const [firstNameState, setFirstNameState] = useState<string>()
-const [passwordState, setPasswordState] = useState<string>()
-const [mailState, setMailState] = useState<string>()
-const [ageState, setAgeState] = useState<number>()
-const [weightState, setWeightState] = useState<number>()
-const [heightState, setHeightState] = useState<number>()
-const [ratioState, setRatioState] = useState<number>()
-const [sexState, setSexState] = useState<string>()
+  const [lastNameState, setLastNameState] = useState<string>();
+  const [firstNameState, setFirstNameState] = useState<string>();
+  const [passwordState, setPasswordState] = useState<string>();
+  const [mailState, setMailState] = useState<string>();
+  const [ageState, setAgeState] = useState<number>();
+  const [weightState, setWeightState] = useState<number>();
+  const [heightState, setHeightState] = useState<number>();
+  const [ratioState, setRatioState] = useState<number>();
+  const [sexState, setSexState] = useState<string>();
 
-const lastNameFunction=(e: React.ChangeEvent<HTMLInputElement>)=>{
-setLastNameState(e.currentTarget.value)
-}
-const firstNameFunction=(e: React.ChangeEvent<HTMLInputElement>)=>{
-setFirstNameState(e.currentTarget.value)
-}
-const mailFunction=(e: React.ChangeEvent<HTMLInputElement>)=>{
-setMailState(e.currentTarget.value)
-}
-const passwordFunction=(e: React.ChangeEvent<HTMLInputElement>)=>{
-setPasswordState(e.currentTarget.value)
-}
-const ageFunction=(e: React.ChangeEvent<HTMLSelectElement>)=>{
-  let valeurConvertieNombre = Number(e.currentTarget.value)
-setAgeState(valeurConvertieNombre)
-}
-const weightFunction=(e: React.ChangeEvent<HTMLSelectElement>)=>{
-   let valeurConvertieNombre = Number(e.currentTarget.value)
-setWeightState(valeurConvertieNombre)
-}
-const heightFunction=(e: React.ChangeEvent<HTMLSelectElement>)=>{
-  let valeurConvertieNombre = Number(e.currentTarget.value)
-setHeightState(valeurConvertieNombre)
-}
-const sexFunction=(e: React.ChangeEvent<HTMLSelectElement>)=>{
-setSexState(e.currentTarget.value)
-}
+  const lastNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLastNameState(e.currentTarget.value);
+  };
+  const firstNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstNameState(e.currentTarget.value);
+  };
+  const mailFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMailState(e.currentTarget.value);
+  };
+  const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordState(e.currentTarget.value);
+  };
+  const ageFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setAgeState(valeurConvertieNombre);
+  };
+  const weightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setWeightState(valeurConvertieNombre);
+  };
+  const heightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setHeightState(valeurConvertieNombre);
+  };
+  const sexFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSexState(e.currentTarget.value);
+  };
 
-const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
-  let valeurConvertieNombre = Number(e.currentTarget.value)
-  setRatioState(valeurConvertieNombre)
-}
+  const ratioFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setRatioState(valeurConvertieNombre);
+  };
 
- const submitFunction=(e:React.FormEvent)=>{
-  e.preventDefault()
-  console.log("cliké")
-    
- axios.post(`http://localhost:8080/api/users`,{
-    lastname : lastNameState,
-    firstname : firstNameState,
-    age: ageState,
-    gender : sexState,
-    weight : weightState,
-    height : heightState,
-    email : mailState,
-    password : passwordState,
-    ratio : ratioState
-  })
-  .then((response)=>{
-    console.log(response.data);
-  })
-  .catch((error)=>{
-    console.error("something went wrong",error);
-  });
-};
+  const submitFunction = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("cliké");
+
+    axios
+      .post(`http://localhost:8080/api/users`, {
+        lastname: lastNameState,
+        firstname: firstNameState,
+        age: ageState,
+        gender: sexState,
+        weight: weightState,
+        height: heightState,
+        email: mailState,
+        password: passwordState,
+        ratio: ratioState,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("something went wrong", error);
+      });
+  };
 
   useEffect(() => {
-
-  console.log("lastName", lastNameState)
-    console.log("firstName", firstNameState)
-    console.log("mail", mailState)
+    console.log("lastName", lastNameState);
+    console.log("firstName", firstNameState);
+    console.log("mail", mailState);
     console.log("age dans useEffect", ageState);
-    console.log("password", passwordState)
-    console.log("weight", weightState)
-    console.log("height", heightState)
-    console.log("sex", sexState)
-    console.log("ratio", ratioState)
+    console.log("password", passwordState);
+    console.log("weight", weightState);
+    console.log("height", heightState);
+    console.log("sex", sexState);
+    console.log("ratio", ratioState);
   });
-
 
   // creation de tableau avec les valeurs des options de nos select via une boucle for
   let taille = 1.19;
@@ -112,17 +111,17 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
   }
   console.log(ageOptions);
 
-
-
-
-
   return (
     <div>
       <div className="suscribe">
         <h1>Inscris toi gratuitement!</h1>
       </div>
 
-      <form method="POST" className="suscribeForm carotteFond" onSubmit={submitFunction} >
+      <form
+        method="POST"
+        className="suscribeForm carotteFond"
+        onSubmit={submitFunction}
+      >
         <div className="mb-3">
           <label htmlFor="inputNom" className="htmlForm-label text-center" />{" "}
           <input
@@ -130,7 +129,7 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             className="htmlForm-control text-center "
             id="inputNom"
             placeholder="nom"
-           onChange={lastNameFunction}
+            onChange={lastNameFunction}
           />
         </div>
         <div className="mb-3">
@@ -141,7 +140,6 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="inputPrenom"
             placeholder="prenom"
             onChange={firstNameFunction}
-            
           />
         </div>
         <div className="mb-3">
@@ -152,7 +150,6 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="exampleInputAge"
             placeholder="mail"
             onChange={mailFunction}
-          
           />
         </div>
         <div className="mb-3">
@@ -180,8 +177,8 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             name="age"
             id="inputAge"
             className="htmlForm-label text-center select"
-           onChange={ageFunction}
-           value={ageState}
+            onChange={ageFunction}
+            value={ageState}
           >
             <option key={uuidv4()} value="">
               Sélectionner votre age{" "}
@@ -201,7 +198,13 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="inputWeight"
             placeholder="poids(kg)"
           /> */}
-          <select name="weight" id="inputWeight" className="htmlForm-label select" value={weightState} onChange={weightFunction} >
+          <select
+            name="weight"
+            id="inputWeight"
+            className="htmlForm-label select"
+            value={weightState}
+            onChange={weightFunction}
+          >
             <option key={uuidv4()} value="">
               Sélectionner votre poids
             </option>
@@ -220,8 +223,12 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="inputHeight"
             placeholder="taille(cm)"
           /> */}
-          <select name="height" id="inputHeight" className="htmlForm-label select" value={heightState} 
-          onChange={heightFunction} 
+          <select
+            name="height"
+            id="inputHeight"
+            className="htmlForm-label select"
+            value={heightState}
+            onChange={heightFunction}
           >
             <option key={uuidv4()} value="">
               Sélectionner votre taille
@@ -246,7 +253,7 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="inputGender"
             className="htmlForm-label text-center select"
             value={sexState}
-           onChange={sexFunction}
+            onChange={sexFunction}
           >
             <option key={uuidv4()} value="">
               Sélectionner votre sexe
@@ -272,7 +279,7 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             id="inputRatio"
             className="htmlForm-label text-center select"
             value={ratioState}
-           onChange={ratioFunction}
+            onChange={ratioFunction}
           >
             <option key={uuidv4()} value="">
               Sélectionner votre activité
@@ -287,7 +294,7 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
               activité physique modérée (entraînement 4 à 6 fois par semaine)
             </option>
             <option key={uuidv4()} value="1.82">
-             activité physique intense (plus de 6 entraînements par semaine)
+              activité physique intense (plus de 6 entraînements par semaine)
             </option>
           </select>
         </div>
