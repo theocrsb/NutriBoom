@@ -7,6 +7,7 @@ import PlusAddButton from "../components/PlusAddButton";
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import _ from "lodash";
+import { v4 as uuidv4 } from "uuid";
 import { type } from "os";
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
@@ -216,6 +217,7 @@ const Main = () => {
     console.log("resultat de la consomation de glucide =", sumConsoGlu);
   }
   //  Recuperation du repas et des aliments consommé correspondant
+  // !!!!!!!! ATTENTION VERIFIER BIEN QUE LES  ID DE VOS TYPES DE REPAS CORRESPONDENT AVEC CELLES MISE EN PLACE ICI!!!!!!!!!!!!!!!!!!!!!!!
   // petit dejeuner du jour
   let tabPetitDej = userSearch?.eatenfood.filter(
     // filtre en fonction de l'id et de la date (jour/mois/année)
@@ -230,7 +232,35 @@ const Main = () => {
   console.log("tableau de tout les petits dej ", tabPetitDej);
   console.log("jour", valeurJour);
   console.log("mois", new Date("2022-12-12T20:29:21.759Z").getMonth());
-  console.log("année", new Date("2022-12-12T20:29:21.759Z").getFullYear());
+  console.log("année", new Date().getFullYear());
+  // Dejeuner du jour
+  let tabDej = userSearch?.eatenfood.filter(
+    // filtre en fonction de l'id et de la date (jour/mois/année)
+    (typeDej) =>
+      typeDej.type.id === 4 &&
+      new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeDej.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
+  let tabDiner = userSearch?.eatenfood.filter(
+    // filtre en fonction de l'id et de la date (jour/mois/année)
+    (typeDej) =>
+      typeDej.type.id === 3 &&
+      new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeDej.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
+  let tabCollation = userSearch?.eatenfood.filter(
+    // filtre en fonction de l'id et de la date (jour/mois/année)
+    (typeDej) =>
+      typeDej.type.id === 1 &&
+      new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeDej.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
 
   // Gaphique calories
   const dataCal = {
@@ -333,10 +363,18 @@ const Main = () => {
         src={process.env.PUBLIC_URL + `/assets/dashboard.svg`}
         alt=""
       />
+
       <div className="container-chart">
         <div className="container-chartCal text-center">
           <p>Calories</p>
+
           <section id="donutCal">
+            <div className="user-recap">
+              <h2>
+                {calorieEnCour} /{resultUserCal ? Math.floor(resultUserCal) : 0}
+              </h2>
+              <p id="kcal">Kcal</p>
+            </div>
             <Doughnut data={dataCal} />
           </section>
         </div>
@@ -378,7 +416,7 @@ const Main = () => {
             <div className="accordion-body">
               <ul className="petit-dej">
                 {tabPetitDej?.map((aliment) => (
-                  <li>
+                  <li key={uuidv4()}>
                     [{aliment.name}] {aliment.food.name}
                   </li>
                 ))}
@@ -416,6 +454,11 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
+                {tabDej?.map((aliment) => (
+                  <li key={uuidv4()}>
+                    [{aliment.name}] {aliment.food.name}
+                  </li>
+                ))}
                 {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
@@ -451,11 +494,16 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {tabDiner?.map((aliment) => (
+                  <li key={uuidv4()}>
+                    [{aliment.name}] {aliment.food.name}
+                  </li>
+                ))}
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit amet consectetur adipisicing.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
                 <Link className="buttonAdd" to="/diner">
                   <PlusAddButton />
                 </Link>
@@ -486,11 +534,16 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {tabCollation?.map((aliment) => (
+                  <li key={uuidv4()}>
+                    [{aliment.name}] {aliment.food.name}
+                  </li>
+                ))}
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>

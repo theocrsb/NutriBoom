@@ -1,7 +1,30 @@
 /* .mainPage {
   height: 100vh;
 } */
+.user-recap {
+  /* background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px; */
+  margin-top: 1%;
+  padding: 10px;
+  color: rgba(255, 255, 255, 0.89);
+  position: absolute;
+  bottom: 20%;
+  z-index: -222;
+}
+.user-recap h2 {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+#kcal {
+  border: thick double black;
+  background-color: #afb563;
+  border-radius: 20px;
+  font-weight: bold;
+  color: black;
+}
+
 #donutCal {
+  position: relative;
   display: flex;
   justify-content: center;
   max-height: 250px;
