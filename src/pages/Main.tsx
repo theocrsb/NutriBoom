@@ -5,7 +5,11 @@ import "./Main.css";
 import axios from "axios";
 import PlusAddButton from "../components/PlusAddButton";
 import { Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import _ from "lodash";
+import { type } from "os";
 
+//  creation des interfaces pour le typage des differentes table de la base de donnée
 interface User {
   id?: string;
   lastname?: string;
@@ -16,11 +20,56 @@ interface User {
   email: string;
   ratio?: string;
   height: string;
+  role: UserRole;
+  eatenfood: EatenFood[];
+  exercices: Exercice[];
+}
+interface UserRole {
+  id: number;
+  label: string;
+}
+interface EatenFood {
+  createdAt: string;
+  food: Food;
+  id: number;
+  name: string;
+  quantity: number;
+  type: Type;
+}
+interface Type {
+  id: number;
+  name: string;
+}
+interface Food {
+  glucides: number;
+  id: number;
+  lipides: number;
+  name: string;
+  nombre_calories: number;
+  proteines: number;
+}
+interface Exercice {
+  id: number;
+  activity: Activity;
+  createdAt: string;
+  time: number;
+}
+interface Activity {
+  id: number;
+  name: string;
+  conso_cal_1h: number;
+}
+//  interface pour l'objet du token payload decodé
+interface PayloadToken {
+  exp: number;
+  iat: number;
+  id: string;
+  role: string;
+  username: string;
 }
 // element de parametrage du graphique
 ChartJS.register(ArcElement, Tooltip);
-const calorieTotal = 2500;
-const calorieEnCour = 1350;
+let calorieEnCour = 0;
 
 const Main = () => {
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
@@ -59,6 +108,11 @@ const Main = () => {
       console.log("le sexe de l'utilisateur n' as pas été determiné");
     }
   };
+  //  recuperation du token User
+  let recupToken = localStorage.getItem("accesstoken");
+
+  console.log("voici le token ", recupToken);
+
   // Usetate pour recuperer dynamiquement la liste de tout les utilisateurs
   const [displayUser, setDisplayUser] = useState<User[]>([]);
   // UseEffect pour recuperer le tableau de tout les utilisateurs
@@ -70,10 +124,18 @@ const Main = () => {
   }, []);
   console.log(displayUser);
   // Recherche d'un utilisateur via la method find
-  let userSearch = displayUser.find(
-    (user) => user.firstname.toLocaleLowerCase() === "jack"
-  );
-  console.log("Recherche utilisateur par le firstname", userSearch);
+
+  const searchUser = () => {
+    if (recupToken) {
+      let tokenDecoded: PayloadToken = jwt_decode(recupToken);
+      console.log(tokenDecoded.username);
+      return displayUser.find(
+        (user) => user.email.toLocaleLowerCase() === tokenDecoded.username
+      );
+    }
+  };
+  let userSearch = searchUser();
+  console.log("Recherche utilisateur par le mail", userSearch);
   //  application de la fonction de calcul des calories a l'utisateur qu'on a recuperé
   let resultUserCal = userSearch
     ? convertToCal(
@@ -84,6 +146,92 @@ const Main = () => {
         Number(userSearch.ratio)
       )
     : null;
+  // calcul du  nbre de calorie en cour de consomation pour ce meme utilisateur
+  let consoCal = userSearch?.eatenfood;
+  console.log("tableau de consomation user", consoCal);
+  // recuperation des calories consommé afin de les  stocker dans un tableau et les additionner par la suite
+  let tabConsoCal = consoCal?.map((aliment) => aliment.food.nombre_calories);
+  console.log("voici le tableau des calories consommé", tabConsoCal);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoCal = 0;
+  if (tabConsoCal) {
+    for (let i = 0; i < tabConsoCal.length; i++) {
+      sumConsoCal += tabConsoCal[i];
+    }
+    console.log("resultat de la consomation de calorie =", sumConsoCal);
+  }
+  calorieEnCour = sumConsoCal;
+  // calcul des besoins proteine,glucide,lipide journalier
+  // glucide
+  let resultUserGlu;
+  if (resultUserCal) {
+    resultUserGlu = ((resultUserCal / 100) * 50) / 4;
+    console.log("resultat des besoins en glucide =", resultUserGlu);
+  }
+  // proteine
+  let resultUserProt;
+  if (resultUserCal) {
+    resultUserProt = ((resultUserCal / 100) * 15) / 4;
+    console.log("resultat des besoins en proteine =", resultUserProt);
+  }
+  // lipide
+  let resultUserLip;
+  if (resultUserCal) {
+    resultUserLip = ((resultUserCal / 100) * 35) / 9;
+    console.log("resultat des besoins en lipide =", resultUserLip);
+  }
+
+  //  on refait la meme logique pour calculer la conso journaliere en proteine ,lipide,glucide
+  // proteine
+  let tabConsoProt = consoCal?.map((aliment) => aliment.food.proteines);
+  console.log("voici le tableau des proteines consommé", tabConsoProt);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoProt = 0;
+  if (tabConsoProt) {
+    for (let i = 0; i < tabConsoProt.length; i++) {
+      sumConsoProt += tabConsoProt[i];
+    }
+    console.log("resultat de la consomation de proteine =", sumConsoProt);
+  }
+  // lipide
+  let tabConsoLip = consoCal?.map((aliment) => aliment.food.lipides);
+  console.log("voici le tableau des lipides consommé", tabConsoLip);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoLip = 0;
+  if (tabConsoLip) {
+    for (let i = 0; i < tabConsoLip.length; i++) {
+      sumConsoLip += tabConsoLip[i];
+    }
+    console.log("resultat de la consomation de lipide =", sumConsoLip);
+  }
+  //  glucide
+  let tabConsoGlu = consoCal?.map((aliment) => aliment.food.glucides);
+  console.log("voici le tableau des glucides consommé", tabConsoGlu);
+  //  addition de ces valeurs via une boucle for
+  let sumConsoGlu = 0;
+  if (tabConsoGlu) {
+    for (let i = 0; i < tabConsoGlu.length; i++) {
+      sumConsoGlu += tabConsoGlu[i];
+    }
+    console.log("resultat de la consomation de glucide =", sumConsoGlu);
+  }
+  //  Recuperation du repas et des aliments consommé correspondant
+  // petit dejeuner du jour
+  let tabPetitDej = userSearch?.eatenfood.filter(
+    // filtre en fonction de l'id et de la date (jour/mois/année)
+    (typeDej) =>
+      typeDej.type.id === 2 &&
+      new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${typeDej.createdAt}`).getFullYear() ===
+        new Date().getFullYear()
+  );
+  const valeurJour = new Date("2022-12-12T20:29:21.759Z").getDate();
+  console.log("tableau de tout les petits dej ", tabPetitDej);
+  console.log("jour", valeurJour);
+  console.log("mois", new Date("2022-12-12T20:29:21.759Z").getMonth());
+  console.log("année", new Date("2022-12-12T20:29:21.759Z").getFullYear());
+
   // Gaphique calories
   const dataCal = {
     labels: ["Calories consommé", "Total calories restant"],
@@ -120,8 +268,11 @@ const Main = () => {
     labels: ["Consommé", "Restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal - calorieEnCour}`],
+        label: "g",
+        data: [
+          `${sumConsoLip}`,
+          `${(resultUserLip ? Math.floor(resultUserLip) : 0) - sumConsoLip}`,
+        ],
         backgroundColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
@@ -133,8 +284,11 @@ const Main = () => {
     labels: ["consommé", "restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal}`],
+        label: "g",
+        data: [
+          `${sumConsoProt}`,
+          `${(resultUserProt ? Math.floor(resultUserProt) : 0) - sumConsoProt}`,
+        ],
         backgroundColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
         borderWidth: 1,
@@ -146,8 +300,11 @@ const Main = () => {
     labels: ["Consommé", "Restant"],
     datasets: [
       {
-        label: "Kcal",
-        data: [`${calorieEnCour}`, `${calorieTotal}`],
+        label: "g",
+        data: [
+          `${sumConsoGlu}`,
+          `${(resultUserGlu ? Math.floor(resultUserGlu) : 0) - sumConsoGlu}`,
+        ],
         backgroundColor: [
           "rgba(51, 181, 255, 1)",
           "rgba(0, 0, 0, 0.5)",
@@ -220,11 +377,16 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {tabPetitDej?.map((aliment) => (
+                  <li>
+                    [{aliment.name}] {aliment.food.name}
+                  </li>
+                ))}
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
                 <Link className="buttonAdd" to="/petitdejeuner">
                   <PlusAddButton />
                 </Link>
@@ -254,11 +416,12 @@ const Main = () => {
           >
             <div className="accordion-body">
               <ul className="petit-dej">
-                <li>Lorem ipsum dolor sit amet.</li>
+                {/* <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem, ipsum dolor sit amet.</li>
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
-                <li>Lorem, ipsum.</li>
+                <li>Lorem, ipsum.</li> */}
+                {}
                 <Link className="buttonAdd" to="/dejeuner">
                   <PlusAddButton />
                 </Link>
