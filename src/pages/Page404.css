@@ -1,7 +1,9 @@
-.carotteLogoTriste{
-    width: 100px;
+.container-404 {
+  text-align: center;
+  width: 100%;
+  color: #afb563;
 }
-
-.text404{
-    color:#dfa530
+.carotteBlaze {
+  height: 500px;
+  width: 400px;
 }
