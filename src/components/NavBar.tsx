@@ -1,12 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, SyntheticEvent, useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { HashLink as Link } from "react-router-hash-link";
+// import { HashLink as NavLink } from "react-router-hash-link";
+import { AuthContext } from "../contexts/Auth-context";
 import "./Navbar.css";
 import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
-  let isConnected = true;
-  let isAdmin = true;
+  const { savedToken } = useContext(AuthContext);
+
+  const tokenVerify = (e: SyntheticEvent) => {
+    if (savedToken === null) {
+      e.preventDefault();
+    }
+  };
+  // let isConnected = true;
+  // let isAdmin = true;
   return (
     <div id="hautNavBar">
       <nav className="navbar navbar-expand-md bg-transparent p-0">
@@ -46,90 +54,79 @@ const Navbar = () => {
                   </strong>
                 </NavLink>
               </li>
-              {isConnected && (
-                <li className="nav-item">
-                  <NavLink to="main" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      Profil{" "}
-                    </strong>
-                  </NavLink>
-                </li>
-              )}
-              {!isConnected && (
-                <li className="nav-item">
-                  <NavLink to="suscribe" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      Inscription
-                    </strong>
-                  </NavLink>
-                </li>
-              )}
-              {!isConnected && (
-                <li className="nav-item">
-                  <NavLink to="connexion" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      {" "}
-                      Connexion{" "}
-                    </strong>
-                  </NavLink>
-                </li>
-              )}
               <li className="nav-item">
-                <Link to="/welcome/#imc" className="nav-link buttonStyle ">
+                <NavLink to="/welcome/#imc" className="nav-link buttonStyle ">
                   <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     {" "}
                     Calculateur{" "}
                   </strong>
-                </Link>
+                </NavLink>
               </li>
-              {isConnected && (
-                <li className="nav-item">
-                  <Link to="/moncompte" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      {" "}
-                      Mon compte{" "}
-                    </strong>
-                  </Link>
-                </li>
-              )}
-              {!isConnected && (
-                <li className="nav-item">
-                  <Link to="/aboutus" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      {" "}
-                      Nous{" "}
-                    </strong>
-                  </Link>
-                </li>
-              )}
-              {isAdmin && (
-                <li className="nav-item">
-                  <Link to="/admin" className="nav-link buttonStyle ">
-                    <strong
-                      data-bs-toggle="collapse"
-                      data-bs-target="#navbarNav"
-                    >
-                      {" "}
-                      Admin{" "}
-                    </strong>
-                  </Link>
-                </li>
-              )}
+
+              {/* {!isConnected && ( */}
+              <li className="nav-item">
+                <NavLink to="suscribe" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    Inscription
+                  </strong>
+                </NavLink>
+              </li>
+              {/* )} */}
+              {/* {!isConnected && ( */}
+              <li className="nav-item">
+                <NavLink to="connexion" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Connexion{" "}
+                  </strong>
+                </NavLink>
+              </li>
+              {/* )} */}
+              {/* {isConnected && ( */}
+              <li className="nav-item">
+                <NavLink to="/moncompte" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Mon compte{" "}
+                  </strong>
+                </NavLink>
+              </li>
+              {/* )} */}
+              {/* {isConnected && ( */}
+              <li className="nav-item">
+                <NavLink to="main" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    Journal de bord{" "}
+                  </strong>
+                </NavLink>
+              </li>
+              {/* )} */}
+
+              {/* {!isConnected && (
+              <li className="nav-item">
+                <NavLink to="/aboutus" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Nous{" "}
+                  </strong>
+                </NavLink>
+              </li>
+              )} */}
+              {/* {isAdmin && ( */}
+              <li className="nav-item">
+                <NavLink to="/admin" className="nav-link buttonStyle ">
+                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    {" "}
+                    Admin{" "}
+                  </strong>
+                </NavLink>
+              </li>
+              {/* )} */}
+              <input
+                type="button"
+                value="déconnexion"
+                className="btn btn-danger btn-sm m-1"
+              />
             </ul>
           </div>
         </div>
