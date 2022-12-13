@@ -10,7 +10,7 @@ console.log("value dans la props", props.searchProps)
     }
     return(
         <div>
-            <input type="text" onChange={searchFunction} placeholder="   recherche ton aliment" />
+            <input type="text" onChange={searchFunction} placeholder=" Fais ta recherche ici" />
         </div>
     )
 }

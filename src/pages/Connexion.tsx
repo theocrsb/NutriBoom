@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 import ConnexionButton from "../components/ConnexionButton";
 import { useState, useEffect, FormEvent } from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
 const Connexion = () => {
   const [mailState, setMailState] = useState<string>();
   const [passwordState, setPasswordState] = useState<string>();
+  const[message, setMessage]= useState<string>()
+  const navigate=useNavigate()
   let recupToken: string | null;
 
   const mailFunction = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -21,7 +24,7 @@ const Connexion = () => {
     console.log(mailState);
     console.log(passwordState);
 
-    if (mailState && passwordState !== undefined) {
+   
       await axios
         .post("http://localhost:8080/api/auth/login", {
           email: mailState,
@@ -32,8 +35,20 @@ const Connexion = () => {
           const tokens = token.data.access_token;
           localStorage.setItem("accesstoken", tokens);
           recupToken = localStorage.getItem("accesstoken");
+           setTimeout(() => { 
+            navigate('/welcome');
+        }, 2500)
+        setMessage("Connexion réussie !")
+        }).catch((error)=>{
+          console.log("connexion impossible", error)
+          if (!mailState || !passwordState){
+            console.log("erreur",error.response.data.message)
+setMessage(error.response.data.message)
+          }else if(error.message ==="Request failed with status code 401"){
+ setMessage("Mot de passe ou adresse mail inconnu(e)")
+          }
         });
-    }
+    
   };
 
   // useEffect pour tester les states car ils sont asynchrones//
@@ -78,6 +93,7 @@ const Connexion = () => {
           </div>
         </form>
       </div>
+      <span className="message">{message}</span>
       <div className="connexionButton">
         <button
           onClick={handleLoginForm}
@@ -85,7 +101,7 @@ const Connexion = () => {
           className="btn inscription"
         >
           {" "}
-          s'inscrire
+          Se connecter
         </button>
         {/* <ConnexionButton /> */}
       </div>

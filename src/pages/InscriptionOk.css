@@ -1,0 +1,21 @@
+  .link{
+    box-shadow: none;
+  text-decoration: none;
+  color: #dfa530;
+  font-weight: bold;
+  text-align: center;
+  }
+
+  .textInscription{
+  color: #dfa530;
+  font-weight: bold;
+  text-align: center;
+  }
+  .textInscriptionBis{
+  color: #dfa530;
+  font-weight: bold;
+  text-align: center;
+  }
+  .textAccueil{
+    margin-top: 100px;
+  }

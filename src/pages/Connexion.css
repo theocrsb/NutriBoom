@@ -8,6 +8,7 @@
 }
 .linkSub {
   text-decoration: none;
+  width: 10px;
 }
 
 .formConnexion {
@@ -30,6 +31,13 @@ select {
   background-position: center;
   -webkit-animation: bounce-in-right 1.1s both;
   animation: bounce-in-right 1.1s both;
+}
+
+.message{
+  font-weight: bold;
+  color: #dfa530;
+  text-align: center;
+  padding-left: 50px;
 }
 @-webkit-keyframes bounce-in-right {
   0% {

@@ -3,6 +3,7 @@ import SuscribeButton from "../components/SuscribeButton";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 
 
 const Suscribe = () => {
@@ -15,6 +16,9 @@ const [weightState, setWeightState] = useState<number>()
 const [heightState, setHeightState] = useState<number>()
 const [ratioState, setRatioState] = useState<number>()
 const [sexState, setSexState] = useState<string>()
+const [champManquant,setChampManquant] =useState<string>()
+const navigate = useNavigate()
+
 
 const lastNameFunction=(e: React.ChangeEvent<HTMLInputElement>)=>{
 setLastNameState(e.currentTarget.value)
@@ -65,15 +69,26 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     ratio : ratioState
   })
   .then((response)=>{
-    console.log(response.data);
+    console.log("le console.log du response.data", response.data);
+    let inscription = true
+    if (inscription){
+    return navigate ("/inscriptionok");
+    }
+    
   })
   .catch((error)=>{
     console.error("something went wrong",error);
-  });
+
+  if(!lastNameState ||!firstNameState || !ageState || !sexState || !weightState || !heightState || !mailState || !passwordState || !ratioState){
+    setChampManquant("un des champs est oublié ou mal rempli")
+  }else{
+    setChampManquant("Ce compte est déja existant")
+  }
+  })
+  
 };
 
   useEffect(() => {
-
   console.log("lastName", lastNameState)
     console.log("firstName", firstNameState)
     console.log("mail", mailState)
@@ -291,6 +306,7 @@ const ratioFunction=(e:React.ChangeEvent<HTMLSelectElement>)=>{
             </option>
           </select>
         </div>
+        <span className ="messageDynamique">{champManquant}</span>
         <SuscribeButton />
       </form>
     </div>

@@ -491,7 +491,7 @@ const Main = () => {
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
-                <Link className="buttonAdd" to="/petitdejeuner">
+                <Link className="buttonAdd" to="/collation">
                   <PlusAddButton />
                 </Link>
                 <span className="textAjout"> Ajouter un aliment</span>
@@ -525,10 +525,10 @@ const Main = () => {
                 <li>Lorem ipsum dolor sit amet.</li>
                 <li>Lorem.</li>
                 <li>Lorem, ipsum.</li>
-                <Link className="buttonAdd" to="/petitdejeuner">
+                <Link className="buttonAdd" to="/exercices">
                   <PlusAddButton />
                 </Link>
-                <span className="textAjout"> Ajouter une activitée</span>
+                <span className="textAjout"> Ajouter une activité</span>
               </ul>
             </div>
           </div>

@@ -19,6 +19,7 @@ import DeleteAccount from './pages/DeleteAccount';
 import Account from './pages/Account';
 import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
+import InscriptionOk from "./pages/InscriptionOk";
 
 const App = ()=>{
  
@@ -45,6 +46,7 @@ const App = ()=>{
           <Route path="/moncompte" element={<Account />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
           <Route path="/*" element={<Page404 />}></Route>
+          <Route path="/inscriptionok" element={<InscriptionOk />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

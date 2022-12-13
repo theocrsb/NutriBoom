@@ -22,6 +22,7 @@ margin-right: 20px;
 
 .list{
     display: flex;
+    flex-direction: column;
 }
 
 .quantity{
@@ -45,4 +46,8 @@ margin-right: 20px;
 .searchbarPosition{
     margin-left: 100px;
     margin-top: 20px;
+}
+
+.exocouleur{
+    color:#dfa530
 }

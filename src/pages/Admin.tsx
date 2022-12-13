@@ -27,7 +27,9 @@ const Admin = () => {
         setMesUsers(res.data);
         console.log("mes users dans le state", mesUsers);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log("something went wrong")
+      });
   }, []);
 
   return (
