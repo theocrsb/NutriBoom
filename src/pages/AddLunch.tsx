@@ -1,41 +1,96 @@
-import AlimentAddButton from "../components/AlimentAddButton";
-import "./Add.css"
-import SearchBar from "../components/SearchBar";
-import {useState} from "react"
+import AlimentAddButton from '../components/AlimentAddButton';
+import './Add.css';
+import SearchBar from '../components/SearchBar';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const AddLunch =()=>{
+const AddLunch = () => {
+  const [alimentInput, setAlimentInput] = useState<string>();
 
-    const [alimentInput,setAlimentInput] = useState<string>()
-    //  -------------------PROPS---------------------//
-     const lunchSubmitFunction=(e:React.FormEvent)=>{
-     console.log("props dans le breakfast",e)
-     }
+  const breakfastSubmitFunction = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('props dans le breakfast');
+  };
 
-        const searchBarFunction=(e: string)=>{
-        console.log("props passé dans le parent",e)
-        setAlimentInput(e)
-        console.log("props passé dans le parent et le state",e)
-    }
-// ---------------------- PROPS--------------------//
+  const searchBarFunction = (e: string) => {
+    console.log('props passé dans le parent', e);
+    setAlimentInput(e);
+    console.log('props passé dans le parent et le state', e);
+  };
 
-    return(
-      <div>
-        <div className="searchbarPosition">
-             <SearchBar searchProps={searchBarFunction}/>
-             </div>
-            <div className="list">
-            <li className ="listeRecherche">
-                <span className="text"> Déjeuner</span>
-                <div className = "formulaire">
-                <form className="form" onSubmit={lunchSubmitFunction}>
-                <label htmlFor="quantity" className="htmlForm-label"/>
-                <input className="quantity" type="text" id="quantity" placeholder="quantité en gr" />
-                  <span className ="buttonValidate"><AlimentAddButton/></span>
-                  </form>     
-                  </div> 
-            </li>
-            </div>
+  interface Food {
+    id: number;
+    name: string;
+    nombre_caloriescategorie: number;
+    lipides: number;
+    glucides: number;
+    proteines: number;
+  }
+
+  // const BreakFood = () => {
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/api/foods', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setTabAliment(response.data);
+      });
+  }, []);
+
+  const [tabAliment, setTabAliment] = useState<Food[]>([]);
+
+  return (
+    <div>
+      <div className='searchbarPosition'>
+        <SearchBar searchProps={searchBarFunction} />
+      </div>
+      <div className='list'>
+        <div>
+          <ul>
+            {tabAliment
+              .filter((x) => {
+                if (alimentInput)
+                  return x.name
+                    .toLocaleLowerCase()
+                    .normalize('NFD')
+                    .replace(/\p{Diacritic}/gu, '')
+                    .includes(
+                      alimentInput
+                        .toLocaleLowerCase()
+                        .normalize('NFD')
+                        .replace(/\p{Diacritic}/gu, '')
+                    );
+              })
+
+              .map((x, id) => (
+                <li key={id} className='listeRecherche'>
+                  {x.name}
+
+                  {/* <span className="text"> Petit-déjeuner</span> */}
+                  <div className='formulaire'>
+                    <form className='form' onSubmit={breakfastSubmitFunction}>
+                      <label htmlFor='quantity' className='htmlForm-label' />
+                      <input
+                        className='quantity'
+                        type='text'
+                        id='quantity'
+                        placeholder='quantité en gr'
+                      />
+                      <span className='buttonValidate'>
+                        <AlimentAddButton />
+                      </span>
+                    </form>
+                  </div>
+                </li>
+              ))}
+          </ul>
         </div>
-    )
-}
-export default AddLunch
+      </div>
+    </div>
+  );
+};
+export default AddLunch;
