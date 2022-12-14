@@ -26,7 +26,7 @@ const AddDinner=()=>{
              </div>
              <div className="list">
              <li className ="listeRecherche">
-                 <span className="text"> Dîner</span>
+                 <span className="text"> add Dîner</span>
                  <div className = "formulaire">
                  <form className="form" onSubmit={dinnerSubmitFunction}>
                  <label htmlFor="quantity" className="htmlForm-label"/>
