@@ -31,6 +31,7 @@ const App = () => {
       <BrowserRouter>
         <div id="#hautNavBar">
           <NavBar />
+          {/* div mise en place pour test la bonne reception du token  */}
           {/* <div style={{ color: "white" }}>Saved : {savedToken}</div> */}
         </div>
         <Routes>

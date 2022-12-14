@@ -228,7 +228,7 @@ const Main = () => {
   let tabPetitDej = userSearch?.eatenfood.filter(
     // filtre en fonction de l'id et de la date (jour/mois/année)
     (typeDej) =>
-      typeDej.type.id === 2 &&
+      typeDej.type.id === 1 &&
       new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
       new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
       new Date(`${typeDej.createdAt}`).getFullYear() ===
@@ -243,7 +243,7 @@ const Main = () => {
   let tabDej = userSearch?.eatenfood.filter(
     // filtre en fonction de l'id et de la date (jour/mois/année)
     (typeDej) =>
-      typeDej.type.id === 4 &&
+      typeDej.type.id === 2 &&
       new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
       new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
       new Date(`${typeDej.createdAt}`).getFullYear() ===
@@ -261,7 +261,7 @@ const Main = () => {
   let tabCollation = userSearch?.eatenfood.filter(
     // filtre en fonction de l'id et de la date (jour/mois/année)
     (typeDej) =>
-      typeDej.type.id === 1 &&
+      typeDej.type.id === 4 &&
       new Date(`${typeDej.createdAt}`).getDate() === new Date().getDate() &&
       new Date(`${typeDej.createdAt}`).getMonth() === new Date().getMonth() &&
       new Date(`${typeDej.createdAt}`).getFullYear() ===
