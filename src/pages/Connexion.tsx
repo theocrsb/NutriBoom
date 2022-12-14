@@ -1,15 +1,17 @@
 import "./Connexion.css";
 import { Link } from "react-router-dom";
 import ConnexionButton from "../components/ConnexionButton";
-import { useState, useEffect, FormEvent } from "react";
+import { useState, useEffect, FormEvent, useContext } from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/Auth-context";
 
 const Connexion = () => {
+  const { onAuthChange } = useContext(AuthContext);
   const [mailState, setMailState] = useState<string>();
   const [passwordState, setPasswordState] = useState<string>();
-  const[message, setMessage]= useState<string>()
-  const navigate=useNavigate()
+  const [message, setMessage] = useState<string>();
+  const navigate = useNavigate();
   let recupToken: string | null;
 
   const mailFunction = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -23,32 +25,34 @@ const Connexion = () => {
     console.log("button form clicked");
     console.log(mailState);
     console.log(passwordState);
+    await axios
+      .post("http://localhost:8080/api/auth/login", {
+        email: mailState,
+        password: passwordState,
+      })
+      .then((token) => {
+        console.log(token.data.access_token);
+        const tokens = token.data.access_token;
+        localStorage.setItem("accesstoken", tokens);
 
-   
-      await axios
-        .post("http://localhost:8080/api/auth/login", {
-          email: mailState,
-          password: passwordState,
-        })
-        .then((token) => {
-          console.log(token.data.access_token);
-          const tokens = token.data.access_token;
-          localStorage.setItem("accesstoken", tokens);
-          recupToken = localStorage.getItem("accesstoken");
-           setTimeout(() => { 
-            navigate('/main');
-        }, 2500)
-        setMessage("Connexion réussie !")
-        }).catch((error)=>{
-          console.log("connexion impossible", error)
-          if (!mailState || !passwordState){
-            console.log("erreur",error.response.data.message)
-setMessage(error.response.data.message)
-          }else if(error.message ==="Request failed with status code 401"){
- setMessage("Mot de passe ou adresse mail inconnu(e)")
-          }
-        });
-    
+        // recuperation du token dans le local storage afin de l'utiliser dans les context d'authentification
+        onAuthChange(tokens);
+        // console.log("valeur de onAuthChange", onAuthChange("montoken"));
+        //console.log("token recupere dans le local storage", recupToken);
+        setTimeout(() => {
+          navigate("/main");
+        }, 1000);
+        setMessage("Connexion réussie !");
+      })
+      .catch((error) => {
+        console.log("connexion impossible", error);
+        if (!mailState || !passwordState) {
+          console.log("erreur", error.response.data.message);
+          setMessage(error.response.data.message);
+        } else if (error.message === "Request failed with status code 401") {
+          setMessage("Mot de passe ou adresse mail inconnu(e)");
+        }
+      });
   };
 
   // useEffect pour tester les states car ils sont asynchrones//
