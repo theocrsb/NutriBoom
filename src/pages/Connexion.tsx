@@ -36,6 +36,7 @@ const Connexion = () => {
         localStorage.setItem("accesstoken", tokens);
 
         // recuperation du token dans le local storage afin de l'utiliser dans les context d'authentification
+        // recupToken = localStorage.getItem("accesstoken");
         onAuthChange(tokens);
         // console.log("valeur de onAuthChange", onAuthChange("montoken"));
         //console.log("token recupere dans le local storage", recupToken);
