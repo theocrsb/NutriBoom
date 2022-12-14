@@ -118,10 +118,16 @@ const Main = () => {
   const [displayUser, setDisplayUser] = useState<User[]>([]);
   // UseEffect pour recuperer le tableau de tout les utilisateurs
   useEffect(() => {
-    axios.get("http://localhost:8080/api/users").then((response) => {
-      console.log("response", response);
-      setDisplayUser(response.data);
-    });
+    axios
+      .get("http://localhost:8080/api/users", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+        },
+      })
+      .then((response) => {
+        console.log("response", response);
+        setDisplayUser(response.data);
+      });
   }, []);
   console.log(displayUser);
   // Recherche d'un utilisateur via la method find

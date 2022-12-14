@@ -2,16 +2,31 @@ import React, { useRef, useState, SyntheticEvent, useContext } from "react";
 import { NavLink } from "react-router-dom";
 // import { HashLink as NavLink } from "react-router-hash-link";
 import { AuthContext } from "../contexts/Auth-context";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import AboutUs from "../pages/AboutUs";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const { savedToken } = useContext(AuthContext);
-
+  console.log("voici le resultat pour savedToken", savedToken);
   const tokenVerify = (e: SyntheticEvent) => {
     if (savedToken === null) {
       e.preventDefault();
     }
+  };
+  const handleClickDecoBtn = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    let monToken = localStorage.getItem("accesstoken");
+    console.log("----------etat local storage avant deco", monToken);
+    localStorage.removeItem("accesstoken");
+    monToken = localStorage.getItem("accesstoken");
+    console.log("----------etat local storage apres deco", monToken);
+    navigate("/");
+    window.location.reload();
+
+    // setTimeout(() => {
+
+    // }, 2500);
   };
   // let isConnected = true;
   // let isAdmin = true;
@@ -63,70 +78,75 @@ const Navbar = () => {
                 </NavLink>
               </li>
 
-              {/* {!isConnected && ( */}
-              <li className="nav-item">
-                <NavLink to="suscribe" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    Inscription
-                  </strong>
-                </NavLink>
-              </li>
-              {/* )} */}
-              {/* {!isConnected && ( */}
-              <li className="nav-item">
-                <NavLink to="connexion" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    {" "}
-                    Connexion{" "}
-                  </strong>
-                </NavLink>
-              </li>
-              {/* )} */}
-              {/* {isConnected && ( */}
-              <li className="nav-item">
-                <NavLink to="/moncompte" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    {" "}
-                    Mon compte{" "}
-                  </strong>
-                </NavLink>
-              </li>
-              {/* )} */}
-              {/* {isConnected && ( */}
-              <li className="nav-item">
-                <NavLink to="main" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    Journal de bord{" "}
-                  </strong>
-                </NavLink>
-              </li>
-              {/* )} */}
+              {(!savedToken && (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="suscribe" className="nav-link buttonStyle ">
+                      <strong
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                      >
+                        Inscription
+                      </strong>
+                    </NavLink>
+                  </li>
 
-              {/* {!isConnected && (
-              <li className="nav-item">
-                <NavLink to="/aboutus" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    {" "}
-                    Nous{" "}
-                  </strong>
-                </NavLink>
-              </li>
-              )} */}
-              {/* {isAdmin && ( */}
-              <li className="nav-item">
-                <NavLink to="/admin" className="nav-link buttonStyle ">
-                  <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    {" "}
-                    Admin{" "}
-                  </strong>
-                </NavLink>
-              </li>
-              {/* )} */}
-              <input
-                type="button"
-                value="déconnexion"
-                className="btn btn-danger btn-sm m-1"
-              />
+                  <li className="nav-item">
+                    <NavLink to="connexion" className="nav-link buttonStyle ">
+                      <strong
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                      >
+                        {" "}
+                        Connexion{" "}
+                      </strong>
+                    </NavLink>
+                  </li>
+                </>
+              )) || (
+                <>
+                  <li className="nav-item">
+                    <NavLink to="/moncompte" className="nav-link buttonStyle ">
+                      <strong
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                      >
+                        {" "}
+                        Mon compte{" "}
+                      </strong>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="main" className="nav-link buttonStyle ">
+                      <strong
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                      >
+                        Journal de bord{" "}
+                      </strong>
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink to="/admin" className="nav-link buttonStyle ">
+                      <strong
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                      >
+                        {" "}
+                        Admin{" "}
+                      </strong>
+                    </NavLink>
+                  </li>
+
+                  <input
+                    type="button"
+                    value="déconnexion"
+                    id="decoBtn"
+                    className="btn btn-danger btn-sm m-1"
+                    onClick={handleClickDecoBtn}
+                  />
+                </>
+              )}
             </ul>
           </div>
         </div>
