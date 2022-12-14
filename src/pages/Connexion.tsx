@@ -36,7 +36,7 @@ const Connexion = () => {
           localStorage.setItem("accesstoken", tokens);
           recupToken = localStorage.getItem("accesstoken");
            setTimeout(() => { 
-            navigate('/welcome');
+            navigate('/main');
         }, 2500)
         setMessage("Connexion réussie !")
         }).catch((error)=>{
