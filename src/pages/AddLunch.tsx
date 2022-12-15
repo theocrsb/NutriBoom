@@ -15,18 +15,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { table } from 'console';
-
-export interface Activity {
+interface Food {
   id: number;
   name: string;
-  conso_cal_h: number;
+  nombre_caloriescategorie: number;
+  lipides: number;
+  glucides: number;
+  proteines: number;
 }
+
 const AddLunch = () => {
-  const [listFoods, setListFoods] = useState<Activity[]>([]);
-  const [activity, setActivity] = useState<Activity | undefined>();
+  const [listFoods, setListFoods] = useState<Food[]>([]);
+  const [activity, setActivity] = useState<Food | undefined>();
   const [quantity, setQuantity] = useState<number>();
   const [message, setMessage] = useState<string>();
-  const [listBis, setListBis] = useState<Activity[]>([]);
+  const [listBis, setListBis] = useState<Food[]>([]);
   const [selection, setSelection] = useState<string>();
   const [selectionId, setSelectionId] = useState<string>();
   const navigate = useNavigate();
@@ -44,10 +47,10 @@ const AddLunch = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé pendant le diner',
+          name: 'Aliment consommé pendant le déjeuner',
           //quantité qui viendra de l'input
           quantity: quantity,
-          //toujours 2 car collation
+          //toujours 2 car déjeuner
           type: 2,
           //food qui viendra de l'input
           food: selectionId,
