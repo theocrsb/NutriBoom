@@ -25,26 +25,27 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
 
   let recupToken: string | null;
   recupToken = localStorage.getItem("accesstoken");
-  const dateToken = () => {
-    if (recupToken) {
-      let decoded: PayloadToken = jwt_decode(recupToken);
-      console.log("token decoder", decoded.exp);
-      return decoded.exp;
-    }
-  };
-  let tokenDecoded: number | undefined = dateToken();
-  console.log(Date.now());
-  let aujourdhui = Date.now();
-  console.log(new Date(aujourdhui));
-  console.log(tokenDecoded);
-  console.log(new Date(tokenDecoded ? tokenDecoded : 0));
-  const d = new Date(0);
-  d.setUTCSeconds(tokenDecoded ? tokenDecoded : 0);
+  // test sur le token
+  // const dateToken = () => {
+  //   if (recupToken) {
+  //     let decoded: PayloadToken = jwt_decode(recupToken);
+  //     console.log("token decoder", decoded.exp);
+  //     return decoded.exp;
+  //   }
+  // };
+  // let tokenDecoded: number | undefined = dateToken();
+  // console.log(Date.now());
+  // let aujourdhui = Date.now();
+  // console.log(new Date(aujourdhui));
+  // console.log(tokenDecoded);
+  // console.log(new Date(tokenDecoded ? tokenDecoded : 0));
+  // const d = new Date(0);
+  // d.setUTCSeconds(tokenDecoded ? tokenDecoded : 0);
 
-  console.log(
-    "resultat de la date apres utilisation de la methode setUTCSeconds",
-    d.getDate()
-  );
+  // console.log(
+  //   "resultat de la date apres utilisation de la methode setUTCSeconds",
+  //   d.getDate()
+  // );
 
   const [token, setToken] = useState<string | null>(
     recupToken ? recupToken : null

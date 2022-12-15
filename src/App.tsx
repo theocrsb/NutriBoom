@@ -26,28 +26,7 @@ import { User } from "./pages/Main";
 import axios from "axios";
 let result: any;
 const App = () => {
-  let recupUser;
-  let recupAllUser;
   const { savedToken } = useContext(AuthContext);
-  const allUsers = (e: string) => {
-    // recupAllUser = allUserTransfert;
-    console.log(
-      "verification de la bonne reception du user connecté via le props",
-      e
-    );
-  };
-
-  console.log("verification de recupAllUser apres fonction", recupAllUser);
-
-  const userConnect = (e: User | undefined) => {
-    // recupUser = userTransfert;
-    console.log(
-      "verification de la bonne reception du user connecté via le props",
-      e
-    );
-  };
-  console.log("verification de recupUser apres fonction", recupUser);
-  allUsers(result);
 
   return (
     <div>
@@ -65,11 +44,7 @@ const App = () => {
           <Route
             path="/main"
             element={
-              savedToken !== null ? (
-                <Main userTransfert={userConnect} allUserTransfert={allUsers} />
-              ) : (
-                <Navigate to="/connexion" />
-              )
+              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
             }
           />
           <Route path="/connexion" element={<Connexion />} />

@@ -72,19 +72,11 @@ export interface PayloadToken {
 // element de parametrage du graphique
 ChartJS.register(ArcElement, Tooltip);
 let calorieEnCour = 0;
-// PROPS
-interface UserProps {
-  userTransfert: { (userSearch: User | undefined): void };
-  allUserTransfert: (value: string) => void;
-}
+
 let allUsers: User[];
-const Main = (props: UserProps) => {
+const Main = () => {
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
-  props.allUserTransfert("response.data");
-  console.log(
-    "valeur de  all user transfert",
-    props.allUserTransfert("response.data")
-  );
+
   const convertToCal = (
     sexe: string,
     age: number,
@@ -140,16 +132,11 @@ const Main = (props: UserProps) => {
         console.log("response data", response.data);
         setDisplayUser(response.data);
         allUsers = response.data;
-        props.allUserTransfert(response.data);
       });
   }, []);
 
   console.log("all users valeur", allUsers);
   console.log(displayUser);
-  // const [test, setTest] = useState<string>("");
-  const recupUsers = () => {};
-
-  recupUsers();
 
   // Recherche d'un utilisateur via la method find
 
