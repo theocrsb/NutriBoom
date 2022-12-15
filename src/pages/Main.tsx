@@ -127,6 +127,12 @@ const Main = () => {
       .then((response) => {
         console.log('response', response);
         setDisplayUser(response.data);
+      })
+      .catch((error) => {
+        console.log('error', error.response.data.statusCode);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem('accesstoken');
+        }
       });
   }, []);
   console.log(displayUser);
