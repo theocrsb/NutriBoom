@@ -1,7 +1,7 @@
 import AlimentAddButton from '../components/AlimentAddButton';
 import './Add.css';
 import SearchBar from '../components/SearchBar';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +40,13 @@ const AddLunch = () => {
         setTabAliment(response.data);
       });
   }, []);
+  // value id de l'element check
+  const valueId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('id de laliment a post', e.target.value);
+    setIdFood(e.target.value);
+  };
 
+  // Fonction pour le post //
   const lunchSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -56,9 +62,7 @@ const AddLunch = () => {
           //toujours 2 car déjeuner
           type: 2,
           //food qui viendra de l'input
-          food: 61,
-          //   activity: activity?.id,
-          //   time: quantity,
+          food: idFood,
         },
         {
           headers: {
@@ -68,18 +72,14 @@ const AddLunch = () => {
       )
       .then((response) => {
         console.log(response);
-        // console.log('super, exercice ajouté');
-        // setMessage('Exercice ajouté avec succès');
+        setMessage('Aliment consommé pendant le déjeuner ajouté avec succès');
         setTimeout(() => {
           navigate('/main');
         }, 2500);
       })
       .catch((error) => {
         console.log(error);
-        // console.log('tu ne peux pas poster', error);
-        // if (!quantity) {
-        //   setMessage(error.response.data.message);
-        // }
+        setMessage(error.response.data.message);
       });
   };
 
@@ -115,8 +115,7 @@ const AddLunch = () => {
 
               .map((x, id) => (
                 <li key={id} className='listeRecherche'>
-                  {x.name}, id :{x.id}
-                  {/* <span className="text"> Petit-déjeuner</span> */}
+                  {x.name}
                   <div className='formulaire'>
                     <form className='form' onSubmit={lunchSubmitFunction}>
                       <label htmlFor='quantity' className='htmlForm-label' />
@@ -127,7 +126,12 @@ const AddLunch = () => {
                         placeholder='quantité en gr'
                         onChange={quantityFunction}
                       />
-
+                      <input
+                        type='checkbox'
+                        value={x.id}
+                        onChange={valueId}
+                        required
+                      />
                       <span className='buttonValidate'>
                         <AlimentAddButton />
                       </span>
@@ -137,6 +141,7 @@ const AddLunch = () => {
               ))}
           </ul>
         </div>
+        <p className='exerciceText'>{message}</p>
       </div>
     </div>
   );

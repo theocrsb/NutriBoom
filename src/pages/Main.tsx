@@ -277,7 +277,8 @@ const Main = () => {
         new Date().getFullYear()
   );
   console.log('voici les activités physique', tabActivity);
-
+  console.log('voici le déjeuner', tabActivity);
+  console.log('voici la collations', tabCollation);
   // Gaphique calories
   const dataCal = {
     labels: ['Calories consommé', 'Total calories restant'],
@@ -516,7 +517,7 @@ const Main = () => {
                   </li>
                 ))}
 
-                <Link className='buttonAdd' to='/petitdejeuner'>
+                <Link className='buttonAdd' to='/collation'>
                   <PlusAddButton />
                 </Link>
                 <span className='textAjout'> Ajouter un aliment</span>
