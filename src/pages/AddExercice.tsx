@@ -17,6 +17,10 @@ const AddExercice = ()=>{
  const[activity, setActivity] = useState<Activity|undefined>();
  const [quantity, setQuantity]= useState<number>();
  const [message, setMessage]= useState<string>();
+ const [listBis, setListBis]= useState<Activity[]>([]);
+ const [sport, setSport]= useState<string>();
+ const [selection, setSelection]= useState<string>();
+ 
  const navigate = useNavigate()
  
 
@@ -29,7 +33,7 @@ const AddExercice = ()=>{
      console.log("la quantité", quantity)
 
  axios.post(`http://localhost:8080/api/exercices`, {
-    activity : activity?.id,
+    activity : sport,
     time : quantity
  },{headers: { Authorization:`Bearer ${localStorage.getItem("accesstoken")}` }} 
  )
@@ -62,7 +66,7 @@ setQuantity(quantite);
             setActivity(undefined)
         }else{
         let listExo = listExercices.filter((exo)=>exo.name.toLowerCase().includes(e))
-        setActivity(listExo[0])
+        setListBis(listExo)
     }       
         }
 //  --------------------PROPS--------------------//
@@ -78,6 +82,14 @@ useEffect(()=>{
 });
 }, []);
 
+const buttonFunction=(e:React.MouseEvent<HTMLButtonElement>)=>{
+console.log(e.currentTarget.value)
+setSelection(e.currentTarget.name)
+setSport(e.currentTarget.value)
+console.log(e.currentTarget.name)
+
+}
+
     return(
           <div> 
             <h1 className="exerciceText">Sélectionne l'exercice que tu as réalisé aujourd'hui!</h1>
@@ -86,9 +98,9 @@ useEffect(()=>{
              <SearchBar searchProps={searchBarFunction}/>
              </div>
              <div className="list">
-               {activity?.name &&(
+              {selection && (
              <li className ="listeRecherche">
-                 <span className="text">{activity?.name}</span>             
+                 <span className="text">{selection}</span>            
                  <div className = "formulaire">
                  <form className="form" onSubmit={exerciceSubmitFunction}>
                  <label htmlFor="quantity" className="htmlForm-label"/>
@@ -97,7 +109,15 @@ useEffect(()=>{
                   </form>     
                   </div> 
             </li>   
-            )}      
+            )}
+          <p className="exerciceText">Suggestions</p>
+          <div className="scroller">
+            {listBis.map((liste, index)=>(
+        
+                <button key={index} className="listeRechercheBis" value={liste.id} onClick={buttonFunction} name={liste.name}>{liste.name}</button>
+             
+            ))}   
+            </div>
             <p className="exerciceText">{message}</p> 
             </div>
            
