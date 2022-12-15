@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { AuthContext } from "./contexts/Auth-context";
@@ -22,9 +22,32 @@ import Account from "./pages/Account";
 import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
-
+import { User } from "./pages/Main";
+import axios from "axios";
+let result: any;
 const App = () => {
+  let recupUser;
+  let recupAllUser;
   const { savedToken } = useContext(AuthContext);
+  const allUsers = (e: string) => {
+    // recupAllUser = allUserTransfert;
+    console.log(
+      "verification de la bonne reception du user connecté via le props",
+      e
+    );
+  };
+
+  console.log("verification de recupAllUser apres fonction", recupAllUser);
+
+  const userConnect = (e: User | undefined) => {
+    // recupUser = userTransfert;
+    console.log(
+      "verification de la bonne reception du user connecté via le props",
+      e
+    );
+  };
+  console.log("verification de recupUser apres fonction", recupUser);
+  allUsers(result);
 
   return (
     <div>
@@ -42,7 +65,11 @@ const App = () => {
           <Route
             path="/main"
             element={
-              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
+              savedToken !== null ? (
+                <Main userTransfert={userConnect} allUserTransfert={allUsers} />
+              ) : (
+                <Navigate to="/connexion" />
+              )
             }
           />
           <Route path="/connexion" element={<Connexion />} />

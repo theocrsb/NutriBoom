@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 import { type } from "os";
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
-interface User {
+export interface User {
   id?: string;
   lastname?: string;
   firstname: string;
@@ -19,6 +19,7 @@ interface User {
   weight: number;
   gender: string;
   email: string;
+  password: string;
   ratio?: string;
   height: string;
   role: UserRole;
@@ -61,7 +62,7 @@ interface Activity {
   conso_cal_1h: number;
 }
 //  interface pour l'objet du token payload decodé
-interface PayloadToken {
+export interface PayloadToken {
   exp: number;
   iat: number;
   id: string;
@@ -71,9 +72,19 @@ interface PayloadToken {
 // element de parametrage du graphique
 ChartJS.register(ArcElement, Tooltip);
 let calorieEnCour = 0;
-
-const Main = () => {
+// PROPS
+interface UserProps {
+  userTransfert: { (userSearch: User | undefined): void };
+  allUserTransfert: (value: string) => void;
+}
+let allUsers: User[];
+const Main = (props: UserProps) => {
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
+  props.allUserTransfert("response.data");
+  console.log(
+    "valeur de  all user transfert",
+    props.allUserTransfert("response.data")
+  );
   const convertToCal = (
     sexe: string,
     age: number,
@@ -126,10 +137,20 @@ const Main = () => {
       })
       .then((response) => {
         console.log("response", response);
+        console.log("response data", response.data);
         setDisplayUser(response.data);
+        allUsers = response.data;
+        props.allUserTransfert(response.data);
       });
   }, []);
+
+  console.log("all users valeur", allUsers);
   console.log(displayUser);
+  // const [test, setTest] = useState<string>("");
+  const recupUsers = () => {};
+
+  recupUsers();
+
   // Recherche d'un utilisateur via la method find
 
   const searchUser = () => {
@@ -141,7 +162,9 @@ const Main = () => {
       );
     }
   };
-  let userSearch = searchUser();
+  let userSearch: User | undefined = searchUser();
+  // userTransfert(userSearch);
+
   console.log("Recherche utilisateur par le mail", userSearch);
   //  application de la fonction de calcul des calories a l'utisateur qu'on a recuperé
   let resultUserCal = userSearch
@@ -157,7 +180,17 @@ const Main = () => {
   let consoCal = userSearch?.eatenfood;
   console.log("tableau de consomation user", consoCal);
   // recuperation des calories consommé afin de les  stocker dans un tableau et les additionner par la suite
-  let tabConsoCal = consoCal?.map((aliment) => aliment.food.nombre_calories);
+  // + filtrage pour avoir que les consomation du jour
+  let filterConsoCal = consoCal?.filter(
+    (conso) =>
+      new Date(`${conso.createdAt}`).getDate() === new Date().getDate() &&
+      new Date(`${conso.createdAt}`).getMonth() === new Date().getMonth() &&
+      new Date(`${conso.createdAt}`).getFullYear() === new Date().getFullYear()
+  );
+  console.log("resultat de filter conso cal du jour", filterConsoCal);
+  let tabConsoCal = filterConsoCal?.map(
+    (aliment) => aliment.food.nombre_calories
+  );
   console.log("voici le tableau des calories consommé", tabConsoCal);
   //  addition de ces valeurs via une boucle for
   let sumConsoCal = 0;
@@ -190,7 +223,8 @@ const Main = () => {
 
   //  on refait la meme logique pour calculer la conso journaliere en proteine ,lipide,glucide
   // proteine
-  let tabConsoProt = consoCal?.map((aliment) => aliment.food.proteines);
+
+  let tabConsoProt = filterConsoCal?.map((aliment) => aliment.food.proteines);
   console.log("voici le tableau des proteines consommé", tabConsoProt);
   //  addition de ces valeurs via une boucle for
   let sumConsoProt = 0;
@@ -201,7 +235,7 @@ const Main = () => {
     console.log("resultat de la consomation de proteine =", sumConsoProt);
   }
   // lipide
-  let tabConsoLip = consoCal?.map((aliment) => aliment.food.lipides);
+  let tabConsoLip = filterConsoCal?.map((aliment) => aliment.food.lipides);
   console.log("voici le tableau des lipides consommé", tabConsoLip);
   //  addition de ces valeurs via une boucle for
   let sumConsoLip = 0;
@@ -212,7 +246,7 @@ const Main = () => {
     console.log("resultat de la consomation de lipide =", sumConsoLip);
   }
   //  glucide
-  let tabConsoGlu = consoCal?.map((aliment) => aliment.food.glucides);
+  let tabConsoGlu = filterConsoCal?.map((aliment) => aliment.food.glucides);
   console.log("voici le tableau des glucides consommé", tabConsoGlu);
   //  addition de ces valeurs via une boucle for
   let sumConsoGlu = 0;
@@ -277,7 +311,30 @@ const Main = () => {
         new Date().getFullYear()
   );
   console.log("voici les activités physique", tabActivity);
-
+  // Mise en place de la logique de calcul pour avoir un rendu precis de notre consomation et depense sur nos besoin journalier
+  let tabActivityDepense = tabActivity?.map(
+    (exercice) => exercice.activity.conso_cal_1h * (exercice.time / 60)
+  );
+  console.log(
+    "voici le tableau avec le resultat des  depense de chaque activité en fonction du temps",
+    tabActivityDepense
+  );
+  let sumActivityDepense = 0;
+  if (tabActivityDepense) {
+    for (let i = 0; i < tabActivityDepense.length; i++) {
+      sumActivityDepense += tabActivityDepense[i];
+    }
+    console.log(
+      "resultat de la depense energetique de toute les activitée =",
+      sumActivityDepense
+    );
+  }
+  let gluDepense = Math.floor(((sumActivityDepense / 100) * 40) / 4);
+  let lipDepense = Math.floor(((sumActivityDepense / 100) * 30) / 9);
+  let protDepense = Math.floor(((sumActivityDepense / 100) * 30) / 4);
+  console.log("resultat a recup en prot", protDepense);
+  console.log("resultat a recup en lipide", lipDepense);
+  console.log("resultat a recup en glucide", gluDepense);
   // Gaphique calories
   const dataCal = {
     labels: ["Calories consommé", "Total calories restant"],
@@ -287,7 +344,11 @@ const Main = () => {
         // valeur affiché sur le graphique
         data: [
           `${calorieEnCour}`,
-          `${(resultUserCal ? Math.floor(resultUserCal) : 0) - calorieEnCour}`,
+          `${
+            (resultUserCal ? Math.floor(resultUserCal) : 0) -
+            calorieEnCour +
+            (sumActivityDepense ? sumActivityDepense : 0)
+          }`,
         ],
         backgroundColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -303,7 +364,11 @@ const Main = () => {
         label: "g",
         data: [
           `${sumConsoLip}`,
-          `${(resultUserLip ? Math.floor(resultUserLip) : 0) - sumConsoLip}`,
+          `${
+            (resultUserLip ? Math.floor(resultUserLip) : 0) -
+            sumConsoLip +
+            (lipDepense ? lipDepense : 0)
+          }`,
         ],
         backgroundColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -319,7 +384,11 @@ const Main = () => {
         label: "g",
         data: [
           `${sumConsoProt}`,
-          `${(resultUserProt ? Math.floor(resultUserProt) : 0) - sumConsoProt}`,
+          `${
+            (resultUserProt ? Math.floor(resultUserProt) : 0) -
+            sumConsoProt +
+            (protDepense ? protDepense : 0)
+          }`,
         ],
         backgroundColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -335,7 +404,11 @@ const Main = () => {
         label: "g",
         data: [
           `${sumConsoGlu}`,
-          `${(resultUserGlu ? Math.floor(resultUserGlu) : 0) - sumConsoGlu}`,
+          `${
+            (resultUserGlu ? Math.floor(resultUserGlu) : 0) -
+            sumConsoGlu +
+            (gluDepense ? gluDepense : 0)
+          }`,
         ],
         backgroundColor: ["rgba(51, 181, 255, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(51, 181, 255, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -359,7 +432,9 @@ const Main = () => {
           <section id="donutCal">
             <div className="user-recap">
               <h2>
-                {calorieEnCour} /{resultUserCal ? Math.floor(resultUserCal) : 0}
+                {calorieEnCour} /
+                {(resultUserCal ? Math.floor(resultUserCal) : 0) +
+                  (sumActivityDepense ? sumActivityDepense : 0)}
               </h2>
               <p id="kcal">Kcal</p>
             </div>
@@ -405,7 +480,8 @@ const Main = () => {
               <ul className="petit-dej">
                 {tabPetitDej?.map((aliment) => (
                   <li key={uuidv4()}>
-                    [{aliment.name}] {aliment.food.name}
+                    [{aliment.name}] {aliment.food.name}{" "}
+                    {aliment.food.nombre_calories}kcal
                   </li>
                 ))}
 
@@ -440,7 +516,8 @@ const Main = () => {
               <ul className="petit-dej">
                 {tabDej?.map((aliment) => (
                   <li key={uuidv4()}>
-                    [{aliment.name}] {aliment.food.name}
+                    [{aliment.name}] {aliment.food.name}{" "}
+                    {aliment.food.nombre_calories}kcal
                   </li>
                 ))}
 
@@ -475,7 +552,8 @@ const Main = () => {
               <ul className="petit-dej">
                 {tabDiner?.map((aliment) => (
                   <li key={uuidv4()}>
-                    [{aliment.name}] {aliment.food.name}
+                    [{aliment.name}] {aliment.food.name}{" "}
+                    {aliment.food.nombre_calories}kcal
                   </li>
                 ))}
 
@@ -511,7 +589,8 @@ const Main = () => {
               <ul className="petit-dej">
                 {tabCollation?.map((aliment) => (
                   <li key={uuidv4()}>
-                    [{aliment.name}] {aliment.food.name}
+                    [{aliment.name}] {aliment.food.name}{" "}
+                    {aliment.food.nombre_calories}kcal
                   </li>
                 ))}
 
@@ -546,7 +625,9 @@ const Main = () => {
               <ul className="petit-dej">
                 {tabActivity?.map((sport) => (
                   <li key={uuidv4()}>
-                    [{sport.activity.name}] {sport.time}min
+                    [{sport.activity.name}] {sport.time}min{" "}
+                    {/* calcul de la depense energetique en fonction de la durée implementée pour affichage */}
+                    {sport.activity.conso_cal_1h * (sport.time / 60)}kcal
                   </li>
                 ))}
 
