@@ -1,10 +1,10 @@
-import AlimentAddButton from '../components/AlimentAddButton';
-import './Add.css';
-import SearchBar from '../components/SearchBar';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { table } from 'console';
+import AlimentAddButton from "../components/AlimentAddButton";
+import "./Add.css";
+import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { table } from "console";
 
 export interface Activity {
   id: number;

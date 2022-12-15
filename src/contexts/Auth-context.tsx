@@ -1,4 +1,6 @@
 import { createContext, useState, ReactElement } from "react";
+import { PayloadToken } from "../pages/Main";
+import jwt_decode from "jwt-decode";
 
 interface AuthContextProps {
   children: ReactElement;
@@ -21,8 +23,29 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
    * et d'accéder au token via notre context
    */
 
-  let recupToken;
+  let recupToken: string | null;
   recupToken = localStorage.getItem("accesstoken");
+  // test sur le token
+  // const dateToken = () => {
+  //   if (recupToken) {
+  //     let decoded: PayloadToken = jwt_decode(recupToken);
+  //     console.log("token decoder", decoded.exp);
+  //     return decoded.exp;
+  //   }
+  // };
+  // let tokenDecoded: number | undefined = dateToken();
+  // console.log(Date.now());
+  // let aujourdhui = Date.now();
+  // console.log(new Date(aujourdhui));
+  // console.log(tokenDecoded);
+  // console.log(new Date(tokenDecoded ? tokenDecoded : 0));
+  // const d = new Date(0);
+  // d.setUTCSeconds(tokenDecoded ? tokenDecoded : 0);
+
+  // console.log(
+  //   "resultat de la date apres utilisation de la methode setUTCSeconds",
+  //   d.getDate()
+  // );
 
   const [token, setToken] = useState<string | null>(
     recupToken ? recupToken : null
