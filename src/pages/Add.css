@@ -8,6 +8,16 @@ height: 50px;
 font-size: 20px;
 justify-content: space-around;
 }
+.listeRechercheBis{
+   
+    display: flex;
+background-color: #938ba1;
+/* margin-left: 20px; */
+width: 100%;
+height: 50px;
+font-size: 20px;
+justify-content: space-around;
+}
 
 .buttonValidate{
  display:flex;
@@ -55,4 +65,12 @@ margin-right: 20px;
 .exerciceText{
     color: #dfa530;
     text-align: center;
+}
+
+.scroller {
+  width: 300px;
+  height: 100px;
+  overflow-y: scroll;
+  scrollbar-color: rebeccapurple green;
+  scrollbar-width: thin;
 }
