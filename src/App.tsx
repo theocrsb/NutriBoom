@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { AuthContext } from "./contexts/Auth-context";
@@ -22,7 +22,9 @@ import Account from "./pages/Account";
 import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
-
+import { User } from "./pages/Main";
+import axios from "axios";
+let result: any;
 const App = () => {
   const { savedToken } = useContext(AuthContext);
 
@@ -31,6 +33,7 @@ const App = () => {
       <BrowserRouter>
         <div id="#hautNavBar">
           <NavBar />
+          {/* div mise en place pour test la bonne reception du token  */}
           {/* <div style={{ color: "white" }}>Saved : {savedToken}</div> */}
         </div>
         <Routes>
