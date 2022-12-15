@@ -1,13 +1,3 @@
-// interface Food {
-//   id: number;
-//   name: string;
-//   nombre_caloriescategorie: number;
-//   lipides: number;
-//   glucides: number;
-//   proteines: number;
-// }
-// const AddLunch = () => {
-
 import AlimentAddButton from '../components/AlimentAddButton';
 import './Add.css';
 import SearchBar from '../components/SearchBar';
@@ -26,7 +16,6 @@ interface Food {
 
 const AddLunch = () => {
   const [listFoods, setListFoods] = useState<Food[]>([]);
-  const [activity, setActivity] = useState<Food | undefined>();
   const [quantity, setQuantity] = useState<number>();
   const [message, setMessage] = useState<string>();
   const [listBis, setListBis] = useState<Food[]>([]);
@@ -37,11 +26,7 @@ const AddLunch = () => {
   //  -------------------PROPS---------------------//
   const eatenfoodSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('props dans les exercices', e);
-    console.log('activite selectionnee', activity?.name);
-    console.log('objet activite', activity);
-    console.log('la quantité', quantity);
-    console.log('selection id ------', selectionId);
+
     axios
       .post(
         `http://localhost:8080/api/meals`,
@@ -63,7 +48,7 @@ const AddLunch = () => {
       )
       .then((response) => {
         console.log('response', response);
-        setMessage('Aliment consommé pendant le diner ajouté avec succès');
+        setMessage('Aliment consommé pendant le déjeuner ajouté avec succès');
         setTimeout(() => {
           navigate('/main');
         }, 2500);
@@ -84,23 +69,20 @@ const AddLunch = () => {
     console.log('props passé dans le parent', e);
 
     console.log('props passé dans le parent et le state', e);
-    if (!e) {
-      setActivity(undefined);
-    } else {
-      let listExo = listFoods.filter((food) =>
-        food.name
-          .toLocaleLowerCase()
-          .normalize('NFD')
-          .replace(/\p{Diacritic}/gu, '')
-          .includes(
-            e
-              .toLocaleLowerCase()
-              .normalize('NFD')
-              .replace(/\p{Diacritic}/gu, '')
-          )
-      );
-      setListBis(listExo);
-    }
+
+    let listExo = listFoods.filter((food) =>
+      food.name
+        .toLocaleLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .includes(
+          e
+            .toLocaleLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '')
+        )
+    );
+    setListBis(listExo);
   };
   //  --------------------PROPS--------------------//
 
@@ -112,7 +94,7 @@ const AddLunch = () => {
         },
       })
       .then((response) => {
-        console.log('liste des exercices', response.data);
+        console.log('liste des foods', response.data);
         setListFoods(response.data);
       })
       .catch((error) => {

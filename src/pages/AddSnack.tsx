@@ -1,56 +1,31 @@
 import AlimentAddButton from '../components/AlimentAddButton';
 import './Add.css';
 import SearchBar from '../components/SearchBar';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { table } from 'console';
+interface Food {
+  id: number;
+  name: string;
+  nombre_caloriescategorie: number;
+  lipides: number;
+  glucides: number;
+  proteines: number;
+}
 
 const AddSnack = () => {
-  const [alimentInput, setAlimentInput] = useState<string>('');
-  const [tabAliment, setTabAliment] = useState<Food[]>([]);
+  const [listFoods, setListFoods] = useState<Food[]>([]);
   const [quantity, setQuantity] = useState<number>();
   const [message, setMessage] = useState<string>();
-  const [idFood, setIdFood] = useState<string>();
+  const [listBis, setListBis] = useState<Food[]>([]);
+  const [selection, setSelection] = useState<string>();
+  const [selectionId, setSelectionId] = useState<string>();
   const navigate = useNavigate();
 
-  const searchBarFunction = (e: string) => {
-    console.log('props passé dans le parent', e);
-    setAlimentInput(e);
-    console.log('props passé dans le parent et le state', e);
-  };
-
-  interface Food {
-    id: number;
-    name: string;
-    nombre_caloriescategorie: number;
-    lipides: number;
-    glucides: number;
-    proteines: number;
-  }
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/foods', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setTabAliment(response.data);
-      });
-  }, []);
-  // value id de l'element check
-  const valueId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log('id de laliment a post', e.target.value);
-    setIdFood(e.target.value);
-  };
-
-  // Fonction pour le post //
-  const lunchSubmitFunction = (e: React.FormEvent) => {
+  //  -------------------PROPS---------------------//
+  const eatenfoodSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
-
-    // post sur la bdd
     axios
       .post(
         `http://localhost:8080/api/meals`,
@@ -59,10 +34,10 @@ const AddSnack = () => {
           name: 'Aliment consommé pendant la collation',
           //quantité qui viendra de l'input
           quantity: quantity,
-          //toujours 2 car collation
+          //toujours 4 car collation
           type: 4,
           //food qui viendra de l'input
-          food: idFood,
+          food: selectionId,
         },
         {
           headers: {
@@ -71,7 +46,7 @@ const AddSnack = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log('response', response);
         setMessage('Aliment consommé pendant la collation ajouté avec succès');
         setTimeout(() => {
           navigate('/main');
@@ -86,60 +61,102 @@ const AddSnack = () => {
   const quantityFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMessage(undefined);
     let quantite = Number(e.currentTarget.value);
-    console.log(quantite);
     setQuantity(quantite);
+  };
+
+  const searchBarFunction = (e: string) => {
+    console.log('props passé dans le parent', e);
+
+    console.log('props passé dans le parent et le state', e);
+
+    let listExo = listFoods.filter((food) =>
+      food.name
+        .toLocaleLowerCase()
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+        .includes(
+          e
+            .toLocaleLowerCase()
+            .normalize('NFD')
+            .replace(/\p{Diacritic}/gu, '')
+        )
+    );
+    setListBis(listExo);
+  };
+  //  --------------------PROPS--------------------//
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/foods`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+        },
+      })
+      .then((response) => {
+        console.log('liste des foods', response.data);
+        setListFoods(response.data);
+      })
+      .catch((error) => {
+        console.log('something went wrong', error);
+      });
+  }, []);
+
+  const buttonFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.value);
+    setSelectionId(e.currentTarget.value);
+    setSelection(e.currentTarget.name);
+    console.log(e.currentTarget.name);
   };
 
   return (
     <div>
+      <h1 className='exerciceText'>
+        Sélectionne chaque aliments que tu as consommés pendant ta collation !
+      </h1>
+      <p className='exerciceText'>
+        Tu peux grâce à la barre de recherche trouver un aliment, et l'ajouter à
+        ton tableau de bord grâce au bouton!
+      </p>
       <div className='searchbarPosition'>
         <SearchBar searchProps={searchBarFunction} />
       </div>
       <div className='list'>
-        <div>
-          <ul>
-            {tabAliment
-              .filter((x) => {
-                if (alimentInput)
-                  return x.name
-                    .toLocaleLowerCase()
-                    .normalize('NFD')
-                    .replace(/\p{Diacritic}/gu, '')
-                    .includes(
-                      alimentInput
-                        .toLocaleLowerCase()
-                        .normalize('NFD')
-                        .replace(/\p{Diacritic}/gu, '')
-                    );
-              })
-
-              .map((x, id) => (
-                <li key={id} className='listeRecherche'>
-                  {x.name}
-                  <div className='formulaire'>
-                    <form className='form' onSubmit={lunchSubmitFunction}>
-                      <label htmlFor='quantity' className='htmlForm-label' />
-                      <input
-                        className='quantity'
-                        type='text'
-                        id='quantity'
-                        placeholder='quantité en gr'
-                        onChange={quantityFunction}
-                      />
-                      <input
-                        type='checkbox'
-                        value={x.id}
-                        onChange={valueId}
-                        required
-                      />
-                      <span className='buttonValidate'>
-                        <AlimentAddButton />
-                      </span>
-                    </form>
-                  </div>
-                </li>
-              ))}
-          </ul>
+        {selection && (
+          <li className='listeRecherche'>
+            <span className='text'>{selection}</span>
+            <div className='formulaire'>
+              <form
+                className='form overflow-auto'
+                onSubmit={eatenfoodSubmitFunction}
+              >
+                <label htmlFor='quantity' className='htmlForm-label' />
+                <input
+                  className='quantity'
+                  type='number'
+                  id='quantity'
+                  placeholder='Grammes'
+                  onChange={quantityFunction}
+                />
+                <span className='buttonValidate'>
+                  <AlimentAddButton />
+                </span>
+              </form>
+            </div>
+          </li>
+        )}
+        <p className='exerciceText'>Suggestions</p>
+        <div className='scroller'>
+          {listBis.map((liste, index) => (
+            <button
+              key={index}
+              className='listeRechercheBis'
+              value={liste.id}
+              onClick={buttonFunction}
+              name={liste.name}
+            >
+              {liste.name}
+            </button>
+          ))}
         </div>
         <p className='exerciceText'>{message}</p>
       </div>
