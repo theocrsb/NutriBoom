@@ -4,11 +4,12 @@ import { Doughnut } from 'react-chartjs-2';
 import './Main.css';
 import axios from 'axios';
 import PlusAddButton from '../components/PlusAddButton';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import _ from 'lodash';
 import { v4 as uuidv4 } from 'uuid';
 import { type } from 'os';
+import '../components/PlusAddButton.css';
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
 export interface User {
@@ -75,8 +76,9 @@ let calorieEnCour = 0;
 
 let allUsers: User[];
 const Main = () => {
+  // Ajout du navigate
+  const navigate = useNavigate();
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
-
   const convertToCal = (
     sexe: string,
     age: number,
@@ -408,11 +410,57 @@ const Main = () => {
       },
     ],
   };
-// fonction pour supprimer un aliment ou un exo ajouté
-const handleDeleteli = () =>{
-  
-}
+  // fonction pour supprimer un aliment ou un exo ajouté
+  const handleDeleteli = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.value);
+    if (window.confirm('Veux-tu vraiment supprimer cet aliment?')) {
+      axios
+        .delete(`http://localhost:8080/api/meals/${e.currentTarget.value}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          window.location.reload();
+          // navigate('/main');
+        })
+        .catch((error) => {
+          console.log('tu ne peux pas poster', error);
+          if (error.response.data.statusCode === 401) {
+            localStorage.removeItem('accesstoken');
+            navigate('/connexion');
+          }
+        });
+    }
+  };
 
+  const handleDeleteliSport = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.value);
+    if (window.confirm('Veux-tu vraiment supprimer cette activitée ?')) {
+      axios
+        .delete(
+          `http://localhost:8080/api/exercices/${e.currentTarget.value}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          window.location.reload();
+          // navigate('/main');
+        })
+        .catch((error) => {
+          console.log('tu ne peux pas poster', error);
+          if (error.response.data.statusCode === 401) {
+            localStorage.removeItem('accesstoken');
+            navigate('/connexion');
+          }
+        });
+    }
+  };
   return (
     <div>
       <img
@@ -478,7 +526,13 @@ const handleDeleteli = () =>{
                   <li key={uuidv4()}>
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal{' '}
-                    <button onClick={handleDeleteli}>-</button>
+                    <button
+                      className=''
+                      onClick={handleDeleteli}
+                      value={aliment.id}
+                    >
+                      -
+                    </button>
                   </li>
                 ))}
 
@@ -515,6 +569,13 @@ const handleDeleteli = () =>{
                   <li key={uuidv4()}>
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
+                    <button
+                      className=''
+                      onClick={handleDeleteli}
+                      value={aliment.id}
+                    >
+                      -
+                    </button>
                   </li>
                 ))}
 
@@ -551,6 +612,13 @@ const handleDeleteli = () =>{
                   <li key={uuidv4()}>
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
+                    <button
+                      className=''
+                      onClick={handleDeleteli}
+                      value={aliment.id}
+                    >
+                      -
+                    </button>
                   </li>
                 ))}
 
@@ -588,6 +656,13 @@ const handleDeleteli = () =>{
                   <li key={uuidv4()}>
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
+                    <button
+                      className=''
+                      onClick={handleDeleteli}
+                      value={aliment.id}
+                    >
+                      -
+                    </button>
                   </li>
                 ))}
 
@@ -625,6 +700,13 @@ const handleDeleteli = () =>{
                     [{sport.activity.name}]{sport.time}min{' '}
                     {/* calcul de la depense energetique en fonction de la durée implementée pour affichage */}
                     {sport.activity.conso_cal_1h * (sport.time / 60)}kcal
+                    <button
+                      className=''
+                      onClick={handleDeleteliSport}
+                      value={sport.id}
+                    >
+                      -
+                    </button>
                   </li>
                 ))}
 
