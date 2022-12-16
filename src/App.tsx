@@ -8,20 +8,20 @@ import Suscribe from "./pages/Suscribe";
 import AboutUs from "./pages/AboutUs";
 import Main from "./pages/Main";
 import Footer from "./components/Footer";
-import Connexion from './pages/Connexion';
-import AddBreakfast from './pages/AddBreakfast';
-import AddLunch from './pages/AddLunch';
-import AddDinner from './pages/AddDinner';
-import AddSnack from './pages/AddSnack';
-import AddExercice from './pages/AddExercice';
-import UpdateProfil from './pages/UpdateProfil';
-import DeleteAccount from './pages/DeleteAccount';
-import Account from './pages/Account';
+import Connexion from "./pages/Connexion";
+import AddBreakfast from "./pages/AddBreakfast";
+import AddLunch from "./pages/AddLunch";
+import AddDinner from "./pages/AddDinner";
+import AddSnack from "./pages/AddSnack";
+import AddExercice from "./pages/AddExercice";
+import UpdateProfil from "./pages/UpdateProfil";
+import DeleteAccount from "./pages/DeleteAccount";
+import Account from "./pages/Account";
 import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
+import SoumettezNous from "./pages/SoumettezNous";
 
-const App = ()=>{
- 
+const App = () => {
   return (
     <div>
       <BrowserRouter>
@@ -44,6 +44,7 @@ const App = ()=>{
           <Route path="/supprimercompte" element={<DeleteAccount />}></Route>
           <Route path="/moncompte" element={<Account />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/ajout" element={<SoumettezNous />}></Route>
           <Route path="/*" element={<Page404 />}></Route>
         </Routes>
         <Footer />
