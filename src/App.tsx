@@ -22,6 +22,7 @@ import Account from './pages/Account';
 import Admin from './pages/Admin';
 import Page404 from './pages/Page404';
 import InscriptionOk from './pages/InscriptionOk';
+import SoumettezNous from './pages/SoumettezNous';
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
@@ -36,95 +37,96 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div id='#hautNavBar'>
+        <div id="#hautNavBar">
           <NavBar />
           {/* div mise en place pour test la bonne reception du token  */}
           {/* <div style={{ color: "white" }}>Saved : {savedToken}</div> */}
         </div>
         <Routes>
-          <Route path='/' element={<Welcome />} />
-          <Route path='/welcome' element={<Welcome />} />
-          <Route path='/suscribe' element={<Suscribe />} />
-          <Route path='/aboutus' element={<AboutUs />} />
+          <Route path="/" element={<Welcome />} />
+          <Route path="/welcome" element={<Welcome />} />
+          <Route path="/suscribe" element={<Suscribe />} />
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route
-            path='/main'
+            path="/main"
             element={
-              savedToken !== null ? <Main /> : <Navigate to='/connexion' />
+              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
             }
           />
-          <Route path='/connexion' element={<Connexion />} />
+          <Route path="/connexion" element={<Connexion />} />
           <Route
-            path='/petitdejeuner'
+            path="/petitdejeuner"
             element={
               savedToken !== null ? (
                 <AddBreakfast />
               ) : (
-                <Navigate to='/connexion' />
+                <Navigate to="/connexion" />
               )
             }
           ></Route>
           <Route
-            path='/dejeuner'
+            path="/dejeuner"
             element={
-              savedToken !== null ? <AddLunch /> : <Navigate to='/connexion' />
+              savedToken !== null ? <AddLunch /> : <Navigate to="/connexion" />
             }
           ></Route>
           <Route
-            path='/diner'
+            path="/diner"
             element={
-              savedToken !== null ? <AddDinner /> : <Navigate to='/connexion' />
+              savedToken !== null ? <AddDinner /> : <Navigate to="/connexion" />
             }
           ></Route>
           <Route
-            path='/collation'
+            path="/collation"
             element={
-              savedToken !== null ? <AddSnack /> : <Navigate to='/connexion' />
+              savedToken !== null ? <AddSnack /> : <Navigate to="/connexion" />
             }
           ></Route>
           <Route
-            path='/exercices'
+            path="/exercices"
             element={
               savedToken !== null ? (
                 <AddExercice />
               ) : (
-                <Navigate to='/connexion' />
+                <Navigate to="/connexion" />
               )
             }
           ></Route>
           <Route
-            path='/modifierprofil'
+            path="/modifierprofil"
             element={
               savedToken !== null ? (
                 <UpdateProfil />
               ) : (
-                <Navigate to='/connexion' />
+                <Navigate to="/connexion" />
               )
             }
           ></Route>
           <Route
-            path='/supprimercompte'
+            path="/supprimercompte"
             element={
               savedToken !== null ? (
                 <DeleteAccount />
               ) : (
-                <Navigate to='/connexion' />
+                <Navigate to="/connexion" />
               )
             }
           ></Route>
           <Route
-            path='/moncompte'
+            path="/moncompte"
             element={
-              savedToken !== null ? <Account /> : <Navigate to='/connexion' />
+              savedToken !== null ? <Account /> : <Navigate to="/connexion" />
             }
           ></Route>
           <Route
-            path='/admin'
+            path="/admin"
             element={
-              savedToken !== null ? <Admin /> : <Navigate to='/connexion' />
+              savedToken !== null ? <Admin /> : <Navigate to="/connexion" />
             }
           ></Route>
-          <Route path='/*' element={<Page404 />}></Route>
-          <Route path='/inscriptionok' element={<InscriptionOk />}></Route>
+          <Route path="/*" element={<Page404 />}></Route>
+          <Route path="/inscriptionok" element={<InscriptionOk />}></Route>
+          <Route path="/ajout" element={<SoumettezNous />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

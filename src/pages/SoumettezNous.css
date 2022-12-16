@@ -1,0 +1,36 @@
+p,h1,h2{color:white}
+
+label,#html, #text {color:white}
+
+.Formulaire{
+    margin:30px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    /* color:red;
+    background-color: red; */
+}
+
+.formConnexion input,
+select {
+  text-align: center;
+  border-radius: 20px;
+  border: #dfa530 solid 1mm;
+  background-color: rgba(0, 0, 0, 0.599);
+  color: #afb563;
+  font-weight: bold;
+}
+
+.fondCarotte {
+  background-image: url("/public/assets/bg-test.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  -webkit-animation: bounce-in-right 1.1s both;
+  animation: bounce-in-right 1.1s both;
+}
+
+.connexionButton {
+  padding-top: 30px;
+  text-align: center;
+}
