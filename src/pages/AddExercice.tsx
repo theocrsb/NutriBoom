@@ -17,6 +17,10 @@ const AddExercice = () => {
   const [activity, setActivity] = useState<Activity | undefined>();
   const [quantity, setQuantity] = useState<number>();
   const [message, setMessage] = useState<string>();
+  const [listBis, setListBis] = useState<Activity[]>([]);
+  const [sport, setSport] = useState<string>();
+  const [selection, setSelection] = useState<string>();
+
   const navigate = useNavigate();
 
   //  -------------------PROPS---------------------//
@@ -31,7 +35,7 @@ const AddExercice = () => {
       .post(
         `http://localhost:8080/api/exercices`,
         {
-          activity: activity?.id,
+          activity: sport,
           time: quantity,
         },
         {
@@ -49,6 +53,10 @@ const AddExercice = () => {
       })
       .catch((error) => {
         console.log("tu ne peux pas poster", error);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
+        }
         if (!quantity) {
           setMessage(error.response.data.message);
         }
@@ -68,10 +76,21 @@ const AddExercice = () => {
     if (!e) {
       setActivity(undefined);
     } else {
+      //.toLocaleLowerCase pour mettre en minuscule
+      //.normalize + .replace pour ignorer les accents.
       let listExo = listExercices.filter((exo) =>
-        exo.name.toLowerCase().includes(e)
+        exo.name
+          .toLocaleLowerCase()
+          .normalize("NFD")
+          .replace(/\p{Diacritic}/gu, "")
+          .includes(
+            e
+              .toLocaleLowerCase()
+              .normalize("NFD")
+              .replace(/\p{Diacritic}/gu, "")
+          )
       );
-      setActivity(listExo[0]);
+      setListBis(listExo);
     }
   };
   //  --------------------PROPS--------------------//
@@ -91,6 +110,13 @@ const AddExercice = () => {
         console.log("something went wrong", error);
       });
   }, []);
+
+  const buttonFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
+    console.log(e.currentTarget.value);
+    setSelection(e.currentTarget.name);
+    setSport(e.currentTarget.value);
+    console.log(e.currentTarget.name);
+  };
 
   return (
     <div>
@@ -129,6 +155,20 @@ const AddExercice = () => {
             {/* </div> */}
           </li>
         )}
+        <p className="exerciceText">Suggestions</p>
+        <div className="scroller">
+          {listBis.map((liste, index) => (
+            <button
+              key={index}
+              className="listeRechercheBis"
+              value={liste.id}
+              onClick={buttonFunction}
+              name={liste.name}
+            >
+              {liste.name}
+            </button>
+          ))}
+        </div>
         <p className="exerciceText">{message}</p>
       </div>
     </div>
