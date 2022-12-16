@@ -31,7 +31,7 @@ const AddBreackFast = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé pendant le petit déjeuner',
+          name: 'Aliment consommé :',
           //quantité qui viendra de l'input
           quantity: quantity,
           //toujours 1 car petit déjeuner

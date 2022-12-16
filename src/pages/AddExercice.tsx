@@ -1,10 +1,10 @@
-import AlimentAddButton from "../components/AlimentAddButton";
-import "./Add.css";
-import SearchBar from "../components/SearchBar";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { table } from "console";
+import AlimentAddButton from '../components/AlimentAddButton';
+import './Add.css';
+import SearchBar from '../components/SearchBar';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { table } from 'console';
 
 export interface Activity {
   id: number;
@@ -72,6 +72,8 @@ const AddExercice = () => {
     if (!e) {
       setActivity(undefined);
     } else {
+      //.toLocaleLowerCase pour mettre en minuscule
+      //.normalize + .replace pour ignorer les accents.
       let listExo = listExercices.filter((exo) =>
         exo.name
           .toLocaleLowerCase()

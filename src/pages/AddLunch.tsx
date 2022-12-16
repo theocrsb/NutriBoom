@@ -32,7 +32,7 @@ const AddLunch = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé pendant le déjeuner',
+          name: 'Aliment consommé :',
           //quantité qui viendra de l'input
           quantity: quantity,
           //toujours 2 car déjeuner

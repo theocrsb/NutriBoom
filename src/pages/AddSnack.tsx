@@ -31,7 +31,7 @@ const AddSnack = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé pendant la collation',
+          name: 'Aliment consommé :',
           //quantité qui viendra de l'input
           quantity: quantity,
           //toujours 4 car collation
