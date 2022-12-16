@@ -45,7 +45,7 @@ const AddExercice = () => {
         }
       )
       .then((response) => {
-        console.log('super, exercice ajouté');
+        console.log('super, exercice ajouté', response);
         setMessage('Exercice ajouté avec succès');
         setTimeout(() => {
           navigate('/main');
@@ -108,6 +108,10 @@ const AddExercice = () => {
       })
       .catch((error) => {
         console.log('something went wrong', error);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
+        }
       });
   }, []);
 

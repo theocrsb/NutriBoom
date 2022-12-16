@@ -104,6 +104,10 @@ const AddBreackFast = () => {
       })
       .catch((error) => {
         console.log('something went wrong', error);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
+        }
       });
   }, []);
 
