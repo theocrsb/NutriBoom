@@ -408,6 +408,10 @@ const Main = () => {
       },
     ],
   };
+// fonction pour supprimer un aliment ou un exo ajouté
+const handleDeleteli = () =>{
+  
+}
 
   return (
     <div>
@@ -473,7 +477,8 @@ const Main = () => {
                 {tabPetitDej?.map((aliment) => (
                   <li key={uuidv4()}>
                     {/* [{aliment.name}]  */}
-                    {aliment.food.name} {aliment.food.nombre_calories}kcal
+                    {aliment.food.name} {aliment.food.nombre_calories}kcal{' '}
+                    <button onClick={handleDeleteli}>-</button>
                   </li>
                 ))}
 
