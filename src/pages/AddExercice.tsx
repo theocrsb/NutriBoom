@@ -94,35 +94,39 @@ const AddExercice = () => {
 
   return (
     <div>
-      <h1 className="exerciceText">
-        Sélectionne l'exercice que tu as réalisé aujourd'hui!
-      </h1>
-      <p className="exerciceText">
-        Tu peux grâce à la barre de recherche trouver ton activité, et l'ajouter
-        à ton tableau de bord grâce au bouton!
-      </p>
+      <div className="text-container">
+        <section className="text-section">
+          <h1 className="exerciceText">
+            Sélectionne l'exercice que tu as réalisé aujourd'hui!
+          </h1>
+          <p>
+            Tu peux grâce à la barre de recherche trouver ton activité, et
+            l'ajouter à ton tableau de bord grâce au bouton!
+          </p>
+        </section>
+      </div>
       <div className="searchbarPosition">
         <SearchBar searchProps={searchBarFunction} />
       </div>
       <div className="list">
         {activity?.name && (
           <li className="listeRecherche">
-            <span className="text">{activity?.name}</span>
-            <div className="formulaire">
-              <form className="form" onSubmit={exerciceSubmitFunction}>
-                <label htmlFor="quantity" className="htmlForm-label" />
-                <input
-                  className="quantity"
-                  type="number"
-                  id="quantity"
-                  placeholder="temps en min"
-                  onChange={quantityFunction}
-                />
-                <span className="buttonValidate">
-                  <AlimentAddButton />
-                </span>
-              </form>
-            </div>
+            <span className="li-text">{activity?.name}</span>
+            {/* <div className="formulaire"> */}
+            <form className="form" onSubmit={exerciceSubmitFunction}>
+              <label htmlFor="quantity" className="htmlForm-label" />
+              <input
+                className="quantity"
+                type="number"
+                id="quantity"
+                placeholder="Min"
+                onChange={quantityFunction}
+              />
+              <span className="buttonValidate">
+                <AlimentAddButton />
+              </span>
+            </form>
+            {/* </div> */}
           </li>
         )}
         <p className="exerciceText">{message}</p>

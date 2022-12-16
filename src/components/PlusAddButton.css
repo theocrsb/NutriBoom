@@ -16,7 +16,7 @@
 }
 
 .divAddButton {
-  margin-top: 5%;
+  /* margin-top: 5%; */
   display: flex;
   justify-content: center;
   text-decoration: none;
@@ -26,6 +26,6 @@
   font-weight: bolder;
   color: black;
   position: relative;
-  bottom: 5%;
+  bottom: 10%;
   text-decoration: none;
 }
