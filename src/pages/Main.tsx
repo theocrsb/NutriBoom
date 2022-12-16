@@ -131,6 +131,7 @@ const Main = () => {
         console.log('response', response);
         setDisplayUser(response.data);
       })
+      //si erreur token expiré -> on supprumer le token du localstorage pour gerer l'affichage
       .catch((error) => {
         console.log('error', error.response.data.statusCode);
         if (error.response.data.statusCode === 401) {

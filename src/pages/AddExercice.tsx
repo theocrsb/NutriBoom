@@ -53,6 +53,10 @@ const AddExercice = () => {
       })
       .catch((error) => {
         console.log('tu ne peux pas poster', error);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
+        }
         if (!quantity) {
           setMessage(error.response.data.message);
         }
