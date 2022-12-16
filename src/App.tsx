@@ -25,7 +25,14 @@ import InscriptionOk from './pages/InscriptionOk';
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
-
+  console.log('save token dans app -----------', savedToken);
+  console.log(
+    'localStorage.getItem -----------',
+    localStorage.getItem('accesstoken')
+  );
+  // if (localStorage.getItem('accesstoken') == null) {
+  //   window.location.reload();
+  // }
   return (
     <div>
       <BrowserRouter>

@@ -1,6 +1,6 @@
-import "./Admin.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import './Admin.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export interface User {
   id: number;
@@ -19,27 +19,29 @@ const Admin = () => {
   const [mesUsers, setMesUsers] = useState<User[]>([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/users/", {
-        headers: { Authorization: localStorage.getItem("Token sauvegardé") },
+      .get('http://localhost:8080/api/users', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+        },
       })
       .then((res) => {
-        console.log("mes users", res.data);
+        console.log('mes users', res.data);
         setMesUsers(res.data);
-        console.log("mes users dans le state", mesUsers);
+        console.log('mes users dans le state', mesUsers);
       })
-      .catch((err) => {
-        console.log("something went wrong")
+      .catch((error) => {
+        console.log('something went wrong', error);
       });
   }, []);
 
   return (
     <div>
-      <h1 className="ecriture">
+      <h1 className='ecriture'>
         Salut Admin ! <br />
         Voici la liste des utilisateurs
       </h1>
       {mesUsers.map((user: User, index) => (
-        <li key={index} className="ecritureAdmin">
+        <li key={index} className='ecritureAdmin' style={{ color: 'black' }}>
           {user.lastname} {user.firstname} {user.email}
         </li>
       ))}
