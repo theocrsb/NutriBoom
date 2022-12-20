@@ -1,6 +1,7 @@
 import { createContext, useState, ReactElement } from "react";
 import { PayloadToken } from "../pages/Main";
 import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
   children: ReactElement;
@@ -23,8 +24,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
    * et d'accéder au token via notre context
    */
 
-  let recupToken: string | null;
-  recupToken = localStorage.getItem("accesstoken");
+  // }
   // test sur le token
   // const dateToken = () => {
   //   if (recupToken) {
@@ -46,7 +46,8 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   //   "resultat de la date apres utilisation de la methode setUTCSeconds",
   //   d.getDate()
   // );
-
+  let recupToken: string | null;
+  recupToken = localStorage.getItem("accesstoken");
   const [token, setToken] = useState<string | null>(
     recupToken ? recupToken : null
   );

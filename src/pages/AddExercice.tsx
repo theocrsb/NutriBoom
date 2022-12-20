@@ -135,9 +135,9 @@ const AddExercice = () => {
         <SearchBar searchProps={searchBarFunction} />
       </div>
       <div className="list">
-        {activity?.name && (
+        {selection && (
           <li className="listeRecherche">
-            <span className="li-text">{activity?.name}</span>
+            <span className="li-text">{selection}</span>
             {/* <div className="formulaire"> */}
             <form className="form" onSubmit={exerciceSubmitFunction}>
               <label htmlFor="quantity" className="htmlForm-label" />
@@ -148,14 +148,13 @@ const AddExercice = () => {
                 placeholder="Min"
                 onChange={quantityFunction}
               />
-              <span className="buttonValidate">
-                <AlimentAddButton />
-              </span>
+              <AlimentAddButton />
             </form>
             {/* </div> */}
           </li>
         )}
         <p className="exerciceText">Suggestions</p>
+        <p> Clique sur ton activité</p>
         <div className="scroller">
           {listBis.map((liste, index) => (
             <button
