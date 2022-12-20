@@ -1,6 +1,6 @@
 import React, { useRef, useState, SyntheticEvent, useContext } from "react";
 import { NavLink } from "react-router-dom";
-// import { HashLink as NavLink } from "react-router-hash-link";
+import { HashLink } from "react-router-hash-link";
 import { AuthContext } from "../contexts/Auth-context";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
@@ -70,12 +70,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/welcome/#imc" className="nav-link buttonStyle ">
+                <HashLink to="/welcome/#imc" className="nav-link buttonStyle ">
                   <strong data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     {" "}
                     Calculateur{" "}
                   </strong>
-                </NavLink>
+                </HashLink>
               </li>
 
               {(!savedToken && (

@@ -1,35 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { AuthContext } from './contexts/Auth-context';
-import { useContext } from 'react';
-import NavBar from './components/NavBar';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Welcome from './pages/Welcome';
-import Suscribe from './pages/Suscribe';
-import AboutUs from './pages/AboutUs';
-import Main from './pages/Main';
-import Footer from './components/Footer';
-import Connexion from './pages/Connexion';
-import AddBreakfast from './pages/AddBreakfast';
-import AddLunch from './pages/AddLunch';
-import AddDinner from './pages/AddDinner';
-import AddSnack from './pages/AddSnack';
-import AddExercice from './pages/AddExercice';
-import UpdateProfil from './pages/UpdateProfil';
-import DeleteAccount from './pages/DeleteAccount';
-import Account from './pages/Account';
-import Admin from './pages/Admin';
-import Page404 from './pages/Page404';
-import InscriptionOk from './pages/InscriptionOk';
-import SoumettezNous from './pages/SoumettezNous';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { AuthContext } from "./contexts/Auth-context";
+import { useContext, useEffect } from "react";
+import NavBar from "./components/NavBar";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+import Welcome from "./pages/Welcome";
+import Suscribe from "./pages/Suscribe";
+import AboutUs from "./pages/AboutUs";
+import Main from "./pages/Main";
+import Footer from "./components/Footer";
+import Connexion from "./pages/Connexion";
+import AddBreakfast from "./pages/AddBreakfast";
+import AddLunch from "./pages/AddLunch";
+import AddDinner from "./pages/AddDinner";
+import AddSnack from "./pages/AddSnack";
+import AddExercice from "./pages/AddExercice";
+import UpdateProfil from "./pages/UpdateProfil";
+import DeleteAccount from "./pages/DeleteAccount";
+import Account from "./pages/Account";
+import Admin from "./pages/Admin";
+import Page404 from "./pages/Page404";
+import InscriptionOk from "./pages/InscriptionOk";
+import SoumettezNous from "./pages/SoumettezNous";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
-  console.log('save token dans app -----------', savedToken);
+  console.log("save token dans app -----------", savedToken);
   console.log(
-    'localStorage.getItem -----------',
-    localStorage.getItem('accesstoken')
+    "localStorage.getItem -----------",
+    localStorage.getItem("accesstoken")
   );
   // if (localStorage.getItem('accesstoken') == null) {
   //   window.location.reload();
