@@ -345,11 +345,19 @@ const Main = () => {
         // valeur affiché sur le graphique
         data: [
           `${Math.floor(calorieEnCour)}`,
-          `${Math.floor(
-            (resultUserCal ? resultUserCal : 0) -
-              calorieEnCour +
-              (sumActivityDepense ? sumActivityDepense : 0)
-          )}`,
+          `${
+            Math.floor(
+              (resultUserCal ? resultUserCal : 0) -
+                calorieEnCour +
+                (sumActivityDepense ? sumActivityDepense : 0)
+            ) >= 0
+              ? Math.floor(
+                  (resultUserCal ? resultUserCal : 0) -
+                    calorieEnCour +
+                    (sumActivityDepense ? sumActivityDepense : 0)
+                )
+              : 0
+          }`,
         ],
         backgroundColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
         borderColor: ["rgba(97, 255, 51, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -367,8 +375,13 @@ const Main = () => {
           `${sumConsoLip}`,
           `${
             (resultUserLip ? Math.floor(resultUserLip) : 0) -
-            sumConsoLip +
-            (lipDepense ? lipDepense : 0)
+              sumConsoLip +
+              (lipDepense ? lipDepense : 0) >=
+            0
+              ? (resultUserLip ? Math.floor(resultUserLip) : 0) -
+                sumConsoLip +
+                (lipDepense ? lipDepense : 0)
+              : 0
           }`,
         ],
         backgroundColor: ["rgba(252, 255, 50, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -387,8 +400,13 @@ const Main = () => {
           `${sumConsoProt}`,
           `${
             (resultUserProt ? Math.floor(resultUserProt) : 0) -
-            sumConsoProt +
-            (protDepense ? protDepense : 0)
+              sumConsoProt +
+              (protDepense ? protDepense : 0) >=
+            0
+              ? (resultUserProt ? Math.floor(resultUserProt) : 0) -
+                sumConsoProt +
+                (protDepense ? protDepense : 0)
+              : 0
           }`,
         ],
         backgroundColor: ["rgba(255, 99, 95, 1)", "rgba(0, 0, 0, 0.5)"],
@@ -407,8 +425,13 @@ const Main = () => {
           `${sumConsoGlu}`,
           `${
             (resultUserGlu ? Math.floor(resultUserGlu) : 0) -
-            sumConsoGlu +
-            (gluDepense ? gluDepense : 0)
+              sumConsoGlu +
+              (gluDepense ? gluDepense : 0) >=
+            0
+              ? (resultUserGlu ? Math.floor(resultUserGlu) : 0) -
+                sumConsoGlu +
+                (gluDepense ? gluDepense : 0)
+              : 0
           }`,
         ],
         backgroundColor: ["rgba(51, 181, 255, 1)", "rgba(0, 0, 0, 0.5)"],
