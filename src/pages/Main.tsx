@@ -517,16 +517,37 @@ const Main = () => {
         </div>
         <div className="d-flex container-nutri">
           <section className="donutProt text-center">
-            <p>Protein</p>
+            <p className="infoUserTitle">Protein</p>
             <Doughnut data={dataProt} />
+            <p className="infoUser">
+              {sumConsoProt}/
+              {(resultUserProt ? Math.floor(resultUserProt) : 0) -
+                sumConsoProt +
+                (protDepense ? protDepense : 0)}
+              g
+            </p>
           </section>
           <section className="donutGlu text-center ">
-            <p>Glucide</p>
+            <p className="infoUserTitle">Glucide</p>
             <Doughnut data={dataGlu} />
+            <p className="infoUser">
+              {sumConsoGlu}/
+              {(resultUserGlu ? Math.floor(resultUserGlu) : 0) -
+                sumConsoGlu +
+                (gluDepense ? gluDepense : 0)}
+              g
+            </p>
           </section>
           <section className="donutLip text-center">
-            <p>Lipide</p>
+            <p className="infoUserTitle">Lipide</p>
             <Doughnut data={dataLip} />
+            <p className="infoUser">
+              {sumConsoLip}/
+              {(resultUserLip ? Math.floor(resultUserLip) : 0) -
+                sumConsoLip +
+                (lipDepense ? lipDepense : 0)}
+              g
+            </p>
           </section>
         </div>
       </div>
@@ -557,11 +578,11 @@ const Main = () => {
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal{" "}
                     <button
-                      className=""
+                      className="buttonDeleteAliment"
                       onClick={handleDeleteli}
                       value={aliment.id}
                     >
-                      -
+                      <span className="">❌</span>
                     </button>
                   </li>
                 ))}
@@ -600,11 +621,11 @@ const Main = () => {
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
                     <button
-                      className=""
+                      className="buttonDeleteAliment"
                       onClick={handleDeleteli}
                       value={aliment.id}
                     >
-                      -
+                      <span className="">❌</span>
                     </button>
                   </li>
                 ))}
@@ -643,11 +664,11 @@ const Main = () => {
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
                     <button
-                      className=""
+                      className="buttonDeleteAliment"
                       onClick={handleDeleteli}
                       value={aliment.id}
                     >
-                      -
+                      <span className="">❌</span>
                     </button>
                   </li>
                 ))}
@@ -687,11 +708,11 @@ const Main = () => {
                     {/* [{aliment.name}]  */}
                     {aliment.food.name} {aliment.food.nombre_calories}kcal
                     <button
-                      className=""
+                      className="buttonDeleteAliment"
                       onClick={handleDeleteli}
                       value={aliment.id}
                     >
-                      -
+                      <span className="">❌</span>
                     </button>
                   </li>
                 ))}
@@ -734,11 +755,11 @@ const Main = () => {
                     )}
                     kcal
                     <button
-                      className=""
+                      className="buttonDeleteActivity"
                       onClick={handleDeleteliSport}
                       value={sport.id}
                     >
-                      -
+                      <span className="">❌</span>
                     </button>
                   </li>
                 ))}
