@@ -29,6 +29,7 @@ import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
 import SoumettezNous from "./pages/SoumettezNous";
+import { UserContextProvider } from "./contexts/User-Context";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
@@ -118,12 +119,14 @@ const App = () => {
               )
             }
           ></Route>
+
           <Route
             path="/moncompte"
             element={
               savedToken !== null ? <Account /> : <Navigate to="/connexion" />
             }
           ></Route>
+
           <Route
             path="/admin"
             element={

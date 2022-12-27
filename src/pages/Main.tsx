@@ -27,11 +27,11 @@ export interface User {
   eatenfood: EatenFood[];
   exercices: Exercice[];
 }
-interface UserRole {
+export interface UserRole {
   id: number;
   label: string;
 }
-interface EatenFood {
+export interface EatenFood {
   createdAt: string;
   food: Food;
   id: number;
@@ -51,7 +51,7 @@ interface Food {
   nombre_calories: number;
   proteines: number;
 }
-interface Exercice {
+export interface Exercice {
   id: number;
   activity: Activity;
   createdAt: string;
@@ -129,7 +129,7 @@ const Main = () => {
     }
   };
   let userSearchId: string | undefined = searchUser();
-  // UseEffect pour recuperer le tableau de tout les utilisateurs
+  // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
