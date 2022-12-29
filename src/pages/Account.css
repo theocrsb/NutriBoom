@@ -5,6 +5,7 @@
 
 #profil{
   position: relative;
+  
   margin-top: 10px;
   width: 25%;
   left: 10%;
@@ -31,7 +32,15 @@ border-radius: 20px;
 
 }
 
-form, div#mb-3{
+form#mb-3 {
+
+  border: #dfa530 solid 1mm;
+  border-radius: 20px;
+  margin-bottom: 10%;
+}
+
+
+div#mb-3{
  border-radius: 20px;
   border: #dfa530 solid 1mm;
   background-color: rgba(0, 0, 0, 0.599);
@@ -63,9 +72,21 @@ input.ProfilActuel {
 select.ProfilActuel{
   border: rgba(0, 0, 0, 0.599);
 }
-button #mb-3{
+
+div.button{
+
+  margin-left: 35%;
+  
+}
+
+
+button#mb-3.btn.btn-danger.btn-sm.m-1{
+
   border-radius: 10px;
   width: 80px;
+  
+
+  
 
 }
 

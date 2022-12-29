@@ -190,6 +190,7 @@ for (let i = 0; i < 111; i++) {
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
           <form
+            id="mb-3"
             method="POST"
             className="ProfilActuel"
             onSubmit={submitFunction}
@@ -219,7 +220,7 @@ for (let i = 0; i < 111; i++) {
               <input
                 type="mail"
                 className="ProfilActuel"
-                id="exampleInputAge"
+                id="inputMail"
                 placeholder="nouvel e-mail"
                 onChange={mailFunction}
               />
@@ -314,9 +315,11 @@ for (let i = 0; i < 111; i++) {
               </select>
             </div>
             <span className="message">{message}</span>
-            <button id="mb-3" className="btn btn-danger btn-sm m-1">
-              modifier
-            </button>
+            <div className="button">
+              <button id="mb-3" className="btn btn-danger btn-sm m-1">
+                modifier
+              </button>
+            </div>
           </form>
         </div>
       </div>
