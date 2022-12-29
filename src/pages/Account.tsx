@@ -180,7 +180,7 @@ for (let i = 0; i < 111; i++) {
             {<li id="mb-3">Mon nom: {UserProfile?.lastname} </li>}
             {<li id="mb-3">Mon prenom: {UserProfile?.firstname}</li>}
             {<li id="mb-3">Mon mail: {UserProfile?.email}</li>}
-            {/* {<li id="mb-3">Mon mot de passe: {UserProfile?.password}</li>} */}
+            {<li id="mb-3">Mon mot de passe: {UserProfile?.password}</li>}
             {<li id="mb-3">Mon âge: {UserProfile?.age}</li>}
             {<li id="mb-3">Mon poids: {UserProfile?.weight}</li>}
             {<li id="mb-3">Ma taille: {UserProfile?.height}</li>}
@@ -225,15 +225,16 @@ for (let i = 0; i < 111; i++) {
               />
             </div>
 
-            {/* <div className="mb-3">
+            <div id="mb-3" className="mb-3">
               <label htmlFor="inputPassword" className="htmlForm-label" />
               <input
-                type="nouveau mot de passe"
+                type="password"
                 className="ProfilActuel"
                 id="inputPassword"
                 placeholder="nouveau mot de passe"
+                onChange={passwordFunction}
               />
-            </div> */}
+            </div>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputAge" className="htmlForm-label" />
               <select
