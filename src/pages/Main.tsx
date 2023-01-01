@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import "./Main.css";
@@ -10,6 +10,7 @@ import _ from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { type } from "os";
 import "../components/PlusAddButton.css";
+import { UserContext } from "../contexts/User-Context";
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
 export interface User {
@@ -75,6 +76,7 @@ ChartJS.register(ArcElement, Tooltip);
 let calorieEnCour = 0;
 
 const Main = () => {
+  const { onUserChange } = useContext(UserContext);
   // Ajout du navigate
   const navigate = useNavigate();
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
@@ -140,6 +142,8 @@ const Main = () => {
       .then((response) => {
         console.log("response", response);
         setDisplayUser(response.data);
+        // mise a jour en dynamique de l'utisateur connecté pour le context
+        onUserChange(response.data);
       })
       //si erreur token expiré -> on supprumer le token du localstorage pour gerer l'affichage
       .catch((error) => {

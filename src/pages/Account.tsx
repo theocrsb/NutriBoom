@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 
 const Account = () => {
   // import  du context nous permettant  de recuperer les infos de l'utilisateur connecté
-  const { user } = useContext(UserContext);
+  const { userCo } = useContext(UserContext);
   // verification que nous recevons bien les infos attendu
-  console.log("resultat de usercontext value", user);
+  console.log("resultat de usercontext value", userCo);
   let taille = 1.19;
   let tailleOptions = [];
 
@@ -36,17 +36,17 @@ const Account = () => {
   return (
     <div>
       <ul>
-        <li>{user?.firstname}</li>
+        <li>{userCo?.firstname}</li>
         <li>
           {" "}
           <input type="text" />
         </li>
-        <li>{user?.lastname}</li>
+        <li>{userCo?.lastname}</li>
         <li>
           {" "}
           <input type="text" />
         </li>
-        <li>{user?.age} ans</li>
+        <li>{userCo?.age} ans</li>
         <li>
           <select
             name="age"
@@ -65,7 +65,7 @@ const Account = () => {
             ))}
           </select>
         </li>
-        <li>{user?.gender}</li>
+        <li>{userCo?.gender}</li>
         <li>
           <select
             name="gender"
@@ -85,7 +85,7 @@ const Account = () => {
             </option>
           </select>
         </li>
-        <li>{user?.weight} Kg</li>
+        <li>{userCo?.weight} Kg</li>
         <li>
           <select
             name="weight"
@@ -104,7 +104,7 @@ const Account = () => {
             ))}
           </select>
         </li>
-        <li>{user?.height} m</li>
+        <li>{userCo?.height} m</li>
         <li>
           <select
             name="height"
@@ -123,7 +123,7 @@ const Account = () => {
             ))}
           </select>
         </li>
-        <li>{user?.email}</li>
+        <li>{userCo?.email}</li>
         <li>
           {" "}
           <input type="text" />

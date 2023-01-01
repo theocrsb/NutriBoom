@@ -12,14 +12,21 @@ interface UserContextProps {
 //  Interface avec le typage de la valeur qu'on va envoyer aux enfants du context
 
 export interface UserContextInterface {
-  user: User | undefined | null;
+  userCo: User | undefined | null;
+  onUserChange: (user: User | undefined | null) => void;
 }
 // Creation du context en l'initialisant avec une valeur  initial
-export const UserContext = createContext<UserContextInterface>({ user: null });
+export const UserContext = createContext<UserContextInterface>({
+  userCo: null,
+  onUserChange: (user: User | undefined | null) => {},
+});
 //  Mise en place de la  logique afin de recuperer les informations qui sera ensuite partager aux enfants par le provider
 export const UserContextProvider = ({ children }: UserContextProps) => {
   // Recuperation de l'utilisateur connecté et stockage de celui-ci dans un useState
-  const [user, setUser] = useState<User | null>();
+  let userCo: User | undefined | null;
+  const [user, setUser] = useState<User | null | undefined>(
+    userCo ? userCo : null
+  );
   let recupToken = localStorage.getItem("accesstoken");
   const searchUser = () => {
     if (recupToken) {
@@ -29,6 +36,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
     }
   };
   let userSearchId: string | undefined = searchUser();
+  //  mise en place du useEffect + requete get  afin de ne pas perdre l'utilisateur connecté lors d'une reactualisation de la page
 
   useEffect(() => {
     axios
@@ -49,8 +57,24 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
         }
       });
   }, []);
+  console.log("verification de user", user);
+
+  // mise en place de la fonction qui recupera l'utilisateur co dans la main de facon dynamique
+
+  const handleUserChange = (user: User | null | undefined) => {
+    setUser(user);
+  };
+
+  const userContextValue = {
+    userCo: user,
+    onUserChange: handleUserChange,
+  };
+  console.log("voici l'utilisateur connecté", userCo);
+
   // Dans le return nous declarons quelle sera la valeur retourné a nos enfants grace a notre provider via la synthaxe suivante
   return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={userContextValue}>
+      {children}
+    </UserContext.Provider>
   );
 };

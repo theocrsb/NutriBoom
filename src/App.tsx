@@ -29,10 +29,11 @@ import Admin from "./pages/Admin";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
 import SoumettezNous from "./pages/SoumettezNous";
-import { UserContextProvider } from "./contexts/User-Context";
+import { UserContext, UserContextProvider } from "./contexts/User-Context";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
+  const { userCo } = useContext(UserContext);
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",
@@ -48,6 +49,8 @@ const App = () => {
           <NavBar />
           {/* div mise en place pour test la bonne reception du token  */}
           {/* <div style={{ color: "white" }}>Saved : {savedToken}</div> */}
+          {/*  div mise en place pour verifier la bonne reception du user connecté */}
+          {/* <h1 style={{ color: "white" }}>UserMail : {userCo?.email}</h1> */}
         </div>
         <Routes>
           <Route path="/" element={<Welcome />} />
