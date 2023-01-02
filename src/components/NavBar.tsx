@@ -126,6 +126,17 @@ const Navbar = () => {
                       </strong>
                     </NavLink>
                   </li>
+                  {/* historique */}
+                  <li className='nav-item'>
+                    <NavLink to='/historique' className='nav-link buttonStyle '>
+                      <strong
+                        data-bs-toggle='collapse'
+                        data-bs-target='#navbarNav'
+                      >
+                        Historique{' '}
+                      </strong>
+                    </NavLink>
+                  </li>
                   <li className='nav-item'>
                     <NavLink to='/admin' className='nav-link buttonStyle '>
                       <strong
