@@ -321,7 +321,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Mail actuelle:{" "}
+              Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
             </p>
             <div id="mb-3" className="mb-3">
