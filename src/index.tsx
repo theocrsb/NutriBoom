@@ -5,14 +5,18 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./index.css";
 import App from "./App";
 import { AuthContextProvider } from "./contexts/Auth-context";
+import { UserContextProvider } from "./contexts/User-Context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+  // Import et mise en place des differents context qui emgloberont toute notre APP
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

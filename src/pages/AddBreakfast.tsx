@@ -1,10 +1,10 @@
-import AlimentAddButton from '../components/AlimentAddButton';
-import './Add.css';
-import SearchBar from '../components/SearchBar';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { table } from 'console';
+import AlimentAddButton from "../components/AlimentAddButton";
+import "./Add.css";
+import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 interface Food {
   id: number;
   name: string;
@@ -31,7 +31,7 @@ const AddBreackFast = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé :',
+          name: "Aliment consommé :",
           //quantité qui viendra de l'input
           quantity: quantity,
           //toujours 1 car petit déjeuner
@@ -41,25 +41,25 @@ const AddBreackFast = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
           },
         }
       )
       .then((response) => {
-        console.log('response', response);
+        console.log("response", response);
         setMessage(
-          'Aliment consommé pendant le petit déjeuner ajouté avec succès'
+          "Aliment consommé pendant le petit déjeuner ajouté avec succès"
         );
         setTimeout(() => {
-          navigate('/main');
+          navigate("/main");
         }, 1000);
       })
       .catch((error) => {
         console.log(error);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   };
@@ -71,20 +71,20 @@ const AddBreackFast = () => {
   };
 
   const searchBarFunction = (e: string) => {
-    console.log('props passé dans le parent', e);
+    console.log("props passé dans le parent", e);
 
-    console.log('props passé dans le parent et le state', e);
+    console.log("props passé dans le parent et le state", e);
 
     let listExo = listFoods.filter((food) =>
       food.name
         .toLocaleLowerCase()
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
         .includes(
           e
             .toLocaleLowerCase()
-            .normalize('NFD')
-            .replace(/\p{Diacritic}/gu, '')
+            .normalize("NFD")
+            .replace(/\p{Diacritic}/gu, "")
         )
     );
     setListBis(listExo);
@@ -95,18 +95,18 @@ const AddBreackFast = () => {
     axios
       .get(`http://localhost:8080/api/foods`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       })
       .then((response) => {
-        console.log('liste des foods', response.data);
+        console.log("liste des foods", response.data);
         setListFoods(response.data);
       })
       .catch((error) => {
-        console.log('something went wrong', error);
+        console.log("something went wrong", error);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   }, []);
@@ -120,47 +120,48 @@ const AddBreackFast = () => {
 
   return (
     <div>
-      <h1 className='exerciceText'>
-        Sélectionne chaque aliments que tu as consommés pendant ton petit
-        déjeuner !
-      </h1>
-      <p className='exerciceText'>
-        Tu peux grâce à la barre de recherche trouver un aliment, et l'ajouter à
-        ton tableau de bord grâce au bouton!
-      </p>
-      <div className='searchbarPosition'>
+      <div className="text-container">
+        <section className="text-section">
+          <h1 className="exerciceText">
+            Sélectionne chaque aliments que tu as consommés pendant ton petit
+            déjeuner !
+          </h1>
+          <p className="exerciceText">
+            Tu peux grâce à la barre de recherche trouver un aliment, et
+            l'ajouter à ton tableau de bord grâce au bouton!
+          </p>
+        </section>
+      </div>
+      <div className="searchbarPosition">
         <SearchBar searchProps={searchBarFunction} />
       </div>
-      <div className='list'>
+      <div className="list">
         {selection && (
-          <li className='listeRecherche'>
-            <span className='text'>{selection}</span>
-            <div className='formulaire'>
-              <form
-                className='form overflow-auto'
-                onSubmit={eatenfoodSubmitFunction}
-              >
-                <label htmlFor='quantity' className='htmlForm-label' />
+          <li className="listeRecherche">
+            <span className="li-text">{selection}</span>
+            <div className="formulaire">
+              <form className="form" onSubmit={eatenfoodSubmitFunction}>
+                <label htmlFor="quantity" className="htmlForm-label" />
                 <input
-                  className='quantity'
-                  type='number'
-                  id='quantity'
-                  placeholder='Grammes'
+                  className="quantity"
+                  type="number"
+                  id="quantity"
+                  placeholder="gr"
                   onChange={quantityFunction}
                 />
-                <span className='buttonValidate'>
-                  <AlimentAddButton />
-                </span>
+
+                <AlimentAddButton />
               </form>
             </div>
           </li>
         )}
-        <p className='exerciceText'>Suggestions</p>
-        <div className='scroller'>
+        <p className="exerciceText">Suggestions</p>
+        <p> Clique sur ton aliment</p>
+        <div className="scroller">
           {listBis.map((liste, index) => (
             <button
               key={index}
-              className='listeRechercheBis'
+              className="listeRechercheBis"
               value={liste.id}
               onClick={buttonFunction}
               name={liste.name}
@@ -169,7 +170,7 @@ const AddBreackFast = () => {
             </button>
           ))}
         </div>
-        <p className='exerciceText'>{message}</p>
+        <p className="exerciceText">{message}</p>
       </div>
     </div>
   );
