@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from "uuid";
 import "./Account.css";
 import { useNavigate } from "react-router-dom";
 
-
 export interface User {
   id?: string;
   lastname?: string;
@@ -31,15 +30,15 @@ const Account = () => {
   const [UserProfile, setUserProfile] = useState<User>();
   const [updateLastname, setUpdateLastname] = useState<string>();
   const [updateFirstname, setUpdateFirstname] = useState<string>();
-   const [updateage, setUpdateage] = useState<number>();
-    const [updateGender, setUpdateGender] = useState<string>();
-   const [updateWeight, setUpdateWeight] = useState<number>();
+  const [updateage, setUpdateage] = useState<number>();
+  const [updateGender, setUpdateGender] = useState<string>();
+  const [updateWeight, setUpdateWeight] = useState<number>();
   const [updateHeight, setUpdateHeight] = useState<number>();
   const [updateMail, setUpdateMail] = useState<string>();
   const [updatePassword, setUpdatePassword] = useState<string>();
   const [message, setMessage] = useState<string>();
   const navigate = useNavigate();
-//  ------------------------------ récupération des infos de l'utilisateur--------------------------------
+  //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
   let token = localStorage.getItem("accesstoken");
 
   const searchUserId = () => {
@@ -74,62 +73,70 @@ const Account = () => {
       });
   }, []);
   console.log("UserProfile-------------------", UserProfile?.firstname);
-//--------------------------------------------------------------------------------------
+  //--------------------------------------------------------------------------------------
 
-// Mise à jour des infos de l'utilisateur
+  // Mise à jour des infos de l'utilisateur
 
+  const lastNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdateLastname(e.currentTarget.value);
+  };
+  const firstNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdateFirstname(e.currentTarget.value);
+  };
 
-const lastNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setUpdateLastname(e.currentTarget.value);
- 
-};
-const firstNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setUpdateFirstname(e.currentTarget.value);
-};
+  const ageFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setUpdateage(valeurConvertieNombre);
+  };
 
-const ageFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  let valeurConvertieNombre = Number(e.currentTarget.value);
-  setUpdateage(valeurConvertieNombre);
-};
+  const sexFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setUpdateGender(e.currentTarget.value);
+  };
+  const weightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setUpdateWeight(valeurConvertieNombre);
+  };
 
-const sexFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  setUpdateGender(e.currentTarget.value);
-};
-const weightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  let valeurConvertieNombre = Number(e.currentTarget.value);
-  setUpdateWeight(valeurConvertieNombre);
-};
+  const heightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    let valeurConvertieNombre = Number(e.currentTarget.value);
+    setUpdateHeight(valeurConvertieNombre);
+  };
 
-const heightFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  let valeurConvertieNombre = Number(e.currentTarget.value);
-  setUpdateHeight(valeurConvertieNombre);
-};
+  const mailFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdateMail(e.currentTarget.value);
+  };
 
-const mailFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setUpdateMail(e.currentTarget.value);
-};
+  const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdatePassword(e.currentTarget.value);
+  };
 
-const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setUpdatePassword(e.currentTarget.value);
-};
-
-
- const submitFunction = (e: React.FormEvent) => {
+  const submitFunction = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("cliké");
-
+    console.log("id du user a patch", searchUserIdValue);
     axios
-      .patch(`http://localhost:8080/api/users/${searchUserIdValue}`, {
-        lastname: updateLastname,
-        firstname: updateFirstname,
-        age: updateage,
-        gender: updateGender,
-        weight: updateWeight,
-        height: updateHeight,
-        email: updateMail,
-        password: updatePassword,
-      })
+      .patch(
+        `http://localhost:8080/api/users/${searchUserIdValue}`,
+        {
+          id: searchUserIdValue,
+          // lastname: updateLastname,
+          // firstname: updateFirstname,
+          // age: updateage,
+          // gender: updateGender,
+          // weight: updateWeight,
+          // height: updateHeight,
+          // email: updateMail,
+          password: updatePassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          },
+        }
+      )
       .then((response) => {
+        console.log(response);
+        console.log("id du user a patch dans le response", searchUserIdValue);
         setTimeout(() => {
           navigate("/main");
         }, 1000);
@@ -137,105 +144,89 @@ const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
       })
       .catch((error) => {
         console.log(error);
+        console.log("id du user a patch dans le catch", searchUserIdValue);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          // localStorage.removeItem("accesstoken");
+          // navigate("/connexion");
         }
       });
+  };
 
-    }
+  let age = 6;
+  let ageOptions = [];
 
+  for (let i = 0; i < 71; i++) {
+    age++;
+    ageOptions.push(age);
+  }
 
-let age = 6;
-let ageOptions = [];
+  let poids = 29;
+  let poidsOptions = [];
 
-for (let i = 0; i < 71; i++) {
-  age++;
-  ageOptions.push(age);
-}
+  for (let i = 0; i < 121; i++) {
+    poids++;
+    poidsOptions.push(poids);
+  }
 
-let poids = 29;
-let poidsOptions = [];
+  let taille = 1.19;
+  let tailleOptions = [];
 
-for (let i = 0; i < 121; i++) {
-  poids++;
-  poidsOptions.push(poids);
-}
-
-let taille = 1.19;
-let tailleOptions = [];
-
-for (let i = 0; i < 111; i++) {
-  taille += 0.01;
-  tailleOptions.push(taille.toFixed(2));
-}
+  for (let i = 0; i < 111; i++) {
+    taille += 0.01;
+    tailleOptions.push(taille.toFixed(2));
+  }
 
   return (
     <div>
       <div id="container">
-        <div id="profil">
-          <p className="ProfilActuel">Profil Actuel</p>
-          <ul id="mb-3">
-            {<li id="mb-3">Mon nom: {UserProfile?.lastname} </li>}
-            {<li id="mb-3">Mon prenom: {UserProfile?.firstname}</li>}
-            {<li id="mb-3">Mon mail: {UserProfile?.email}</li>}
-            {<li id="mb-3">Mon mot de passe: {UserProfile?.password}</li>}
-            {<li id="mb-3">Mon âge: {UserProfile?.age}</li>}
-            {<li id="mb-3">Mon poids: {UserProfile?.weight}</li>}
-            {<li id="mb-3">Ma taille: {UserProfile?.height}</li>}
-            {<li id="mb-3">Mon genre: {UserProfile?.gender}</li>}
-          </ul>
-        </div>
+       
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
+
           <form
             id="mb-3"
             method="POST"
             className="ProfilActuel"
             onSubmit={submitFunction}
           >
+            {
+              <p id="li-actuel-mb3">
+                {" "}
+                Nom actuel:{" "}
+                <span className="manchette">{UserProfile?.lastname} </span>
+              </p>
+            }
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputNom" className="htmlForm-label" />
               <input
                 type="nom"
                 className="ProfilActuel"
                 id="inputNom"
-                placeholder="nouveau nom"
+                placeholder="Nouveau nom"
                 onChange={lastNameFunction}
               />
             </div>
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel:{" "}
+              <span className="manchette">{UserProfile?.firstname} </span>
+            </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPrenom" className="htmlForm-label" />
               <input
                 type="prenom"
                 className="ProfilActuel"
                 id="inputPrenom"
-                placeholder="nouveau prenom"
+                placeholder="Nouveau prenom"
                 onChange={firstNameFunction}
               />
             </div>
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputMail" className="htmlForm-label" />
-              <input
-                type="mail"
-                className="ProfilActuel"
-                id="inputMail"
-                placeholder="nouvel e-mail"
-                onChange={mailFunction}
-              />
-            </div>
 
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputPassword" className="htmlForm-label" />
-              <input
-                type="password"
-                className="ProfilActuel"
-                id="inputPassword"
-                placeholder="nouveau mot de passe"
-                onChange={passwordFunction}
-              />
-            </div>
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel: <span className="manchette">{UserProfile?.age} </span>
+            </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputAge" className="htmlForm-label" />
               <select
@@ -246,7 +237,7 @@ for (let i = 0; i < 111; i++) {
                 value={updateage}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionner votre age{" "}
+                  Sélectionnez votre age{" "}
                 </option>
                 {ageOptions.map((ageOption) => (
                   <option key={uuidv4()} value={ageOption}>
@@ -255,7 +246,11 @@ for (let i = 0; i < 111; i++) {
                 ))}
               </select>
             </div>
-
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel:{" "}
+              <span className="manchette">{UserProfile?.weight} </span>
+            </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputWeight" className="htmlForm-label" />
               <select
@@ -266,7 +261,7 @@ for (let i = 0; i < 111; i++) {
                 onChange={weightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionner votre poids
+                  Sélectionnez votre poids
                 </option>
                 {poidsOptions.map((poidsOption) => (
                   <option key={uuidv4()} value={poidsOption}>
@@ -275,6 +270,11 @@ for (let i = 0; i < 111; i++) {
                 ))}
               </select>
             </div>
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel:{" "}
+              <span className="manchette">{UserProfile?.height} </span>
+            </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputHeight" className="htmlForm-label" />
               <select
@@ -285,7 +285,7 @@ for (let i = 0; i < 111; i++) {
                 onChange={heightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionner votre taille
+                  Sélectionnez votre taille
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
@@ -294,6 +294,11 @@ for (let i = 0; i < 111; i++) {
                 ))}
               </select>
             </div>
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel:{" "}
+              <span className="manchette">{UserProfile?.gender} </span>
+            </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputGender" className="htmlForm-label" />
               <select
@@ -304,7 +309,7 @@ for (let i = 0; i < 111; i++) {
                 onChange={sexFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionner votre genre
+                  Sélectionnez votre genre
                 </option>
                 <option key={uuidv4()} value="femme">
                   femme
@@ -314,9 +319,40 @@ for (let i = 0; i < 111; i++) {
                 </option>
               </select>
             </div>
+            <p id="li-actuel-mb3">
+              {" "}
+              Nom actuel:{" "}
+              <span className="manchette">{UserProfile?.email} </span>
+            </p>
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputMail" className="htmlForm-label" />
+              <input
+                type="mail"
+                className="ProfilActuel"
+                id="inputMail"
+                placeholder="Nouvel e-mail"
+                onChange={mailFunction}
+              />
+            </div>
+
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputPassword" className="htmlForm-label" />
+              <input
+                type="password"
+                className="ProfilActuel"
+                id="inputPassword"
+                placeholder="Nouveau mot de passe"
+                onChange={passwordFunction}
+              />
+              {/* <i
+                className="far fa-eye"
+                id="togglePassword"
+                style={{marginLeft: '-30px', cursor: "pointer"}}
+              ></i> */}
+            </div>
             <span className="message">{message}</span>
             <div className="button">
-              <button id="mb-3" className="btn btn-danger btn-sm m-1">
+              <button id="button-mb-3" className="btn btn-danger btn-sm m-1">
                 modifier
               </button>
             </div>

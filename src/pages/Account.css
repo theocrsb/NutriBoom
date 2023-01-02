@@ -1,52 +1,44 @@
-
 #container {
   display: flex;
 }
 
-#profil{
-  position: relative;
-  
-  margin-top: 10px;
-  width: 25%;
-  left: 10%;
-}
-
 #modifProfil {
   position: relative;
-  width: 25%;
-  left: 30%;
+  width: 35%;
+  left: 35%;
 }
 
-ul #mb-3 {
-  margin-top: 20px;
-}
-
-li#mb-3{
-border-radius: 20px;
-  border: #dfa530 solid 1mm;
-  background-color: rgba(0, 0, 0, 0.599);
+p#li-actuel-mb3 {
   color: #afb563;
   font-weight: bold;
-  margin:15px;
   text-align: center;
+  margin: 5px;
+  border: 1px solid #dfa530;
+  background-color: beige;
+  border-radius: 5px;
+  width: 75%;
+  margin-left: 15%;
+}
 
+.manchette {
+  color: #dfa530;
+  font-weight: bold;
+  font-size: large;
 }
 
 form#mb-3 {
-
   border: #dfa530 solid 1mm;
   border-radius: 20px;
   margin-bottom: 10%;
 }
 
-
-div#mb-3{
- border-radius: 20px;
+div#mb-3 {
+  border-radius: 20px;
   border: #dfa530 solid 1mm;
   background-color: rgba(0, 0, 0, 0.599);
   color: #afb563;
   font-weight: bold;
-  margin:15px;
+  margin: 15px;
   text-align: center;
 }
 p.ProfilActuel {
@@ -55,38 +47,36 @@ p.ProfilActuel {
   text-align: center;
 }
 
-input::placeholder{
-  color:#afb563;
+input::placeholder {
+  color: #afb563;
 }
-
 
 input.ProfilActuel {
   background-color: rgba(0, 0, 0, 0.599);
- width: 100%; 
- border-radius: 20px;
- color: #afb563;
+  width: 100%;
+  border-radius: 20px;
+  color: #afb563;
   font-weight: bold;
- text-align: center;
+  text-align: center;
 }
 
-select.ProfilActuel{
+input.ProfilActuel:hover {
+  background-color: whitesmoke;
+}
+
+select.ProfilActuel {
   border: rgba(0, 0, 0, 0.599);
 }
 
-div.button{
-
-  margin-left: 35%;
-  
+select.ProfilActuel:hover {
+  background-color: whitesmoke;
 }
 
+div.button {
+  margin-left: 35%;
+}
 
-button#mb-3.btn.btn-danger.btn-sm.m-1{
-
+button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   border-radius: 10px;
   width: 80px;
-  
-
-  
-
 }
-
