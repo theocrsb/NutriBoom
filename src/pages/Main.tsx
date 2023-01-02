@@ -524,33 +524,21 @@ const Main = () => {
             <p className="infoUserTitle">Protein</p>
             <Doughnut data={dataProt} />
             <p className="infoUser">
-              {sumConsoProt}/
-              {(resultUserProt ? Math.floor(resultUserProt) : 0) -
-                sumConsoProt +
-                (protDepense ? protDepense : 0)}
-              g
+              {sumConsoProt}/{resultUserProt ? Math.floor(resultUserProt) : 0}g
             </p>
           </section>
           <section className="donutGlu text-center ">
             <p className="infoUserTitle">Glucide</p>
             <Doughnut data={dataGlu} />
             <p className="infoUser">
-              {sumConsoGlu}/
-              {(resultUserGlu ? Math.floor(resultUserGlu) : 0) -
-                sumConsoGlu +
-                (gluDepense ? gluDepense : 0)}
-              g
+              {sumConsoGlu}/{resultUserGlu ? Math.floor(resultUserGlu) : 0}g
             </p>
           </section>
           <section className="donutLip text-center">
             <p className="infoUserTitle">Lipide</p>
             <Doughnut data={dataLip} />
             <p className="infoUser">
-              {sumConsoLip}/
-              {(resultUserLip ? Math.floor(resultUserLip) : 0) -
-                sumConsoLip +
-                (lipDepense ? lipDepense : 0)}
-              g
+              {sumConsoLip}/{resultUserLip ? Math.floor(resultUserLip) : 0}g
             </p>
           </section>
         </div>
