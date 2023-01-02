@@ -114,7 +114,9 @@ const Suscribe = () => {
 
   for (let i = 0; i < 111; i++) {
     taille += 0.01;
-    tailleOptions.push(taille.toFixed(2));
+    let res = Math.round(taille * 100) / 100;
+    tailleOptions.push(res);
+    // tailleOptions.push(taille.toFixed(2));
   }
   // console.log(tailleOptions);
   let poids = 29;
