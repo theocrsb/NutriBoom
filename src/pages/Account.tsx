@@ -181,6 +181,11 @@ const Account = () => {
   return (
     <div>
       <div id="container">
+        <img
+          id="onglet"
+          src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
+          alt=""
+        />
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
 
