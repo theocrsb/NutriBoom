@@ -1,18 +1,37 @@
-import React, { useRef, useState, SyntheticEvent, useContext } from 'react';
+import React, { useRef, useState, SyntheticEvent, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { AuthContext } from '../contexts/Auth-context';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import AboutUs from '../pages/AboutUs';
+import jwt_decode from 'jwt-decode';
+
+export interface Token{
+exp: number;
+iat: number;
+id: string;
+role:string;
+username:string
+}
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const [tokenRole, setTokenRole] = useState<string>()
   const { savedToken } = useContext(AuthContext);
   console.log('voici le resultat pour savedToken', savedToken);
+
+useEffect(()=>{
+  if(savedToken){
+    const decoded : Token = jwt_decode(savedToken)
+    console.log("le payload",decoded.role)
+    setTokenRole(decoded.role)
+  }
+})
+
   const tokenVerify = (e: SyntheticEvent) => {
-    if (savedToken === null) {
-      e.preventDefault();
+    if (!localStorage.getItem("accesstoken")) {
+      window.location.reload();
     }
   };
   const handleClickDecoBtn = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -106,7 +125,7 @@ const Navbar = () => {
               )) || (
                 <>
                   <li className='nav-item'>
-                    <NavLink to='/moncompte' className='nav-link buttonStyle '>
+                    <NavLink to='/moncompte' className='nav-link buttonStyle' onClick={tokenVerify}>
                       <strong
                         data-bs-toggle='collapse'
                         data-bs-target='#navbarNav'
@@ -117,7 +136,7 @@ const Navbar = () => {
                     </NavLink>
                   </li>
                   <li className='nav-item'>
-                    <NavLink to='main' className='nav-link buttonStyle '>
+                    <NavLink to='main' className='nav-link buttonStyle ' onClick={tokenVerify}>
                       <strong
                         data-bs-toggle='collapse'
                         data-bs-target='#navbarNav'
@@ -126,6 +145,7 @@ const Navbar = () => {
                       </strong>
                     </NavLink>
                   </li>
+                  {(tokenRole === "admin" &&(
                   <li className='nav-item'>
                     <NavLink to='/admin' className='nav-link buttonStyle '>
                       <strong
@@ -137,7 +157,7 @@ const Navbar = () => {
                       </strong>
                     </NavLink>
                   </li>
-
+))}
                   <input
                     type='button'
                     value='Déconnexion'
