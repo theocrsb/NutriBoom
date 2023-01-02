@@ -1,13 +1,12 @@
-import SuscribeButton from "../components/SuscribeButton";
-import ConnexionButton from "../components/ConnexionButton";
-import ImcButton from "../components/ImcButton";
-import { HashLink as Link } from "react-router-hash-link";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import "./Welcome.css";
+import SuscribeButton from '../components/SuscribeButton';
+import ConnexionButton from '../components/ConnexionButton';
+import ImcButton from '../components/ImcButton';
+import { HashLink as Link } from 'react-router-hash-link';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import './Welcome.css';
 
 const Welcome = () => {
-
   const [tailleState, setTailleState] = useState<string>();
   const [poidsState, setPoidsState] = useState<string>();
   const [message, setMessage] = useState<string>();
@@ -19,13 +18,13 @@ const Welcome = () => {
     let poids = Number(poidsState);
 
     if (!tailleState || !poidsState) {
-      setMessage("un élément est manquant pour le calcul");
-      setMessageBis("");
+      setMessage('un élément est manquant pour le calcul');
+      setMessageBis('');
     } else {
-      console.log("taille convertie en number", taille);
+      console.log('taille convertie en number', taille);
       let tailleDivise = taille / 100;
-      console.log("taille divisée par 100", tailleDivise);
-      let resultImc = poids / (tailleDivise * tailleDivise); 
+      console.log('taille divisée par 100', tailleDivise);
+      let resultImc = poids / (tailleDivise * tailleDivise);
       let resultatImc = resultImc.toFixed(2);
       console.log("resultat de l'imc", resultImc);
       setMessage(`Ton IMC est de ${resultatImc} `);
@@ -81,38 +80,38 @@ const Welcome = () => {
   // useEffect pour tester les states car ils sont asynchrones//
   //et affichent avant re-render une première valeur undefined//
   useEffect(() => {
-    console.log("taille dans useEffect", tailleState);
-    console.log("poids dans useEffect", poidsState);
+    console.log('taille dans useEffect', tailleState);
+    console.log('poids dans useEffect', poidsState);
   });
   return (
     <div>
-      <div className="imcButtonStyle">
-        <Link to="#imc">
+      <div className='imcButtonStyle'>
+        <Link to='#imc'>
           <ImcButton />
         </Link>
       </div>
-      <div className="saladePicture">{/* image avec salade */}</div>
-      <div className="containerButton">
-        <Link to="/connexion">
+      <div className='saladePicture'>{/* image avec salade */}</div>
+      <div className='containerButton'>
+        <Link to='/connexion'>
           <ConnexionButton />
         </Link>
-        <Link to="/suscribe">
+        <Link to='/suscribe'>
           <SuscribeButton />
         </Link>
       </div>
-      <h1 className="nboomText">
+      <h1 className='nboomText'>
         Avec NutriBoom, boostez votre hygiène de vie !
       </h1>
-      <div className="containerText">
-        <p className="description">
-          <span className="wordStyle"> Suivi Journalier</span>
+      <div className='containerText'>
+        <p className='description'>
+          <span className='wordStyle'> Suivi Journalier</span>
           <br /> Complétez votre parcours santé en ajoutant vos aliments et
           exercices préférés à votre journal.
-          <br /> <span className="wordStyle">Tableau de bord</span>
+          <br /> <span className='wordStyle'>Tableau de bord</span>
           <br />
           Obtenez un rapport sur une durée grâce à notre tableau de bord.
           <br />
-          <span className="wordStyle">
+          <span className='wordStyle'>
             Alimentez la base de données de la communauté
           </span>
           <br />
@@ -120,44 +119,49 @@ const Welcome = () => {
           d'améliorervotre expérience utilisateur
         </p>
       </div>
-      <div className="imc-container">
+      <div className='imc-container'>
         <section>
-          <form className="imcForm" onSubmit={imcSubmit}>
-            <div id="imc" className="mb-3">
-              <label htmlFor="exampleInputTaille" className="htmlForm-label" />
+          <form className='imcForm' onSubmit={imcSubmit}>
+            <div id='imc' className='mb-3'>
+              <label htmlFor='exampleInputTaille' className='htmlForm-label' />
               <input
-                type="number"
+                type='number'
                 min={100}
-                className="htmlForm-control"
-                id="exampleInputTaille"
-                placeholder="taille (cm)"
+                className='htmlForm-control'
+                id='exampleInputTaille'
+                placeholder='taille (cm)'
                 onChange={tailleFunction}
               />
             </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPoids" className="htmlForm-label" />
+            <div className='mb-3'>
+              <label htmlFor='exampleInputPoids' className='htmlForm-label' />
               <input
-                type="number"
+                type='number'
                 min={10}
-                className="htmlForm-control"
-                id="exampleInputPoids"
-                placeholder="poids (kg)"
+                className='htmlForm-control'
+                id='exampleInputPoids'
+                placeholder='poids (kg)'
                 onChange={poidsFunction}
               />
             </div>
-            <p className="message">
+            <p className='message'>
               {message} <br />
               {messageBis}
             </p>
-            <div className="imcButton2">
+            <div className='imcButton2'>
               <ImcButton />
             </div>
           </form>
         </section>
       </div>
       <div>
-        <Link to="#hautNavBar" className="basDePageLink">
-          <p className="hautPage"> Revenir en haut de page </p>
+        <div className='containerButton'>
+          <Link to='/connexion'>
+            <ConnexionButton />
+          </Link>
+        </div>
+        <Link to='#hautNavBar' className='basDePageLink'>
+          <p className='hautPage'> Revenir en haut de page </p>
         </Link>
       </div>
     </div>
