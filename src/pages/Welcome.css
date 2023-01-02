@@ -6,7 +6,7 @@
 }
 
 .saladePicture {
-  background-image: url("/public/assets/salade.jpg");
+  background-image: url('/public/assets/salade.jpg');
   opacity: 0.8;
   background-size: cover;
   background-position: center;
@@ -57,10 +57,11 @@
   border-radius: 10px;
   margin-top: 30px;
   width: 300px;
-  height: 300px;
+  height: 400px;
   background-color: transparent;
   padding-top: 30px;
-  padding-left: 48px;
+  padding-left: 0px;
+  align-items: center;
 }
 
 .imcButton2 {
