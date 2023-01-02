@@ -182,3 +182,12 @@ ul {
   color: white;
   background-color: #afb563;
 }
+
+@media screen and (min-width: 1200px) {
+  .user-recap h2 {
+    font-size: 0.8rem;
+  }
+  #kcal {
+    font-size: 0.8rem;
+  }
+}
