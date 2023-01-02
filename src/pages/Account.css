@@ -1,6 +1,82 @@
-ul {
+#container {
+  display: flex;
+}
+
+#modifProfil {
+  position: relative;
+  width: 35%;
+  left: 35%;
+}
+
+p#li-actuel-mb3 {
+  color: #afb563;
+  font-weight: bold;
+  text-align: center;
+  margin: 5px;
+  border: 1px solid #dfa530;
+  background-color: beige;
+  border-radius: 5px;
+  width: 75%;
+  margin-left: 15%;
+}
+
+.manchette {
+  color: #dfa530;
+  font-weight: bold;
+  font-size: large;
+}
+
+form#mb-3 {
+  border: #dfa530 solid 1mm;
+  border-radius: 20px;
+  margin-bottom: 10%;
+}
+
+div#mb-3 {
+  border-radius: 20px;
+  border: #dfa530 solid 1mm;
+  background-color: rgba(0, 0, 0, 0.599);
+  color: #afb563;
+  font-weight: bold;
+  margin: 15px;
   text-align: center;
 }
-li {
+p.ProfilActuel {
   color: #dfa530;
+  font-size: 2em;
+  text-align: center;
+}
+
+input::placeholder {
+  color: #afb563;
+}
+
+input.ProfilActuel {
+  background-color: rgba(0, 0, 0, 0.599);
+  width: 100%;
+  border-radius: 20px;
+  color: #afb563;
+  font-weight: bold;
+  text-align: center;
+}
+
+input.ProfilActuel:hover {
+  background-color: whitesmoke;
+}
+
+select.ProfilActuel {
+  border: rgba(0, 0, 0, 0.599);
+}
+
+select.ProfilActuel:hover {
+  background-color: whitesmoke;
+}
+
+div.button {
+  margin-left: 35%;
+}
+
+button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
+  border-radius: 10px;
+  width: 80px;
 }
