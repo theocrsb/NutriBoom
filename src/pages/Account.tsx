@@ -119,13 +119,13 @@ const Account = () => {
         `http://localhost:8080/api/users/${searchUserIdValue}`,
         {
           id: searchUserIdValue,
-          // lastname: updateLastname,
-          // firstname: updateFirstname,
-          // age: updateage,
-          // gender: updateGender,
-          // weight: updateWeight,
-          // height: updateHeight,
-          // email: updateMail,
+          lastname: updateLastname,
+          firstname: updateFirstname,
+          age: updateage,
+          gender: updateGender,
+          weight: updateWeight,
+          height: updateHeight,
+          email: updateMail,
           password: updatePassword,
         },
         {
@@ -156,10 +156,11 @@ const Account = () => {
   let age = 6;
   let ageOptions = [];
 
-  for (let i = 0; i < 111; i++) {
-    taille += 0.01;
-    tailleOptions.push(taille.toFixed(2));
+  for (let i = 0; i < 71; i++) {
+    age++;
+    ageOptions.push(age);
   }
+  console.log(ageOptions);
 
   let poids = 29;
   let poidsOptions = [];
@@ -180,7 +181,6 @@ const Account = () => {
   return (
     <div>
       <div id="container">
-       
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
 
