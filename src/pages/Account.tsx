@@ -147,8 +147,8 @@ const Account = () => {
         console.log("id du user a patch dans le catch", searchUserIdValue);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          // localStorage.removeItem("accesstoken");
-          // navigate("/connexion");
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   };
@@ -209,7 +209,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel:{" "}
+              Prénom actuel:{" "}
               <span className="manchette">{UserProfile?.firstname} </span>
             </p>
             <div id="mb-3" className="mb-3">
@@ -225,7 +225,7 @@ const Account = () => {
 
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel: <span className="manchette">{UserProfile?.age} </span>
+              Age actuel: <span className="manchette">{UserProfile?.age} </span>
             </p>
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputAge" className="htmlForm-label" />
@@ -248,7 +248,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel:{" "}
+              Poids actuel:{" "}
               <span className="manchette">{UserProfile?.weight} </span>
             </p>
             <div id="mb-3" className="mb-3">
@@ -272,7 +272,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel:{" "}
+              Taille actuelle:{" "}
               <span className="manchette">{UserProfile?.height} </span>
             </p>
             <div id="mb-3" className="mb-3">
@@ -296,7 +296,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel:{" "}
+              Genre actuel:{" "}
               <span className="manchette">{UserProfile?.gender} </span>
             </p>
             <div id="mb-3" className="mb-3">
@@ -321,7 +321,7 @@ const Account = () => {
             </div>
             <p id="li-actuel-mb3">
               {" "}
-              Nom actuel:{" "}
+              Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
             </p>
             <div id="mb-3" className="mb-3">
