@@ -12,6 +12,7 @@
 p#li-actuel-mb3 {
   color: #afb563;
   font-weight: bold;
+  font-size: 11px;
   text-align: center;
   margin: 5px;
   border: 1px solid #dfa530;
@@ -19,12 +20,13 @@ p#li-actuel-mb3 {
   border-radius: 5px;
   width: 75%;
   margin-left: 15%;
+  
 }
 
 .manchette {
   color: #dfa530;
   font-weight: bold;
-  font-size: large;
+  font-size:1em;
 }
 
 form#mb-3 {
@@ -67,6 +69,7 @@ input.ProfilActuel {
   color: #afb563;
   font-weight: bold;
   text-align: center;
+  font-size: 11px;
   
   
 }
@@ -78,6 +81,7 @@ input.ProfilActuel:hover {
 select.ProfilActuel {
   border: rgba(0, 0, 0, 0.599);
   width:100%;
+  font-size: 11px;
  
   
 }
@@ -89,10 +93,31 @@ select.ProfilActuel:hover {
 }
 
 div.button {
-  margin-left: 40%;
+  margin-left: 28%;
 }
 
 button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   border-radius: 10px;
   width: 80px;
+
 }
+
+
+@media (min-width: 650px) {
+  
+  div.button {
+  margin-left: 40%;
+  
+}
+
+p#li-actuel-mb3 {
+   font-size: 1em; 
+}
+
+input.ProfilActuel {
+  font-size: 15px;
+}
+select.ProfilActuel {
+  font-size: 15px;
+}
+ }
