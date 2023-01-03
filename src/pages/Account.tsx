@@ -242,7 +242,7 @@ const Account = () => {
                 value={updateage}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionnez votre age{" "}
+                  Nouvel age{" "}
                 </option>
                 {ageOptions.map((ageOption) => (
                   <option key={uuidv4()} value={ageOption}>
@@ -266,7 +266,7 @@ const Account = () => {
                 onChange={weightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionnez votre poids
+                  Nouveau poids
                 </option>
                 {poidsOptions.map((poidsOption) => (
                   <option key={uuidv4()} value={poidsOption}>
@@ -290,7 +290,8 @@ const Account = () => {
                 onChange={heightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionnez votre taille
+                  Nouvelle taille
+                  
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
@@ -314,7 +315,7 @@ const Account = () => {
                 onChange={sexFunction}
               >
                 <option key={uuidv4()} value="">
-                  Sélectionnez votre genre
+                  Nouveau genre
                 </option>
                 <option key={uuidv4()} value="femme">
                   femme
