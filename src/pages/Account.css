@@ -4,7 +4,7 @@
 
 #modifProfil {
   position: relative;
-  
+
   width: 40%;
   left: 35%;
 }
@@ -20,13 +20,12 @@ p#li-actuel-mb3 {
   border-radius: 5px;
   width: 75%;
   margin-left: 15%;
-  
 }
 
 .manchette {
   color: #dfa530;
   font-weight: bold;
-  font-size:1em;
+  font-size: 1em;
 }
 
 form#mb-3 {
@@ -43,9 +42,6 @@ div#mb-3 {
   font-weight: bold;
   margin: 15px;
   text-align: center;
- 
-
-
 }
 p.ProfilActuel {
   color: #dfa530;
@@ -55,69 +51,52 @@ p.ProfilActuel {
 
 input::placeholder {
   color: #afb563;
- 
+  text-shadow: 1px 2px 0px rgba(0, 0, 0, 1);
 }
-
-
-
 
 input.ProfilActuel {
   background-color: rgba(0, 0, 0, 0.599);
   width: 100%;
-  height:100%;
+  height: 100%;
   border-radius: 20px;
   color: #afb563;
   font-weight: bold;
   text-align: center;
   font-size: 11px;
-  
-  
 }
 
 input.ProfilActuel:hover {
-  background-color: whitesmoke;
+  background-color: #ffffff20;
 }
 
 select.ProfilActuel {
   border: rgba(0, 0, 0, 0.599);
-  width:100%;
+  width: 100%;
   font-size: 11px;
- 
-  
 }
 
-
-
 select.ProfilActuel:hover {
-  background-color: whitesmoke;
+  background-color: #ffffff20;
 }
 
 div.button {
-  margin-left: 28%;
+  text-align: center;
 }
 
 button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   border-radius: 10px;
   width: 80px;
-
 }
-
 
 @media (min-width: 650px) {
-  
-  div.button {
-  margin-left: 40%;
-  
-}
+  p#li-actuel-mb3 {
+    font-size: 1em;
+  }
 
-p#li-actuel-mb3 {
-   font-size: 1em; 
+  input.ProfilActuel {
+    font-size: 15px;
+  }
+  select.ProfilActuel {
+    font-size: 15px;
+  }
 }
-
-input.ProfilActuel {
-  font-size: 15px;
-}
-select.ProfilActuel {
-  font-size: 15px;
-}
- }
