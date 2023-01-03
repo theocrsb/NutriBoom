@@ -26,6 +26,18 @@ const AddLunch = () => {
   //  -------------------PROPS---------------------//
   const eatenfoodSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
+    if (quantity) {
+      console.log(
+        "je rentre dans la condition du quantity",
+        quantity.toString()
+      );
+      console.log("quantity to string", quantity.toString().charCodeAt(0));
+
+      if (quantity.toString().charCodeAt(0) === 45) {
+        alert("merci de rentrer une valeur positive pour la quantité");
+      }
+      return;
+    }
 
     axios
       .post(
@@ -34,7 +46,7 @@ const AddLunch = () => {
           //name en fixe
           name: "Aliment consommé :",
           //quantité qui viendra de l'input
-          quantity: quantity,
+          quantity: quantity ? Math.abs(quantity) : quantity,
           //toujours 2 car déjeuner
           type: 2,
           //food qui viendra de l'input

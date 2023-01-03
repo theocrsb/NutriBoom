@@ -30,13 +30,25 @@ const AddExercice = () => {
     console.log("activite selectionnee", activity?.name);
     console.log("objet activite", activity);
     console.log("la quantité", quantity);
+    if (quantity) {
+      console.log(
+        "je rentre dans la condition du quantity",
+        quantity.toString()
+      );
+      console.log("quantity to string", quantity.toString().charCodeAt(0));
+
+      if (quantity.toString().charCodeAt(0) === 45) {
+        alert("merci de rentrer une valeur positive pour la quantité");
+      }
+      return;
+    }
 
     axios
       .post(
         `http://localhost:8080/api/exercices`,
         {
           activity: sport,
-          time: quantity,
+          time: quantity ? Math.abs(quantity) : quantity,
         },
         {
           headers: {
