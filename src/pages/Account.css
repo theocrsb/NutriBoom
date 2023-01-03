@@ -69,6 +69,7 @@ input.ProfilActuel {
   color: #afb563;
   font-weight: bold;
   text-align: center;
+  font-size: 11px;
   
   
 }
@@ -80,6 +81,7 @@ input.ProfilActuel:hover {
 select.ProfilActuel {
   border: rgba(0, 0, 0, 0.599);
   width:100%;
+  font-size: 11px;
  
   
 }
@@ -110,5 +112,12 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
 
 p#li-actuel-mb3 {
    font-size: 1em; 
+}
+
+input.ProfilActuel {
+  font-size: 15px;
+}
+select.ProfilActuel {
+  font-size: 15px;
 }
  }
