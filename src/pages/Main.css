@@ -54,10 +54,12 @@ p.infoUserTitle {
   color: #ffffff;
 }
 p.infoUser {
+  display: inline-block;
   text-align: center;
   border: thick double black;
   background-color: #afb563;
   border-radius: 20px;
+  font-size: 1rem;
   font-weight: bold;
   color: #ffffff;
   margin-top: 10%;
