@@ -89,10 +89,19 @@ select.ProfilActuel:hover {
 }
 
 div.button {
-  margin-left: 40%;
+  margin-left: 28%;
 }
 
 button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   border-radius: 10px;
   width: 80px;
+
 }
+
+
+@media (min-width: 650px) {
+  
+  div.button {
+  margin-left: 40%;
+}
+ }
