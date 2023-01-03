@@ -26,6 +26,18 @@ const AddDinner = () => {
   //  -------------------PROPS---------------------//
   const eatenfoodSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
+    if (quantity) {
+      console.log(
+        "je rentre dans la condition du quantity",
+        quantity.toString()
+      );
+      console.log("quantity to string", quantity.toString().charCodeAt(0));
+
+      if (quantity.toString().charCodeAt(0) === 45) {
+        alert("merci de rentrer une valeur positive pour la quantité");
+      }
+      return;
+    }
     axios
       .post(
         `http://localhost:8080/api/meals`,
@@ -33,7 +45,7 @@ const AddDinner = () => {
           //name en fixe
           name: "Aliment consommé :",
           //quantité qui viendra de l'input
-          quantity: quantity,
+          quantity: quantity ? Math.abs(quantity) : quantity,
           //toujours 3 car dinner
           type: 3,
           //food qui viendra de l'input
@@ -66,6 +78,7 @@ const AddDinner = () => {
     setMessage(undefined);
     let quantite = Number(e.currentTarget.value);
     setQuantity(quantite);
+    console.log("resultat du math abs", Math.abs(quantite));
   };
 
   const searchBarFunction = (e: string) => {
@@ -135,7 +148,7 @@ const AddDinner = () => {
       <div className="list">
         {selection && (
           <li className="listeRecherche">
-            <span className="text">{selection}</span>
+            <span className="li-text">{selection}</span>
             <div className="formulaire">
               <form className="form " onSubmit={eatenfoodSubmitFunction}>
                 <label htmlFor="quantity" className="htmlForm-label" />
