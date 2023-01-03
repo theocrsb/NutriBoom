@@ -12,6 +12,7 @@
 p#li-actuel-mb3 {
   color: #afb563;
   font-weight: bold;
+  font-size: 11px;
   text-align: center;
   margin: 5px;
   border: 1px solid #dfa530;
@@ -19,12 +20,13 @@ p#li-actuel-mb3 {
   border-radius: 5px;
   width: 75%;
   margin-left: 15%;
+  
 }
 
 .manchette {
   color: #dfa530;
   font-weight: bold;
-  font-size: large;
+  font-size:1em;
 }
 
 form#mb-3 {
@@ -103,5 +105,10 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   
   div.button {
   margin-left: 40%;
+  
+}
+
+p#li-actuel-mb3 {
+   font-size: 1em; 
 }
  }
