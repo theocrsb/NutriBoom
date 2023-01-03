@@ -147,7 +147,7 @@ useEffect(()=>{
                   </li>
                   {(tokenRole === "admin" &&(
                   <li className='nav-item'>
-                    <NavLink to='/admin' className='nav-link buttonStyle '>
+                    <NavLink to='/admin' className='nav-link buttonStyle ' onClick={tokenVerify}>
                       <strong
                         data-bs-toggle='collapse'
                         data-bs-target='#navbarNav'
