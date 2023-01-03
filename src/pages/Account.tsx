@@ -182,12 +182,12 @@ const Account = () => {
 
   return (
     <div>
+      <img
+        id="onglet"
+        src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
+        alt=""
+      />
       <div id="container">
-        <img
-          id="onglet"
-          src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-          alt=""
-        />
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
 
@@ -293,7 +293,6 @@ const Account = () => {
               >
                 <option key={uuidv4()} value="">
                   Nouvelle taille
-                  
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
