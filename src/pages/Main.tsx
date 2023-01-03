@@ -81,7 +81,7 @@ const Main = () => {
   // Ajout du navigate
   const navigate = useNavigate();
 
-    const tokenVerify = (e: SyntheticEvent) => {
+  const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem("accesstoken")) {
       window.location.reload();
     }
@@ -531,21 +531,33 @@ const Main = () => {
             <p className="infoUserTitle">Protein</p>
             <Doughnut data={dataProt} />
             <p className="infoUser">
-              {sumConsoProt}/{resultUserProt ? Math.floor(resultUserProt) : 0}g
+              {sumConsoProt}/
+              {resultUserProt
+                ? Math.floor(resultUserProt) + (protDepense ? protDepense : 0)
+                : 0}
+              g
             </p>
           </section>
           <section className="donutGlu text-center ">
             <p className="infoUserTitle">Glucide</p>
             <Doughnut data={dataGlu} />
             <p className="infoUser">
-              {sumConsoGlu}/{resultUserGlu ? Math.floor(resultUserGlu) : 0}g
+              {sumConsoGlu}/
+              {resultUserGlu
+                ? Math.floor(resultUserGlu) + (gluDepense ? gluDepense : 0)
+                : 0}
+              g
             </p>
           </section>
           <section className="donutLip text-center">
             <p className="infoUserTitle">Lipide</p>
             <Doughnut data={dataLip} />
             <p className="infoUser">
-              {sumConsoLip}/{resultUserLip ? Math.floor(resultUserLip) : 0}g
+              {sumConsoLip}/
+              {resultUserLip
+                ? Math.floor(resultUserLip) + (lipDepense ? lipDepense : 0)
+                : 0}
+              g
             </p>
           </section>
         </div>
@@ -586,7 +598,11 @@ const Main = () => {
                   </li>
                 ))}
 
-                <Link className="buttonAdd" to="/petitdejeuner" onClick={tokenVerify}>
+                <Link
+                  className="buttonAdd"
+                  to="/petitdejeuner"
+                  onClick={tokenVerify}
+                >
                   <PlusAddButton />
                 </Link>
                 <span className="textAjout"> Ajouter un aliment</span>
@@ -629,7 +645,11 @@ const Main = () => {
                   </li>
                 ))}
 
-                <Link className="buttonAdd" to="/dejeuner" onClick={tokenVerify}>
+                <Link
+                  className="buttonAdd"
+                  to="/dejeuner"
+                  onClick={tokenVerify}
+                >
                   <PlusAddButton />
                 </Link>
                 <span className="textAjout"> Ajouter un aliment</span>
@@ -716,7 +736,11 @@ const Main = () => {
                   </li>
                 ))}
 
-                <Link className="buttonAdd" to="/collation" onClick={tokenVerify}>
+                <Link
+                  className="buttonAdd"
+                  to="/collation"
+                  onClick={tokenVerify}
+                >
                   <PlusAddButton />
                 </Link>
                 <span className="textAjout"> Ajouter un aliment</span>
@@ -763,7 +787,11 @@ const Main = () => {
                   </li>
                 ))}
 
-                <Link className="buttonAdd" to="/exercices" onClick={tokenVerify}>
+                <Link
+                  className="buttonAdd"
+                  to="/exercices"
+                  onClick={tokenVerify}
+                >
                   <PlusAddButton />
                 </Link>
                 <span className="textAjout"> Ajouter une activité</span>

@@ -30,18 +30,18 @@ const AddExercice = () => {
     console.log("activite selectionnee", activity?.name);
     console.log("objet activite", activity);
     console.log("la quantité", quantity);
-    if (quantity) {
-      console.log(
-        "je rentre dans la condition du quantity",
-        quantity.toString()
-      );
-      console.log("quantity to string", quantity.toString().charCodeAt(0));
+    // if (quantity) {
+    //   console.log(
+    //     "je rentre dans la condition du quantity",
+    //     quantity.toString()
+    //   );
+    //   console.log("quantity to string", quantity.toString().charCodeAt(0));
 
-      if (quantity.toString().charCodeAt(0) === 45) {
-        alert("merci de rentrer une valeur positive pour la quantité");
-      }
-      return;
-    }
+    //   if (quantity.toString().charCodeAt(0) === 45) {
+    //     alert("merci de rentrer une valeur positive pour la quantité");
+    //   }
+    //   return;
+    // }
 
     axios
       .post(
@@ -59,9 +59,8 @@ const AddExercice = () => {
       .then((response) => {
         console.log("super, exercice ajouté", response);
         setMessage("Exercice ajouté avec succès");
-        setTimeout(() => {
-          navigate("/main");
-        }, 2500);
+
+        navigate("/main");
       })
       .catch((error) => {
         console.log("tu ne peux pas poster", error);

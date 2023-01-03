@@ -26,18 +26,18 @@ const AddBreackFast = () => {
   //  -------------------PROPS---------------------//
   const eatenfoodSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
-    if (quantity) {
-      console.log(
-        "je rentre dans la condition du quantity",
-        quantity.toString()
-      );
-      console.log("quantity to string", quantity.toString().charCodeAt(0));
+    // if (quantity) {
+    //   console.log(
+    //     "je rentre dans la condition du quantity",
+    //     quantity.toString()
+    //   );
+    //   console.log("quantity to string", quantity.toString().charCodeAt(0));
 
-      if (quantity.toString().charCodeAt(0) === 45) {
-        alert("merci de rentrer une valeur positive pour la quantité");
-      }
-      return;
-    }
+    //   if (quantity.toString().charCodeAt(0) === 45) {
+    //     alert("merci de rentrer une valeur positive pour la quantité");
+    //   }
+    //   return;
+    // }
     axios
       .post(
         `http://localhost:8080/api/meals`,
@@ -62,9 +62,8 @@ const AddBreackFast = () => {
         setMessage(
           "Aliment consommé pendant le petit déjeuner ajouté avec succès"
         );
-        setTimeout(() => {
-          navigate("/main");
-        }, 1000);
+
+        navigate("/main");
       })
       .catch((error) => {
         console.log(error);
