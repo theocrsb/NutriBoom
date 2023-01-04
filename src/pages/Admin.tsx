@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User } from './Main';
 import { UserRole } from './Main';
-import { ByRoleMatcher } from '@testing-library/react';
+
 
 
 
@@ -24,7 +24,21 @@ const Admin = () => {
       })
       .then((res) => {
         console.log('mes users', res.data);
-        setMesUsers(res.data);
+        const tab = res.data;
+        // Fonction pour gérer le tri par ordre alphabétique des users-------------
+        function sortArray(x : User,y : User){
+          if (x.lastname && y.lastname ){
+            if(x.lastname <y.lastname){
+              return -1;
+            }
+            if(x.lastname>y.lastname){
+              return 1;
+            }
+          }
+        }
+        let tab2 = tab.sort(sortArray)
+        setMesUsers(tab2);
+        // Fin de l'implémentation de la fonction tri alphabétique ----------------------------------
         console.log('mes users dans le state', mesUsers);
             setRoleUser(res.data.role)
         console.log("le role du user", roleUser)
@@ -68,7 +82,9 @@ console.log("valeur input",valueState)
   }
 
   const validateRole=(e:React.MouseEvent<HTMLButtonElement>)=>{
-axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}`,  {
+    console.log("valeur du validateRole", e.currentTarget.value)
+    if(window.confirm(`Hey Admin, veux tu vraiment changer le statut de cet utilisateur?`))
+axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}/admin`,  {
       role : {
       id : valueState
       }
@@ -80,39 +96,40 @@ axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}`,  {
         }
       ).then((resp)=>{
         console.log("update")
+        console.log("value state dans la requete", valueState)
+        window.location.reload()
+        
       }).catch((error)=>{
         console.log("pas update")
       })
+  
   }
 
   return (
-    <div>
+    <div className='encadrement'>
       <h1 className='ecriture'>
         Salut Admin ! <br />
         Voici la liste des utilisateurs
       </h1>
+      <p className='ecriture'>Tu peux ici gérer la liste des utilisateurs, changer leur rôle en administrateur ou utilisateur lambda.</p>
+      <div className = "sousEncadrement">
       {mesUsers.map((user: User, index) => (
         
         <li key={index} className='ecritureAdmin'>
-          {user.email} ---- {user.lastname} {user.firstname} est un {user.role.label}
-          <div className="users">
-          <button className='supp' onClick={suppAccount} value= {user.id}>supprimer</button>
-          <div>
-          <span className="role">Changer rôle utilisateur </span>
-            <div>
-      <input type="radio" id="admin" name="drone" value="admin" onChange={adminValue}/>
+          <p>
+            <strong>{user.firstname} {user.lastname}</strong> 
+            <button className='supp' onClick={suppAccount} value= {user.id}>supprimer profil</button>
+            </p>
+          {user.email} ----  {user.role.label}
+<br />
+  <input className='inputRadio' type="radio" id="admin" name="drone" value="2" onChange={adminValue}/>
       <label htmlFor="admin">admin</label>
-    </div>
-         <div>
-      <input type="radio" id="user" name="drone" value="user" onChange={userValue}/>
+       <input className='inputRadio' type="radio" id="user" name="drone" value="1" onChange={userValue}/>
       <label htmlFor="user">user</label>
-    </div>
-          <button className='supp' value= {user.role.label} onClick={validateRole}>valider</button>
-          </div>
-            </div>
-        </li>
-      
+         <button className='supp' value= {user.id} onClick={validateRole}>valider</button>
+        </li>    
       ))}
+      </div>
     </div>
   );
 };
