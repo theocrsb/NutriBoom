@@ -4,19 +4,9 @@ import jwt_decode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
 import "./Account.css";
 import { useNavigate } from "react-router-dom";
+import { User } from "./Main";
 
-export interface User {
-  id?: string;
-  lastname?: string;
-  firstname: string;
-  age: number;
-  weight: number;
-  gender: string;
-  email: string;
-  password: string;
-  ratio?: string;
-  height: string;
-}
+
 
 export interface PayloadToken {
   exp: number;

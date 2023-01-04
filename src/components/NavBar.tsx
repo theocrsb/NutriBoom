@@ -6,24 +6,19 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import AboutUs from '../pages/AboutUs';
 import jwt_decode from 'jwt-decode';
+import { PayloadToken } from '../pages/Main';
 
-export interface Token{
-exp: number;
-iat: number;
-id: string;
-role:string;
-username:string
-}
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [tokenRole, setTokenRole] = useState<string>()
   const { savedToken } = useContext(AuthContext);
   console.log('voici le resultat pour savedToken', savedToken);
+  console.log("TOKEN ROLE DANS NAVBAR",tokenRole)
 
 useEffect(()=>{
   if(savedToken){
-    const decoded : Token = jwt_decode(savedToken)
+    const decoded : PayloadToken = jwt_decode(savedToken)
     console.log("le payload",decoded.role)
     setTokenRole(decoded.role)
   }
@@ -125,7 +120,7 @@ useEffect(()=>{
               )) || (
                 <>
                   <li className='nav-item'>
-                    <NavLink to='/moncompte' className='nav-link buttonStyle' onClick={tokenVerify}>
+                    <NavLink to='moncompte' className='nav-link buttonStyle' onClick={tokenVerify}>
                       <strong
                         data-bs-toggle='collapse'
                         data-bs-target='#navbarNav'
