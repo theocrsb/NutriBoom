@@ -79,7 +79,9 @@ const SoumettezNous = () => {
             ref={nomElement}
             required
           />
-          <label htmlFor='nameAliment'>nom de l'aliment</label>
+          <label htmlFor='nameAliment' style={{ color: 'white' }}>
+            nom de l'aliment
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -87,11 +89,13 @@ const SoumettezNous = () => {
             type='number'
             className='form-control'
             id='calorieAliment'
-            placeholder='Calories'
+            placeholder=''
             ref={calorieElement}
             required
           />
-          <label htmlFor='calorieAliment'>Calories</label>
+          <label htmlFor='calorieAliment' style={{ color: 'white' }}>
+            Calories
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -99,11 +103,13 @@ const SoumettezNous = () => {
             type='number'
             className='form-control'
             id='lipidesAliment'
-            placeholder='Lipides'
+            placeholder=''
             ref={lipidesElement}
             required
           />
-          <label htmlFor='lipidesAliment'>Lipides</label>
+          <label htmlFor='lipidesAliment' style={{ color: 'white' }}>
+            Lipides
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -115,7 +121,9 @@ const SoumettezNous = () => {
             ref={glucidesElement}
             required
           />
-          <label htmlFor='ProteinesAliment'>Glucides</label>
+          <label htmlFor='ProteinesAliment' style={{ color: 'white' }}>
+            Glucides
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -127,7 +135,9 @@ const SoumettezNous = () => {
             ref={proteinesElement}
             required
           />
-          <label htmlFor='glucidesAliment'>Proteines</label>
+          <label htmlFor='glucidesAliment' style={{ color: 'white' }}>
+            Proteines
+          </label>
         </div>
 
         <button className='mt-3 btn btn-success' type='submit'>
