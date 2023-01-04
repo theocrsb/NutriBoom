@@ -30,6 +30,7 @@ import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
 import SoumettezNous from "./pages/SoumettezNous";
 import { UserContext, UserContextProvider } from "./contexts/User-Context";
+import Mailto from "./pages/Mailto";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
@@ -139,6 +140,7 @@ const App = () => {
           <Route path="/*" element={<Page404 />}></Route>
           <Route path="/inscriptionok" element={<InscriptionOk />}></Route>
           <Route path="/ajout" element={<SoumettezNous />}></Route>
+          <Route path="/mailTo" element={<Mailto />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
