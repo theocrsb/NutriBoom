@@ -187,43 +187,43 @@ const Account = () => {
             className="ProfilActuel"
             onSubmit={submitFunction}
           >
-            {
+            {/* {
               <p id="li-actuel-mb3">
                 {" "}
                 Nom actuel:{" "}
                 <span className="manchette">{UserProfile?.lastname} </span>
               </p>
-            }
+            } */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputNom" className="htmlForm-label" />
               <input
                 type="nom"
                 className="ProfilActuel"
                 id="inputNom"
-                placeholder="Nouveau nom"
+                placeholder={UserProfile?.lastname}
                 onChange={lastNameFunction}
               />
             </div>
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
               Prénom actuel:{" "}
               <span className="manchette">{UserProfile?.firstname} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPrenom" className="htmlForm-label" />
               <input
                 type="prenom"
                 className="ProfilActuel"
                 id="inputPrenom"
-                placeholder="Nouveau prenom"
+                placeholder={UserProfile?.firstname}
                 onChange={firstNameFunction}
               />
             </div>
 
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
               Age actuel: <span className="manchette">{UserProfile?.age} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputAge" className="htmlForm-label" />
               <select
@@ -234,7 +234,7 @@ const Account = () => {
                 value={updateage}
               >
                 <option key={uuidv4()} value="">
-                  Nouvel age{" "}
+                  {UserProfile?.age}{" "}
                 </option>
                 {ageOptions.map((ageOption) => (
                   <option key={uuidv4()} value={ageOption}>
@@ -243,11 +243,11 @@ const Account = () => {
                 ))}
               </select>
             </div>
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
-              Poids actuel:{" "}
+              {UserProfile?.weight}:{" "}
               <span className="manchette">{UserProfile?.weight} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputWeight" className="htmlForm-label" />
               <select
@@ -258,7 +258,7 @@ const Account = () => {
                 onChange={weightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Nouveau poids
+                  {UserProfile?.weight}
                 </option>
                 {poidsOptions.map((poidsOption) => (
                   <option key={uuidv4()} value={poidsOption}>
@@ -267,11 +267,11 @@ const Account = () => {
                 ))}
               </select>
             </div>
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
               Taille actuelle:{" "}
               <span className="manchette">{UserProfile?.height} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputHeight" className="htmlForm-label" />
               <select
@@ -282,8 +282,7 @@ const Account = () => {
                 onChange={heightFunction}
               >
                 <option key={uuidv4()} value="">
-                  Nouvelle taille
-                  
+                  {UserProfile?.height}
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
@@ -292,11 +291,11 @@ const Account = () => {
                 ))}
               </select>
             </div>
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
               Genre actuel:{" "}
               <span className="manchette">{UserProfile?.gender} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputGender" className="htmlForm-label" />
               <select
@@ -307,7 +306,7 @@ const Account = () => {
                 onChange={sexFunction}
               >
                 <option key={uuidv4()} value="">
-                  Nouveau genre
+                  {UserProfile?.gender}
                 </option>
                 <option key={uuidv4()} value="femme">
                   femme
@@ -317,18 +316,18 @@ const Account = () => {
                 </option>
               </select>
             </div>
-            <p id="li-actuel-mb3">
+            {/* <p id="li-actuel-mb3">
               {" "}
               Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
-            </p>
+            </p> */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputMail" className="htmlForm-label" />
               <input
                 type="mail"
                 className="ProfilActuel"
                 id="inputMail"
-                placeholder="Nouvel e-mail"
+                placeholder={UserProfile?.email}
                 onChange={mailFunction}
               />
             </div>

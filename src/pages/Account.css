@@ -40,8 +40,9 @@ div#mb-3 {
   background-color: rgba(0, 0, 0, 0.599);
   color: #afb563;
   font-weight: bold;
-  margin: 15px;
+  margin: 20px;
   text-align: center;
+  height: 40px;
 }
 p.ProfilActuel {
   color: #dfa530;
@@ -63,6 +64,12 @@ input.ProfilActuel {
 
 input.ProfilActuel:hover {
   background-color: #ffffff20;
+  
+}
+
+input.ProfilActuel::placeholder {
+ color: #afb563;
+  
 }
 
 select.ProfilActuel {
@@ -85,14 +92,14 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
 }
 
 @media (min-width: 650px) {
-  p#li-actuel-mb3 {
+  /* p#li-actuel-mb3 {
     font-size: 1em;
-  }
+  } */
 
   input.ProfilActuel {
-    font-size: 15px;
+    font-size: 20px;
   }
   select.ProfilActuel {
-    font-size: 15px;
+    font-size: 20px;
   }
 }
