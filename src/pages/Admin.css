@@ -1,16 +1,17 @@
-.ecritureAdmin{
-color: #dfa530;
-border-color: #dfa530;  
-border-style: solid;
-padding-bottom: 20px;
- 
+.container-food {
+  color: #afb563;
 }
-.ecriture{
-color: #dfa530;  
-
+.ecritureAdmin {
+  color: #dfa530;
+  border-color: #dfa530;
+  border-style: solid;
+  padding-bottom: 20px;
+}
+.ecriture {
+  color: #dfa530;
 }
 
-.supp{
+.supp {
   color: #dfa530;
   font-weight: bold;
   margin: 20px;
@@ -19,8 +20,7 @@ color: #dfa530;
   border-radius: 50px;
 }
 
-.users{
-    display: flex;
-    justify-content: space-around;
+.users {
+  display: flex;
+  justify-content: space-around;
 }
-
