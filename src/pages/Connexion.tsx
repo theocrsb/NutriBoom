@@ -95,22 +95,15 @@ const Connexion = () => {
               placeholder="mot de passe"
               onInput={passwordFunction}
             />
-             <button
-          
-          type="submit"
-          className="btn inscription"
-        >
-          {" "}
-          Se connecter
-        </button>
           </div>
+          <button type="submit" className="btn inscription">
+            {" "}
+            Se connecter
+          </button>
         </form>
       </div>
       <span className="message">{message}</span>
-      <div className="connexionButton">
-       
-        {/* <ConnexionButton /> */}
-      </div>
+      <div className="connexionButton">{/* <ConnexionButton /> */}</div>
     </div>
   );
 };
