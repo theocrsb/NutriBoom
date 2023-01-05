@@ -12,8 +12,9 @@ const SoumettezNous = () => {
 
   const navigate = useNavigate();
 
-  // const activiteeElement = useRef<HTMLInputElement>(null);
-  // const consoKalElement = useRef<HTMLInputElement>(null);
+  const activiteeElement = useRef<HTMLInputElement>(null);
+
+  const consoKalElement = useRef<HTMLInputElement>(null);
 
   const handleSubmitForm1 = (e: FormEvent) => {
     e.preventDefault();
@@ -23,12 +24,9 @@ const SoumettezNous = () => {
     console.log(lipidesElement.current?.value);
     console.log(glucidesElement.current?.value);
     console.log(proteinesElement.current?.value);
-    // const handleSubmitForm2 = (e: FormEvent) => {
-    //   e.preventDefault();
-    //   console.log(activiteeElement.current?.value);
-    //   console.log(consoKalElement.current?.value);
-    // };
 
+
+    
     axios
       .post(
         `http://localhost:8080/api/foods`,
@@ -64,6 +62,48 @@ const SoumettezNous = () => {
         }
       });
   };
+
+  const handleSubmitForm2 = (e: FormEvent) => {
+    e.preventDefault();
+    console.log("button form clicked");
+    console.log(activiteeElement?.current?.value);
+    console.log(consoKalElement?.current?.value);
+    
+
+    axios
+      .post(
+        `http://localhost:8080/api/exercices`,
+        {
+          name: activiteeElement?.current?.value,
+          calorieElement: consoKalElement?.current?.value,
+          validate: false,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("response", response);
+        setMessage(
+          "Activité ajouté avec succès. Merci d attendre la validation d un administeur"
+        );
+        setTimeout(() => {
+          navigate("/main");
+        }, 1000);
+      })
+      .catch((error) => {
+        console.log(error);
+        setMessage(error.response.data.message);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
+        }
+      });
+  };
+
+
   return (
     <div className='App'>
       <h2>Soumettez nous un aliment</h2>
@@ -134,7 +174,7 @@ const SoumettezNous = () => {
           soumettre un aliment
         </button>
       </form>
-      {/* <h2>Soumettre une activitee</h2>
+      <h2>Soumettre une activitee</h2>
       <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
         <div className='form-floating mb-3'>
           <input
@@ -159,7 +199,7 @@ const SoumettezNous = () => {
         <button className='mt-3 btn btn-success mb-3' type='submit'>
           soumettre un aliment
         </button>
-      </form> */}
+      </form>
       <div>
         <p>{message}</p>
       </div>
