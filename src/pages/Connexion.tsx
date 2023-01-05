@@ -75,7 +75,7 @@ const Connexion = () => {
         </Link>
       </div>
       <div>
-        <form className="formConnexion">
+        <form className="formConnexion" onSubmit={handleLoginForm}>
           <div className="mb-3">
             <label htmlFor="inputMail" className="htmlForm-label" />
             <input
@@ -95,19 +95,20 @@ const Connexion = () => {
               placeholder="mot de passe"
               onInput={passwordFunction}
             />
-          </div>
-        </form>
-      </div>
-      <span className="message">{message}</span>
-      <div className="connexionButton">
-        <button
-          onClick={handleLoginForm}
+             <button
+          
           type="submit"
           className="btn inscription"
         >
           {" "}
           Se connecter
         </button>
+          </div>
+        </form>
+      </div>
+      <span className="message">{message}</span>
+      <div className="connexionButton">
+       
         {/* <ConnexionButton /> */}
       </div>
     </div>

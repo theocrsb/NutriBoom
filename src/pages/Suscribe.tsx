@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../contexts/Auth-context';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Suscribe = () => {
   const [lastNameState, setLastNameState] = useState<string>();
@@ -136,6 +137,10 @@ const Suscribe = () => {
   }
   console.log(ageOptions);
 
+  const handleKeyPress=(e:React.FormEvent)=>{
+console.log("youpressed key",e)
+  }
+
   return (
     <div>
       <div className='suscribe'>
@@ -146,6 +151,7 @@ const Suscribe = () => {
         method='POST'
         className='suscribeForm carotteFond'
         onSubmit={submitFunction}
+      
       >
         <div className='mb-3'>
           <label htmlFor='inputNom' className='htmlForm-label text-center' />{' '}
@@ -324,7 +330,7 @@ const Suscribe = () => {
           </select>
         </div>
         <span className='messageDynamique'>{champManquant}</span>
-        <SuscribeButton />
+        <SuscribeButton/>
       </form>
     </div>
   );
