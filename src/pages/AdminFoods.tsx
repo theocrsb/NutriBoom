@@ -6,9 +6,13 @@ import { Food } from "./Main";
 import { User } from "./Main";
 import { UserRole } from "./Main";
 import "./Admin.css";
-
+let allFoods: Food[] = [];
 const AdminFoods = () => {
+  const [validateState, setValidateState] = useState<string>();
   const [mesFoods, setMesFoods] = useState<Food[]>([]);
+  const booleanFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setValidateState(e.currentTarget.value);
+  };
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/foods", {
@@ -18,6 +22,7 @@ const AdminFoods = () => {
       })
       .then((res) => {
         console.log("mes foods", res.data);
+        allFoods = res.data;
         setMesFoods(res.data);
         console.log("mes  dansfoods le state", mesFoods);
       })
@@ -29,7 +34,7 @@ const AdminFoods = () => {
   let mesFoodsFilter = [];
   if (mesFoods) {
     for (let i = 0; i < mesFoods.length; i++) {
-      if (mesFoods[i].validate === true) {
+      if (mesFoods[i].validate.toString() === validateState) {
         mesFoodsFilter.push(mesFoods[i]);
       }
     }
@@ -42,7 +47,7 @@ const AdminFoods = () => {
         id="foodAdmin"
         className="htmlForm-label select"
         // value={weightState}
-        // onChange={weightFunction}
+        onChange={booleanFunction}
       >
         <option key={uuidv4()} value="">
           Sélectionner une valeur
@@ -54,9 +59,13 @@ const AdminFoods = () => {
           false
         </option>
       </select>
-      {mesFoodsFilter.map((food) => (
-        <li>{food.name}</li>
-      ))}
+      {validateState
+        ? mesFoods
+            .filter((food) =>
+              food.validate.toString().includes(`${validateState}`)
+            )
+            .map((foodfiltered) => <li>{foodfiltered.name}</li>)
+        : mesFoods.map((food) => <li>{food.name}</li>)}
     </div>
   );
 };

@@ -90,8 +90,8 @@ const Suscribe = () => {
           !ratioState
         ) {
           setChampManquant('un des champs est oublié ou mal rempli');
-        } else {
-          setChampManquant('Ce compte est déja existant');
+        } else if (error.response.data.message) {
+          setChampManquant(error.response.data.message);
         }
       });
   };
