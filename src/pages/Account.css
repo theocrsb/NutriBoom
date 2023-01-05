@@ -34,6 +34,8 @@ form#mb-3 {
   border: #dfa530 solid 1mm;
   border-radius: 20px;
   margin-bottom: 10%;
+  width: 60%;
+  margin-left: 20%;
 }
 
 div#mb-3 {
