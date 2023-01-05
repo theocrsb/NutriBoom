@@ -172,12 +172,12 @@ const Account = () => {
 
   return (
     <div>
+      <img
+        id="onglet"
+        src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
+        alt=""
+      />
       <div id="container">
-        <img
-          id="onglet"
-          src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-          alt=""
-        />
         <div id="modifProfil">
           <p className="ProfilActuel">Modifie ton profil</p>
 
@@ -187,13 +187,6 @@ const Account = () => {
             className="ProfilActuel"
             onSubmit={submitFunction}
           >
-            {/* {
-              <p id="li-actuel-mb3">
-                {" "}
-                Nom actuel:{" "}
-                <span className="manchette">{UserProfile?.lastname} </span>
-              </p>
-            } */}
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputNom" className="htmlForm-label" />
               <input
@@ -204,11 +197,7 @@ const Account = () => {
                 onChange={lastNameFunction}
               />
             </div>
-            {/* <p id="li-actuel-mb3">
-              {" "}
-              Prénom actuel:{" "}
-              <span className="manchette">{UserProfile?.firstname} </span>
-            </p> */}
+
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPrenom" className="htmlForm-label" />
               <input

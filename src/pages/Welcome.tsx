@@ -2,15 +2,17 @@ import SuscribeButton from '../components/SuscribeButton';
 import ConnexionButton from '../components/ConnexionButton';
 import ImcButton from '../components/ImcButton';
 import { HashLink as Link } from 'react-router-hash-link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import './Welcome.css';
+import { AuthContext } from '../contexts/Auth-context';
 
 const Welcome = () => {
   const [tailleState, setTailleState] = useState<string>();
   const [poidsState, setPoidsState] = useState<string>();
   const [message, setMessage] = useState<string>();
   const [messageBis, setMessageBis] = useState<string>();
+  const { savedToken } = useContext(AuthContext);
 
   const imcSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -91,6 +93,7 @@ const Welcome = () => {
         </Link>
       </div>
       <div className='saladePicture'>{/* image avec salade */}</div>
+      {(!savedToken &&(
       <div className='containerButton'>
         <Link to='/connexion'>
           <ConnexionButton />
@@ -99,6 +102,7 @@ const Welcome = () => {
           <SuscribeButton />
         </Link>
       </div>
+      ))}
       <h1 className='nboomText'>
         Avec NutriBoom, boostez votre hygiène de vie !
       </h1>
@@ -155,11 +159,13 @@ const Welcome = () => {
         </section>
       </div>
       <div>
+        {(!savedToken && (
         <div className='containerButton'>
           <Link to='/connexion'>
             <ConnexionButton />
           </Link>
         </div>
+        ))}
         <Link to='#hautNavBar' className='basDePageLink'>
           <p className='hautPage'> Revenir en haut de page </p>
         </Link>

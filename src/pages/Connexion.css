@@ -21,12 +21,11 @@ select {
   border: #dfa530 solid 1mm;
   background-color: rgba(0, 0, 0, 0.599);
   color: #afb563;
-  /* text-shadow: 1px 2px 0px rgba(0, 0, 0, 1); */
   font-weight: bold;
 }
 
 .fondCarotte {
-  background-image: url('/public/assets/bg-test.png');
+  background-image: url("/public/assets/bg-test.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -151,7 +150,7 @@ select {
 }
 @media screen and (min-width: 600px) {
   .fondCarotte {
-    background-image: url('/public/assets/bg-test.png');
+    background-image: url("/public/assets/bg-test.png");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

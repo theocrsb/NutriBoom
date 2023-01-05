@@ -1,31 +1,33 @@
-
-.sousEncadrement{
-  display: flex;
-flex-direction: column  ;
-
+.container-food {
+  color: #afb563;
 }
-.ecritureAdmin{
-color: #dfa530;
-border-color: #dfa530;  
-border-style: solid;
-width: 100%;
-margin-bottom: 50px;
-text-align: center;
+.sousEncadrement {
+  display: flex;
+  flex-direction: column;
+}
+.ecritureAdmin {
+  color: #dfa530;
+  border-color: #dfa530;
+  border-style: solid;
+  width: 100%;
+  margin-bottom: 50px;
+  text-align: center;
   list-style: none;
 }
-
-.ecriture{
-color: #dfa530;  
+.ecriture {
+  color: #dfa530;
 }
 
-.supp{
+.supp {
   color: #dfa530;
   font-weight: bold;
   margin-left: 20px;
   background-color: rgba(0, 0, 0, 0.505);
   border: solid 1mm #afb563;
-  border-radius: 50px; 
-
+  border-radius: 50px;
 }
 
-
+.users {
+  display: flex;
+  justify-content: space-around;
+}
