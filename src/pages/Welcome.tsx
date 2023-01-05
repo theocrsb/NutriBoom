@@ -159,11 +159,13 @@ const Welcome = () => {
         </section>
       </div>
       <div>
+        {(!savedToken && (
         <div className='containerButton'>
           <Link to='/connexion'>
             <ConnexionButton />
           </Link>
         </div>
+        ))}
         <Link to='#hautNavBar' className='basDePageLink'>
           <p className='hautPage'> Revenir en haut de page </p>
         </Link>
