@@ -45,13 +45,14 @@ interface Type {
   id: number;
   name: string;
 }
-interface Food {
+export interface Food {
   glucides: number;
   id: number;
   lipides: number;
   name: string;
   nombre_calories: number;
   proteines: number;
+  validate: boolean;
 }
 export interface Exercice {
   id: number;

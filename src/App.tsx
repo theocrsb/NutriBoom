@@ -25,11 +25,14 @@ import AddExercice from "./pages/AddExercice";
 import UpdateProfil from "./pages/UpdateProfil";
 import DeleteAccount from "./pages/DeleteAccount";
 import Account from "./pages/Account";
-import Admin from "./pages/Admin";
+import Admin from "./pages/AdminUsers";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
 import SoumettezNous from "./pages/SoumettezNous";
 import { UserContext, UserContextProvider } from "./contexts/User-Context";
+import AdminFoods from "./pages/AdminFoods";
+import AdminUsers from "./pages/AdminUsers";
+import AdminMessages from "./pages/AdminMessages";
 import Mailto from "./pages/Mailto";
 
 const App = () => {
@@ -135,6 +138,36 @@ const App = () => {
             path="/admin"
             element={
               savedToken !== null ? <Admin /> : <Navigate to="/connexion" />
+            }
+          ></Route>
+          <Route
+            path="/admin/foods"
+            element={
+              savedToken !== null ? (
+                <AdminFoods />
+              ) : (
+                <Navigate to="/connexion" />
+              )
+            }
+          ></Route>
+          <Route
+            path="/admin/users"
+            element={
+              savedToken !== null ? (
+                <AdminUsers />
+              ) : (
+                <Navigate to="/connexion" />
+              )
+            }
+          ></Route>
+          <Route
+            path="/admin/messages"
+            element={
+              savedToken !== null ? (
+                <AdminMessages />
+              ) : (
+                <Navigate to="/connexion" />
+              )
             }
           ></Route>
           <Route path="/*" element={<Page404 />}></Route>

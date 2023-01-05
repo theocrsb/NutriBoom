@@ -1,12 +1,14 @@
 #container {
   display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 #modifProfil {
   position: relative;
-
-  width: 40%;
-  left: 35%;
+  text-align: center;
+  width: 80%;
+  margin-left: 15%;
 }
 
 p#li-actuel-mb3 {
@@ -47,8 +49,12 @@ p.ProfilActuel {
   color: #dfa530;
   font-size: 2em;
   text-align: center;
+  font-weight: bold;
 }
 
+input::placeholder {
+  color: #afb563;
+}
 
 input.ProfilActuel {
   background-color: rgba(0, 0, 0, 0.599);
