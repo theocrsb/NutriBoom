@@ -187,35 +187,24 @@ const Account = () => {
             className="ProfilActuel"
             onSubmit={submitFunction}
           >
-            {
-              <p id="li-actuel-mb3">
-                {" "}
-                Nom actuel:{" "}
-                <span className="manchette">{UserProfile?.lastname} </span>
-              </p>
-            }
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputNom" className="htmlForm-label" />
               <input
                 type="nom"
                 className="ProfilActuel"
                 id="inputNom"
-                placeholder="Nouveau nom"
+                placeholder={UserProfile?.lastname}
                 onChange={lastNameFunction}
               />
             </div>
-            <p id="li-actuel-mb3">
-              {" "}
-              Prénom actuel:{" "}
-              <span className="manchette">{UserProfile?.firstname} </span>
-            </p>
+
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPrenom" className="htmlForm-label" />
               <input
                 type="prenom"
                 className="ProfilActuel"
                 id="inputPrenom"
-                placeholder="Nouveau prenom"
+               
                 onChange={firstNameFunction}
               />
             </div>

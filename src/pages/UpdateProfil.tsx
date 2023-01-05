@@ -1,3 +1,5 @@
+import { E } from "chart.js/dist/chunks/helpers.core";
+
 const UpdateProfil = ()=>{
     return(
         <div>
@@ -5,7 +7,7 @@ const UpdateProfil = ()=>{
              <form className="suscribeForm carotteFond">
   <div className="mb-3">
     <label htmlFor="inputNom" className="htmlForm-label"/>
-    <input type="nom" className="htmlForm-control" id="inputNom"placeholder="nom"/>
+    <input type="nom" className="htmlForm-control" id="inputNom"placeholder="nom" defaultValue={"Fuck"}/>
   </div>
   <div className="mb-3">
     <label htmlFor="inputPrenom" className="htmlForm-label"/>
