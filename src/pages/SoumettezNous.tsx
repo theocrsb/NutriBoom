@@ -1,7 +1,7 @@
-import axios from 'axios';
-import { FormEvent, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './Welcome.css';
+import axios from "axios";
+import { FormEvent, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Welcome.css";
 
 const SoumettezNous = () => {
   const nomElement = useRef<HTMLInputElement>(null);
@@ -9,7 +9,7 @@ const SoumettezNous = () => {
   const lipidesElement = useRef<HTMLInputElement>(null);
   const glucidesElement = useRef<HTMLInputElement>(null);
   const proteinesElement = useRef<HTMLInputElement>(null);
-  const [message, setMessage] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
 
   const navigate = useNavigate();
 
@@ -19,15 +19,13 @@ const SoumettezNous = () => {
 
   const handleSubmitForm1 = (e: FormEvent) => {
     e.preventDefault();
-    console.log('button form clicked');
+    console.log("button form clicked");
     console.log(nomElement.current?.value);
     console.log(calorieElement.current?.value);
     console.log(lipidesElement.current?.value);
     console.log(glucidesElement.current?.value);
     console.log(proteinesElement.current?.value);
 
-
-    
     axios
       .post(
         `http://localhost:8080/api/foods`,
@@ -41,25 +39,25 @@ const SoumettezNous = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
           },
         }
       )
       .then((response) => {
-        console.log('response', response);
+        console.log("response", response);
         setMessage(
-          'Aliment ajouté avec succès. Merci d attendre la validation d un administeur'
+          "Aliment ajouté avec succès. Merci d attendre la validation d un administeur"
         );
         setTimeout(() => {
-          navigate('/main');
+          navigate("/main");
         }, 1000);
       })
       .catch((error) => {
         console.log(error);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   };
@@ -69,14 +67,13 @@ const SoumettezNous = () => {
     console.log("button form clicked");
     console.log(activiteeElement?.current?.value);
     console.log(consoKalElement?.current?.value);
-    
 
     axios
       .post(
-        `http://localhost:8080/api/exercices`,
+        `http://localhost:8080/api/activity`,
         {
           name: activiteeElement?.current?.value,
-          calorieElement: consoKalElement?.current?.value,
+          conso_cal_1h: consoKalElement?.current?.value,
           validate: false,
         },
         {
@@ -104,117 +101,122 @@ const SoumettezNous = () => {
       });
   };
 
-
   return (
-    <div className='App'>
+    <div className="App">
       <h2>Soumettez nous un aliment</h2>
 
       {/*<form onSubmit={(e) =>{handleSubmitForm(e)}}>*/}
-      <form className='w-50 m-auto ' onSubmit={handleSubmitForm1}>
-        <div className='form-floating mb-3 d-flex justify-content-center'>
+      <form className="w-50 m-auto " onSubmit={handleSubmitForm1}>
+        <div className="form-floating mb-3 d-flex justify-content-center">
           <input
-            type='text'
-            className='form-control'
-            id='nameAliment'
+            type="text"
+            className="form-control"
+            id="nameAliment"
             placeholder="nom de l'aliment"
             ref={nomElement}
             required
           />
-          <label htmlFor='nameAliment' style={{ color: 'white' }}>
+          <label htmlFor="nameAliment" style={{ color: "white" }}>
             nom de l'aliment
           </label>
         </div>
 
-        <div className='form-floating mb-2'>
+        <div className="form-floating mb-2">
           <input
-            type='number'
-            className='form-control'
-            id='calorieAliment'
-            placeholder=''
+            type="number"
+            className="form-control"
+            id="calorieAliment"
+            placeholder=""
             ref={calorieElement}
             required
           />
-          <label htmlFor='calorieAliment' style={{ color: 'white' }}>
+          <label htmlFor="calorieAliment" style={{ color: "white" }}>
             Calories
           </label>
         </div>
 
-        <div className='form-floating mb-2'>
+        <div className="form-floating mb-2">
           <input
-            type='number'
-            className='form-control'
-            id='lipidesAliment'
-            placeholder=''
+            type="number"
+            className="form-control"
+            id="lipidesAliment"
+            placeholder=""
             ref={lipidesElement}
             required
           />
-          <label htmlFor='lipidesAliment' style={{ color: 'white' }}>
+          <label htmlFor="lipidesAliment" style={{ color: "white" }}>
             Lipides
           </label>
         </div>
 
-        <div className='form-floating mb-2'>
+        <div className="form-floating mb-2">
           <input
-            type='number'
-            className='form-control'
-            id='glucidesAliment'
-            placeholder='Glucides'
+            type="number"
+            className="form-control"
+            id="glucidesAliment"
+            placeholder="Glucides"
             ref={glucidesElement}
             required
           />
-          <label htmlFor='ProteinesAliment' style={{ color: 'white' }}>
+          <label htmlFor="ProteinesAliment" style={{ color: "white" }}>
             Glucides
           </label>
         </div>
 
-        <div className='form-floating mb-2'>
+        <div className="form-floating mb-2">
           <input
-            type='number'
-            className='form-control'
-            id='ProteinesAliment'
-            placeholder='Proteines'
+            type="number"
+            className="form-control"
+            id="ProteinesAliment"
+            placeholder="Proteines"
             ref={proteinesElement}
             required
           />
-          <label htmlFor='glucidesAliment' style={{ color: 'white' }}>
+          <label htmlFor="glucidesAliment" style={{ color: "white" }}>
             Proteines
           </label>
         </div>
-        <div className='d-flex justify-content-center'>
+        <div className="d-flex justify-content-center">
           <button
-            className='mt-3 btn btn-success btn inscription '
-            style={{ margin: '0' }}
-            type='submit'
+            className="mt-3 btn btn-success btn inscription "
+            style={{ margin: "0" }}
+            type="submit"
           >
             soumettre un aliment
           </button>
         </div>
       </form>
       <h2>Soumettre une activitee</h2>
-      <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
-        <div className='form-floating mb-3'>
+      <form className="w-50 m-auto" onSubmit={handleSubmitForm2}>
+        <div className="form-floating mb-3">
           <input
-            type='text'
-            className='form-control'
-            id='nameAliment'
+            type="text"
+            className="form-control"
+            id="nameAliment"
             placeholder="nom de l' aliment"
             ref={activiteeElement}
           />
-          <label htmlFor='nameAliment'>nom de l' activitee</label>
+          <label htmlFor="nameAliment">nom de l' activitee</label>
         </div>
-        <div className='form-floating mb-2'>
+        <div className="form-floating mb-2">
           <input
-            type='text'
-            className='form-control'
-            id='calorieAliment'
-            placeholder='Calorie consomée/h'
+            type="number"
+            className="form-control"
+            id="calorieAliment"
+            placeholder="Calorie consomée/h"
             ref={consoKalElement}
           />
-          <label htmlFor='calorieAliment'>Calorie consomée/h</label>
+          <label htmlFor="calorieAliment">Calorie consomée/h</label>
         </div>
-        <button className='mt-3 btn btn-success mb-3' type='submit'>
-          soumettre un aliment
-        </button>
+        <div className="d-flex justify-content-center">
+          <button
+            className="mt-3 btn btn-success btn inscription "
+            style={{ margin: "0" }}
+            type="submit"
+          >
+            soumettre une activité
+          </button>
+        </div>
       </form>
       <div>
         <p>{message}</p>
