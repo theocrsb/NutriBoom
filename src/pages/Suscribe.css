@@ -5,7 +5,7 @@
 }
 
 .carotteFond {
-  background-image: url("/public/assets/missCarottePenchee.svg");
+  background-image: url('/public/assets/missCarottePenchee.svg');
   background-repeat: no-repeat;
   background-size: 500px;
   background-position: 90px -90px;
@@ -133,22 +133,23 @@
 select {
   border-radius: 20px;
   border: #dfa530 solid 1mm;
-  background-color: rgba(0, 0, 0, 0.599);
+  background-color: rgba(255, 255, 255, 0.1);
   color: #afb563;
   font-weight: bold;
 }
 
-.select{
-width:250px
+.select {
+  width: 250px;
 }
 
-.messageDynamique{
-  color:#dfa530
+.messageDynamique {
+  text-align: center;
+  color: #dfa530;
 }
 
 @media screen and (min-width: 470px) {
   .carotteFond {
-    background-image: url("/public/assets/bg-test.png");
+    background-image: url('/public/assets/bg-test.png');
     background-repeat: no-repeat;
     background-size: cover;
     /* background-attachment: fixed; */
@@ -159,7 +160,7 @@ width:250px
 }
 @media screen and (min-width: 810px) {
   .carotteFond {
-    background-image: url("/public/assets/bg-test.png");
+    background-image: url('/public/assets/bg-test.png');
     background-repeat: no-repeat;
     background-size: contain;
     /* background-attachment: fixed; */
@@ -168,5 +169,3 @@ width:250px
     animation: bounce-in-right 1.1s both;
   }
 }
-
-

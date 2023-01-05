@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Welcome.css';
 
 const SoumettezNous = () => {
   const nomElement = useRef<HTMLInputElement>(null);
@@ -109,8 +110,8 @@ const SoumettezNous = () => {
       <h2>Soumettez nous un aliment</h2>
 
       {/*<form onSubmit={(e) =>{handleSubmitForm(e)}}>*/}
-      <form className='w-50 m-auto' onSubmit={handleSubmitForm1}>
-        <div className='form-floating mb-3'>
+      <form className='w-50 m-auto ' onSubmit={handleSubmitForm1}>
+        <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='text'
             className='form-control'
@@ -119,7 +120,9 @@ const SoumettezNous = () => {
             ref={nomElement}
             required
           />
-          <label htmlFor='nameAliment'>nom de l'aliment</label>
+          <label htmlFor='nameAliment' style={{ color: 'white' }}>
+            nom de l'aliment
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -127,11 +130,13 @@ const SoumettezNous = () => {
             type='number'
             className='form-control'
             id='calorieAliment'
-            placeholder='Calories'
+            placeholder=''
             ref={calorieElement}
             required
           />
-          <label htmlFor='calorieAliment'>Calories</label>
+          <label htmlFor='calorieAliment' style={{ color: 'white' }}>
+            Calories
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -139,11 +144,13 @@ const SoumettezNous = () => {
             type='number'
             className='form-control'
             id='lipidesAliment'
-            placeholder='Lipides'
+            placeholder=''
             ref={lipidesElement}
             required
           />
-          <label htmlFor='lipidesAliment'>Lipides</label>
+          <label htmlFor='lipidesAliment' style={{ color: 'white' }}>
+            Lipides
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -155,7 +162,9 @@ const SoumettezNous = () => {
             ref={glucidesElement}
             required
           />
-          <label htmlFor='ProteinesAliment'>Glucides</label>
+          <label htmlFor='ProteinesAliment' style={{ color: 'white' }}>
+            Glucides
+          </label>
         </div>
 
         <div className='form-floating mb-2'>
@@ -167,12 +176,19 @@ const SoumettezNous = () => {
             ref={proteinesElement}
             required
           />
-          <label htmlFor='glucidesAliment'>Proteines</label>
+          <label htmlFor='glucidesAliment' style={{ color: 'white' }}>
+            Proteines
+          </label>
         </div>
-
-        <button className='mt-3 btn btn-success' type='submit'>
-          soumettre un aliment
-        </button>
+        <div className='d-flex justify-content-center'>
+          <button
+            className='mt-3 btn btn-success btn inscription '
+            style={{ margin: '0' }}
+            type='submit'
+          >
+            soumettre un aliment
+          </button>
+        </div>
       </form>
       <h2>Soumettre une activitee</h2>
       <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
