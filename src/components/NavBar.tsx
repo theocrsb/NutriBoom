@@ -17,6 +17,7 @@ import { PayloadToken } from "../pages/Main";
 const Navbar = () => {
   const navigate = useNavigate();
   const [tokenRole, setTokenRole] = useState<string>();
+  const[decodedToken, setDecodedToken] = useState<PayloadToken>()
   const { savedToken } = useContext(AuthContext);
   console.log("voici le resultat pour savedToken", savedToken);
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
@@ -24,6 +25,7 @@ const Navbar = () => {
   useEffect(() => {
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
+      setDecodedToken(decoded)
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
     }
