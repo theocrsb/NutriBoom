@@ -11,12 +11,15 @@ const Footer = () => {
           <Link className="aPropos" to="/aboutus">
             <p>A propos</p>
           </Link>
-          <Link className="aPropos" to="/mailTo">
-            <p>Contactez-nous</p>
+          <Link className="aPropos" to="/Tuto">
+            <p>Tutoriel</p>
           </Link>
 
           <Link className="aPropos" to="/ajout">
             <p>Soumettez vos aliments / vos activités </p>
+          </Link>
+          <Link className="aPropos" to="/mailTo">
+            <p>Contactez-nous</p>
           </Link>
         </div>
       </div>
