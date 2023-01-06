@@ -33,6 +33,7 @@ import { UserContext, UserContextProvider } from "./contexts/User-Context";
 import AdminFoods from "./pages/AdminFoods";
 import AdminUsers from "./pages/AdminUsers";
 import AdminMessages from "./pages/AdminMessages";
+import AdminActivity from "./pages/AdminActivity";
 import Mailto from "./pages/Mailto";
 import Tuto from "./pages/Tuto";
 
@@ -166,6 +167,16 @@ const App = () => {
             element={
               savedToken !== null ? (
                 <AdminMessages />
+              ) : (
+                <Navigate to="/connexion" />
+              )
+            }
+          ></Route>
+          <Route
+            path="/adminActivité"
+            element={
+              savedToken !== null ? (
+                <AdminActivity />
               ) : (
                 <Navigate to="/connexion" />
               )

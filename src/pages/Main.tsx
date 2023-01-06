@@ -60,10 +60,11 @@ export interface Exercice {
   createdAt: string;
   time: number;
 }
-interface Activity {
+export interface Activity {
   id: number;
   name: string;
   conso_cal_1h: number;
+  validate: boolean;
 }
 //  interface pour l'objet du token payload decodé
 export interface PayloadToken {
