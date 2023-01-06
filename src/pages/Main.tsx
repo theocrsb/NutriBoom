@@ -12,6 +12,7 @@ import { type } from 'os';
 import '../components/PlusAddButton.css';
 import { UserContext } from '../contexts/User-Context';
 import { SyntheticEvent } from 'react';
+import { AuthContext } from '../contexts/Auth-context';
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
 export interface User {
@@ -81,12 +82,17 @@ const Main = () => {
   const { onUserChange } = useContext(UserContext);
   // Ajout du navigate
   const navigate = useNavigate();
+  const {savedToken}= useContext(AuthContext);
+  const [savedTokenState, setSavedTokenState]= useState<PayloadToken>()
+
 
   const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem('accesstoken')) {
       window.location.reload();
     }
   };
+
+  
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
   const convertToCal = (
     sexe: string,
@@ -124,8 +130,7 @@ const Main = () => {
     }
   };
   //  recuperation du token User
-  let recupToken = localStorage.getItem('accesstoken');
-
+  let recupToken = localStorage.getItem('accesstoken')
   console.log('voici le token ', recupToken);
 
   // Usetate pour recuperer dynamiquement la liste de tout les utilisateurs
@@ -141,6 +146,7 @@ const Main = () => {
   let userSearchId: string | undefined = searchUser();
   // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
+
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
         headers: {
