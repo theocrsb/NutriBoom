@@ -34,6 +34,8 @@ import AdminFoods from "./pages/AdminFoods";
 import AdminUsers from "./pages/AdminUsers";
 import AdminMessages from "./pages/AdminMessages";
 import Mailto from "./pages/Mailto";
+import { PayloadToken } from "./pages/Main";
+import jwt_Decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
 
 const App = () => {
@@ -47,6 +49,15 @@ const App = () => {
   // if (localStorage.getItem('accesstoken') == null) {
   //   window.location.reload();
   // }
+    let current_time = Date.now() / 1000;
+  if(savedToken){
+    const decoded: PayloadToken = jwt_Decode(savedToken);
+if ( decoded.exp < current_time) {
+console.log("token expired")
+ window.location.reload()
+}else{
+  console.log("token good")
+}}
   return (
     <div>
       <BrowserRouter>
@@ -164,7 +175,7 @@ const App = () => {
           <Route
             path="/adminMessages"
             element={
-              savedToken !== null ? (
+              savedToken !== null ?  (
                 <AdminMessages />
               ) : (
                 <Navigate to="/connexion" />

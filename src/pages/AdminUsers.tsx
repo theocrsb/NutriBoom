@@ -1,10 +1,12 @@
 import './Admin.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { User } from './Main';
 import { UserRole } from './Main';
-
-
+import { AuthContext } from '../contexts/Auth-context';
+import { PayloadToken } from './Main';
+import jwt_Decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,6 +14,8 @@ const Admin = () => {
   const [mesUsers, setMesUsers] = useState<User[]>([]);
   const [valueState, setValueState] = useState<string>()
   const [roleUser, setRoleUser] = useState<string>()
+const {savedToken} = useContext(AuthContext)
+const navigate = useNavigate
 
   let role : UserRole;
   
@@ -104,6 +108,8 @@ axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}/admin`,  {
       })
   
   }
+
+
 
 
   return (
