@@ -1,6 +1,42 @@
 .container-food {
   color: #afb563;
 }
+.triFood {
+  text-align: center;
+}
+.triFood h2 {
+  display: inline-block;
+}
+.list-food {
+  background-color: #000000;
+  border: solid 1mm #afb563;
+  border-radius: 10px;
+}
+.list-food li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 0px 10px;
+  color: #dfa530;
+  font-weight: bold;
+  background-color: #000000;
+  border: solid 1mm #afb563;
+  border-radius: 10px;
+}
+.checkbox-container {
+  font-weight: bold;
+  color: #dfa530;
+  background-color: #000000;
+  border: solid 1mm #dfa530;
+  border-radius: 10px;
+  display: inline-block;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+.checkbox {
+  display: inline-block;
+  padding: 0 10px;
+}
 .sousEncadrement {
   display: flex;
   flex-direction: column;
@@ -25,6 +61,5 @@
   background-color: rgba(0, 0, 0, 0.505);
   border: solid 1mm #afb563;
   border-radius: 50px;
+  padding: 0 5px;
 }
-
-

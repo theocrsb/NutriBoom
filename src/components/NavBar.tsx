@@ -156,7 +156,7 @@ const Navbar = () => {
                   {tokenRole === "admin" && (
                     <li className="nav-item dropdown">
                       <NavLink
-                        to="/admin"
+                        to="/"
                         className="nav-link buttonStyle  dropdown-toggle"
                         role="button"
                         data-bs-toggle="dropdown"
@@ -177,7 +177,7 @@ const Navbar = () => {
                             Action
                           </a> */}
                           <NavLink
-                            to="/admin/foods"
+                            to="/adminFoods"
                             className="nav-link buttonStyle "
                             onClick={tokenVerify}
                           >
@@ -186,7 +186,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <NavLink
-                            to="/admin/users"
+                            to="/adminUsers"
                             className="nav-link buttonStyle "
                             onClick={tokenVerify}
                           >
@@ -195,7 +195,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <NavLink
-                            to="/admin/messages"
+                            to="/adminMessages"
                             className="nav-link buttonStyle "
                             onClick={tokenVerify}
                           >
