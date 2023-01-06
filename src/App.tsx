@@ -135,14 +135,14 @@ const App = () => {
             }
           ></Route>
 
-          <Route
+          {/* <Route
             path="/admin"
             element={
               savedToken !== null ? <Admin /> : <Navigate to="/connexion" />
             }
-          ></Route>
+          ></Route> */}
           <Route
-            path="/admin/foods"
+            path="/adminFoods"
             element={
               savedToken !== null ? (
                 <AdminFoods />
@@ -152,7 +152,7 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/admin/users"
+            path="/adminUsers"
             element={
               savedToken !== null ? (
                 <AdminUsers />
@@ -162,7 +162,7 @@ const App = () => {
             }
           ></Route>
           <Route
-            path="/admin/messages"
+            path="/adminMessages"
             element={
               savedToken !== null ? (
                 <AdminMessages />
