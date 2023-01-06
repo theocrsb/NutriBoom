@@ -21,13 +21,22 @@ const Suscribe = () => {
   const navigate = useNavigate();
 
   const lastNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastNameState(e.currentTarget.value);
+    setLastNameState(e.currentTarget.value.trimEnd().trimStart());
   };
   const firstNameFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstNameState(e.currentTarget.value);
+    setFirstNameState(e.currentTarget.value.trimEnd().trimStart());
   };
   const mailFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMailState(e.currentTarget.value);
+    setMailState(
+      e.currentTarget.value
+        .toLocaleLowerCase()
+        .trim()
+        .split(' ')
+        .join('')
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
+      // normalize et replace pour les accent et autres le reste pour les espaces
+    );
   };
   const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordState(e.currentTarget.value);
@@ -45,7 +54,7 @@ const Suscribe = () => {
     setHeightState(valeurConvertieNombre);
   };
   const sexFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSexState(e.currentTarget.value);
+    setSexState(e.currentTarget.value.trim().trimStart());
   };
 
   const ratioFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -137,9 +146,9 @@ const Suscribe = () => {
   }
   console.log(ageOptions);
 
-  const handleKeyPress=(e:React.FormEvent)=>{
-console.log("youpressed key",e)
-  }
+  const handleKeyPress = (e: React.FormEvent) => {
+    console.log('youpressed key', e);
+  };
 
   return (
     <div>
@@ -151,7 +160,6 @@ console.log("youpressed key",e)
         method='POST'
         className='suscribeForm carotteFond'
         onSubmit={submitFunction}
-      
       >
         <div className='mb-3'>
           <label htmlFor='inputNom' className='htmlForm-label text-center' />{' '}
@@ -330,7 +338,7 @@ console.log("youpressed key",e)
           </select>
         </div>
         <span className='messageDynamique'>{champManquant}</span>
-        <SuscribeButton/>
+        <SuscribeButton />
       </form>
     </div>
   );
