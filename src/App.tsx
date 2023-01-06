@@ -34,6 +34,7 @@ import AdminFoods from "./pages/AdminFoods";
 import AdminUsers from "./pages/AdminUsers";
 import AdminMessages from "./pages/AdminMessages";
 import Mailto from "./pages/Mailto";
+import Tuto from "./pages/Tuto";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
@@ -174,6 +175,7 @@ const App = () => {
           <Route path="/inscriptionok" element={<InscriptionOk />}></Route>
           <Route path="/ajout" element={<SoumettezNous />}></Route>
           <Route path="/mailTo" element={<Mailto />}></Route>
+          <Route path="/Tuto" element={<Tuto />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>
