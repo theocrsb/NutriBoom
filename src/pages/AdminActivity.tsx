@@ -44,29 +44,29 @@ const AdminActivity = () => {
     console.log("handlecheckValue", e.currentTarget.value);
     setValidateState(e.currentTarget.value);
   };
-//   axios
-//     .patch(
-//       `http://localhost:8080/api/activity/`,
-//       {
-//         validate: validateState,
-//       },
-//       {
-//         headers: {
-//           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-//         },
-//       }
-//     )
-//     .then((response) => {
-//       console.log(response);
-//     })
-//     .catch((error) => {
-//       console.log(error);
+  // axios
+  //   .patch(
+  //     `http://localhost:8080/api/activity`,
+  //     {
+  //       validate: patchState,
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+  //       },
+  //     }
+  //   )
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
 
-//       if (error.response.data.statusCode === 401) {
-//         localStorage.removeItem("accesstoken");
-//         navigate("/connexion");
-//       }
-//     });
+  //     if (error.response.data.statusCode === 401) {
+  //       localStorage.removeItem("accesstoken");
+  //       navigate("/connexion");
+  //     }
+  //   });
   const handleDeleteli = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.value);
     if (window.confirm("Veux-tu vraiment supprimer cette activité?")) {
