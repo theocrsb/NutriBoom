@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { Food } from "./Main";
@@ -7,10 +7,20 @@ import { User } from "./Main";
 import { UserRole } from "./Main";
 import "./Admin.css";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/Auth-context";
+
 let allFoods: Food[] = [];
 const AdminFoods = () => {
   // Ajout du navigate
   const navigate = useNavigate();
+ 
+  const {savedToken}= useContext(AuthContext)
+  //  Vérification dans la page de la validité du token
+  const {valideTimeToken}= useContext(AuthContext)
+//   if(valideTimeToken === false){
+//   navigate("/connexion")
+// }
+
 
   const [validateState, setValidateState] = useState<string>();
   const [mesFoods, setMesFoods] = useState<Food[]>([]);
@@ -22,6 +32,7 @@ const AdminFoods = () => {
     setValidateState(e.currentTarget.value);
   };
   useEffect(() => {
+
     axios
       .get("http://localhost:8080/api/foods", {
         headers: {
@@ -33,11 +44,15 @@ const AdminFoods = () => {
         allFoods = res.data;
         setMesFoods(res.data);
         console.log("mes  dansfoods le state", mesFoods);
+     
       })
       .catch((error) => {
         console.log("something went wrong", error);
+     window.location.reload()
       });
   }, []);
+
+
   const handleDeleteli = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.value);
     if (window.confirm("Veux-tu vraiment supprimer cet aliment?")) {
@@ -58,7 +73,7 @@ const AdminFoods = () => {
             localStorage.removeItem("accesstoken");
             navigate("/connexion");
           }
-        });
+    });
     }
   };
 
