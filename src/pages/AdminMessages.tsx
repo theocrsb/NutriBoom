@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { link } from 'fs';
-import { divide } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Admin.css';
@@ -29,9 +27,6 @@ const AdminMessage = () => {
       });
   }, []);
   console.log('messages', messages);
-  // console.log('heure', messages[4].createdAt);
-  // console.log('type heure', typeof messages[4].createdAt);
-  // fonction suppression message
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.value);
     if (window.confirm('Veux-tu vraiment supprimer ce message ?')) {
@@ -74,7 +69,6 @@ const AdminMessage = () => {
               </small>
             </div>
             <p className='mb-1'>{x.texteArea}</p>
-            {/* Bas message */}
             <div className='d-flex justify-content-between'>
               <small className='text-muted'>{x.name}</small>
               <div className=''>
