@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { AuthContext } from "./contexts/Auth-context";
@@ -35,20 +35,23 @@ import AdminUsers from "./pages/AdminUsers";
 import AdminMessages from "./pages/AdminMessages";
 import AdminActivity from "./pages/AdminActivity";
 import Mailto from "./pages/Mailto";
+import { PayloadToken } from "./pages/Main";
+import jwt_decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
+  const {valideTimeToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
+  const [expireToken, setExpireToken] = useState<boolean>()
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",
     localStorage.getItem("accesstoken")
   );
-  // if (localStorage.getItem('accesstoken') == null) {
-  //   window.location.reload();
-  // }
+  
   return (
+   
     <div>
       <BrowserRouter>
         <div id="#hautNavBar">
@@ -66,7 +69,7 @@ const App = () => {
           <Route
             path="/main"
             element={
-              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
+              savedToken !== null ? <Main /> : <Navigate to ="/connexion"/>
             }
           />
           <Route path="/connexion" element={<Connexion />} />
@@ -147,7 +150,7 @@ const App = () => {
             element={
               savedToken !== null ? (
                 <AdminFoods />
-              ) : (
+              )  :  (
                 <Navigate to="/connexion" />
               )
             }
@@ -165,7 +168,7 @@ const App = () => {
           <Route
             path="/adminMessages"
             element={
-              savedToken !== null ? (
+              savedToken !== null ?  (
                 <AdminMessages />
               ) : (
                 <Navigate to="/connexion" />

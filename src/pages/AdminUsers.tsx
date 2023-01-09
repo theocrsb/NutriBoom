@@ -1,10 +1,12 @@
 import './Admin.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { User } from './Main';
 import { UserRole } from './Main';
-
-
+import { AuthContext } from '../contexts/Auth-context';
+import { PayloadToken } from './Main';
+import jwt_Decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -12,6 +14,14 @@ const Admin = () => {
   const [mesUsers, setMesUsers] = useState<User[]>([]);
   const [valueState, setValueState] = useState<string>()
   const [roleUser, setRoleUser] = useState<string>()
+const {savedToken} = useContext(AuthContext)
+  // Verification dans la page de la validité du token
+  const {valideTimeToken}= useContext(AuthContext)
+  if(valideTimeToken === "token"){
+  window.location.reload()
+  }
+
+const navigate = useNavigate
 
   let role : UserRole;
   
@@ -45,6 +55,7 @@ const Admin = () => {
       })
       .catch((error) => {
         console.log('something went wrong', error);
+        window.location.reload()
       });
   }, []);
 
@@ -101,10 +112,10 @@ axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}/admin`,  {
         
       }).catch((error)=>{
         console.log("pas update")
+        window.location.reload()
       })
   
   }
-
 
   return (
     <div className='encadrement'>
@@ -125,9 +136,9 @@ axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}/admin`,  {
 <br />
   <input className='inputRadio' type="radio" id="admin" name="drone" value="2" onChange={adminValue}/>
       <label htmlFor="admin">admin</label>
-       <input className='inputRadio' type="radio" id="user" name="drone" value="1" onChange={userValue}/>
-      <label htmlFor="user">user</label>
-         <button className='supp' value= {user.id} onClick={validateRole}>valider</button>
+        <input className='inputRadio' type="radio" id="user" name="drone" value="1" onChange={userValue}/>
+        <label htmlFor="user">user</label>
+          <button className='supp' value= {user.id} onClick={validateRole}>valider</button>
         </li>    
       ))}
       </div>

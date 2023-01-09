@@ -26,12 +26,13 @@ const Navbar = () => {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
+  
     }
   });
 
-  const tokenVerify = (e: SyntheticEvent) => {
+  const tokenVerify = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!localStorage.getItem("accesstoken")) {
-      window.location.reload();
+      window.location.reload();  
     }
   };
   const handleClickDecoBtn = (e: React.SyntheticEvent<HTMLInputElement>) => {
@@ -161,7 +162,7 @@ const Navbar = () => {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                        onClick={tokenVerify}
+                         onClick={tokenVerify}
                       >
                         <strong
                         // data-bs-toggle="collapse"
