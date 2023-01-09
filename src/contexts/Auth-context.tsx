@@ -68,8 +68,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   const current_time = Date.now() /1000
     if (recupToken) {
       const decoded: PayloadToken = jwt_decode(recupToken);
-      console.log("Test token récupéré", decoded);
-      if (decoded.exp < current_time){
+      if (decoded.exp > current_time){
         setTokenExpired(false)
       }else{
         setTokenExpired(true)
@@ -77,17 +76,6 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
     }
   });
 
-
-  const expiredAuthChange = (tokenExpired:boolean)=>{  
-  setTokenExpired(tokenExpired)
-  }
-
-  console.log("test token payload",token)
-  console.log("test token expired",tokenExpired)
-  console.log("jwt décodé",test)
-
- 
-  
 
   const contextValue = {
     savedToken: token,
