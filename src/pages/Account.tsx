@@ -6,8 +6,6 @@ import "./Account.css";
 import { useNavigate } from "react-router-dom";
 import { User } from "./Main";
 
-
-
 export interface PayloadToken {
   exp: number;
   iat: number;
@@ -17,6 +15,8 @@ export interface PayloadToken {
 }
 
 const Account = () => {
+  const [passwordState, setPasswordState] = useState<string>();
+  const [passwordState2, setPasswordState2] = useState<string>();
   const [UserProfile, setUserProfile] = useState<User>();
   const [updateLastname, setUpdateLastname] = useState<string>();
   const [updateFirstname, setUpdateFirstname] = useState<string>();
@@ -96,51 +96,58 @@ const Account = () => {
     setUpdateMail(e.currentTarget.value);
   };
 
-  const passwordFunction = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const passwordFunction1 = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUpdatePassword(e.currentTarget.value);
   };
-
+  const passwordFunction2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUpdatePassword(e.currentTarget.value);
+  };
   const submitFunction = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("cliké");
     console.log("id du user a patch", searchUserIdValue);
-    axios
-      .patch(
-        `http://localhost:8080/api/users/${searchUserIdValue}`,
-        {
-          id: searchUserIdValue,
-          lastname: updateLastname,
-          firstname: updateFirstname,
-          age: updateage,
-          gender: updateGender,
-          weight: updateWeight,
-          height: updateHeight,
-          email: updateMail,
-          password: updatePassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+    // fonction de verification du mot de passe
+    if (passwordState !== passwordState2) {
+      alert("Les mots de passe ne correspondent pas.");
+    } else {
+      axios
+        .patch(
+          `http://localhost:8080/api/users/${searchUserIdValue}`,
+          {
+            id: searchUserIdValue,
+            lastname: updateLastname,
+            firstname: updateFirstname,
+            age: updateage,
+            gender: updateGender,
+            weight: updateWeight,
+            height: updateHeight,
+            email: updateMail,
+            password: updatePassword,
           },
-        }
-      )
-      .then((response) => {
-        console.log(response);
-        console.log("id du user a patch dans le response", searchUserIdValue);
-        setTimeout(() => {
-          navigate("/main");
-        }, 1000);
-        setMessage("Modifications sauvegardées !");
-      })
-      .catch((error) => {
-        console.log(error);
-        console.log("id du user a patch dans le catch", searchUserIdValue);
-        setMessage(error.response.data.message);
-        if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
-        }
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response);
+          console.log("id du user a patch dans le response", searchUserIdValue);
+          setTimeout(() => {
+            navigate("/main");
+          }, 1000);
+          setMessage("Modifications sauvegardées !");
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log("id du user a patch dans le catch", searchUserIdValue);
+          setMessage(error.response.data.message);
+          if (error.response.data.statusCode === 401) {
+            localStorage.removeItem("accesstoken");
+            navigate("/connexion");
+          }
+        });
+    }
   };
 
   let age = 6;
@@ -283,7 +290,6 @@ const Account = () => {
               >
                 <option key={uuidv4()} value="">
                   Nouvelle taille
-                  
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
@@ -340,13 +346,23 @@ const Account = () => {
                 className="ProfilActuel"
                 id="inputPassword"
                 placeholder="Nouveau mot de passe"
-                onChange={passwordFunction}
+                onChange={passwordFunction1}
               />
               {/* <i
                 className="far fa-eye"
                 id="togglePassword"
                 style={{marginLeft: '-30px', cursor: "pointer"}}
               ></i> */}
+            </div>
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputPassword" className="htmlForm-label" />
+              <input
+                type="password"
+                className="ProfilActuel"
+                id="inputPassword"
+                placeholder="Comfirmez mot de passe"
+                onChange={passwordFunction2}
+              />
             </div>
             <span className="message">{message}</span>
             <div className="button">
