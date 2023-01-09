@@ -155,7 +155,9 @@ const Suscribe = () => {
   }
   console.log(ageOptions);
 
-
+  const handleKeyPress = (e: React.FormEvent) => {
+    console.log('youpressed key', e);
+  };
 
   return (
     <div>
@@ -357,8 +359,8 @@ const Suscribe = () => {
             </option>
           </select>
         </div>
-        <span className="messageDynamique">{champManquant}</span>
-        <SuscribeButton  />
+        <span className='messageDynamique'>{champManquant}</span>
+        <SuscribeButton/>
       </form>
     </div>
   );
