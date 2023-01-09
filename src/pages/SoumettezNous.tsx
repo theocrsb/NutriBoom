@@ -220,7 +220,7 @@ const SoumettezNous = () => {
             style={{ margin: '0' }}
             type='submit'
           >
-            soumettre une activité
+            soumettre une activitée
           </button>
         </div>
       </form>
