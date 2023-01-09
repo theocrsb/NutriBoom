@@ -82,8 +82,8 @@ const Main = () => {
   const { onUserChange } = useContext(UserContext);
   // Ajout du navigate
   const navigate = useNavigate();
-  const {savedToken}= useContext(AuthContext);
-  const [savedTokenState, setSavedTokenState]= useState<PayloadToken>()
+  // const {savedToken}= useContext(AuthContext);
+  // const [savedTokenState, setSavedTokenState]= useState<PayloadToken>()
 
 
   const tokenVerify = (e: SyntheticEvent) => {
