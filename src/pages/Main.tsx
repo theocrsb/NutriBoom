@@ -83,16 +83,14 @@ const Main = () => {
   // Ajout du navigate
   const navigate = useNavigate();
   const {savedToken}= useContext(AuthContext);
-  const [savedTokenState, setSavedTokenState]= useState<PayloadToken>()
-
-
+  
   const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem('accesstoken')) {
       window.location.reload();
     }
   };
 
-  
+
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
   const convertToCal = (
     sexe: string,
@@ -146,6 +144,18 @@ const Main = () => {
   let userSearchId: string | undefined = searchUser();
   // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
+    
+//     if(savedToken){
+//   const decoded: PayloadToken  = jwt_decode(savedToken)
+//   const current_time= Date.now() / 1000
+//   if(decoded.exp >current_time){
+//     console.log('tokengood')
+//   }else{
+//     console.log("tokdenexpired")
+//     navigate("/connexion")
+//   }
+// }
+  
 
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
@@ -164,6 +174,8 @@ const Main = () => {
         console.log('error', error.response.data.statusCode);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem('accesstoken');
+          // window.location.reload()
+          // navigate("/connexion")
         }
       });
   }, []);

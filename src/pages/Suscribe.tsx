@@ -146,9 +146,7 @@ const Suscribe = () => {
   }
   console.log(ageOptions);
 
-  const handleKeyPress = (e: React.FormEvent) => {
-    console.log("youpressed key", e);
-  };
+
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { AuthContext } from "./contexts/Auth-context";
@@ -40,7 +40,9 @@ import Tuto from "./pages/Tuto";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
+  const {verifToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
+  const [expireToken, setExpireToken] = useState<boolean>()
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",
@@ -48,6 +50,7 @@ const App = () => {
   );
   
   return (
+   
     <div>
       <BrowserRouter>
         <div id="#hautNavBar">
@@ -65,7 +68,7 @@ const App = () => {
           <Route
             path="/main"
             element={
-              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
+              savedToken !== null ? <Main /> : <Navigate to ="/connexion"/>
             }
           />
           <Route path="/connexion" element={<Connexion />} />
