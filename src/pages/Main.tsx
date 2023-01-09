@@ -157,6 +157,18 @@ const Main = () => {
 // }
   
 
+//     if(savedToken){
+//   const decoded: PayloadToken  = jwt_decode(savedToken)
+//   const current_time= Date.now() / 1000
+//   if(decoded.exp >current_time){
+//     console.log('tokengood')
+//   }else{
+//     console.log("tokdenexpired")
+//     navigate("/connexion")
+//   }
+// }
+  
+
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
         headers: {
