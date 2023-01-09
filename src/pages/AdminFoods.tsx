@@ -18,9 +18,7 @@ const AdminFoods = () => {
   const {savedToken}= useContext(AuthContext)
   //  Vérification dans la page de la validité du token
   const {valideTimeToken}= useContext(AuthContext)
-//   if(valideTimeToken === false){
-//   navigate("/connexion")
-// }
+
 
 
   const [validateState, setValidateState] = useState<string>();
