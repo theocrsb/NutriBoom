@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import { Food } from "./Main";
 import "./Admin.css";
@@ -7,14 +7,27 @@ import { useNavigate } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
 
 // let convertValue: boolean;
+import { AuthContext } from "../contexts/Auth-context";
+
+let allFoods: Food[] = [];
 const AdminFoods = () => {
   // Ajout du navigate
   const navigate = useNavigate();
   const [updateModerate, setUpdateModerate] = useState<string>();
+ 
+  const {savedToken}= useContext(AuthContext)
+  //  Vérification dans la page de la validité du token
+  const {valideTimeToken}= useContext(AuthContext)
+//   if(valideTimeToken === false){
+//   navigate("/connexion")
+// }
+
+
   const [validateState, setValidateState] = useState<string>();
   const [mesFoods, setMesFoods] = useState<Food[]>([]);
 
   useEffect(() => {
+
     axios
       .get("http://localhost:8080/api/foods", {
         headers: {
@@ -28,6 +41,7 @@ const AdminFoods = () => {
       })
       .catch((error) => {
         console.log("something went wrong", error);
+     window.location.reload()
       });
   }, []);
   const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
@@ -75,7 +89,7 @@ const AdminFoods = () => {
             localStorage.removeItem("accesstoken");
             navigate("/connexion");
           }
-        });
+    });
     }
   };
   const updateFunction = (e: React.MouseEvent<HTMLButtonElement>) => {

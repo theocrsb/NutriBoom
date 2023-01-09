@@ -10,12 +10,12 @@ interface AuthContextProps {
 export interface AuthContextInterface {
   savedToken: string | null;
   onAuthChange: (token: string | null) => void;
-  verifToken: boolean;
+  valideTimeToken: string | null;
 }
 
 export const AuthContext = createContext<AuthContextInterface>({
   savedToken: null,
-  verifToken: true,
+  valideTimeToken: null,
   onAuthChange: (token: string | null) => {},
 });
 export const AuthContextProvider = ({ children }: AuthContextProps) => {
@@ -50,13 +50,13 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   // );
   let recupToken: string | null;
   recupToken = localStorage.getItem("accesstoken");
-  const current_time = Date.now()/1000
+  
 
   const [token, setToken] = useState<string | null>(
     recupToken ? recupToken : null
   );
 
-     const [tokenExpired, setTokenExpired] =useState<boolean>(true)
+     const [tokenExpired, setTokenExpired] =useState<string|null>(null)
     const[test, setTest] =useState<JwtPayload>()
 
  
@@ -64,24 +64,27 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
     setToken(token);
   };
 
+
+
  useEffect(() => {
-  const current_time = Date.now() /1000
-    if (recupToken) {
-      const decoded: PayloadToken = jwt_decode(recupToken);
-      if (decoded.exp > current_time){
-        setTokenExpired(false)
+ 
+    if (token) {
+      const decoded: PayloadToken = jwt_decode(token);
+      if (Date.now() <= decoded.exp * 1000){
+        setTokenExpired("token valide")
       }else{
-        setTokenExpired(true)
-      }
+        setTokenExpired("token expiré")  
+      }   
     }
   });
 
+// Récupération d'une variable utilisable de token expiré
+  console.log("état d'expiration du token",tokenExpired)
 
   const contextValue = {
     savedToken: token,
-    verifToken:tokenExpired,
+    valideTimeToken:tokenExpired,
     onAuthChange: handleAuthChange,
-   
   };
 
   

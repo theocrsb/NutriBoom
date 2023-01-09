@@ -40,7 +40,7 @@ import Tuto from "./pages/Tuto";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
-  const {verifToken} = useContext(AuthContext);
+  const {valideTimeToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
   const [expireToken, setExpireToken] = useState<boolean>()
   console.log("save token dans app -----------", savedToken);
@@ -149,7 +149,7 @@ const App = () => {
             element={
               savedToken !== null ? (
                 <AdminFoods />
-              ) : (
+              )  :  (
                 <Navigate to="/connexion" />
               )
             }
