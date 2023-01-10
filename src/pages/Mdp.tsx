@@ -6,29 +6,25 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth-context";
 
-const Connexion = () => {
+const Mdpx = () => {
   const { onAuthChange } = useContext(AuthContext);
   const [mailState, setMailState] = useState<string>();
-  const [passwordState, setPasswordState] = useState<string>();
   const [message, setMessage] = useState<string>();
+
   const navigate = useNavigate();
   let recupToken: string | null;
 
   const mailFunction = (e: React.SyntheticEvent<HTMLInputElement>) => {
     setMailState(e.currentTarget.value);
   };
-  const passwordFunction = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    setPasswordState(e.currentTarget.value);
-  };
   const handleLoginForm = async (e: FormEvent) => {
     e.preventDefault();
     console.log("button form clicked");
     console.log(mailState);
-    console.log(passwordState);
+
     await axios
       .post("http://localhost:8080/api/auth/login", {
         email: mailState,
-        password: passwordState,
       })
       .then((token) => {
         console.log(token.data.access_token);
@@ -43,15 +39,15 @@ const Connexion = () => {
         setTimeout(() => {
           navigate("/main");
         }, 1000);
-        setMessage("Connexion réussie !");
+        setMessage("Regardez vos mails!");
       })
       .catch((error) => {
         console.log("connexion impossible", error);
-        if (!mailState || !passwordState) {
+        if (!mailState) {
           console.log("erreur", error.response.data.message);
           setMessage(error.response.data.message);
         } else if (error.message === "Request failed with status code 401") {
-          setMessage("Mot de passe ou adresse mail inconnu(e)");
+          setMessage(" adresse mail inconnu(e)");
         }
       });
   };
@@ -60,17 +56,21 @@ const Connexion = () => {
   //et affichent avant re-render une première valeur undefined//
   useEffect(() => {
     console.log("mail dans useEffect", mailState);
-    console.log("password dans useEffect", passwordState);
   });
+
   return (
     <div className="fondCarotte">
       <div className="textConnect">
-        <h1>Connecte toi!</h1>
-        <p>Tu n'as pas encore de compte sur nutriBoom?</p>
+        <h1>Tu as oublié ton mot de passe?</h1>
+
         <Link className="linkSub" to="/suscribe">
           <p className="lienInscription">
             {" "}
-            <strong>Inscription</strong>
+            <strong>Entres ton email </strong>
+            <p>
+              Tu recevras dans ta boite de reception un lien pour te crée un
+              nouveau mot de passe
+            </p>
           </p>
         </Link>
       </div>
@@ -86,31 +86,16 @@ const Connexion = () => {
               onInput={mailFunction}
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="inputPassword" className="htmlForm-label" />
-            <input
-              type="password"
-              className="htmlForm-control"
-              id="inputPassword"
-              placeholder="mot de passe"
-              onInput={passwordFunction}
-            />
-          </div>
+
           <button type="submit" className="btn inscription">
             {" "}
-            Se connecter
+            Envoyer
           </button>
         </form>
-        <Link className="linkSub" to="/mdo">
-          <p className="lienInscription">
-            {" "}
-            <p>Mot de passe oublié</p>
-          </p>
-        </Link>
       </div>
       <span className="message">{message}</span>
       <div className="connexionButton">{/* <ConnexionButton /> */}</div>
     </div>
   );
 };
-export default Connexion;
+export default Mdpx;
