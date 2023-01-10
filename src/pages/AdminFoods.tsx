@@ -18,6 +18,9 @@ const AdminFoods = () => {
   const { savedToken } = useContext(AuthContext);
   //  Vérification dans la page de la validité du token
   const { valideTimeToken } = useContext(AuthContext);
+  if (valideTimeToken === "token") {
+    window.location.reload();
+  }
 
   const [updateModerate, setUpdateModerate] = useState<boolean>();
   const [validateState, setValidateState] = useState<string>();
