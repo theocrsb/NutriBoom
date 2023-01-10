@@ -150,29 +150,41 @@ const Admin = () => {
                     </strong>
                   </p>
                 </div>
-                <div className="col">{user.email}</div>
+                <div className="col">
+                  {user.email}{" "}
+                  {user.role.label === "user" ? (
+                    <span className="text" style={{ color: "green" }}>
+                      {user.role.label}
+                    </span>
+                  ) : (
+                    <span className="text" style={{ color: "purple" }}>
+                      {" "}
+                      {user.role.label}
+                    </span>
+                  )}
+                </div>
                 <div className="col btn-gestion">
                   <div className="col"></div>
                   <input
                     className="form-check-input"
-                    type="checkbox"
+                    type="radio"
                     id="admin"
                     name="drone"
                     value="2"
                     onChange={adminValue}
-                    checked={user.role.label === "admin" ? true : false}
+                    // defaultChecked={user.role.label === "admin" ? true : false}
                   />
                   <label className="label" htmlFor="admin">
                     admin
                   </label>
                   <input
                     className="form-check-input "
-                    type="checkbox"
+                    type="radio"
                     id="user"
                     name="drone"
                     value="1"
                     onChange={userValue}
-                    checked={user.role.label === "user" ? true : false}
+                    // defaultChecked={user.role.label === "user" ? true : false}
                   />
                   <label className="label" htmlFor="user">
                     user
