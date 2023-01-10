@@ -38,20 +38,20 @@ import Mailto from "./pages/Mailto";
 import { PayloadToken } from "./pages/Main";
 import jwt_decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
+import ResetPass from "./pages/ResetPass";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
   const {valideTimeToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
-  const [expireToken, setExpireToken] = useState<boolean>()
+  const [expireToken, setExpireToken] = useState<boolean>();
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",
     localStorage.getItem("accesstoken")
   );
-  
+
   return (
-   
     <div>
       <BrowserRouter>
         <div id="#hautNavBar">
@@ -69,7 +69,7 @@ const App = () => {
           <Route
             path="/main"
             element={
-              savedToken !== null ? <Main /> : <Navigate to ="/connexion"/>
+              savedToken !== null ? <Main /> : <Navigate to="/connexion" />
             }
           />
           <Route path="/connexion" element={<Connexion />} />
@@ -168,7 +168,7 @@ const App = () => {
           <Route
             path="/adminMessages"
             element={
-              savedToken !== null ?  (
+              savedToken !== null ? (
                 <AdminMessages />
               ) : (
                 <Navigate to="/connexion" />
@@ -190,6 +190,7 @@ const App = () => {
           <Route path="/ajout" element={<SoumettezNous />}></Route>
           <Route path="/mailTo" element={<Mailto />}></Route>
           <Route path="/Tuto" element={<Tuto />}></Route>
+          <Route path="/resetpass" element={<ResetPass />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

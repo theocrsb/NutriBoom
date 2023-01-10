@@ -11,12 +11,14 @@ export interface AuthContextInterface {
   savedToken: string | null;
   onAuthChange: (token: string | null) => void;
   valideTimeToken: string | null;
+  tokenFunction : (token : string|null)=>void
 }
 
 export const AuthContext = createContext<AuthContextInterface>({
   savedToken: null,
   valideTimeToken: null,
   onAuthChange: (token: string | null) => {},
+  tokenFunction: (token: string|null)=>{}
 });
 export const AuthContextProvider = ({ children }: AuthContextProps) => {
   /**
@@ -64,19 +66,19 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
     setToken(token);
   };
 
-
-
- useEffect(() => {
- 
+// Fonction contextuelle permettant de vérifier l'expiration d'un token
+  const tokenFunction=( token : string|null)=>{
     if (token) {
       const decoded: PayloadToken = jwt_decode(token);
       if (Date.now() <= decoded.exp * 1000){
         setTokenExpired("token valide")
+        return true
       }else{
-        setTokenExpired("token expiré")  
+        setTokenExpired("token expiré") 
+        return false 
       }   
     }
-  });
+  }
 
 // Récupération d'une variable utilisable de token expiré
   console.log("état d'expiration du token",tokenExpired)
@@ -85,6 +87,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
     savedToken: token,
     valideTimeToken:tokenExpired,
     onAuthChange: handleAuthChange,
+    tokenFunction: tokenFunction
   };
 
   
