@@ -5,22 +5,24 @@ import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import "./Admin.css";
 import { Activity } from "./Main";
+import { FcCheckmark } from "react-icons/fc";
 
 let allActivity: Activity[] = [];
 
 const AdminActivity = () => {
   // Ajout du navigate
   const navigate = useNavigate();
+  const [updateModerate, setUpdateModerate] = useState<string>();
 
   const [validateState, setValidateState] = useState<string>();
   const [Activity, setActivity] = useState<Activity[]>([]);
-  const booleanFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(
-      "--------------setValidateState(e.currentTarget.value)",
-      e.currentTarget.value
-    );
-    setValidateState(e.currentTarget.value);
-  };
+  // const booleanFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   console.log(
+  //     "--------------setValidateState(e.currentTarget.value)",
+  //     e.currentTarget.value
+  //   );
+  //   setValidateState(e.currentTarget.value);
+  // };
 
   useEffect(() => {
     axios
@@ -31,7 +33,7 @@ const AdminActivity = () => {
       })
       .then((res) => {
         console.log("mes activites", res.data);
-        allActivity = res.data;
+        // allActivity = res.data;
         setActivity(res.data);
         console.log("mes  activités dans le state", Activity);
       })
@@ -40,6 +42,26 @@ const AdminActivity = () => {
       });
   }, []);
 
+   const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
+     // if (e.currentTarget.value) {
+     //   if (e.currentTarget.value === "true") {
+     //     convertValue = true;
+     //   } else if (e.currentTarget.value === "false") {
+     //     convertValue = false;
+     //   }
+     // }
+     console.log(
+       "value moderate fonction -------------------",
+       e.currentTarget.value
+     );
+     setUpdateModerate(e.currentTarget.value);
+   };
+   const fonctionTest = (e: React.MouseEvent<HTMLButtonElement>) => {
+     console.log(
+       "voici le resultat du test valeur du state update moderate",
+       updateModerate
+     );
+   };
   const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
     console.log("handlecheckValue", e.currentTarget.value);
     setValidateState(e.currentTarget.value);
@@ -90,24 +112,66 @@ const AdminActivity = () => {
         });
     }
   };
-  console.log("------------Activity", Activity);
-  let mesActivitésFilter: any = [];
-  if (Activity) {
-    for (let i = 0; i < Activity.length; i++) {
-      if (Activity[i].validate.toString() === validateState) {
-        mesActivitésFilter.push(Activity[i]);
-        console.log("+++++++++++++++++validateState boucle", validateState);
+  // console.log("------------Activity", Activity);
+  // let mesActivitésFilter: any = [];
+  // if (Activity) {
+  //   for (let i = 0; i < Activity.length; i++) {
+  //     if (Activity[i].validate.toString() === validateState) {
+  //       mesActivitésFilter.push(Activity[i]);
+  //       console.log("+++++++++++++++++validateState boucle", validateState);
+  //       console.log(
+  //         "+++++++++++++++++Activity[i]",
+  //         Activity[i].validate.toString()
+  //       );
+  //       console.log(
+  //         "-----------------mesActivitésFilter après boucle",
+  //         mesActivitésFilter
+  //       );
+  //     }
+  //   }
+  // }
+
+  const updateFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("cliké");
+    console.log("id de l'activité a patch", e.currentTarget.value);
+
+    axios
+      .patch(
+        `http://localhost:8080/api/activity/${e.currentTarget.value}`,
+        {
+          id: e.currentTarget.value, 
+          validate: updateModerate,
+          // validate: convertValue,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("___________________response", response);
+        console.log("___________________response.data.validate", response.data.validate);
         console.log(
-          "+++++++++++++++++Activity[i]",
-          Activity[i].validate.toString()
+          "id du user a patch dans le response",
+          e.currentTarget.value
         );
-        console.log(
-          "-----------------mesActivitésFilter après boucle",
-          mesActivitésFilter
-        );
-      }
-    }
-  }
+        // setTimeout(() => {
+        //   navigate("/main");
+        // }, 1000);
+        alert("Modifications sauvegardées !");
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log("id de l'activité à patch dans le catch", e.currentTarget.value);
+        alert(`${error.response.data.message}`);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
+        }
+      });
+  };
 
   return (
     <div className="container-food">
@@ -167,28 +231,29 @@ const AdminActivity = () => {
       </div>
       <ul className="list-food">
         {validateState === "true" || validateState === "false"
-          ? Activity.filter((food) =>
-              food.validate.toString().includes(`${validateState}`)
-            ).map((foodfiltered) => (
-              <li key={uuidv4()}>
-                {foodfiltered.name}
+          ? Activity.filter((acti) =>
+              acti.validate.toString().includes(`${validateState}`)
+            ).map((actifiltered, i) => (
+              <li key={i}>
+                {actifiltered.name}/{actifiltered.validate.toString()}
                 <select
                   name="food"
                   id="foodAdmin"
                   className="htmlForm-label select"
+                  defaultValue={actifiltered.validate.toString()}
                   // value={weightState}
-                  onChange={booleanFunction}
+                  onChange={ModerateFunction}
                 >
-                  {foodfiltered.validate === true ? (
-                    <option key={uuidv4()} value="true" selected>
-                      true
-                    </option>
-                  ) : (
-                    <option key={uuidv4()} value="true">
-                      true
-                    </option>
-                  )}
-                  {foodfiltered.validate === false ? (
+                  {/* {actifiltered.validate === true ? ( */}
+                  <option key={i + 1} value="true" selected>
+                    Affiché
+                  </option>
+                  {/* ) : ( */}
+                  <option key={i + 2} value="false">
+                    Masqué
+                  </option>
+                  {/* )} */}
+                  {/* {actifiltered.validate === false ? (
                     <option key={uuidv4()} value="false" selected>
                       False
                     </option>
@@ -196,45 +261,41 @@ const AdminActivity = () => {
                     <option key={uuidv4()} value="false">
                       False
                     </option>
-                  )}
+                  )} */}
                 </select>
                 <button
                   className="buttonDeleteAliment"
                   onClick={handleDeleteli}
-                  value={foodfiltered.id}
+                  value={actifiltered.id}
                 >
                   <span className="">❌</span>
                 </button>
+                <button style={{ color: "red" }} onClick={fonctionTest}>
+                  test update
+                </button>
+                <button value={actifiltered.id} onClick={updateFunction}>
+                  <FcCheckmark />
+                </button>
               </li>
             ))
-          : Activity.map((activite) => (
-              <li key={uuidv4()}>
+          : Activity.map((activite, i) => (
+              <li key={i}>
                 {activite.name}
                 <select
                   name="food"
                   id="foodAdmin"
                   className="htmlForm-label select"
+                  defaultValue={activite.validate.toString()}
                   // value={weightState}
-                  onChange={booleanFunction}
+                  onChange={ModerateFunction}
                 >
-                  {activite.validate === true ? (
-                    <option key={uuidv4()} value="true" selected>
-                      true
-                    </option>
-                  ) : (
-                    <option key={uuidv4()} value="true">
-                      true
-                    </option>
-                  )}
-                  {activite.validate === false ? (
-                    <option key={uuidv4()} value="false" selected>
-                      False
-                    </option>
-                  ) : (
-                    <option key={uuidv4()} value="false">
-                      False
-                    </option>
-                  )}
+                  <option key={i + 1} value="true">
+                    Affiché
+                  </option>
+
+                  <option key={i + 2} value="false">
+                    Masqué
+                  </option>
                 </select>
                 <button
                   className="buttonDeleteAliment"
@@ -242,6 +303,12 @@ const AdminActivity = () => {
                   value={activite.id}
                 >
                   <span className="">❌</span>
+                </button>
+                <button style={{ color: "red" }} onClick={fonctionTest}>
+                  test update
+                </button>
+                <button value={activite.id} onClick={updateFunction}>
+                  <FcCheckmark />
                 </button>
               </li>
             ))}
