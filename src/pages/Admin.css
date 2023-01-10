@@ -1,11 +1,18 @@
 .container-food {
+  padding: 0 5%;
   color: #afb563;
 }
 .triFood {
   text-align: center;
+  margin-top: 2%;
 }
 .triFood h2 {
   display: inline-block;
+  background-color: #dfa530;
+  border: thick double black;
+  color: #000000;
+  padding: 10px;
+  border-radius: 10px;
 }
 .list-food {
   background-color: #000000;
@@ -37,6 +44,10 @@
   display: inline-block;
   padding: 0 10px;
 }
+.encadrement {
+  padding: 2% 5%;
+  text-align: center;
+}
 .sousEncadrement {
   display: flex;
   flex-direction: column;
@@ -50,8 +61,22 @@
   text-align: center;
   list-style: none;
 }
-.ecriture {
-  color: #dfa530;
+.label {
+  padding: 0 10px;
+}
+.ecriture,
+h1 {
+  text-align: center;
+  display: inline-block;
+  background-color: #dfa530;
+  border: thick double black;
+  color: #000000;
+  padding: 10px;
+  border-radius: 10px;
+}
+.ecriture,
+p {
+  display: block;
 }
 
 .supp {
@@ -62,4 +87,129 @@
   border: solid 1mm #afb563;
   border-radius: 50px;
   padding: 0 5px;
+}
+.iconVisible {
+  color: rgb(146, 212, 153);
+}
+.iconVisible:hover {
+  color: greenyellow;
+  transition: ease-in-out 0.5s;
+  -webkit-animation: vibrate-2 0.3s linear infinite both;
+  animation: vibrate-2 0.3s linear infinite both;
+}
+.iconInvisible {
+  color: rgb(211, 107, 107);
+}
+.iconInvisible:hover {
+  color: red;
+  transition: ease-in-out 0.5s;
+  -webkit-animation: vibrate-2 0.3s linear infinite both;
+  animation: vibrate-2 0.3s linear infinite both;
+}
+@-webkit-keyframes vibrate-2 {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  60% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+@keyframes vibrate-2 {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
+  }
+  60% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+.buttonValidate {
+  transition: ease-in-out 0.5s;
+  margin: 0;
+  padding: 0 5px;
+  display: inline-block;
+  background-color: transparent;
+  font-size: 2rem;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border: none;
+}
+.iconNeutre {
+  color: rgb(175, 174, 174);
+}
+
+.trash {
+  color: rgb(211, 107, 107);
+}
+.trash:hover {
+  color: red;
+  transition: ease-in-out 0.5s;
+  -webkit-animation: vibrate-2 0.3s linear infinite both;
+  animation: vibrate-2 0.3s linear infinite both;
+}
+.btn-gestion {
+  display: flex;
+  justify-content: space-around;
+}
+.text {
+  -webkit-animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    infinite alternate backwards;
+  animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite
+    alternate backwards;
+}
+@-webkit-keyframes text-blur-out {
+  0% {
+    -webkit-filter: blur(0.01);
+    filter: blur(0.01);
+  }
+  100% {
+    -webkit-filter: blur(12px) opacity(0%);
+    filter: blur(12px) opacity(0%);
+  }
+}
+@keyframes text-blur-out {
+  0% {
+    -webkit-filter: blur(0.01);
+    filter: blur(0.01);
+  }
+  100% {
+    -webkit-filter: blur(12px) opacity(0%);
+    filter: blur(12px) opacity(0%);
+  }
 }
