@@ -217,35 +217,44 @@ const AdminActivity = () => {
         <div className="checkbox-container">
           <div className="checkbox">
             <input
+              className="form-check-input"
               type="radio"
               id="trueRadio"
               name="select"
               value="true"
               onClick={handleCheck}
             />
-            <label htmlFor="true">Afficher</label>
+            <label className="form-check-label" htmlFor="true">
+              Affiché
+            </label>
           </div>
 
           <div className="checkbox">
             <input
+              className="form-check-input"
               type="radio"
               id="falseRadio"
               name="select"
               value="false"
               onClick={handleCheck}
             />
-            <label htmlFor="false">Masquer</label>
+            <label className="form-check-label" htmlFor="false">
+              Masqué
+            </label>
           </div>
           <div className="checkbox">
             <input
+              className="form-check-input"
               type="radio"
               id="allRadio"
               name="select"
               value="all"
-              onClick={handleCheck}
-              checked
+              defaultChecked
+              onInput={handleCheck}
             />
-            <label htmlFor="all">Tous</label>
+            <label className="form-check-label" htmlFor="all">
+              Tous
+            </label>
           </div>
         </div>
       </div>
