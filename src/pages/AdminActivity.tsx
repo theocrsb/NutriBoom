@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 import "./Admin.css";
 import { Activity } from "./Main";
 import { FcCheckmark } from "react-icons/fc";
-
+let convertValue: boolean;
 let allActivity: Activity[] = [];
-
+let updateActivity: Activity;
 const AdminActivity = () => {
   // Ajout du navigate
   const navigate = useNavigate();
@@ -43,13 +43,13 @@ const AdminActivity = () => {
   }, []);
 
    const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-     // if (e.currentTarget.value) {
-     //   if (e.currentTarget.value === "true") {
-     //     convertValue = true;
-     //   } else if (e.currentTarget.value === "false") {
-     //     convertValue = false;
-     //   }
-     // }
+     if (e.currentTarget.value) {
+       if (e.currentTarget.value === "true") {
+         convertValue = true;
+       } else if (e.currentTarget.value === "false") {
+         convertValue = false;
+       }
+     }
      console.log(
        "value moderate fonction -------------------",
        e.currentTarget.value
@@ -99,7 +99,7 @@ const AdminActivity = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+          
           window.location.reload();
           // navigate('/main');
         })
@@ -133,6 +133,8 @@ const AdminActivity = () => {
 
   const updateFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+  console.log (e.currentTarget.value);
+    
     console.log("cliké");
     console.log("id de l'activité a patch", e.currentTarget.value);
 
@@ -140,9 +142,9 @@ const AdminActivity = () => {
       .patch(
         `http://localhost:8080/api/activity/${e.currentTarget.value}`,
         {
-          id: e.currentTarget.value, 
-          validate: updateModerate,
-          // validate: convertValue,
+          // id: e.currentTarget.value,
+          // updateActivity: { validate: validateState },
+          validate: convertValue,
         },
         {
           headers: {
@@ -152,7 +154,10 @@ const AdminActivity = () => {
       )
       .then((response) => {
         console.log("___________________response", response);
-        console.log("___________________response.data.validate", response.data.validate);
+        console.log(
+          "___________________response.data.validate",
+          response.data.validate
+        );
         console.log(
           "id du user a patch dans le response",
           e.currentTarget.value
@@ -164,7 +169,10 @@ const AdminActivity = () => {
       })
       .catch((error) => {
         console.log(error);
-        console.log("id de l'activité à patch dans le catch", e.currentTarget.value);
+        console.log(
+          "id de l'activité à patch dans le catch",
+          e.currentTarget.value
+        );
         alert(`${error.response.data.message}`);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem("accesstoken");

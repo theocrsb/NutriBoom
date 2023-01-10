@@ -5,10 +5,8 @@ import { Food } from "./Main";
 import "./Admin.css";
 import { useNavigate } from "react-router-dom";
 import { FcCheckmark } from "react-icons/fc";
-
-// let convertValue: boolean;
 import { AuthContext } from "../contexts/Auth-context";
-
+let convertValue: boolean;
 let allFoods: Food[] = [];
 const AdminFoods = () => {
   // Ajout du navigate
@@ -45,13 +43,13 @@ const AdminFoods = () => {
       });
   }, []);
   const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-    // if (e.currentTarget.value) {
-    //   if (e.currentTarget.value === "true") {
-    //     convertValue = true;
-    //   } else if (e.currentTarget.value === "false") {
-    //     convertValue = false;
-    //   }
-    // }
+    if (e.currentTarget.value) {
+      if (e.currentTarget.value === "true") {
+        convertValue = true;
+      } else if (e.currentTarget.value === "false") {
+        convertValue = false;
+      }
+    }
     console.log(
       "value moderate fonction -------------------",
       e.currentTarget.value
@@ -101,7 +99,7 @@ const AdminFoods = () => {
       .patch(
         `http://localhost:8080/api/foods/${e.currentTarget.value}`,
         {
-          // validate: convertValue,
+          validate: convertValue,
         },
         {
           headers: {
