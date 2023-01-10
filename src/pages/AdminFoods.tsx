@@ -18,9 +18,7 @@ const AdminFoods = () => {
   const {savedToken}= useContext(AuthContext)
   //  Vérification dans la page de la validité du token
   const {valideTimeToken}= useContext(AuthContext)
-//   if(valideTimeToken === false){
-//   navigate("/connexion")
-// }
+
 
 
   const [validateState, setValidateState] = useState<string>();
@@ -29,7 +27,7 @@ const AdminFoods = () => {
   useEffect(() => {
 
     axios
-      .get("http://localhost:8080/api/foods", {
+      .get("http://localhost:8080/api/foods/admin", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
@@ -41,6 +39,7 @@ const AdminFoods = () => {
       })
       .catch((error) => {
         console.log("something went wrong", error);
+        localStorage.removeItem("accesstoken");
      window.location.reload()
       });
   }, []);

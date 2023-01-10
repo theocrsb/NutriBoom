@@ -21,7 +21,7 @@ const {savedToken} = useContext(AuthContext)
   window.location.reload()
   }
 
-const navigate = useNavigate
+const navigate = useNavigate()
 
   let role : UserRole;
   
@@ -55,6 +55,7 @@ const navigate = useNavigate
       })
       .catch((error) => {
         console.log('something went wrong', error);
+        localStorage.removeItem("accesstoken")
         window.location.reload()
       });
   }, []);
@@ -109,6 +110,7 @@ axios.patch(`http://localhost:8080/api/users/${e.currentTarget.value}/admin`,  {
         console.log("update")
         console.log("value state dans la requete", valueState)
         window.location.reload()
+        
         
       }).catch((error)=>{
         console.log("pas update")
