@@ -29,40 +29,40 @@ const Account = () => {
   const [message, setMessage] = useState<string>();
   const navigate = useNavigate();
   //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
-  let token = localStorage.getItem('accesstoken');
+  let token = localStorage.getItem("accesstoken");
 
   const searchUserId = () => {
     if (token) {
       let tokenDecoded: PayloadToken = jwt_decode(token);
-      console.log('tokenDecoded.-------------------', tokenDecoded);
-      console.log('tokenDecoded.id-------------------', tokenDecoded.id);
+      console.log("tokenDecoded.-------------------", tokenDecoded);
+      console.log("tokenDecoded.id-------------------", tokenDecoded.id);
       return tokenDecoded.id;
     }
   };
   let searchUserIdValue: string | undefined = searchUserId();
 
-  console.log('userSearch-----------------', searchUserIdValue);
+  console.log("userSearch-----------------", searchUserIdValue);
 
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/users/${searchUserIdValue}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       })
       .then((res) => {
-        console.log('res--------------------------', res.data);
+        console.log("res--------------------------", res.data);
         setUserProfile(res.data);
       })
       .catch((error) => {
-        console.log('something went wrong', error);
+        console.log("something went wrong", error);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   }, []);
-  console.log('UserProfile-------------------', UserProfile?.firstname);
+  console.log("UserProfile-------------------", UserProfile?.firstname);
   //--------------------------------------------------------------------------------------
 
   // Mise à jour des infos de l'utilisateur
@@ -97,10 +97,10 @@ const Account = () => {
       e.currentTarget.value
         .toLocaleLowerCase()
         .trim()
-        .split(' ')
-        .join('')
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
+        .split(" ")
+        .join("")
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
     );
     // normalize et replace pour les accent et autres le reste pour les espaces);
   };
@@ -189,37 +189,37 @@ const Account = () => {
   return (
     <div>
       <img
-        id='onglet'
+        id="onglet"
         src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-        alt=''
+        alt=""
       />
-      <div id='container'>
-        <div id='modifProfil'>
-          <p className='ProfilActuel'>Modifie ton profil</p>
+      <div id="container">
+        <div id="modifProfil">
+          <p className="ProfilActuel">Modifie ton profil</p>
 
           <form
-            id='mb-3'
-            method='POST'
-            className='ProfilActuel'
+            id="mb-3"
+            method="POST"
+            className="ProfilActuel"
             onSubmit={submitFunction}
           >
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputNom' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputNom" className="htmlForm-label" />
               <input
-                type='nom'
-                className='ProfilActuel'
-                id='inputNom'
+                type="nom"
+                className="ProfilActuel"
+                id="inputNom"
                 placeholder={UserProfile?.lastname}
                 onChange={lastNameFunction}
               />
             </div>
 
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputPrenom' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputPrenom" className="htmlForm-label" />
               <input
-                type='prenom'
-                className='ProfilActuel'
-                id='inputPrenom'
+                type="prenom"
+                className="ProfilActuel"
+                id="inputPrenom"
                 placeholder={UserProfile?.firstname}
                 onChange={firstNameFunction}
               />
@@ -229,17 +229,17 @@ const Account = () => {
               {" "}
               Age actuel: <span className="manchette">{UserProfile?.age} </span>
             </p> */}
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputAge' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputAge" className="htmlForm-label" />
               <select
-                name='age'
-                id='inputAge'
-                className='ProfilActuel'
+                name="age"
+                id="inputAge"
+                className="ProfilActuel"
                 onChange={ageFunction}
                 value={updateage}
               >
-                <option key={uuidv4()} value=''>
-                  {UserProfile?.age}{' '}
+                <option key={uuidv4()} value="">
+                  {UserProfile?.age}{" "}
                 </option>
                 {ageOptions.map((ageOption) => (
                   <option key={uuidv4()} value={ageOption}>
@@ -253,16 +253,16 @@ const Account = () => {
               {UserProfile?.weight}:{" "}
               <span className="manchette">{UserProfile?.weight} </span>
             </p> */}
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputWeight' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputWeight" className="htmlForm-label" />
               <select
-                name='weight'
-                id='inputWeight'
-                className='ProfilActuel'
+                name="weight"
+                id="inputWeight"
+                className="ProfilActuel"
                 value={updateWeight}
                 onChange={weightFunction}
               >
-                <option key={uuidv4()} value=''>
+                <option key={uuidv4()} value="">
                   {UserProfile?.weight}
                 </option>
                 {poidsOptions.map((poidsOption) => (
@@ -277,16 +277,16 @@ const Account = () => {
               Taille actuelle:{" "}
               <span className="manchette">{UserProfile?.height} </span>
             </p> */}
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputHeight' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputHeight" className="htmlForm-label" />
               <select
-                name='height'
-                id='inputHeight'
-                className='ProfilActuel'
+                name="height"
+                id="inputHeight"
+                className="ProfilActuel"
                 value={updateHeight}
                 onChange={heightFunction}
               >
-                <option key={uuidv4()} value=''>
+                <option key={uuidv4()} value="">
                   {UserProfile?.height}
                 </option>
                 {tailleOptions.map((tailleOption) => (
@@ -301,22 +301,22 @@ const Account = () => {
               Genre actuel:{" "}
               <span className="manchette">{UserProfile?.gender} </span>
             </p> */}
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputGender' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputGender" className="htmlForm-label" />
               <select
-                name='gender'
-                id='inputGender'
-                className='ProfilActuel'
+                name="gender"
+                id="inputGender"
+                className="ProfilActuel"
                 value={updateGender}
                 onChange={sexFunction}
               >
-                <option key={uuidv4()} value=''>
+                <option key={uuidv4()} value="">
                   {UserProfile?.gender}
                 </option>
-                <option key={uuidv4()} value='femme'>
+                <option key={uuidv4()} value="femme">
                   femme
                 </option>
-                <option key={uuidv4()} value='homme'>
+                <option key={uuidv4()} value="homme">
                   homme
                 </option>
               </select>
@@ -326,19 +326,19 @@ const Account = () => {
               Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
             </p> */}
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputMail' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputMail" className="htmlForm-label" />
               <input
-                type='mail'
-                className='ProfilActuel'
-                id='inputMail'
+                type="mail"
+                className="ProfilActuel"
+                id="inputMail"
                 placeholder={UserProfile?.email}
                 onChange={mailFunction}
               />
             </div>
 
-            <div id='mb-3' className='mb-3'>
-              <label htmlFor='inputPassword' className='htmlForm-label' />
+            <div id="mb-3" className="mb-3">
+              <label htmlFor="inputPassword" className="htmlForm-label" />
               <input
                 type="password"
                 className="ProfilActuel"
