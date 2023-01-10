@@ -157,14 +157,14 @@ const AdminActivity = () => {
           "___________________response.data.validate",
           response.data.validate
         );
-        console.log(
-          "id du user a patch dans le response",
-          e.currentTarget.value
-        );
+        
         // setTimeout(() => {
         //   navigate("/main");
         // }, 1000);
         alert("Modifications sauvegardées !");
+        console.log("-----------------sauvegarde");
+        window.location.reload()
+        
       })
       .catch((error) => {
         console.log(error);
