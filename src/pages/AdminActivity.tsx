@@ -8,7 +8,6 @@ import { Activity } from "./Main";
 import { FcCheckmark } from "react-icons/fc";
 let convertValue: boolean;
 let allActivity: Activity[] = [];
-let updateActivity: Activity;
 const AdminActivity = () => {
   // Ajout du navigate
   const navigate = useNavigate();
