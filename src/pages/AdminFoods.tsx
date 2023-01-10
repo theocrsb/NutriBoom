@@ -4,13 +4,14 @@ import axios from "axios";
 import { Food } from "./Main";
 import "./Admin.css";
 import { useNavigate } from "react-router-dom";
-import { FcCheckmark } from "react-icons/fc";
-
+import { ImEyeMinus } from "react-icons/im";
+import { ImEyePlus } from "react-icons/im";
+import { ImEye } from "react-icons/im";
 // let convertValue: boolean;
 const AdminFoods = () => {
   // Ajout du navigate
   const navigate = useNavigate();
-  const [updateModerate, setUpdateModerate] = useState<string>();
+  const [updateModerate, setUpdateModerate] = useState<boolean>();
   const [validateState, setValidateState] = useState<string>();
   const [mesFoods, setMesFoods] = useState<Food[]>([]);
 
@@ -31,18 +32,20 @@ const AdminFoods = () => {
       });
   }, []);
   const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-    // if (e.currentTarget.value) {
-    //   if (e.currentTarget.value === "true") {
-    //     convertValue = true;
-    //   } else if (e.currentTarget.value === "false") {
-    //     convertValue = false;
-    //   }
-    // }
+    let convertValue;
+    if (e.currentTarget.value) {
+      if (e.currentTarget.value === "true") {
+        convertValue = true;
+      } else if (e.currentTarget.value === "false") {
+        convertValue = false;
+      }
+    }
+
     console.log(
       "value moderate fonction -------------------",
       e.currentTarget.value
     );
-    setUpdateModerate(e.currentTarget.value);
+    setUpdateModerate(convertValue);
   };
   const fonctionTest = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(
@@ -82,12 +85,13 @@ const AdminFoods = () => {
     e.preventDefault();
     console.log("cliké");
     console.log("id du Food a patch", e.currentTarget.value);
+    console.log("update moderate", updateModerate);
 
     axios
       .patch(
         `http://localhost:8080/api/foods/${e.currentTarget.value}`,
         {
-          // validate: convertValue,
+          validate: updateModerate,
         },
         {
           headers: {
@@ -97,18 +101,13 @@ const AdminFoods = () => {
       )
       .then((response) => {
         console.log(response);
-        console.log(
-          "id du user a patch dans le response",
-          e.currentTarget.value
-        );
-        // setTimeout(() => {
-        //   navigate("/main");
-        // }, 1000);
+
+        console.log("patch ok!");
+
         alert("Modifications sauvegardées !");
       })
       .catch((error) => {
-        console.log(error);
-        console.log("id du food a patch dans le catch", e.currentTarget.value);
+        console.log("tu est dans le catch error", error);
         alert(`${error.response.data.message}`);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem("accesstoken");
@@ -117,14 +116,14 @@ const AdminFoods = () => {
       });
   };
 
-  // let mesFoodsFilter = [];
-  // if (mesFoods) {
-  //   for (let i = 0; i < mesFoods.length; i++) {
-  //     if (mesFoods[i].validate.toString() === validateState) {
-  //       mesFoodsFilter.push(mesFoods[i]);
-  //     }
-  //   }
-  // }
+  let mesFoodsFilter = [];
+  if (mesFoods) {
+    for (let i = 0; i < mesFoods.length; i++) {
+      if (mesFoods[i].validate.toString() === validateState) {
+        mesFoodsFilter.push(mesFoods[i]);
+      }
+    }
+  }
 
   return (
     <div className="container-food">
@@ -166,6 +165,7 @@ const AdminFoods = () => {
               id="allRadio"
               name="select"
               value="all"
+              defaultChecked
               onInput={handleCheck}
             />
             <label className="form-check-label" htmlFor="all">
@@ -179,53 +179,110 @@ const AdminFoods = () => {
 
       <ul className="list-food">
         {validateState === "true" || validateState === "false"
-          ? mesFoods
-              .filter((food) =>
-                food.validate.toString().includes(validateState)
-              )
-              .map((foodfiltered, i) => (
-                <li key={i}>
-                  {foodfiltered.name}/{foodfiltered.validate.toString()}
-                  <select
-                    name="food"
-                    id="foodAdmin"
-                    className="htmlForm-label select"
-                    defaultValue={foodfiltered.validate.toString()}
-                    onChange={ModerateFunction}
-                  >
-                    <option key={i + 1} value="true">
-                      Affiché
-                    </option>
+          ? //  mesFoods
+            //     .filter((food) =>
+            //       food.validate.toString().includes(validateState)
+            //     )
+            mesFoodsFilter.map((foodfiltered, i) => (
+              <li key={i}>
+                {foodfiltered.validate === true ? (
+                  <span style={{ color: "green" }}>visible</span>
+                ) : (
+                  <span style={{ color: "red" }}>invisible</span>
+                )}
+                {foodfiltered.name}
 
-                    <option key={i + 2} value="false">
-                      Masqué
-                    </option>
-                  </select>
-                  <button
-                    className="buttonDeleteAliment"
-                    onClick={handleDeleteli}
-                    value={foodfiltered.id}
+                <select
+                  name="food"
+                  id="foodAdmin"
+                  className="htmlForm-label select"
+                  defaultValue=""
+                  onChange={ModerateFunction}
+                >
+                  <option
+                    // key={i + 2}
+                    value=""
+                    disabled
                   >
-                    <span className="">❌</span>
+                    Selectionner un choix
+                  </option>
+                  <option
+                    // key={i + 1}
+                    value={"true"}
+                  >
+                    Affiché
+                  </option>
+
+                  <option
+                    // key={i + 2}
+                    value="false"
+                  >
+                    Masqué
+                  </option>
+                </select>
+                <button
+                  className="buttonDeleteAliment"
+                  onClick={handleDeleteli}
+                  value={foodfiltered.id}
+                >
+                  <span className="">❌</span>
+                </button>
+                <button style={{ color: "red" }} onClick={fonctionTest}>
+                  test update
+                </button>
+
+                {updateModerate === false || updateModerate === true ? (
+                  updateModerate === true ? (
+                    <button
+                      className="buttonValidate"
+                      value={foodfiltered.id}
+                      onClick={updateFunction}
+                    >
+                      <ImEyePlus className="iconVisible" />
+                    </button>
+                  ) : (
+                    <button
+                      className="buttonValidate"
+                      value={foodfiltered.id}
+                      onClick={updateFunction}
+                    >
+                      <ImEyeMinus className="iconInvisible" />
+                    </button>
+                  )
+                ) : (
+                  <button
+                    className="buttonValidate"
+                    value={foodfiltered.id}
+                    disabled
+                    onClick={updateFunction}
+                  >
+                    <ImEye className="iconNeutre" />
                   </button>
-                  <button style={{ color: "red" }} onClick={fonctionTest}>
-                    test update
-                  </button>
-                  <button value={foodfiltered.id} onClick={updateFunction}>
-                    <FcCheckmark />
-                  </button>
-                </li>
-              ))
+                )}
+              </li>
+            ))
           : mesFoods.map((food, i) => (
               <li key={i}>
+                {food.validate === true ? (
+                  <span style={{ color: "green" }}>visible</span>
+                ) : (
+                  <span style={{ color: "red" }}>invisible</span>
+                )}
                 {food.name}
                 <select
                   name="food"
                   id="foodAdmin"
                   className="htmlForm-label select"
-                  defaultValue={food.validate.toString()}
+                  defaultValue=""
                   onChange={ModerateFunction}
                 >
+                  <option
+                    // key={i + 2}
+                    value=""
+                    disabled
+                  >
+                    Selectionner un choix
+                  </option>
                   <option key={i + 1} value="true">
                     Affiché
                   </option>
@@ -236,6 +293,7 @@ const AdminFoods = () => {
                 </select>
 
                 <button
+                  key={i + 4}
                   className="buttonDeleteAliment"
                   onClick={handleDeleteli}
                   value={food.id}
@@ -245,9 +303,37 @@ const AdminFoods = () => {
                 <button style={{ color: "red" }} onClick={fonctionTest}>
                   test update
                 </button>
-                <button value={food.id} onClick={updateFunction}>
-                  <FcCheckmark />
-                </button>
+                {updateModerate === false || updateModerate === true ? (
+                  updateModerate === true ? (
+                    <button
+                      key={i + 5}
+                      className="buttonValidate"
+                      value={food.id}
+                      onClick={updateFunction}
+                    >
+                      <ImEyePlus className="iconVisible" />
+                    </button>
+                  ) : (
+                    <button
+                      key={i + 6}
+                      className="buttonValidate"
+                      value={food.id}
+                      onClick={updateFunction}
+                    >
+                      <ImEyeMinus className="iconInvisible" />
+                    </button>
+                  )
+                ) : (
+                  <button
+                    key={i + 7}
+                    className="buttonValidate"
+                    value={food.id}
+                    disabled
+                    onClick={updateFunction}
+                  >
+                    <ImEye className="iconNeutre" />
+                  </button>
+                )}
               </li>
             ))}
       </ul>

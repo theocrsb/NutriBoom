@@ -63,3 +63,22 @@
   border-radius: 50px;
   padding: 0 5px;
 }
+.iconVisible {
+  color: rgb(127, 255, 140);
+}
+.iconInvisible {
+  color: rgb(228, 69, 69);
+}
+.buttonValidate {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  background-color: transparent;
+  font-size: 2rem;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+}
+.iconNeutre {
+  color: rgb(175, 174, 174);
+}
