@@ -6,7 +6,7 @@
 }
 
 .saladePicture {
-  background-image: url('/public/assets/salade.jpg');
+  background-image: url("/public/assets/salade.jpg");
   opacity: 0.8;
   background-size: cover;
   background-position: center;
@@ -40,6 +40,10 @@
   font-weight: bold;
   /* font-size: 15px; */
   text-align: center;
+}
+.nboomText,
+h1 {
+  border: none;
 }
 
 .description {

@@ -64,8 +64,7 @@
 .label {
   padding: 0 10px;
 }
-.ecriture,
-h1 {
+.ecriture {
   text-align: center;
   display: inline-block;
   background-color: #dfa530;
