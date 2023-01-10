@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Food } from "./Main";
 import "./Admin.css";
@@ -8,16 +8,24 @@ import { ImEyeMinus } from "react-icons/im";
 import { ImEyePlus } from "react-icons/im";
 import { ImEye } from "react-icons/im";
 // let convertValue: boolean;
+import { AuthContext } from "../contexts/Auth-context";
+
+let allFoods: Food[] = [];
 const AdminFoods = () => {
   // Ajout du navigate
   const navigate = useNavigate();
+
+  const { savedToken } = useContext(AuthContext);
+  //  Vérification dans la page de la validité du token
+  const { valideTimeToken } = useContext(AuthContext);
+
   const [updateModerate, setUpdateModerate] = useState<boolean>();
   const [validateState, setValidateState] = useState<string>();
   const [mesFoods, setMesFoods] = useState<Food[]>([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/foods", {
+      .get("http://localhost:8080/api/foods/admin", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
@@ -29,6 +37,8 @@ const AdminFoods = () => {
       })
       .catch((error) => {
         console.log("something went wrong", error);
+        localStorage.removeItem("accesstoken");
+        window.location.reload();
       });
   }, []);
   const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {

@@ -18,18 +18,29 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [tokenRole, setTokenRole] = useState<string>();
   const { savedToken } = useContext(AuthContext);
+  const {valideTimeToken}=useContext(AuthContext)
+  const{tokenFunction}= useContext(AuthContext)
   console.log("voici le resultat pour savedToken", savedToken);
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
+// tokenFunction(savedToken)
+// console.log(tokenFunction(savedToken))
+  
 
   useEffect(() => {
+    
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
+      if(valideTimeToken === "token expiré"){
+        window.location.reload()
+      }
     }
   });
 
   const tokenVerify = (e: SyntheticEvent) => {
+    
+    console.log("valide time token verify",valideTimeToken)
     if (!localStorage.getItem("accesstoken")) {
       window.location.reload();
     }
