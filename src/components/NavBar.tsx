@@ -22,8 +22,8 @@ const Navbar = () => {
   const{tokenFunction}= useContext(AuthContext)
   console.log("voici le resultat pour savedToken", savedToken);
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-tokenFunction(savedToken)
-console.log(tokenFunction(savedToken))
+// tokenFunction(savedToken)
+// console.log(tokenFunction(savedToken))
   
 
   useEffect(() => {
