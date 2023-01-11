@@ -84,6 +84,7 @@ const Main = () => {
   // Ajout du navigate
   const navigate = useNavigate();
   const {savedToken}= useContext(AuthContext);
+  const {onAuthChange} = useContext(AuthContext)
  
   const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem('accesstoken')) {
@@ -145,7 +146,7 @@ const Main = () => {
   let userSearchId: string | undefined = searchUser();
   // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
-
+onAuthChange(savedToken)
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
         headers: {
@@ -163,8 +164,8 @@ const Main = () => {
         console.log('error', error.response.data.statusCode);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem('accesstoken');
-          window.location.reload()
-          // navigate("/connexion")
+          // window.location.reload()
+          navigate("/connexion")
         }
       });
   }, []);
@@ -478,7 +479,8 @@ const Main = () => {
           console.log('tu ne peux pas poster', error);
           if (error.response.data.statusCode === 401) {
             localStorage.removeItem('accesstoken');
-            window.location.reload()
+             navigate('/connexion');
+            // window.location.reload()
           }
         });
     }

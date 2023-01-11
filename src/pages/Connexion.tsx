@@ -8,6 +8,7 @@ import { AuthContext } from "../contexts/Auth-context";
 
 const Connexion = () => {
   const { onAuthChange } = useContext(AuthContext);
+  const {savedToken} = useContext(AuthContext)
   const [mailState, setMailState] = useState<string>();
   const [passwordState, setPasswordState] = useState<string>();
   const [message, setMessage] = useState<string>();
@@ -59,6 +60,7 @@ const Connexion = () => {
   // useEffect pour tester les states car ils sont asynchrones//
   //et affichent avant re-render une première valeur undefined//
   useEffect(() => {
+    onAuthChange(savedToken)
     console.log("mail dans useEffect", mailState);
     console.log("password dans useEffect", passwordState);
   });

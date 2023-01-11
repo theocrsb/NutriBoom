@@ -21,18 +21,26 @@ const Navbar = () => {
   const {valideTimeToken}=useContext(AuthContext)
   const{tokenFunction}= useContext(AuthContext)
   const{onAuthChange} = useContext(AuthContext)
-  console.log("voici le resultat pour savedToken", savedToken);
+  
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
+  const tokenss = localStorage.getItem("accesstoken")
+  onAuthChange(tokenss)
+   tokenFunction(savedToken)
+
 // tokenFunction(savedToken)
 // console.log(tokenFunction(savedToken))
 
   useEffect(() => {
-   
+  
+console.log("voici le resultat pour savedToken", savedToken);
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
-    console.log("good",valideTimeToken)
+    console.log("etat d'expiration token dans la navbar",valideTimeToken)
+    }
+    if(valideTimeToken === "token expiré"){
+      window.location.reload()
     }
   });
 
@@ -162,7 +170,7 @@ const Navbar = () => {
                       </strong>
                     </NavLink>
                   </li>
-                  {tokenRole === "admin" && (
+                  {tokenRole === "admin" && valideTimeToken === "token valide" && (
                     <li className="nav-item dropdown">
                       <NavLink
                         to="/"
@@ -223,6 +231,7 @@ const Navbar = () => {
                       </ul>
                     </li>
                   )}
+                  
                   <input
                     type="button"
                     value="Déconnexion"
@@ -230,6 +239,7 @@ const Navbar = () => {
                     className="btn btn-danger btn-sm m-1"
                     onClick={handleClickDecoBtn}
                   />
+                  
                 </>
               )}
             </ul>
