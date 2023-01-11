@@ -1,0 +1,10 @@
+.message {
+  color: #dfa563;
+  font-size: 2rem;
+}
+.container-message {
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  width: 100%;
+}
