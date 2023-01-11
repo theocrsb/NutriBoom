@@ -25,11 +25,9 @@ const Navbar = () => {
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
 // tokenFunction(savedToken)
 // console.log(tokenFunction(savedToken))
-let good = tokenFunction(savedToken)
-
 
   useEffect(() => {
-    
+   
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
@@ -39,9 +37,9 @@ let good = tokenFunction(savedToken)
   });
 
   const tokenVerify = (e: SyntheticEvent) => {
-    
+     tokenFunction(savedToken)
     console.log("valide time token verify",valideTimeToken)
-    if (!localStorage.getItem("accesstoken")) {
+    if (!localStorage.getItem("accesstoken") || valideTimeToken === "token expiré") {
       window.location.reload();
     }
   };

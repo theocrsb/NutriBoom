@@ -163,7 +163,7 @@ const Main = () => {
         console.log('error', error.response.data.statusCode);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem('accesstoken');
-          // window.location.reload()
+          window.location.reload()
           // navigate("/connexion")
         }
       });
