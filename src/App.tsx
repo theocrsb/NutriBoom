@@ -40,12 +40,13 @@ import jwt_decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
 import ResetPass from "./pages/ResetPass";
 import Mdpx from "./pages/Mdp";
+import { useParams } from "react-router-dom";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
-  const {valideTimeToken} = useContext(AuthContext);
+  const { valideTimeToken } = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
-  const {tokenFunction}= useContext(AuthContext)
+  const { tokenFunction } = useContext(AuthContext);
 
   console.log("save token dans app -----------", savedToken);
   console.log(

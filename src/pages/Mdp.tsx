@@ -78,7 +78,7 @@ const Mdpx = () => {
       ) : message === "Email inexistant" ? (
         <>
           <form className="formConnexion" onSubmit={handleLoginForm}>
-            <div className="mb-3">
+            <div className="container-form">
               <label htmlFor="inputMail" className="htmlForm-label" />
               <input
                 type="mail"
@@ -87,19 +87,20 @@ const Mdpx = () => {
                 placeholder="mail"
                 onInput={mailFunction}
               />
+              <p className="message-erreur">{message}</p>
+              <button type="submit" className="btn inscription">
+                Envoyer
+              </button>
             </div>
-            <button type="submit" className="btn inscription">
-              Envoyer
-            </button>
+
             {/* <div className="container-message"> */}
 
             {/* </div> */}
           </form>
-          <p className="message-erreur">{message}</p>
         </>
       ) : (
         <form className="formConnexion" onSubmit={handleLoginForm}>
-          <div className="mb-3">
+          <div className="container-form">
             <label htmlFor="inputMail" className="htmlForm-label" />
             <input
               type="mail"
@@ -108,10 +109,10 @@ const Mdpx = () => {
               placeholder="mail"
               onInput={mailFunction}
             />
+            <button type="submit" className="btn inscription">
+              Envoyer
+            </button>
           </div>
-          <button type="submit" className="btn inscription">
-            Envoyer
-          </button>
         </form>
       )}
       {/* </div> */}

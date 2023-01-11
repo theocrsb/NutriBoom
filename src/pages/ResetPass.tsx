@@ -2,8 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
-import "./Account.css";
-import { useNavigate } from "react-router-dom";
+import "./ResetPass.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { User } from "./Main";
 
 export interface PayloadToken {
@@ -21,18 +21,26 @@ const ResetPass = () => {
   const [updatePassword, setUpdatePassword] = useState<string>();
   const [message, setMessage] = useState<string>();
   const navigate = useNavigate();
-  //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
-  let token = localStorage.getItem("accesstoken");
+  let { token } = useParams();
 
-  const searchUserId = () => {
+  console.log("voici le token params", token);
+  useEffect(() => {
     if (token) {
-      let tokenDecoded: PayloadToken = jwt_decode(token);
-      console.log("tokenDecoded.-------------------", tokenDecoded);
-      console.log("tokenDecoded.id-------------------", tokenDecoded.id);
-      return tokenDecoded.id;
+      localStorage.setItem("accesstoken", token);
     }
-  };
-  let searchUserIdValue: string | undefined = searchUserId();
+  }, []);
+
+  //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
+
+  // const searchUserId = () => {
+  //   if (token) {
+  //     let tokenDecoded: PayloadToken = jwt_decode(token);
+  //     console.log("tokenDecoded.-------------------", tokenDecoded);
+  //     console.log("tokenDecoded.id-------------------", tokenDecoded.id);
+  //     return tokenDecoded.id;
+  //   }
+  // };
+  let searchUserIdValue: string | undefined;
 
   console.log("userSearch-----------------", searchUserIdValue);
 
@@ -74,13 +82,10 @@ const ResetPass = () => {
       alert("Les mots de passe ne correspondent pas.");
     } else {
       axios
-        .patch(
-          `http://localhost:8080/api/users/${searchUserIdValue}`,
-          {
-            id: searchUserIdValue,
-            password: updatePassword,
-          },
-        )
+        .patch(`http://localhost:8080/api/users/${searchUserIdValue}`, {
+          id: searchUserIdValue,
+          password: updatePassword,
+        })
         .then((response) => {
           console.log(response);
           console.log("id du user a patch dans le response", searchUserIdValue);
