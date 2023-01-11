@@ -28,7 +28,7 @@ const Mdpx = () => {
       })
       .then((response) => {
         console.log(response);
-        setMessage(response.data.message);
+        setMessage('Email envoyé !');
       })
       .catch((error) => {
         console.log('connexion impossible', error.response.data.message);
