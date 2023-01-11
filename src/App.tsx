@@ -39,12 +39,14 @@ import { PayloadToken } from "./pages/Main";
 import jwt_decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
 import ResetPass from "./pages/ResetPass";
+import Mdpx from "./pages/Mdp";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
   const {valideTimeToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
-  const [expireToken, setExpireToken] = useState<boolean>();
+  const {tokenFunction}= useContext(AuthContext)
+
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",
@@ -150,7 +152,7 @@ const App = () => {
             element={
               savedToken !== null ? (
                 <AdminFoods />
-              )  :  (
+              ) : (
                 <Navigate to="/connexion" />
               )
             }
@@ -191,6 +193,7 @@ const App = () => {
           <Route path="/mailTo" element={<Mailto />}></Route>
           <Route path="/Tuto" element={<Tuto />}></Route>
           <Route path="/resetpass" element={<ResetPass />}></Route>
+          <Route path="/mdo" element={<Mdpx />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

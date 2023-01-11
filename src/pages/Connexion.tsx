@@ -101,6 +101,12 @@ const Connexion = () => {
             Se connecter
           </button>
         </form>
+        <Link className="linkSub" to="/mdo">
+          <p className="lienInscription">
+            {" "}
+            <p>Mot de passe oublié</p>
+          </p>
+        </Link>
       </div>
       <span className="message">{message}</span>
       <div className="connexionButton">{/* <ConnexionButton /> */}</div>
