@@ -44,7 +44,8 @@ const App = () => {
   const { savedToken } = useContext(AuthContext);
   const {valideTimeToken} = useContext(AuthContext);
   const { userCo } = useContext(UserContext);
-  const [expireToken, setExpireToken] = useState<boolean>();
+  const {tokenFunction}= useContext(AuthContext)
+
   console.log("save token dans app -----------", savedToken);
   console.log(
     "localStorage.getItem -----------",

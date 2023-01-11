@@ -36,26 +36,26 @@ const ResetPass = () => {
 
   console.log("userSearch-----------------", searchUserIdValue);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/users/${searchUserIdValue}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-        },
-      })
-      .then((res) => {
-        console.log("res--------------------------", res.data);
-        setUserProfile(res.data);
-      })
-      .catch((error) => {
-        console.log("something went wrong", error);
-        if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
-        }
-      });
-  }, []);
-  console.log("UserProfile-------------------", UserProfile?.firstname);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:8080/api/users/${searchUserIdValue}`, {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+  //       },
+  // })
+  //     .then((res) => {
+  //       console.log("res--------------------------", res.data);
+  //       setUserProfile(res.data);
+  //     })
+  //     .catch((error) => {
+  //       console.log("something went wrong", error);
+  //       if (error.response.data.statusCode === 401) {
+  //         localStorage.removeItem("accesstoken");
+  //         navigate("/connexion");
+  //       }
+  //     });
+  // }, []);
+  // console.log("UserProfile-------------------", UserProfile?.firstname);
   //--------------------------------------------------------------------------------------
 
   // Mise à jour des infos de l'utilisateur
@@ -80,11 +80,6 @@ const ResetPass = () => {
             id: searchUserIdValue,
             password: updatePassword,
           },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-            },
-          }
         )
         .then((response) => {
           console.log(response);

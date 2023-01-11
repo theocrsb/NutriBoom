@@ -13,6 +13,7 @@ const Welcome = () => {
   const [message, setMessage] = useState<string>();
   const [messageBis, setMessageBis] = useState<string>();
   const { savedToken } = useContext(AuthContext);
+ 
 
   const imcSubmit = (e: React.FormEvent) => {
     e.preventDefault();
