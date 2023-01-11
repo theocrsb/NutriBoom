@@ -1,58 +1,53 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { Food } from "./Main";
-import "./Admin.css";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ImEyeMinus } from "react-icons/im";
-import { ImEyePlus } from "react-icons/im";
-import { ImEye } from "react-icons/im";
-import { BsTrashFill } from "react-icons/bs";
+import { v4 as uuidv4 } from "uuid";
+import "./Admin.css";
+import { Activity } from "./Main";
 
-// let convertValue: boolean;
-import { AuthContext } from "../contexts/Auth-context";
+import { BsTrashFill } from "react-icons/bs";
+import { ImEye, ImEyeMinus, ImEyePlus } from "react-icons/im";
 let convertValue: boolean;
-let allFoods: Food[] = [];
-const AdminFoods = () => {
+let allActivity: Activity[] = [];
+const AdminActivity = () => {
   // Ajout du navigate
   const navigate = useNavigate();
-
-  const { savedToken } = useContext(AuthContext);
-  //  Vérification dans la page de la validité du token
-  const { valideTimeToken } = useContext(AuthContext);
-  if (valideTimeToken === "token") {
-    window.location.reload();
-  }
-
+  const [updateModerate, setUpdateModerate] = useState<boolean>();
   const [clickedIndexInvisible, setClickedIndexInvisible] = useState<number[]>(
     []
   );
   const [clickedIndexVisible, setClickedIndexVisible] = useState<number[]>([]);
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
-  const [updateModerate, setUpdateModerate] = useState<boolean>();
   const [validateState, setValidateState] = useState<string>();
-  const [mesFoods, setMesFoods] = useState<Food[]>([]);
+  const [Activity, setActivity] = useState<Activity[]>([]);
+  // const booleanFunction = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   console.log(
+  //     "--------------setValidateState(e.currentTarget.value)",
+  //     e.currentTarget.value
+  //   );
+  //   setValidateState(e.currentTarget.value);
+  // };
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/foods/admin", {
+      .get("http://localhost:8080/api/activity", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       })
       .then((res) => {
-        console.log("mes foods", res.data);
-        setMesFoods(res.data);
-        console.log("mes  aliments dans mesfoods ", mesFoods);
+        console.log("mes activites", res.data);
+        // allActivity = res.data;
+        setActivity(res.data);
+        console.log("mes  activités dans le state", Activity);
       })
       .catch((error) => {
         console.log("something went wrong", error);
-        localStorage.removeItem("accesstoken");
-        window.location.reload();
       });
   }, []);
+
   // const ModerateFunction = (e: React.SyntheticEvent<HTMLSelectElement>) => {
-  //   let convertValue;
   //   if (e.currentTarget.value) {
   //     if (e.currentTarget.value === "true") {
   //       convertValue = true;
@@ -60,13 +55,11 @@ const AdminFoods = () => {
   //       convertValue = false;
   //     }
   //   }
-
   //   console.log(
   //     "value moderate fonction -------------------",
   //     e.currentTarget.value
   //   );
-  //   setUpdateModerate(convertValue);
-  //   setClickedIndex()
+  //   setUpdateModerate(e.currentTarget.value);
   // };
   const fonctionTest = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(
@@ -75,21 +68,42 @@ const AdminFoods = () => {
     );
   };
   const handleCheck = (e: React.MouseEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
+    console.log("handlecheckValue", e.currentTarget.value);
     setValidateState(e.currentTarget.value);
   };
+  // axios
+  //   .patch(
+  //     `http://localhost:8080/api/activity`,
+  //     {
+  //       validate: patchState,
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+  //       },
+  //     }
+  //   )
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
 
+  //     if (error.response.data.statusCode === 401) {
+  //       localStorage.removeItem("accesstoken");
+  //       navigate("/connexion");
+  //     }
+  //   });
   const handleDeleteli = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.value);
-    if (window.confirm("Veux-tu vraiment supprimer cet aliment?")) {
+    if (window.confirm("Veux-tu vraiment supprimer cette activité?")) {
       axios
-        .delete(`http://localhost:8080/api/foods/${e.currentTarget.value}`, {
+        .delete(`http://localhost:8080/api/activity/${e.currentTarget.value}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
           },
         })
         .then((response) => {
-          console.log(response);
           window.location.reload();
           // navigate('/main');
         })
@@ -102,16 +116,38 @@ const AdminFoods = () => {
         });
     }
   };
+  // console.log("------------Activity", Activity);
+  // let mesActivitésFilter: any = [];
+  // if (Activity) {
+  //   for (let i = 0; i < Activity.length; i++) {
+  //     if (Activity[i].validate.toString() === validateState) {
+  //       mesActivitésFilter.push(Activity[i]);
+  //       console.log("+++++++++++++++++validateState boucle", validateState);
+  //       console.log(
+  //         "+++++++++++++++++Activity[i]",
+  //         Activity[i].validate.toString()
+  //       );
+  //       console.log(
+  //         "-----------------mesActivitésFilter après boucle",
+  //         mesActivitésFilter
+  //       );
+  //     }
+  //   }
+  // }
+
   const updateFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    console.log(e.currentTarget.value);
+
     console.log("cliké");
-    console.log("id du Food a patch", e.currentTarget.value);
-    console.log("update moderate", updateModerate);
+    console.log("id de l'activité a patch", e.currentTarget.value);
 
     axios
       .patch(
-        `http://localhost:8080/api/foods/${e.currentTarget.value}`,
+        `http://localhost:8080/api/activity/${e.currentTarget.value}`,
         {
+          // id: e.currentTarget.value,
+          // updateActivity: { validate: validateState },
           validate: updateModerate,
         },
         {
@@ -121,14 +157,25 @@ const AdminFoods = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        console.log("___________________response", response);
+        console.log(
+          "___________________response.data.validate",
+          response.data.validate
+        );
 
-        console.log("patch ok!");
-
+        // setTimeout(() => {
+        //   navigate("/main");
+        // }, 1000);
         alert("Modifications sauvegardées !");
+        console.log("-----------------sauvegarde");
+        window.location.reload();
       })
       .catch((error) => {
-        console.log("tu est dans le catch error", error);
+        console.log(error);
+        console.log(
+          "id de l'activité à patch dans le catch",
+          e.currentTarget.value
+        );
         alert(`${error.response.data.message}`);
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem("accesstoken");
@@ -136,20 +183,36 @@ const AdminFoods = () => {
         }
       });
   };
-
-  let mesFoodsFilter = [];
-  if (mesFoods) {
-    for (let i = 0; i < mesFoods.length; i++) {
-      if (mesFoods[i].validate.toString() === validateState) {
-        mesFoodsFilter.push(mesFoods[i]);
+  let mesActivityFilter = [];
+  if (Activity) {
+    for (let i = 0; i < Activity.length; i++) {
+      if (Activity[i].validate.toString() === validateState) {
+        mesActivityFilter.push(Activity[i]);
       }
     }
   }
 
   return (
     <div className="container-food">
+      {/* <select
+        name="food"
+        id="foodAdmin"
+        className="htmlForm-label select"
+        // value={weightState}
+        onChange={booleanFunction}
+      >
+        <option key={uuidv4()} value="">
+          Sélectionner une valeur
+        </option>
+        <option key={uuidv4()} value="true">
+          true
+        </option>
+        <option key={uuidv4()} value="false">
+          false
+        </option>
+      </select> */}
       <div className="triFood">
-        <h2>Gestion des aliments a afficher</h2>
+        <h2>Gestion des activités a afficher</h2>
         <br />
         <div className="checkbox-container">
           <div className="checkbox">
@@ -195,21 +258,18 @@ const AdminFoods = () => {
           </div>
         </div>
       </div>
-
-      {/* debut du UL */}
-
       <ul className="list-food">
         {validateState === "true" || validateState === "false"
           ? //  mesFoods
             //     .filter((food) =>
             //       food.validate.toString().includes(validateState)
             //     )
-            mesFoodsFilter.map((foodfiltered, i) => (
+            mesActivityFilter.map((activityfiltered, i) => (
               <li key={i}>
                 <div className="container text-center">
                   <div className="row">
                     <div className="col">
-                      {foodfiltered.validate === true ? (
+                      {activityfiltered.validate === true ? (
                         <p className="text">
                           <span style={{ color: "green" }}>visible</span>
                         </p>
@@ -219,7 +279,7 @@ const AdminFoods = () => {
                         </p>
                       )}
                     </div>
-                    <div className="col">{foodfiltered.name}</div>
+                    <div className="col">{activityfiltered.name}</div>
                     <div className="col">
                       {" "}
                       <select
@@ -298,7 +358,7 @@ const AdminFoods = () => {
                       <button
                         className="buttonValidate"
                         onClick={handleDeleteli}
-                        value={foodfiltered.id}
+                        value={activityfiltered.id}
                       >
                         <BsTrashFill className="trash" />
                       </button>
@@ -317,7 +377,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 5}
                               className="buttonValidate"
-                              value={foodfiltered.id}
+                              value={activityfiltered.id}
                               onClick={updateFunction}
                             >
                               <ImEyePlus className="iconVisible" />
@@ -328,7 +388,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 6}
                               className="buttonValidate"
-                              value={foodfiltered.id}
+                              value={activityfiltered.id}
                               onClick={updateFunction}
                             >
                               <ImEyeMinus className="iconInvisible" />
@@ -337,7 +397,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 7}
                               className="buttonValidate"
-                              value={foodfiltered.id}
+                              value={activityfiltered.id}
                               disabled
                               onClick={updateFunction}
                             >
@@ -348,7 +408,7 @@ const AdminFoods = () => {
                           <button
                             key={i + 7}
                             className="buttonValidate"
-                            value={foodfiltered.id}
+                            value={activityfiltered.id}
                             disabled
                             onClick={updateFunction}
                           >
@@ -359,7 +419,7 @@ const AdminFoods = () => {
                         <button
                           key={i + 7}
                           className="buttonValidate"
-                          value={foodfiltered.id}
+                          value={activityfiltered.id}
                           disabled
                           onClick={updateFunction}
                         >
@@ -371,13 +431,13 @@ const AdminFoods = () => {
                 </div>
               </li>
             ))
-          : mesFoods.map((food, i) => (
+          : Activity.map((activite, i) => (
               <li key={i}>
                 <div className="container text-center">
                   <div className="row">
                     <div className="col">
                       {" "}
-                      {food.validate === true ? (
+                      {activite.validate === true ? (
                         <p className="text">
                           {" "}
                           <span style={{ color: "green" }}>visible</span>
@@ -389,7 +449,7 @@ const AdminFoods = () => {
                         </p>
                       )}
                     </div>
-                    <div className="col">{food.name}</div>
+                    <div className="col">{activite.name}</div>
                     <div className="col">
                       {" "}
                       <select
@@ -468,7 +528,7 @@ const AdminFoods = () => {
                       <button
                         className="buttonValidate"
                         onClick={handleDeleteli}
-                        value={food.id}
+                        value={activite.id}
                       >
                         <BsTrashFill className="trash" />
                       </button>
@@ -487,7 +547,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 5}
                               className="buttonValidate"
-                              value={food.id}
+                              value={activite.id}
                               onClick={updateFunction}
                             >
                               <ImEyePlus className="iconVisible" />
@@ -498,7 +558,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 6}
                               className="buttonValidate"
-                              value={food.id}
+                              value={activite.id}
                               onClick={updateFunction}
                             >
                               <ImEyeMinus className="iconInvisible" />
@@ -507,7 +567,7 @@ const AdminFoods = () => {
                             <button
                               key={i + 7}
                               className="buttonValidate"
-                              value={food.id}
+                              value={activite.id}
                               disabled
                               onClick={updateFunction}
                             >
@@ -518,7 +578,7 @@ const AdminFoods = () => {
                           <button
                             key={i + 7}
                             className="buttonValidate"
-                            value={food.id}
+                            value={activite.id}
                             disabled
                             onClick={updateFunction}
                           >
@@ -529,7 +589,7 @@ const AdminFoods = () => {
                         <button
                           key={i + 7}
                           className="buttonValidate"
-                          value={food.id}
+                          value={activite.id}
                           disabled
                           onClick={updateFunction}
                         >
@@ -545,5 +605,4 @@ const AdminFoods = () => {
     </div>
   );
 };
-
-export default AdminFoods;
+export default AdminActivity;

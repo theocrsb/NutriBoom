@@ -213,6 +213,15 @@ const Navbar = () => {
                             <strong> Gestion des messages </strong>
                           </NavLink>
                         </li>
+                        <li>
+                          <NavLink
+                            to="/adminActivité"
+                            className="nav-link buttonStyle "
+                            onClick={tokenVerify}
+                          >
+                            <strong> Gestion des activités </strong>
+                          </NavLink>
+                        </li>
                       </ul>
                     </li>
                   )}
