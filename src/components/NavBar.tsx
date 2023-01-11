@@ -25,9 +25,7 @@ const Navbar = () => {
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
 // tokenFunction(savedToken)
 // console.log(tokenFunction(savedToken))
-tokenFunction(savedToken)
-
-console.log("retour fonction verif token",tokenFunction(savedToken))
+let good = tokenFunction(savedToken)
 
 
   useEffect(() => {
@@ -36,7 +34,7 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
-      
+    console.log("good",valideTimeToken)
     }
   });
 
@@ -166,7 +164,7 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
                       </strong>
                     </NavLink>
                   </li>
-                  { (tokenRole === "admin" && (
+                  {tokenRole === "admin" && (
                     <li className="nav-item dropdown">
                       <NavLink
                         to="/"
@@ -226,7 +224,7 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
                         </li>
                       </ul>
                     </li>
-                  ))}
+                  )}
                   <input
                     type="button"
                     value="Déconnexion"
