@@ -28,16 +28,11 @@ const Mdpx = () => {
       })
       .then((response) => {
         console.log(response);
-        setMessage(response.data);
+        setMessage(response.data.message);
       })
       .catch((error) => {
-        console.log('connexion impossible', error);
-        if (!mailState) {
-          console.log('erreur', error.response.data.message);
-          setMessage(error.response.data.message);
-        } else if (error.message === 'Request failed with status code 401') {
-          setMessage(' adresse mail inconnu(e)');
-        }
+        console.log('connexion impossible', error.response.data.message);
+        setMessage(error.response.data.message);
       });
   };
 
@@ -82,7 +77,9 @@ const Mdpx = () => {
           </button>
         </form>
       </div>
-      <span className='message'>{message}</span>
+      <span className='message' style={{ color: '#9a1c98' }}>
+        {message}
+      </span>
       <div className='connexionButton'>{/* <ConnexionButton /> */}</div>
     </div>
   );
