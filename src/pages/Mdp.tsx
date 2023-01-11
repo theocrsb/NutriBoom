@@ -33,7 +33,7 @@ const Mdpx = () => {
       })
       .catch((error) => {
         console.log("connexion impossible", error.response.data.message);
-        setMessage(error.response.data.message);
+        setMessage("Email inexistant");
       });
   };
 
@@ -59,8 +59,8 @@ const Mdpx = () => {
           </p>
         </Link>
       </div>
-      <div>
-        {/* <form className='formConnexion' onSubmit={handleLoginForm}>
+      {/* <div> */}
+      {/* <form className='formConnexion' onSubmit={handleLoginForm}>
           <div className='mb-3'>
             <label htmlFor='inputMail' className='htmlForm-label' />
             <input
@@ -71,11 +71,12 @@ const Mdpx = () => {
               onInput={mailFunction}
             />
           </div> */}
-        {message !== null ? (
-          <div className="container-message">
-            <p className="message">{message}</p>
-          </div>
-        ) : (
+      {message === "Email envoyé !" ? (
+        <div className="container-message">
+          <p className="message">{message}</p>
+        </div>
+      ) : message === "Email inexistant" ? (
+        <>
           <form className="formConnexion" onSubmit={handleLoginForm}>
             <div className="mb-3">
               <label htmlFor="inputMail" className="htmlForm-label" />
@@ -90,9 +91,30 @@ const Mdpx = () => {
             <button type="submit" className="btn inscription">
               Envoyer
             </button>
+            {/* <div className="container-message"> */}
+
+            {/* </div> */}
           </form>
-        )}
-      </div>
+          <p className="message-erreur">{message}</p>
+        </>
+      ) : (
+        <form className="formConnexion" onSubmit={handleLoginForm}>
+          <div className="mb-3">
+            <label htmlFor="inputMail" className="htmlForm-label" />
+            <input
+              type="mail"
+              className="htmlForm-control"
+              id="inputMail"
+              placeholder="mail"
+              onInput={mailFunction}
+            />
+          </div>
+          <button type="submit" className="btn inscription">
+            Envoyer
+          </button>
+        </form>
+      )}
+      {/* </div> */}
     </div>
   );
 };
