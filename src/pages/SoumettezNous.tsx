@@ -50,7 +50,7 @@ const SoumettezNous = () => {
         );
         setTimeout(() => {
           navigate('/main');
-        }, 1000);
+        }, 0);
       })
       .catch((error) => {
         console.log(error);
@@ -89,7 +89,7 @@ const SoumettezNous = () => {
         );
         setTimeout(() => {
           navigate('/main');
-        }, 1000);
+        }, 0);
       })
       .catch((error) => {
         console.log(error);
