@@ -110,7 +110,7 @@ const SoumettezNous = () => {
       <div>
         <h2
           className='p-5 text-center'
-          style={{ color: 'white', fontWeight: 'bold' }}
+          style={{ color: '#dfa530', fontWeight: 'bold' }}
         >
           Formulaire pour soumettre un aliment ou une activité
         </h2>
