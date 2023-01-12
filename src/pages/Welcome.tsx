@@ -112,9 +112,7 @@ const Welcome = () => {
           <span className='wordStyle'> Suivi Journalier</span>
           <br /> Complétez votre parcours santé en ajoutant vos aliments et
           exercices préférés à votre journal.
-          <br /> <span className='wordStyle'>Tableau de bord</span>
           <br />
-          Obtenez un rapport sur une durée grâce à notre tableau de bord.
           <br />
           <span className='wordStyle'>
             Alimentez la base de données de la communauté
