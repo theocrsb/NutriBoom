@@ -22,13 +22,12 @@ import AddLunch from "./pages/AddLunch";
 import AddDinner from "./pages/AddDinner";
 import AddSnack from "./pages/AddSnack";
 import AddExercice from "./pages/AddExercice";
-import UpdateProfil from "./pages/UpdateProfil";
 import DeleteAccount from "./pages/DeleteAccount";
 import Account from "./pages/Account";
 import Admin from "./pages/AdminUsers";
 import Page404 from "./pages/Page404";
 import InscriptionOk from "./pages/InscriptionOk";
-import SoumettezNous from "./pages/SoumettezNous";
+import SoumettezNous from "./pages/SubmitUs";
 import { UserContext, UserContextProvider } from "./contexts/User-Context";
 import AdminFoods from "./pages/AdminFoods";
 import AdminUsers from "./pages/AdminUsers";
@@ -113,17 +112,9 @@ const App = () => {
                 <Navigate to="/connexion" />
               )
             }
-          ></Route>
-          <Route
-            path="/modifierprofil"
-            element={
-              savedToken !== null ? (
-                <UpdateProfil />
-              ) : (
-                <Navigate to="/connexion" />
-              )
-            }
-          ></Route>
+          >
+            
+          </Route>
           <Route
             path="/supprimercompte"
             element={

@@ -538,7 +538,7 @@ onAuthChange(savedToken)
         </div>
         <div className='d-flex container-nutri'>
           <section className='donutProt text-center'>
-            <p className='infoUserTitle'>Protein</p>
+            <p className='infoUserTitle'>Protéines</p>
             <Doughnut data={dataProt} />
             <p className='infoUser'>
               {sumConsoProt}/
@@ -549,7 +549,7 @@ onAuthChange(savedToken)
             </p>
           </section>
           <section className='donutGlu text-center '>
-            <p className='infoUserTitle'>Glucide</p>
+            <p className='infoUserTitle'>Glucides</p>
             <Doughnut data={dataGlu} />
             <p className='infoUser'>
               {sumConsoGlu}/
@@ -560,7 +560,7 @@ onAuthChange(savedToken)
             </p>
           </section>
           <section className='donutLip text-center'>
-            <p className='infoUserTitle'>Lipide</p>
+            <p className='infoUserTitle'>Lipides</p>
             <Doughnut data={dataLip} />
             <p className='infoUser'>
               {sumConsoLip}/
@@ -583,7 +583,7 @@ onAuthChange(savedToken)
               aria-expanded='true'
               aria-controls='collapseOne'
             >
-              Petit dejeuner
+              Petit déjeuner
             </button>
           </h2>
           <div
@@ -632,7 +632,7 @@ onAuthChange(savedToken)
               aria-expanded='false'
               aria-controls='collapseTwo'
             >
-              Dejeuner
+              Déjeuner
             </button>
           </h2>
           <div
@@ -680,7 +680,7 @@ onAuthChange(savedToken)
               aria-expanded='false'
               aria-controls='collapseThree'
             >
-              Diner
+              Dîner
             </button>
           </h2>
           <div
@@ -773,7 +773,7 @@ onAuthChange(savedToken)
               aria-expanded='false'
               aria-controls='collapseFive'
             >
-              Activité Physique
+              Activité physique
             </button>
           </h2>
           <div

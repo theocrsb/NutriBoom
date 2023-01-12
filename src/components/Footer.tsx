@@ -8,18 +8,18 @@ const Footer = () => {
       <div className="footer">
         <img className="logoFooter" src={image} alt="logo" />
         <div className="textFooter">
+            <p>À propos</p>
           <Link className="aPropos" to="/aboutus">
-            <p>A propos</p>
           </Link>
           <Link className="aPropos" to="/Tuto">
             <p>Tutoriel</p>
           </Link>
 
           <Link className="aPropos" to="/ajout">
-            <p>Soumettez vos aliments / vos activités </p>
+            <p>Soumets tes aliments / activités </p>
           </Link>
           <Link className="aPropos" to="/mailTo">
-            <p>Contactez-nous</p>
+            <p>Contacte-nous</p>
           </Link>
         </div>
       </div>

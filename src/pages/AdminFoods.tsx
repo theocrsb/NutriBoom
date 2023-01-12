@@ -149,7 +149,7 @@ const AdminFoods = () => {
   return (
     <div className="container-food">
       <div className="triFood">
-        <h2>Gestion des aliments a afficher</h2>
+        <h2>Gestion des aliments à afficher</h2>
         <br />
         <div className="checkbox-container">
           <div className="checkbox">
@@ -162,7 +162,7 @@ const AdminFoods = () => {
               onClick={handleCheck}
             />
             <label className="form-check-label" htmlFor="true">
-              Affiché
+              Affiché(s)
             </label>
           </div>
 
@@ -176,7 +176,7 @@ const AdminFoods = () => {
               onClick={handleCheck}
             />
             <label className="form-check-label" htmlFor="false">
-              Masqué
+              Masqué(s)
             </label>
           </div>
           <div className="checkbox">
@@ -282,7 +282,7 @@ const AdminFoods = () => {
                           value=""
                           disabled
                         >
-                          Selectionner un choix
+                          Sélectionner un choix
                         </option>
                         <option key={i + 1} value="true">
                           Affiché
@@ -452,7 +452,7 @@ const AdminFoods = () => {
                           value=""
                           disabled
                         >
-                          Selectionner un choix
+                          Sélectionner un choix
                         </option>
                         <option key={i + 1} value="true">
                           Affiché
