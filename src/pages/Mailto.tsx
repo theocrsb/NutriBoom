@@ -1,10 +1,12 @@
 import axios from "axios";
 import { FormEvent, useRef, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Mailto = () => {
   const emailElement = useRef<HTMLInputElement>(null);
   const nomElement = useRef<HTMLInputElement>(null);
   const texteAreaElement = useRef<HTMLInputElement>(null);
+  const navigate =useNavigate()
 
   const handleSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
@@ -14,7 +16,7 @@ const Mailto = () => {
     console.log(texteAreaElement.current?.value);
     console.log("les valeurs recuperé", nomElement);
 
-    alert("votre message a été envoyer");
+    alert("votre message a  bien été envoyé");
 
     axios
       .post(`http://localhost:8080/api/mailto`, {
@@ -25,6 +27,7 @@ const Mailto = () => {
 
       .then((response) => {
         console.log("le console.log du response.data", response.data);
+        navigate('/welcome')
       })
 
       .catch((error) => {
