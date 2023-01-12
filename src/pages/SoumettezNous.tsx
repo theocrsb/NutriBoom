@@ -72,8 +72,11 @@ const SoumettezNous = () => {
       .post(
         `http://localhost:8080/api/activity`,
         {
+          // on recupere les inputs
           name: activiteeElement?.current?.value,
           conso_cal_1h: consoKalElement?.current?.value,
+          // on rentre en brut pour ne pas afficher dans le front directement
+          // attente validation Admin
           validate: false,
         },
         {
