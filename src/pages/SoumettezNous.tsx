@@ -191,7 +191,7 @@ const SoumettezNous = () => {
 
         {/* Soummettre activitée */}
       </form>
-      <h2>Soumettre une activitee</h2>
+      <h2>Soumettre une activité</h2>
       <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
@@ -202,7 +202,7 @@ const SoumettezNous = () => {
             ref={activiteeElement}
           />
           <label style={{ color: 'white' }} htmlFor='nameAliment'>
-            Nom de l'activitée
+            Nom de l'activité
           </label>
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
@@ -223,7 +223,7 @@ const SoumettezNous = () => {
             style={{ margin: '0' }}
             type='submit'
           >
-            soumettre une activitée
+            soumettre une activité
           </button>
         </div>
       </form>
