@@ -195,7 +195,7 @@ const Account = () => {
       />
       <div id="container">
         <div id="modifProfil">
-          <p className="ProfilActuel">Modifie ton profil</p>
+          <p className="ProfilActuel">Modifie tes données personnelles</p>
 
           <form
             id="mb-3"
@@ -203,24 +203,26 @@ const Account = () => {
             className="ProfilActuel"
             onSubmit={submitFunction}
           >
+            <p className="Titre">Ton profil</p>
             <div id="mb-3" className="mb-3">
+              
               <label htmlFor="inputNom" className="htmlForm-label" />
               <input
                 type="nom"
                 className="ProfilActuel"
                 id="inputNom"
-                placeholder={UserProfile?.lastname}
+                placeholder= {UserProfile?.lastname}
                 onChange={lastNameFunction}
               />
             </div>
 
             <div id="mb-3" className="mb-3">
-              <label htmlFor="inputPrenom" className="htmlForm-label" />
+              <label htmlFor="inputPrenom" />
               <input
                 type="prenom"
                 className="ProfilActuel"
                 id="inputPrenom"
-                placeholder={UserProfile?.firstname}
+                placeholder= {UserProfile?.firstname}
                 onChange={firstNameFunction}
               />
             </div>
@@ -236,10 +238,10 @@ const Account = () => {
                 id="inputAge"
                 className="ProfilActuel"
                 onChange={ageFunction}
-                value={updateage}
+                value={updateage} 
               >
                 <option key={uuidv4()} value="">
-                  {UserProfile?.age}{" "}
+                  {UserProfile?.age}{" ans "}
                 </option>
                 {ageOptions.map((ageOption) => (
                   <option key={uuidv4()} value={ageOption}>
@@ -263,7 +265,7 @@ const Account = () => {
                 onChange={weightFunction}
               >
                 <option key={uuidv4()} value="">
-                  {UserProfile?.weight}
+                  {UserProfile?.weight} {" Kg "}
                 </option>
                 {poidsOptions.map((poidsOption) => (
                   <option key={uuidv4()} value={poidsOption}>
@@ -287,7 +289,7 @@ const Account = () => {
                 onChange={heightFunction}
               >
                 <option key={uuidv4()} value="">
-                  {UserProfile?.height}
+                  {UserProfile?.height}{" m"}
                 </option>
                 {tailleOptions.map((tailleOption) => (
                   <option key={uuidv4()} value={tailleOption}>
@@ -314,10 +316,10 @@ const Account = () => {
                   {UserProfile?.gender}
                 </option>
                 <option key={uuidv4()} value="femme">
-                  femme
+                  Femme
                 </option>
                 <option key={uuidv4()} value="homme">
-                  homme
+                  Homme
                 </option>
               </select>
             </div>
@@ -358,7 +360,7 @@ const Account = () => {
                 type="password"
                 className="ProfilActuel"
                 id="inputPassword"
-                placeholder="Comfirmez mot de passe"
+                placeholder="Confirme le mot de passe"
                 onChange={passwordFunction2}
               />
             </div>

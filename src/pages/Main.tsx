@@ -537,7 +537,7 @@ const Main = () => {
         </div>
         <div className='d-flex container-nutri'>
           <section className='donutProt text-center'>
-            <p className='infoUserTitle'>Proteines</p>
+            <p className='infoUserTitle'>Protéines</p>
             <Doughnut data={dataProt} />
             <p className='infoUser'>
               {sumConsoProt}/
@@ -679,7 +679,7 @@ const Main = () => {
               aria-expanded='false'
               aria-controls='collapseThree'
             >
-              Diner
+              Dîner
             </button>
           </h2>
           <div
@@ -772,7 +772,7 @@ const Main = () => {
               aria-expanded='false'
               aria-controls='collapseFive'
             >
-              Activité Physique
+              Activité physique
             </button>
           </h2>
           <div

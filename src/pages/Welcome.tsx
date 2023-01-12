@@ -105,21 +105,21 @@ const Welcome = () => {
       </div>
       ))}
       <h1 className='nboomText'>
-        Avec NutriBoom, boostez votre hygiène de vie !
+        Avec NutriBoom, booste ton hygiène de vie !
       </h1>
       <div className='containerText'>
         <p className='description'>
           <span className='wordStyle'> Suivi Journalier</span>
-          <br /> Complétez votre parcours santé en ajoutant vos aliments et
-          exercices préférés à votre journal.
+          <br /> Compléte ton parcours santé en ajoutant tes aliments consommés et
+          exercices réalisés à ton journal.
           <br />
           <br />
           <span className='wordStyle'>
-            Alimentez la base de données de la communauté
+            Alimente la base de données de la communauté
           </span>
           <br />
-          Soumettez vos aliments/exercices afin de nous permettre
-          d'améliorervotre expérience utilisateur
+          Soumets tes aliments/exercices afin de nous permettre
+          d'améliorer ton expérience utilisateur
         </p>
       </div>
       <div className='imc-container'>

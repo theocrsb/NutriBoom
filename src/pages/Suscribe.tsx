@@ -160,7 +160,7 @@ const Suscribe = () => {
   return (
     <div>
       <div className="suscribe">
-        <h1>Inscris toi gratuitement!</h1>
+        <h1>Inscris-toi gratuitement!</h1>
       </div>
 
       <form
@@ -174,7 +174,7 @@ const Suscribe = () => {
             type="nom"
             className="htmlForm-control text-center "
             id="inputNom"
-            placeholder="nom"
+            placeholder="Nom"
             onChange={lastNameFunction}
           />
         </div>
@@ -184,7 +184,7 @@ const Suscribe = () => {
             type="prenom"
             className="htmlForm-control text-center"
             id="inputPrenom"
-            placeholder="prenom"
+            placeholder="Prénom"
             onChange={firstNameFunction}
           />
         </div>
@@ -194,7 +194,7 @@ const Suscribe = () => {
             type="email"
             className="htmlForm-control text-center"
             id="exampleInputAge"
-            placeholder="mail"
+            placeholder="Email"
             onChange={mailFunction}
           />
         </div>
@@ -207,7 +207,7 @@ const Suscribe = () => {
             type="password"
             className="htmlForm-control text-center"
             id="inputPassword"
-            placeholder="mot de passe"
+            placeholder="Mot de passe"
             onChange={passwordFunction}
           />
         </div>
@@ -220,7 +220,7 @@ const Suscribe = () => {
             type="password"
             className="htmlForm-control text-center"
             id="inputPassword2"
-            placeholder="confirmez mot de passe"
+            placeholder="Confirme le mot de passe"
             onChange={passwordFunction2}
           />
         </div>
@@ -240,7 +240,7 @@ const Suscribe = () => {
             value={ageState}
           >
             <option key={uuidv4()} value="">
-              Sélectionner votre age{" "}
+              Sélectionne ton âge{" "}
             </option>
             {ageOptions.map((ageOption) => (
               <option key={uuidv4()} value={ageOption}>
@@ -265,11 +265,11 @@ const Suscribe = () => {
             onChange={weightFunction}
           >
             <option key={uuidv4()} value="">
-              Sélectionner votre poids
+              Sélectionne ton poids
             </option>
             {poidsOptions.map((poidsOption) => (
               <option key={uuidv4()} value={poidsOption}>
-                {poidsOption} Kg
+                {poidsOption} kg
               </option>
             ))}
           </select>
@@ -290,11 +290,11 @@ const Suscribe = () => {
             onChange={heightFunction}
           >
             <option key={uuidv4()} value="">
-              Sélectionner votre taille
+              Sélectionne ta taille
             </option>
             {tailleOptions.map((tailleOption) => (
               <option key={uuidv4()} value={tailleOption}>
-                {tailleOption} M
+                {tailleOption} m
               </option>
             ))}
           </select>
@@ -315,13 +315,13 @@ const Suscribe = () => {
             onChange={sexFunction}
           >
             <option key={uuidv4()} value="">
-              Sélectionner votre sexe
+              Sélectionne ton genre
             </option>
             <option key={uuidv4()} value="femme">
-              femme
+              Femme
             </option>
             <option key={uuidv4()} value="homme">
-              homme
+              Homme
             </option>
           </select>
         </div>
@@ -341,7 +341,7 @@ const Suscribe = () => {
             onChange={ratioFunction}
           >
             <option key={uuidv4()} value="">
-              Sélectionner votre activité
+              Sélectionne ton activité
             </option>
             <option key={uuidv4()} value="1.375">
               sédentaire (travail de bureau et faible activité physique)

@@ -67,8 +67,8 @@ const Connexion = () => {
   return (
     <div className='fondCarotte'>
       <div className='textConnect'>
-        <h1>Connecte toi!</h1>
-        <p>Tu n'as pas encore de compte sur nutriBoom?</p>
+        <h1>Connecte-toi !</h1>
+        <p>Tu n'as pas encore de compte sur NutriBoom?</p>
         <Link className='linkSub' to='/suscribe'>
           <p className='lienInscription'>
             {' '}
@@ -84,7 +84,7 @@ const Connexion = () => {
               type='mail'
               className='htmlForm-control'
               id='inputMail'
-              placeholder='mail'
+              placeholder='Email'
               onInput={mailFunction}
             />
           </div>
@@ -94,7 +94,7 @@ const Connexion = () => {
               type='password'
               className='htmlForm-control'
               id='inputPassword'
-              placeholder='mot de passe'
+              placeholder='Mot de passe'
               onInput={passwordFunction}
             />
           </div>
@@ -104,7 +104,7 @@ const Connexion = () => {
           </button>
         </form>
         <Link className='linkSub' to='/mdo'>
-          <p className='lienInscription'> Mot de passe oublié</p>
+          <p className='lienInscription'> Mot de passe oublié ?</p>
         </Link>
       </div>
       <span className='message'>{message}</span>
