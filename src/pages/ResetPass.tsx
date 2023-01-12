@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
 import "./ResetPass.css";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { User } from "./Main";
+import React from "react";
 
 export interface PayloadToken {
   exp: number;
@@ -17,86 +18,61 @@ export interface PayloadToken {
 const ResetPass = () => {
   const [passwordState, setPasswordState] = useState<string>();
   const [passwordState2, setPasswordState2] = useState<string>();
-  const [UserProfile, setUserProfile] = useState<User>();
-  const [updatePassword, setUpdatePassword] = useState<string>();
+  const [UserProfileId, setUserProfileId] = useState<string>();
+  const [showState, setShowState] = useState<boolean>(false);
   const [message, setMessage] = useState<string>();
   const navigate = useNavigate();
-  let { token } = useParams();
-
-  console.log("voici le token params", token);
-  useEffect(() => {
-    if (token) {
-      localStorage.setItem("accesstoken", token);
+  const location = useLocation();
+  // utilisation des query params pour recuperer le token dans l'url
+  let queryParam = new URLSearchParams(location.search);
+  let recupToken = queryParam.get("token");
+  console.log("token récuperé dans l' url via les query params", recupToken);
+  const tokenExpiration = (token: string | null) => {
+    if (recupToken) {
+      const decoded: PayloadToken = jwt_decode(recupToken);
+      if (Date.now() <= decoded.exp * 1000) {
+        return true;
+      } else {
+        return false;
+      }
     }
-  }, []);
+  };
 
-  //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
-
-  // const searchUserId = () => {
-  //   if (token) {
-  //     let tokenDecoded: PayloadToken = jwt_decode(token);
-  //     console.log("tokenDecoded.-------------------", tokenDecoded);
-  //     console.log("tokenDecoded.id-------------------", tokenDecoded.id);
-  //     return tokenDecoded.id;
-  //   }
-  // };
-  let searchUserIdValue: string | undefined;
-
-  console.log("userSearch-----------------", searchUserIdValue);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:8080/api/users/${searchUserIdValue}`, {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-  //       },
-  // })
-  //     .then((res) => {
-  //       console.log("res--------------------------", res.data);
-  //       setUserProfile(res.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log("something went wrong", error);
-  //       if (error.response.data.statusCode === 401) {
-  //         localStorage.removeItem("accesstoken");
-  //         navigate("/connexion");
-  //       }
-  //     });
-  // }, []);
-  // console.log("UserProfile-------------------", UserProfile?.firstname);
-  //--------------------------------------------------------------------------------------
+  let tokenValidator: boolean | undefined = tokenExpiration(recupToken);
+  console.log("le token est il encore valide:", tokenValidator);
 
   // Mise à jour des infos de l'utilisateur
   const passwordFunction1 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUpdatePassword(e.currentTarget.value);
+    setPasswordState(e.currentTarget.value);
   };
   const passwordFunction2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUpdatePassword(e.currentTarget.value);
+    setPasswordState2(e.currentTarget.value);
   };
   const submitFunction = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("cliké");
-    console.log("id du user a patch", searchUserIdValue);
+    console.log("password dans le state 1", passwordState);
+    console.log("password dans le state 2", passwordState2);
     // fonction de verification du mot de passe
     if (passwordState !== passwordState2) {
-      alert("Les mots de passe ne correspondent pas.");
+      setMessage("Les mots de passe ne correspondent pas.");
+    } else if (tokenValidator !== true) {
+      setMessage("Votre demande à expiré");
     } else {
       axios
-        .patch(`http://localhost:8080/api/users/${searchUserIdValue}`, {
-          id: searchUserIdValue,
-          password: updatePassword,
+        .patch(`http://localhost:8080/api/users/reset/password`, {
+          password: passwordState,
+          token: recupToken,
         })
         .then((response) => {
           console.log(response);
-          console.log("id du user a patch dans le response", searchUserIdValue);
           setTimeout(() => {
-            navigate("/main");
+            navigate("/connexion");
           }, 1000);
           setMessage("Modifications sauvegardées !");
         })
         .catch((error) => {
           console.log(error);
-          console.log("id du user a patch dans le catch", searchUserIdValue);
           setMessage(error.response.data.message);
           if (error.response.data.statusCode === 401) {
             localStorage.removeItem("accesstoken");
@@ -107,13 +83,8 @@ const ResetPass = () => {
   };
   return (
     <div>
-      <img
-        id="onglet"
-        src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-        alt=""
-      />
       <div id="container">
-        <div id="modifProfil">
+        <div id="modifProfil-reset">
           <p className="ProfilActuel">Modifie ton mot de passe</p>
 
           <form
@@ -125,7 +96,7 @@ const ResetPass = () => {
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPassword" className="htmlForm-label" />
               <input
-                type="password"
+                type={showState ? "text" : "password"}
                 className="ProfilActuel"
                 id="inputPassword"
                 placeholder="Nouveau mot de passe"
@@ -136,15 +107,31 @@ const ResetPass = () => {
             <div id="mb-3" className="mb-3">
               <label htmlFor="inputPassword" className="htmlForm-label" />
               <input
-                type="password"
+                type={showState ? "text" : "password"}
                 className="ProfilActuel"
                 id="inputPassword"
                 placeholder="Comfirmez mot de passe"
                 onChange={passwordFunction2}
               />
             </div>
+            <div className="container-check-reset">
+              <input
+                className="form-check-input "
+                type="checkbox"
+                id="mdp-afficher"
+                name="drone"
+                onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+                  setShowState(e.currentTarget.checked);
+                  console.log("valeur de la checkbox", e.currentTarget.checked);
+                }}
+                // defaultChecked={user.role.label === "user" ? true : false}
+              />
+              <label className="label-reset" htmlFor="mdp-afficher">
+                Afficher le mot de passe
+              </label>
+            </div>
 
-            <span className="message">{message}</span>
+            <p className="message">{message}</p>
             <div className="button">
               <button id="button-mb-3" className="btn btn-danger btn-sm m-1">
                 modifier

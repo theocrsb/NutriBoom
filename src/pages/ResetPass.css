@@ -1,1 +1,14 @@
-
+.modifProfil-reset {
+  position: relative;
+  text-align: center;
+  width: 80%;
+}
+.label-reset {
+  padding: 0 1%;
+  color: #dfa530;
+}
+.container-check-reset {
+  padding: 5px;
+  display: block;
+  text-align: center;
+}
