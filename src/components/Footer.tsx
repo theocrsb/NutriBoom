@@ -15,9 +15,9 @@ const Footer = () => {
             <p>Tutoriel</p>
           </Link>
 
-          <Link className="aPropos" to="/ajout">
+          {/* <Link className="aPropos" to="/ajout">
             <p>Soumettez vos aliments / vos activités </p>
-          </Link>
+          </Link> */}
           <Link className="aPropos" to="/mailTo">
             <p>Contactez-nous</p>
           </Link>

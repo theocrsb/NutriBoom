@@ -88,6 +88,14 @@ p {
   color: #afb563;
   text-align: center;
 }
+
+.exerciceTextPetit {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #afb563;
+  text-align: center;
+}
+
 .addButton {
   border: black solid;
 }
