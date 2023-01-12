@@ -21,29 +21,29 @@ const Navbar = () => {
   const {valideTimeToken}=useContext(AuthContext)
   const{tokenFunction}= useContext(AuthContext)
   const{onAuthChange} = useContext(AuthContext)
-  console.log("voici le resultat pour savedToken", savedToken);
+  
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-// tokenFunction(savedToken)
-// console.log(tokenFunction(savedToken))
-tokenFunction(savedToken)
-
-console.log("retour fonction verif token",tokenFunction(savedToken))
-
+  const tokenss = localStorage.getItem("accesstoken")
 
   useEffect(() => {
-    
+   onAuthChange(tokenss)
+   tokenFunction(savedToken)
+console.log("voici le resultat pour savedToken", savedToken);
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
-      
+    console.log("etat d'expiration token dans la navbar",valideTimeToken)
+    }
+    if(valideTimeToken === "token expiré"){
+      window.location.reload()
     }
   });
 
   const tokenVerify = (e: SyntheticEvent) => {
-    
+     tokenFunction(savedToken)
     console.log("valide time token verify",valideTimeToken)
-    if (!localStorage.getItem("accesstoken")) {
+    if (!localStorage.getItem("accesstoken") || valideTimeToken === "token expiré") {
       window.location.reload();
     }
   };
@@ -166,7 +166,7 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
                       </strong>
                     </NavLink>
                   </li>
-                  { (tokenRole === "admin" && (
+                  {tokenRole === "admin" && valideTimeToken === "token valide" && (
                     <li className="nav-item dropdown">
                       <NavLink
                         to="/"
@@ -226,7 +226,8 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
                         </li>
                       </ul>
                     </li>
-                  ))}
+                  )}
+                  
                   <input
                     type="button"
                     value="Déconnexion"
@@ -234,6 +235,7 @@ console.log("retour fonction verif token",tokenFunction(savedToken))
                     className="btn btn-danger btn-sm m-1"
                     onClick={handleClickDecoBtn}
                   />
+                  
                 </>
               )}
             </ul>

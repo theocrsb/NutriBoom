@@ -84,6 +84,7 @@ const Main = () => {
   // Ajout du navigate
   const navigate = useNavigate();
   const { savedToken } = useContext(AuthContext);
+  const { onAuthChange } = useContext(AuthContext);
 
   const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem("accesstoken")) {
@@ -144,6 +145,7 @@ const Main = () => {
   let userSearchId: string | undefined = searchUser();
   // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
+    onAuthChange(savedToken);
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
         headers: {
@@ -162,7 +164,7 @@ const Main = () => {
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem("accesstoken");
           // window.location.reload()
-          // navigate("/connexion")
+          navigate("/connexion");
         }
       });
   }, []);
@@ -476,7 +478,8 @@ const Main = () => {
           console.log("tu ne peux pas poster", error);
           if (error.response.data.statusCode === 401) {
             localStorage.removeItem("accesstoken");
-            window.location.reload();
+            navigate("/connexion");
+            // window.location.reload()
           }
         });
     }
@@ -536,7 +539,7 @@ const Main = () => {
           <div className="d-flex container-nutri">
             <section className="donutProt text-center">
               <p className="infoUserTitle">
-                Protein <br /> {sumConsoProt}/
+                Protéines <br /> {sumConsoProt}/
                 {resultUserProt
                   ? Math.floor(resultUserProt) + (protDepense ? protDepense : 0)
                   : 0}
@@ -553,7 +556,7 @@ const Main = () => {
             </section>
             <section className="donutGlu text-center ">
               <p className="infoUserTitle">
-                Glucide <br /> {sumConsoGlu}/
+                Glucides <br /> {sumConsoGlu}/
                 {resultUserGlu
                   ? Math.floor(resultUserGlu) + (gluDepense ? gluDepense : 0)
                   : 0}
@@ -570,7 +573,7 @@ const Main = () => {
             </section>
             <section className="donutLip text-center">
               <p className="infoUserTitle">
-                Lipide <br /> {sumConsoLip}/
+                Lipides <br /> {sumConsoLip}/
                 {resultUserLip
                   ? Math.floor(resultUserLip) + (lipDepense ? lipDepense : 0)
                   : 0}
@@ -637,200 +640,200 @@ const Main = () => {
                   </ul>
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header text-center" id="headingTwo">
-                <button
-                  className="accordion-button collapsed "
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo"
-                  aria-expanded="false"
-                  aria-controls="collapseTwo"
+              <div className="accordion-item">
+                <h2 className="accordion-header text-center" id="headingTwo">
+                  <button
+                    className="accordion-button collapsed "
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Déjeuner
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample"
                 >
-                  Dejeuner
-                </button>
-              </h2>
-              <div
-                id="collapseTwo"
-                className="accordion-collapse collapse"
-                aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body">
-                  <ul className="petit-dej">
-                    {tabDej?.map((aliment) => (
-                      <li key={uuidv4()}>
-                        {/* [{aliment.name}]  */}
-                        {aliment.food.name}
-                        {/* {aliment.food.nombre_calories}kcal */}
-                        <button
-                          className="buttonDeleteAliment"
-                          onClick={handleDeleteli}
-                          value={aliment.id}
-                        >
-                          <span className="">❌</span>
-                        </button>
-                      </li>
-                    ))}
+                  <div className="accordion-body">
+                    <ul className="petit-dej">
+                      {tabDej?.map((aliment) => (
+                        <li key={uuidv4()}>
+                          {/* [{aliment.name}]  */}
+                          {aliment.food.name}
+                          {/* {aliment.food.nombre_calories}kcal */}
+                          <button
+                            className="buttonDeleteAliment"
+                            onClick={handleDeleteli}
+                            value={aliment.id}
+                          >
+                            <span className="">❌</span>
+                          </button>
+                        </li>
+                      ))}
 
-                    <Link
-                      className="buttonAdd"
-                      to="/dejeuner"
-                      onClick={tokenVerify}
-                    >
-                      <PlusAddButton />
-                    </Link>
-                    <span className="textAjout"> Ajouter un aliment</span>
-                  </ul>
+                      <Link
+                        className="buttonAdd"
+                        to="/dejeuner"
+                        onClick={tokenVerify}
+                      >
+                        <PlusAddButton />
+                      </Link>
+                      <span className="textAjout"> Ajouter un aliment</span>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header text-center" id="headingThree">
-                <button
-                  className="accordion-button collapsed "
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree"
-                  aria-expanded="false"
-                  aria-controls="collapseThree"
+              <div className="accordion-item">
+                <h2 className="accordion-header text-center" id="headingThree">
+                  <button
+                    className="accordion-button collapsed "
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Dîner
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingThree"
+                  data-bs-parent="#accordionExample"
                 >
-                  Diner
-                </button>
-              </h2>
-              <div
-                id="collapseThree"
-                className="accordion-collapse collapse"
-                aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body">
-                  <ul className="petit-dej">
-                    {tabDiner?.map((aliment) => (
-                      <li key={uuidv4()}>
-                        {/* [{aliment.name}]  */}
-                        {aliment.food.name}
-                        {/* {aliment.food.nombre_calories}kcal */}
-                        <button
-                          className="buttonDeleteAliment"
-                          onClick={handleDeleteli}
-                          value={aliment.id}
-                        >
-                          <span className="">❌</span>
-                        </button>
-                      </li>
-                    ))}
+                  <div className="accordion-body">
+                    <ul className="petit-dej">
+                      {tabDiner?.map((aliment) => (
+                        <li key={uuidv4()}>
+                          {/* [{aliment.name}]  */}
+                          {aliment.food.name}
+                          {/* {aliment.food.nombre_calories}kcal */}
+                          <button
+                            className="buttonDeleteAliment"
+                            onClick={handleDeleteli}
+                            value={aliment.id}
+                          >
+                            <span className="">❌</span>
+                          </button>
+                        </li>
+                      ))}
 
-                    <Link
-                      className="buttonAdd"
-                      to="/diner"
-                      onClick={tokenVerify}
-                    >
-                      <PlusAddButton />
-                    </Link>
-                    <span className="textAjout"> Ajouter un aliment</span>
-                  </ul>
+                      <Link
+                        className="buttonAdd"
+                        to="/diner"
+                        onClick={tokenVerify}
+                      >
+                        <PlusAddButton />
+                      </Link>
+                      <span className="textAjout"> Ajouter un aliment</span>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="accordion-item">
-              <h2 className="accordion-header text-center" id="headingFour">
-                <button
-                  className="accordion-button collapsed "
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour"
-                  aria-expanded="false"
-                  aria-controls="collapseFour"
+              <div className="accordion-item">
+                <h2 className="accordion-header text-center" id="headingFour">
+                  <button
+                    className="accordion-button collapsed "
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Collation
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingFour"
+                  data-bs-parent="#accordionExample"
                 >
-                  Collation
-                </button>
-              </h2>
-              <div
-                id="collapseFour"
-                className="accordion-collapse collapse"
-                aria-labelledby="headingFour"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body">
-                  <ul className="petit-dej">
-                    {tabCollation?.map((aliment) => (
-                      <li key={uuidv4()}>
-                        {/* [{aliment.name}]  */}
-                        {aliment.food.name}
-                        {/* {aliment.food.nombre_calories}kcal */}
-                        <button
-                          className="buttonDeleteAliment"
-                          onClick={handleDeleteli}
-                          value={aliment.id}
-                        >
-                          <span className="">❌</span>
-                        </button>
-                      </li>
-                    ))}
+                  <div className="accordion-body">
+                    <ul className="petit-dej">
+                      {tabCollation?.map((aliment) => (
+                        <li key={uuidv4()}>
+                          {/* [{aliment.name}]  */}
+                          {aliment.food.name}
+                          {/* {aliment.food.nombre_calories}kcal */}
+                          <button
+                            className="buttonDeleteAliment"
+                            onClick={handleDeleteli}
+                            value={aliment.id}
+                          >
+                            <span className="">❌</span>
+                          </button>
+                        </li>
+                      ))}
 
-                    <Link
-                      className="buttonAdd"
-                      to="/collation"
-                      onClick={tokenVerify}
-                    >
-                      <PlusAddButton />
-                    </Link>
-                    <span className="textAjout"> Ajouter un aliment</span>
-                  </ul>
+                      <Link
+                        className="buttonAdd"
+                        to="/collation"
+                        onClick={tokenVerify}
+                      >
+                        <PlusAddButton />
+                      </Link>
+                      <span className="textAjout"> Ajouter un aliment</span>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header text-center" id="headingFive">
-                <button
-                  className="accordion-button collapsed "
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive"
-                  aria-expanded="false"
-                  aria-controls="collapseFive"
+              <div className="accordion-item">
+                <h2 className="accordion-header text-center" id="headingFive">
+                  <button
+                    className="accordion-button collapsed "
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    Activité physique
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  className="accordion-collapse collapse"
+                  aria-labelledby="headingFive"
+                  data-bs-parent="#accordionExample"
                 >
-                  Activité Physique
-                </button>
-              </h2>
-              <div
-                id="collapseFive"
-                className="accordion-collapse collapse"
-                aria-labelledby="headingFive"
-                data-bs-parent="#accordionExample"
-              >
-                <div className="accordion-body">
-                  <ul className="petit-dej">
-                    {tabActivity?.map((sport) => (
-                      <li key={uuidv4()}>
-                        {sport.activity.name}x {sport.time}min{" "}
-                        {/* calcul de la depense energetique en fonction de la durée implementée pour affichage */}
-                        {Math.floor(
-                          sport.activity.conso_cal_1h * (sport.time / 60)
-                        )}
-                        kcal
-                        <button
-                          className="buttonDeleteActivity"
-                          onClick={handleDeleteliSport}
-                          value={sport.id}
-                        >
-                          <span className="">❌</span>
-                        </button>
-                      </li>
-                    ))}
+                  <div className="accordion-body">
+                    <ul className="petit-dej">
+                      {tabActivity?.map((sport) => (
+                        <li key={uuidv4()}>
+                          {sport.activity.name}x {sport.time}min{" "}
+                          {/* calcul de la depense energetique en fonction de la durée implementée pour affichage */}
+                          {Math.floor(
+                            sport.activity.conso_cal_1h * (sport.time / 60)
+                          )}
+                          kcal
+                          <button
+                            className="buttonDeleteActivity"
+                            onClick={handleDeleteliSport}
+                            value={sport.id}
+                          >
+                            <span className="">❌</span>
+                          </button>
+                        </li>
+                      ))}
 
-                    <Link
-                      className="buttonAdd"
-                      to="/exercices"
-                      onClick={tokenVerify}
-                    >
-                      <PlusAddButton />
-                    </Link>
-                    <span className="textAjout"> Ajouter une activité</span>
-                  </ul>
+                      <Link
+                        className="buttonAdd"
+                        to="/exercices"
+                        onClick={tokenVerify}
+                      >
+                        <PlusAddButton />
+                      </Link>
+                      <span className="textAjout"> Ajouter une activité</span>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

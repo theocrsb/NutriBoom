@@ -7,43 +7,16 @@
   scrollbar-width: thin;
 }
 .container-food::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 .container-food::-webkit-scrollbar-thumb {
   background: #afb563;
   border-radius: 8px;
 }
 .container-admin {
-  height: 100%;
+  width: 100%;
 }
-.triFood {
-  text-align: center;
-  margin-top: 2%;
-}
-.triFood h2 {
-  display: inline-block;
-  background-color: #dfa530;
-  border: thick double black;
-  color: #000000;
-  padding: 10px;
-  border-radius: 10px;
-}
-.list-food {
-  background-color: #000000;
-  border: solid 1mm #afb563;
-  border-radius: 10px;
-}
-.list-food li {
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-  padding: 0px 10px;
-  color: #dfa530;
-  font-weight: bold;
-  background-color: #000000;
-  border: solid 1mm #afb563;
-  border-radius: 10px;
-}
+
 .checkbox-container {
   font-weight: bold;
   color: #dfa530;

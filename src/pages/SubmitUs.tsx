@@ -50,7 +50,7 @@ const SoumettezNous = () => {
         );
         setTimeout(() => {
           navigate('/main');
-        }, 1000);
+        }, 0);
       })
       .catch((error) => {
         console.log(error);
@@ -72,8 +72,11 @@ const SoumettezNous = () => {
       .post(
         `http://localhost:8080/api/activity`,
         {
+          // on recupere les inputs
           name: activiteeElement?.current?.value,
           conso_cal_1h: consoKalElement?.current?.value,
+          // on rentre en brut pour ne pas afficher dans le front directement
+          // attente validation Admin
           validate: false,
         },
         {
@@ -89,7 +92,7 @@ const SoumettezNous = () => {
         );
         setTimeout(() => {
           navigate('/main');
-        }, 1000);
+        }, 0);
       })
       .catch((error) => {
         console.log(error);
@@ -103,7 +106,15 @@ const SoumettezNous = () => {
 
   return (
     <div className='App'>
-      <h2>Soumettez nous un aliment</h2>
+      {/* <h2>Soumettez nous un aliment</h2> */}
+      <div>
+        <h2
+          className='p-5 text-center'
+          style={{ color: '#dfa530', fontWeight: 'bold' }}
+        >
+          Formulaire pour soumettre un aliment ou une activité
+        </h2>
+      </div>
 
       {/*<form onSubmit={(e) =>{handleSubmitForm(e)}}>*/}
       <form className='w-50 m-auto ' onSubmit={handleSubmitForm1}>
@@ -178,7 +189,7 @@ const SoumettezNous = () => {
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <button
-            className='mt-3 btn btn-success btn inscription '
+            className='mt-3 btn btn-success btn inscription mb-4'
             style={{ margin: '0' }}
             type='submit'
           >
@@ -188,7 +199,7 @@ const SoumettezNous = () => {
 
         {/* Soummettre activitée */}
       </form>
-      <h2>Soumettre une activitee</h2>
+      {/* <h2>Soumettre une activité</h2> */}
       <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
@@ -199,7 +210,7 @@ const SoumettezNous = () => {
             ref={activiteeElement}
           />
           <label style={{ color: 'white' }} htmlFor='nameAliment'>
-            Nom de l'activitée
+            Nom de l'activité
           </label>
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
@@ -216,11 +227,11 @@ const SoumettezNous = () => {
         </div>
         <div className='d-flex justify-content-center'>
           <button
-            className='mt-3 btn btn-success btn inscription '
+            className='mt-3 btn btn-success btn inscription mb-4'
             style={{ margin: '0' }}
             type='submit'
           >
-            soumettre une activitée
+            soumettre une activité
           </button>
         </div>
       </form>

@@ -126,8 +126,7 @@ const Admin = () => {
   return (
     <div className="encadrement">
       <h1 className="ecriture">
-        Salut Admin ! <br />
-        Voici la liste des utilisateurs
+       Gestion des utilisateurs
       </h1>
       <p className="ecriture">
         Tu peux ici gérer la liste des utilisateurs, changer leur rôle en

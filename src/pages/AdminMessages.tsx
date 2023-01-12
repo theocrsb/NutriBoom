@@ -13,7 +13,18 @@ interface Message {
 
 const AdminMessage = () => {
   const [messages, SetMessage] = useState<Message[]>([]);
+  const [infoBoite, setInfoBoite] = useState<string|null>("nada")
   const navigate = useNavigate();
+const verifMessageFunction =(messages : Message[])=>{
+    if(messages.length === 0){
+      console.log("le tableau est vide")
+      setInfoBoite('La boîte de réception est vide.')}
+ else{
+  setInfoBoite("")
+ }
+}
+
+
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/mailto', {
@@ -24,7 +35,10 @@ const AdminMessage = () => {
       .then((response) => {
         // console.log(response);
         SetMessage(response.data);
+        verifMessageFunction(response.data)
       });
+        
+  
   }, []);
   console.log('messages', messages);
   const handleDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -39,7 +53,7 @@ const AdminMessage = () => {
         .then((response) => {
           console.log(response);
           window.location.reload();
-          // navigate('/main');
+          
         })
         .catch((error) => {
           console.log('tu ne peux pas poster', error);
@@ -56,10 +70,12 @@ const AdminMessage = () => {
         className='d-flex justify-content-center p-3'
         style={{ color: 'white' }}
       >
-        <h2>Voici la liste des messages</h2>{' '}
+        <h2 className = "ecriture">Messages reçus:</h2>
       </div>
       {/* On map pour avoir autant de carte que de message */}
-      {messages.map((x) => (
+      <p>{infoBoite}</p>
+      {messages.map((x)  => (
+    
         <div key={x.id} className='list-group p-4'>
           <div className='list-group-item list-group-item-action flex-column align-items-start'>
             <div className='d-flex w-100 justify-content-between'>
@@ -84,7 +100,9 @@ const AdminMessage = () => {
             </div>
           </div>
         </div>
+      
       ))}
+      
     </div>
   );
 };

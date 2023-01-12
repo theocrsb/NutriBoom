@@ -108,6 +108,12 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   width: 80px;
 }
 
+.Titre{
+    color: #afb563;
+    font-size: 15px;
+    
+}
+
 @media (min-width: 650px) {
   /* p#li-actuel-mb3 {
     font-size: 1em;
@@ -117,6 +123,10 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
     font-size: 20px;
   }
   select.ProfilActuel {
+    font-size: 20px;
+  }
+
+  .Titre{
     font-size: 20px;
   }
 }

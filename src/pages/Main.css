@@ -9,8 +9,15 @@
   align-items: center;
 }
 .main-container {
+  overflow: auto;
   width: 100%;
-  height: 100%;
+}
+.main-container::-webkit-scrollbar {
+  width: 8px;
+}
+.main-container::-webkit-scrollbar-thumb {
+  background: #afb563;
+  border-radius: 8px;
 }
 .user-recap {
   /* background-color: rgba(0, 0, 0, 0.5);
@@ -103,6 +110,9 @@ p.infoUser {
 .section-accordion {
 }
 .accordion {
+  margin-top: 7%;
+  margin-bottom: 50%;
+
   --bs-accordion-color: #212529;
   --bs-accordion-bg: rgba(0, 0, 0, 0);
   --bs-accordion-transition: color 0.15s ease-in-out,
@@ -161,7 +171,7 @@ ul {
   color: black;
   border-radius: 20px;
   padding: 5px 20px;
-  margin: 5px;
+  /* margin: 5px; */
 }
 
 .buttonAdd {

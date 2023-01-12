@@ -1,10 +1,10 @@
-import AlimentAddButton from "../components/AlimentAddButton";
-import "./Add.css";
-import SearchBar from "../components/SearchBar";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { table } from "console";
+import AlimentAddButton from '../components/AlimentAddButton';
+import './Add.css';
+import SearchBar from '../components/SearchBar';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { table } from 'console';
 
 export interface Activity {
   id: number;
@@ -26,10 +26,10 @@ const AddExercice = () => {
   //  -------------------PROPS---------------------//
   const exerciceSubmitFunction = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("props dans les exercices", e);
-    console.log("activite selectionnee", activity?.name);
-    console.log("objet activite", activity);
-    console.log("la quantité", quantity);
+    console.log('props dans les exercices', e);
+    console.log('activite selectionnee', activity?.name);
+    console.log('objet activite', activity);
+    console.log('la quantité', quantity);
     // if (quantity) {
     //   console.log(
     //     "je rentre dans la condition du quantity",
@@ -52,25 +52,32 @@ const AddExercice = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
           },
         }
       )
       .then((response) => {
-        console.log("super, exercice ajouté", response);
-        setMessage("Exercice ajouté avec succès");
+        console.log('super, exercice ajouté', response);
+        setMessage('Exercice ajouté avec succès');
 
-        navigate("/main");
+        navigate('/main');
       })
       .catch((error) => {
-        console.log("tu ne peux pas poster", error);
-        if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
-        }
-        if (!quantity) {
+        // si erreur input
+        if (error.response.data.statusCode === 400) {
+          setMessage("N'oublie pas de saisir une durée !");
+        } else {
           setMessage(error.response.data.message);
         }
+        //
+        console.log('tu ne peux pas poster', error);
+        if (error.response.data.statusCode === 401) {
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
+        }
+        // if (!quantity) {
+        //   setMessage(error.response.data.message);
+        // }
       });
   };
 
@@ -81,9 +88,9 @@ const AddExercice = () => {
   };
 
   const searchBarFunction = (e: string) => {
-    console.log("props passé dans le parent", e);
+    console.log('props passé dans le parent', e);
     setExerciceInput(e);
-    console.log("props passé dans le parent et le state", e);
+    console.log('props passé dans le parent et le state', e);
     if (!e) {
       setActivity(undefined);
     } else {
@@ -92,13 +99,13 @@ const AddExercice = () => {
       let listExo = listExercices.filter((exo) =>
         exo.name
           .toLocaleLowerCase()
-          .normalize("NFD")
-          .replace(/\p{Diacritic}/gu, "")
+          .normalize('NFD')
+          .replace(/\p{Diacritic}/gu, '')
           .includes(
             e
               .toLocaleLowerCase()
-              .normalize("NFD")
-              .replace(/\p{Diacritic}/gu, "")
+              .normalize('NFD')
+              .replace(/\p{Diacritic}/gu, '')
           )
       );
       setListBis(listExo);
@@ -110,18 +117,18 @@ const AddExercice = () => {
     axios
       .get(`http://localhost:8080/api/activity`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },
       })
       .then((response) => {
-        console.log("liste des exercices", response.data);
+        console.log('liste des exercices', response.data);
         setListExercices(response.data);
       })
       .catch((error) => {
-        console.log("something went wrong", error);
+        console.log('something went wrong', error);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
         }
       });
   }, []);
@@ -135,32 +142,31 @@ const AddExercice = () => {
 
   return (
     <div>
-      <div className="text-container">
-        <section className="text-section">
-          <h1 className="exerciceText">
-            Sélectionne l'exercice que tu as réalisé aujourd'hui!
-          </h1>
-          <p>
-            Tu peux grâce à la barre de recherche trouver ton activité, et
-            l'ajouter à ton tableau de bord grâce au bouton!
-          </p>
+      <div className='text-container'>
+        <section className='text-section'>
+          <h1 className='exerciceText'> Activité </h1>
+
+          {/* lien pour soummettre aliment/activité */}
+          <Link className='aPropos' to='/ajout'>
+            <p>Tu ne trouves pas ton activité ? Clique ici pour l'ajouter !</p>
+          </Link>
         </section>
       </div>
-      <div className="searchbarPosition">
+      <div className='searchbarPosition'>
         <SearchBar searchProps={searchBarFunction} />
       </div>
-      <div className="list">
+      <div className='list'>
         {selection && (
-          <li className="listeRecherche">
-            <span className="li-text">{selection}</span>
+          <li className='listeRecherche'>
+            <span className='li-text'>{selection}</span>
             {/* <div className="formulaire"> */}
-            <form className="form" onSubmit={exerciceSubmitFunction}>
-              <label htmlFor="quantity" className="htmlForm-label" />
+            <form className='form' onSubmit={exerciceSubmitFunction}>
+              <label htmlFor='quantity' className='htmlForm-label' />
               <input
-                className="quantity"
-                type="number"
-                id="quantity"
-                placeholder="Min"
+                className='quantity'
+                type='number'
+                id='quantity'
+                placeholder='Min'
                 onChange={quantityFunction}
               />
               <AlimentAddButton />
@@ -168,13 +174,13 @@ const AddExercice = () => {
             {/* </div> */}
           </li>
         )}
-        <p className="exerciceText">Suggestions</p>
+        <p className='exerciceText'>Suggestions</p>
         <p> Clique sur ton activité</p>
-        <div className="scroller">
+        <div className='scroller'>
           {listBis.map((liste, index) => (
             <button
               key={index}
-              className="listeRechercheBis"
+              className='listeRechercheBis'
               value={liste.id}
               onClick={buttonFunction}
               name={liste.name}
@@ -183,7 +189,7 @@ const AddExercice = () => {
             </button>
           ))}
         </div>
-        <p className="exerciceText">{message}</p>
+        <p className='exerciceText'>{message}</p>
       </div>
     </div>
   );
