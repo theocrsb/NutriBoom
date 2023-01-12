@@ -27,6 +27,11 @@
   justify-content: center;
   margin-bottom: 2%;
 }
+.list-food {
+  background-color: #000000;
+  border: solid 1mm #afb563;
+  border-radius: 10px;
+}
 .checkbox {
   display: inline-block;
   padding: 0 10px;
