@@ -212,7 +212,7 @@ const AdminActivity = () => {
         </option>
       </select> */}
       <div className="triFood">
-        <h2>Gestion des activités a afficher</h2>
+        <h2>Gestion des activités à afficher</h2>
         <br />
         <div className="checkbox-container">
           <div className="checkbox">
@@ -342,7 +342,7 @@ const AdminActivity = () => {
                           value=""
                           disabled
                         >
-                          Selectionner un choix
+                          Sélectionner un choix
                         </option>
                         <option key={i + 1} value="true">
                           Affiché
@@ -512,7 +512,7 @@ const AdminActivity = () => {
                           value=""
                           disabled
                         >
-                          Selectionner un choix
+                          Sélectionner un choix
                         </option>
                         <option key={i + 1} value="true">
                           Affiché
