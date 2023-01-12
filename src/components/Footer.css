@@ -1,6 +1,7 @@
-/* .footer-component {
-  height: 100vh;
-} */
+.footer-component {
+  display: block;
+  border: none;
+}
 .footer {
   border-top: solid 1mm#dfa530;
   display: flex;
@@ -17,6 +18,7 @@
   flex-direction: column;
   font-weight: bold;
 
+  height: 100px;
   /* border-radius: 10px; */
   border-radius: 0px 10px 0px 0px;
 }
@@ -33,6 +35,9 @@
   box-shadow: none;
   text-decoration: none;
   color: #dfa530;
+}
+.aPropos p {
+  margin: 0;
 }
 
 .aPropos:visited {

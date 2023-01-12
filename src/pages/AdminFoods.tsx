@@ -148,6 +148,7 @@ const AdminFoods = () => {
 
   return (
     <div className="container-food">
+      {/* <div className="container-admin"> */}
       <div className="triFood">
         <h2>Gestion des aliments a afficher</h2>
         <br />
@@ -542,6 +543,7 @@ const AdminFoods = () => {
               </li>
             ))}
       </ul>
+      {/* </div> */}
     </div>
   );
 };

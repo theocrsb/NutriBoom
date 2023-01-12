@@ -187,7 +187,7 @@ const Account = () => {
   }
 
   return (
-    <div>
+    <div className="account-page">
       <img
         id="onglet"
         src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}

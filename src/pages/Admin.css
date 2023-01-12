@@ -1,6 +1,20 @@
 .container-food {
+  overflow: auto;
+  height: 100vh;
   padding: 0 5%;
   color: #afb563;
+  scrollbar-color: #aaa transparent;
+  scrollbar-width: thin;
+}
+.container-food::-webkit-scrollbar {
+  width: 10px;
+}
+.container-food::-webkit-scrollbar-thumb {
+  background: #afb563;
+  border-radius: 8px;
+}
+.container-admin {
+  height: 100%;
 }
 .triFood {
   text-align: center;
@@ -63,6 +77,12 @@
 }
 .label {
   padding: 0 10px;
+}
+.col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(15px + 0.390625vw);
 }
 .ecriture {
   text-align: center;
@@ -187,6 +207,7 @@ p {
   justify-content: space-around;
 }
 .text {
+  margin: 0;
   -webkit-animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53)
     infinite alternate backwards;
   animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite
