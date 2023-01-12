@@ -32,6 +32,17 @@
   border: solid 1mm #afb563;
   border-radius: 10px;
 }
+.list-food li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  padding: 0px 10px;
+  color: #dfa530;
+  font-weight: bold;
+  background-color: #000000;
+  border: solid 1mm #afb563;
+  border-radius: 10px;
+}
 .checkbox {
   display: inline-block;
   padding: 0 10px;
