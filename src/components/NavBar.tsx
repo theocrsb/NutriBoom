@@ -24,14 +24,10 @@ const Navbar = () => {
   
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
   const tokenss = localStorage.getItem("accesstoken")
-  onAuthChange(tokenss)
-   tokenFunction(savedToken)
-
-// tokenFunction(savedToken)
-// console.log(tokenFunction(savedToken))
 
   useEffect(() => {
-  
+   onAuthChange(tokenss)
+   tokenFunction(savedToken)
 console.log("voici le resultat pour savedToken", savedToken);
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);

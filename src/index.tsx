@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  // Import et mise en place des differents context qui emgloberont toute notre APP
+  // Import et mise en place des differents context qui engloberont toute notre APP
   <React.StrictMode>
     <AuthContextProvider>
       <UserContextProvider>
