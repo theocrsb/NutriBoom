@@ -83,15 +83,14 @@ const Main = () => {
   const { onUserChange } = useContext(UserContext);
   // Ajout du navigate
   const navigate = useNavigate();
-  const {savedToken}= useContext(AuthContext);
-  const {onAuthChange} = useContext(AuthContext)
- 
+  const { savedToken } = useContext(AuthContext);
+  const { onAuthChange } = useContext(AuthContext);
+
   const tokenVerify = (e: SyntheticEvent) => {
     if (!localStorage.getItem('accesstoken')) {
       window.location.reload();
     }
   };
-
 
   // Fonction permettant d'obtenir la valeur journaliere  des calories à consommer
   const convertToCal = (
@@ -130,7 +129,7 @@ const Main = () => {
     }
   };
   //  recuperation du token User
-  let recupToken = localStorage.getItem('accesstoken')
+  let recupToken = localStorage.getItem('accesstoken');
   console.log('voici le token ', recupToken);
 
   // Usetate pour recuperer dynamiquement la liste de tout les utilisateurs
@@ -146,7 +145,7 @@ const Main = () => {
   let userSearchId: string | undefined = searchUser();
   // UseEffect pour recuperer un utilisateur par son id
   useEffect(() => {
-onAuthChange(savedToken)
+    onAuthChange(savedToken);
     axios
       .get(`http://localhost:8080/api/users/${userSearchId}`, {
         headers: {
@@ -165,7 +164,7 @@ onAuthChange(savedToken)
         if (error.response.data.statusCode === 401) {
           localStorage.removeItem('accesstoken');
           // window.location.reload()
-          navigate("/connexion")
+          navigate('/connexion');
         }
       });
   }, []);
@@ -479,7 +478,7 @@ onAuthChange(savedToken)
           console.log('tu ne peux pas poster', error);
           if (error.response.data.statusCode === 401) {
             localStorage.removeItem('accesstoken');
-             navigate('/connexion');
+            navigate('/connexion');
             // window.location.reload()
           }
         });
@@ -538,7 +537,7 @@ onAuthChange(savedToken)
         </div>
         <div className='d-flex container-nutri'>
           <section className='donutProt text-center'>
-            <p className='infoUserTitle'>Protein</p>
+            <p className='infoUserTitle'>Proteines</p>
             <Doughnut data={dataProt} />
             <p className='infoUser'>
               {sumConsoProt}/
@@ -549,7 +548,7 @@ onAuthChange(savedToken)
             </p>
           </section>
           <section className='donutGlu text-center '>
-            <p className='infoUserTitle'>Glucide</p>
+            <p className='infoUserTitle'>Glucides</p>
             <Doughnut data={dataGlu} />
             <p className='infoUser'>
               {sumConsoGlu}/
@@ -560,7 +559,7 @@ onAuthChange(savedToken)
             </p>
           </section>
           <section className='donutLip text-center'>
-            <p className='infoUserTitle'>Lipide</p>
+            <p className='infoUserTitle'>Lipides</p>
             <Doughnut data={dataLip} />
             <p className='infoUser'>
               {sumConsoLip}/
@@ -583,7 +582,7 @@ onAuthChange(savedToken)
               aria-expanded='true'
               aria-controls='collapseOne'
             >
-              Petit dejeuner
+              Petit déjeuner
             </button>
           </h2>
           <div
@@ -632,7 +631,7 @@ onAuthChange(savedToken)
               aria-expanded='false'
               aria-controls='collapseTwo'
             >
-              Dejeuner
+              Déjeuner
             </button>
           </h2>
           <div
@@ -809,7 +808,7 @@ onAuthChange(savedToken)
                 >
                   <PlusAddButton />
                 </Link>
-                <span className='textAjout'> Ajouter une activité</span>
+                <span className='textAjout'> Ajouter une activité </span>
               </ul>
             </div>
           </div>
