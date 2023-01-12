@@ -106,7 +106,15 @@ const SoumettezNous = () => {
 
   return (
     <div className='App'>
-      <h2>Soumettez nous un aliment</h2>
+      {/* <h2>Soumettez nous un aliment</h2> */}
+      <div>
+        <h2
+          className='p-5 text-center'
+          style={{ color: 'white', fontWeight: 'bold' }}
+        >
+          Formulaire pour soumettre un aliment ou une activité
+        </h2>
+      </div>
 
       {/*<form onSubmit={(e) =>{handleSubmitForm(e)}}>*/}
       <form className='w-50 m-auto ' onSubmit={handleSubmitForm1}>
@@ -181,7 +189,7 @@ const SoumettezNous = () => {
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <button
-            className='mt-3 btn btn-success btn inscription '
+            className='mt-3 btn btn-success btn inscription mb-4'
             style={{ margin: '0' }}
             type='submit'
           >
@@ -191,7 +199,7 @@ const SoumettezNous = () => {
 
         {/* Soummettre activitée */}
       </form>
-      <h2>Soumettre une activité</h2>
+      {/* <h2>Soumettre une activité</h2> */}
       <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
@@ -219,7 +227,7 @@ const SoumettezNous = () => {
         </div>
         <div className='d-flex justify-content-center'>
           <button
-            className='mt-3 btn btn-success btn inscription '
+            className='mt-3 btn btn-success btn inscription mb-4'
             style={{ margin: '0' }}
             type='submit'
           >
