@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 .container-food {
   overflow: auto;
   height: 100vh;
@@ -14,6 +17,7 @@
   border-radius: 8px;
 }
 .container-admin {
+  height: auto;
   width: 100%;
 }
 
@@ -43,6 +47,17 @@
   border: solid 1mm #afb563;
   border-radius: 10px;
 }
+.checkbox-container {
+  font-weight: bold;
+  color: #dfa530;
+  background-color: #000000;
+  border: solid 1mm #dfa530;
+  border-radius: 10px;
+  display: inline-block;
+  justify-content: center;
+  margin-bottom: 2%;
+}
+
 .checkbox {
   display: inline-block;
   padding: 0 10px;

@@ -5,7 +5,7 @@
 }
 
 .carotteFond {
-  background-image: url('/public/assets/missCarottePenchee.svg');
+  background-image: url("/public/assets/missCarottePenchee.svg");
   background-repeat: no-repeat;
   background-size: 500px;
   background-position: 90px -90px;
@@ -139,6 +139,7 @@ select {
 }
 
 .select {
+  font-size: calc(15px + 0.390625vw);
   width: 250px;
 }
 
@@ -149,7 +150,7 @@ select {
 
 @media screen and (min-width: 470px) {
   .carotteFond {
-    background-image: url('/public/assets/bg-test.png');
+    background-image: url("/public/assets/bg-test.png");
     background-repeat: no-repeat;
     background-size: cover;
     /* background-attachment: fixed; */
@@ -160,7 +161,7 @@ select {
 }
 @media screen and (min-width: 810px) {
   .carotteFond {
-    background-image: url('/public/assets/bg-test.png');
+    background-image: url("/public/assets/bg-test.png");
     background-repeat: no-repeat;
     background-size: contain;
     /* background-attachment: fixed; */
