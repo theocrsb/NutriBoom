@@ -59,7 +59,7 @@ export const AuthContextProvider = ({ children }: AuthContextProps) => {
   );
 
      const [tokenExpired, setTokenExpired] =useState<string|null>(null)
-    const[test, setTest] =useState<JwtPayload>()
+    
 
  
   const handleAuthChange = (token: string | null) => {
