@@ -5,9 +5,9 @@ import { useState, useEffect, FormEvent, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth-context';
-import './Mdp.css';
+import './PasswordForgotted.css';
 
-const Mdpx = () => {
+const PasswordForgotted = () => {
   const { onAuthChange } = useContext(AuthContext);
   const [mailState, setMailState] = useState<string>();
   const [message, setMessage] = useState<string | null>(null);
@@ -118,4 +118,4 @@ const Mdpx = () => {
     </div>
   );
 };
-export default Mdpx;
+export default PasswordForgotted;

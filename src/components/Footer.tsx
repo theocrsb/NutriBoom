@@ -7,9 +7,9 @@ const Footer = () => {
     <div className="footer-component">
       <div className="footer">
         <img className="logoFooter" src={image} alt="logo" />
-        <div className="textFooter">
-            <p>À propos</p>
+        <div className="textFooter"> 
           <Link className="aPropos" to="/aboutus">
+            <p>À propos</p>
           </Link>
           <Link className="aPropos" to="/Tuto">
             <p>Tutoriel</p>

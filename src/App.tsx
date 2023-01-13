@@ -38,8 +38,10 @@ import { PayloadToken } from "./pages/Main";
 import jwt_decode from "jwt-decode";
 import Tuto from "./pages/Tuto";
 import ResetPass from "./pages/ResetPass";
-import Mdpx from "./pages/Mdp";
+import Mdpx from "./pages/PasswordForgotted";
 import { useParams } from "react-router-dom";
+import PasswordForgotted from "./pages/PasswordForgotted";
+import SubmitUs from "./pages/SubmitUs";
 
 const App = () => {
   const { savedToken } = useContext(AuthContext);
@@ -113,7 +115,7 @@ const App = () => {
               )
             }
           >
-            
+
           </Route>
           <Route
             path="/supprimercompte"
@@ -181,11 +183,11 @@ const App = () => {
           ></Route>
           <Route path="/*" element={<Page404 />}></Route>
           <Route path="/inscriptionok" element={<InscriptionOk />}></Route>
-          <Route path="/ajout" element={<SoumettezNous />}></Route>
+          <Route path="/ajout" element={<SubmitUs />}></Route>
           <Route path="/mailTo" element={<Mailto />}></Route>
           <Route path="/Tuto" element={<Tuto />}></Route>
           <Route path="/resetpass" element={<ResetPass />}></Route>
-          <Route path="/mdo" element={<Mdpx />}></Route>
+          <Route path="/mdpoubli" element={<PasswordForgotted />}></Route>
         </Routes>
         <Footer />
       </BrowserRouter>

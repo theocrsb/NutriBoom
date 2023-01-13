@@ -3,7 +3,7 @@ import { FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Welcome.css';
 
-const SoumettezNous = () => {
+const SubmitUs = () => {
   const nomElement = useRef<HTMLInputElement>(null);
   const calorieElement = useRef<HTMLInputElement>(null);
   const lipidesElement = useRef<HTMLInputElement>(null);
@@ -234,4 +234,4 @@ const SoumettezNous = () => {
   );
 };
 
-export default SoumettezNous;
+export default SubmitUs;
