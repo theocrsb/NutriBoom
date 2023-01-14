@@ -3,13 +3,14 @@
 } */
 .main-page {
   position: relative;
+  display: inline;
   height: 100vh;
-  display: inline-block;
   width: 100%;
   align-items: center;
 }
 .main-container {
-  overflow: auto;
+  height: 100%;
+  /* overflow: auto; */
   width: 100%;
 }
 .main-container::-webkit-scrollbar {
@@ -46,6 +47,7 @@
   display: flex;
   justify-content: center;
   max-height: 250px;
+
   width: auto;
 }
 .donutProt {
@@ -60,9 +62,16 @@
   height: 80px;
   width: 80px;
 }
+.container-chart {
+  display: inline-block;
+  width: 100%;
+
+  text-align: center;
+}
 .container-nutri {
+  display: inline-block;
   justify-content: space-around;
-  height: 150px;
+  height: 200px;
 }
 p.infoUserTitle {
   display: inline-block;
@@ -86,8 +95,7 @@ p.infoUser {
   padding: 5px;
 }
 .container-chartCal {
-  padding-top: 2%;
-  padding-bottom: 2%;
+  display: inline-block;
   width: 100%;
 }
 .container-chartCal p {
@@ -99,6 +107,7 @@ p.infoUser {
   font-weight: bold;
   color: #ffffff;
   padding: 0 5px;
+  font-size: 1rem;
 }
 
 #onglet {
@@ -108,11 +117,11 @@ p.infoUser {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .section-accordion {
+  display: inline-block;
+  width: 100%;
+  padding: 2%;
 }
 .accordion {
-  margin-top: 7%;
-  margin-bottom: 50%;
-
   --bs-accordion-color: #212529;
   --bs-accordion-bg: rgba(0, 0, 0, 0);
   --bs-accordion-transition: color 0.15s ease-in-out,
@@ -144,11 +153,14 @@ p.infoUser {
   background-color: rgba(0, 0, 0, 0.478);
   color: rgb(255, 255, 255);
   border-bottom: solid #afb563;
+  border-top: solid #afb563;
+}
+.accordion-body {
+  border-bottom: solid #afb563;
 }
 
 .accordion-button:focus {
   color: #dfa530;
-  border-bottom: solid #afb563;
 }
 .accordion-button::after {
   background-color: #afb563;
@@ -164,11 +176,13 @@ ul {
   list-style-type: none;
 }
 .petit-dej li {
+  border: #dfa530 1mm solid;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: bold;
-  background-color: #dfa530;
-  color: black;
+  background-color: #000000;
+  color: #dfa530;
   border-radius: 20px;
   padding: 5px 20px;
   /* margin: 5px; */
@@ -210,5 +224,57 @@ ul {
   }
   #kcal {
     font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .container-chart {
+    height: 100%;
+  }
+  .container-chartCal p {
+    display: inline-block;
+    color: #dfa530;
+    border: thick double black;
+    background-color: #dfa530;
+    border-radius: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 0 5px;
+    font-size: 2rem;
+  }
+
+  #donutCal {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    max-height: 500px;
+    width: auto;
+  }
+  .user-recap {
+    margin-top: 1%;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.89);
+    position: absolute;
+    bottom: 31%;
+    z-index: -222;
+  }
+  .user-recap h2 {
+    font-size: 2rem;
+  }
+  #kcal {
+    font-size: 1.8rem;
+  }
+  .donutProt {
+    height: 120px;
+    width: 120px;
+  }
+  .donutGlu {
+    height: 120px;
+    width: 120px;
+  }
+  .donutLip {
+    height: 120px;
+    width: 120px;
   }
 }

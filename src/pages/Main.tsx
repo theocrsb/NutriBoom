@@ -13,6 +13,7 @@ import "../components/PlusAddButton.css";
 import { UserContext } from "../contexts/User-Context";
 import { SyntheticEvent } from "react";
 import { AuthContext } from "../contexts/Auth-context";
+import { BsTrashFill } from "react-icons/bs";
 
 //  creation des interfaces pour le typage des differentes table de la base de donnée
 export interface User {
@@ -620,11 +621,11 @@ const Main = () => {
                         {/* {aliment.food.nombre_calories}
                     kcal{" "} */}
                         <button
-                          className="buttonDeleteAliment"
+                          className="buttonValidate"
                           onClick={handleDeleteli}
                           value={aliment.id}
                         >
-                          <span className="">❌</span>
+                          <BsTrashFill className="trash" />
                         </button>
                       </li>
                     ))}
@@ -667,11 +668,11 @@ const Main = () => {
                           {aliment.food.name}
                           {/* {aliment.food.nombre_calories}kcal */}
                           <button
-                            className="buttonDeleteAliment"
+                            className="buttonValidate"
                             onClick={handleDeleteli}
                             value={aliment.id}
                           >
-                            <span className="">❌</span>
+                            <BsTrashFill className="trash" />
                           </button>
                         </li>
                       ))}
@@ -715,11 +716,11 @@ const Main = () => {
                           {aliment.food.name}
                           {/* {aliment.food.nombre_calories}kcal */}
                           <button
-                            className="buttonDeleteAliment"
+                            className="buttonValidate"
                             onClick={handleDeleteli}
                             value={aliment.id}
                           >
-                            <span className="">❌</span>
+                            <BsTrashFill className="trash" />
                           </button>
                         </li>
                       ))}
@@ -764,11 +765,11 @@ const Main = () => {
                           {aliment.food.name}
                           {/* {aliment.food.nombre_calories}kcal */}
                           <button
-                            className="buttonDeleteAliment"
+                            className="buttonValidate"
                             onClick={handleDeleteli}
                             value={aliment.id}
                           >
-                            <span className="">❌</span>
+                            <BsTrashFill className="trash" />
                           </button>
                         </li>
                       ))}
@@ -815,11 +816,11 @@ const Main = () => {
                           )}
                           kcal
                           <button
-                            className="buttonDeleteActivity"
+                            className="buttonValidate"
                             onClick={handleDeleteliSport}
                             value={sport.id}
                           >
-                            <span className="">❌</span>
+                            <BsTrashFill className="trash" />
                           </button>
                         </li>
                       ))}

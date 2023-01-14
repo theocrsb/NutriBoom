@@ -1,7 +1,22 @@
+.connexion-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.container-connexion {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+.title-connect {
+  font-size: 3rem;
+}
 .textConnect {
   color: #afb563;
   text-align: center;
   margin-top: 80px;
+  font-size: calc(15px + 0.390625vw);
 }
 .lienInscription {
   color: #dfa530;
@@ -23,14 +38,28 @@ select {
   color: #afb563;
   font-weight: bold;
 }
-
+.filtre-bg-connexion {
+}
 .fondCarotte {
-  background-image: url("/public/assets/bg-test.png");
+  display: inline-block;
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("/public/assets/missCarotte.png");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  background-size: 40%;
+  background-position: right;
+  background-attachment: fixed;
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */
   -webkit-animation: bounce-in-right 1.1s both;
   animation: bounce-in-right 1.1s both;
+  padding: 20%;
+  height: 100%;
+  width: 100%;
 }
 
 .message {
@@ -148,12 +177,13 @@ select {
   padding-top: 30px;
   text-align: center;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 600px) {
   .fondCarotte {
     background-image: url("/public/assets/bg-test.png");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     -webkit-animation: bounce-in-right 1.1s both;
     animation: bounce-in-right 1.1s both;
   }

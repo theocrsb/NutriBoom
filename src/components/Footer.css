@@ -1,29 +1,28 @@
 .footer-component {
-  display: block;
-  border: none;
 }
 .footer {
   border-top: solid 1mm#dfa530;
   display: flex;
-  justify-content: center;
+  border-left: solid 1mm#dfa530;
+  border-right: solid 1mm#dfa530;
   border-radius: 10px 10px 0px 0px;
-  /* background-color: #dfa530; */
+  background-color: rgba(0, 0, 0, 0.536);
+  margin-top: 3%;
   height: 150px;
   width: 100%;
   /* margin-top: 35px; */
 }
-.textFooter {
-  color: #dfa530;
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
 
-  height: 100px;
-  /* border-radius: 10px; */
-  border-radius: 0px 10px 0px 0px;
+.textFooter p {
+  margin: 0;
 }
 
 .logoFooter {
+  display: inline;
+  height: 150px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
   padding: 0;
   margin: 0;
   /* background-color: #dfa530; */
@@ -32,18 +31,39 @@
 }
 
 .aPropos {
+  display: flex;
+  font-weight: bold;
   box-shadow: none;
   text-decoration: none;
-  color: #dfa530;
 }
 .aPropos p {
   margin: 0;
+  color: #afb563;
 }
 
 .aPropos:visited {
-  color: #dfa530;
+  color: #afb563;
 }
 
-.aPropos:hover {
+.aPropos p:hover {
   cursor: pointer;
+  color: #dfa530;
+  transition: ease-in-out 0.3s;
+}
+.container-footer {
+  width: 100%;
+}
+.footer-p {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: space-around;
+  width: 100%;
+}
+.footer-img {
+  flex: 1 0;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }

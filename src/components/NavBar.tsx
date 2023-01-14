@@ -18,32 +18,35 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [tokenRole, setTokenRole] = useState<string>();
   const { savedToken } = useContext(AuthContext);
-  const {valideTimeToken}=useContext(AuthContext)
-  const{tokenFunction}= useContext(AuthContext)
-  const{onAuthChange} = useContext(AuthContext)
-  
+  const { valideTimeToken } = useContext(AuthContext);
+  const { tokenFunction } = useContext(AuthContext);
+  const { onAuthChange } = useContext(AuthContext);
+
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-  const tokenss = localStorage.getItem("accesstoken")
+  const tokenss = localStorage.getItem("accesstoken");
 
   useEffect(() => {
-   onAuthChange(tokenss)
-   tokenFunction(savedToken)
-console.log("voici le resultat pour savedToken", savedToken);
+    onAuthChange(tokenss);
+    tokenFunction(savedToken);
+    console.log("voici le resultat pour savedToken", savedToken);
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);
       setTokenRole(decoded.role);
-    console.log("etat d'expiration token dans la navbar",valideTimeToken)
+      console.log("etat d'expiration token dans la navbar", valideTimeToken);
     }
-    if(valideTimeToken === "token expiré"){
-      window.location.reload()
+    if (valideTimeToken === "token expiré") {
+      window.location.reload();
     }
   });
 
   const tokenVerify = (e: SyntheticEvent) => {
-     tokenFunction(savedToken)
-    console.log("valide time token verify",valideTimeToken)
-    if (!localStorage.getItem("accesstoken") || valideTimeToken === "token expiré") {
+    tokenFunction(savedToken);
+    console.log("valide time token verify", valideTimeToken);
+    if (
+      !localStorage.getItem("accesstoken") ||
+      valideTimeToken === "token expiré"
+    ) {
       window.location.reload();
     }
   };
@@ -112,8 +115,11 @@ console.log("voici le resultat pour savedToken", savedToken);
 
               {(!savedToken && (
                 <>
-                  <li className="nav-item">
-                    <NavLink to="suscribe" className="nav-link buttonStyle ">
+                  <li className="nav-item li-inscription">
+                    <NavLink
+                      to="suscribe"
+                      className=" buttonStyle inscription-btn "
+                    >
                       <strong
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
@@ -123,8 +129,11 @@ console.log("voici le resultat pour savedToken", savedToken);
                     </NavLink>
                   </li>
 
-                  <li className="nav-item">
-                    <NavLink to="connexion" className="nav-link buttonStyle ">
+                  <li className="nav-item li-connexion">
+                    <NavLink
+                      to="connexion"
+                      className=" buttonStyle connexion-btn "
+                    >
                       <strong
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
@@ -166,76 +175,78 @@ console.log("voici le resultat pour savedToken", savedToken);
                       </strong>
                     </NavLink>
                   </li>
-                  {tokenRole === "admin" && valideTimeToken === "token valide" && (
-                    <li className="nav-item dropdown">
-                      <NavLink
-                        to="/"
-                        className="nav-link buttonStyle  dropdown-toggle"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        onClick={tokenVerify}
-                      >
-                        <strong
-                        // data-bs-toggle="collapse"
-                        // data-bs-target="#navbarNav"
+                  {tokenRole === "admin" &&
+                    valideTimeToken === "token valide" && (
+                      <li className="nav-item dropdown">
+                        <NavLink
+                          to="/"
+                          className="nav-link buttonStyle  dropdown-toggle"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                          onClick={tokenVerify}
                         >
-                          {" "}
-                          Admin{" "}
-                        </strong>
-                      </NavLink>
-                      <ul className="dropdown-menu">
-                        <li>
-                          {/* <a className="dropdown-item" href="#">
+                          <strong
+                          // data-bs-toggle="collapse"
+                          // data-bs-target="#navbarNav"
+                          >
+                            {" "}
+                            Admin{" "}
+                          </strong>
+                        </NavLink>
+                        <ul className="dropdown-menu">
+                          <li>
+                            {/* <a className="dropdown-item" href="#">
                             Action
                           </a> */}
-                          <NavLink
-                            to="/adminFoods"
-                            className="nav-link buttonStyle "
-                            onClick={tokenVerify}
-                          >
-                            <strong> Gestion des aliments </strong>
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/adminUsers"
-                            className="nav-link buttonStyle "
-                            onClick={tokenVerify}
-                          >
-                            <strong> Gestion des utilisateurs</strong>
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/adminMessages"
-                            className="nav-link buttonStyle "
-                            onClick={tokenVerify}
-                          >
-                            <strong> Gestion des messages </strong>
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/adminActivité"
-                            className="nav-link buttonStyle "
-                            onClick={tokenVerify}
-                          >
-                            <strong> Gestion des activités </strong>
-                          </NavLink>
-                        </li>
-                      </ul>
-                    </li>
-                  )}
-                  
-                  <input
-                    type="button"
-                    value="Déconnexion"
-                    id="decoBtn"
-                    className="btn btn-danger btn-sm m-1"
-                    onClick={handleClickDecoBtn}
-                  />
-                  
+                            <NavLink
+                              to="/adminFoods"
+                              className="nav-link buttonStyle "
+                              onClick={tokenVerify}
+                            >
+                              <strong> Gestion des aliments </strong>
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/adminUsers"
+                              className="nav-link buttonStyle "
+                              onClick={tokenVerify}
+                            >
+                              <strong> Gestion des utilisateurs</strong>
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/adminMessages"
+                              className="nav-link buttonStyle "
+                              onClick={tokenVerify}
+                            >
+                              <strong> Gestion des messages </strong>
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/adminActivité"
+                              className="nav-link buttonStyle "
+                              onClick={tokenVerify}
+                            >
+                              <strong> Gestion des activités </strong>
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </li>
+                    )}
+
+                  <li className="li-deco">
+                    <input
+                      type="button"
+                      value="Déconnexion"
+                      id="decoBtn"
+                      className="btn btn-danger btn-sm "
+                      onClick={handleClickDecoBtn}
+                    />
+                  </li>
                 </>
               )}
             </ul>

@@ -1,10 +1,10 @@
-import AlimentAddButton from '../components/AlimentAddButton';
-import './Add.css';
-import SearchBar from '../components/SearchBar';
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { table } from 'console';
+import AlimentAddButton from "../components/AlimentAddButton";
+import "./Add.css";
+import SearchBar from "../components/SearchBar";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { table } from "console";
 interface Food {
   id: number;
   name: string;
@@ -44,7 +44,7 @@ const AddLunch = () => {
         `http://localhost:8080/api/meals`,
         {
           //name en fixe
-          name: 'Aliment consommé :',
+          name: "Aliment consommé :",
           //quantité qui viendra de l'input
           quantity: quantity ? Math.abs(quantity) : quantity,
           //toujours 2 car déjeuner
@@ -54,15 +54,15 @@ const AddLunch = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
           },
         }
       )
       .then((response) => {
-        console.log('response', response);
-        setMessage('Aliment consommé pendant le déjeuner ajouté avec succès');
+        console.log("response", response);
+        setMessage("Aliment consommé pendant le déjeuner ajouté avec succès");
 
-        navigate('/main');
+        navigate("/main");
       })
       .catch((error) => {
         console.log(error);
@@ -74,8 +74,8 @@ const AddLunch = () => {
         }
         //
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   };
@@ -87,20 +87,20 @@ const AddLunch = () => {
   };
 
   const searchBarFunction = (e: string) => {
-    console.log('props passé dans le parent', e);
+    console.log("props passé dans le parent", e);
 
-    console.log('props passé dans le parent et le state', e);
+    console.log("props passé dans le parent et le state", e);
 
     let listExo = listFoods.filter((food) =>
       food.name
         .toLocaleLowerCase()
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
         .includes(
           e
             .toLocaleLowerCase()
-            .normalize('NFD')
-            .replace(/\p{Diacritic}/gu, '')
+            .normalize("NFD")
+            .replace(/\p{Diacritic}/gu, "")
         )
     );
     setListBis(listExo);
@@ -111,18 +111,18 @@ const AddLunch = () => {
     axios
       .get(`http://localhost:8080/api/foods`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
         },
       })
       .then((response) => {
-        console.log('liste des foods', response.data);
+        console.log("liste des foods", response.data);
         setListFoods(response.data);
       })
       .catch((error) => {
-        console.log('something went wrong', error);
+        console.log("something went wrong", error);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem('accesstoken');
-          navigate('/connexion');
+          localStorage.removeItem("accesstoken");
+          navigate("/connexion");
         }
       });
   }, []);
@@ -135,57 +135,59 @@ const AddLunch = () => {
   };
 
   return (
-    <div>
-      <div className='text-container'>
-        <section className='text-section'>
-          <h1 className='exerciceText'> Aliment déjeuner </h1>
+    <div className=" addfood-page">
+      <div className="container-addfood">
+        <div className="text-container">
+          <section className="text-section">
+            <h1 className="exerciceText"> Aliment déjeuner </h1>
 
-          {/* lien pour soummettre aliment/activité */}
-          <Link className='aPropos' to='/ajout'>
-            <p>Tu ne trouves pas ton aliment ? Clique ici pour l'ajouter !</p>
-          </Link>
-        </section>
-      </div>
-      <div className='searchbarPosition'>
-        <SearchBar searchProps={searchBarFunction} />
-      </div>
-      <div className='list'>
-        {selection && (
-          <li className='listeRecherche'>
-            <span className='li-text'>{selection}</span>
-            <div className='formulaire'>
-              <form className='form ' onSubmit={eatenfoodSubmitFunction}>
-                <label htmlFor='quantity' className='htmlForm-label' />
-                <input
-                  className='quantity'
-                  type='number'
-                  id='quantity'
-                  placeholder='gr'
-                  onChange={quantityFunction}
-                />
-                {/* <span className="buttonValidate"> */}
-                <AlimentAddButton />
-                {/* </span> */}
-              </form>
-            </div>
-          </li>
-        )}
-        <p className='exerciceText'>Suggestions</p>
-        <p> Clique sur ton aliment</p>
-        <div className='scroller'>
-          {listBis.map((liste, index) => (
-            <button
-              key={index}
-              className='listeRechercheBis'
-              value={liste.id}
-              onClick={buttonFunction}
-              name={liste.name}
-            >
-              {liste.name}
-            </button>
-          ))}
+            {/* lien pour soummettre aliment/activité */}
+            <Link className="aPropos" to="/ajout">
+              <p>Tu ne trouves pas ton aliment ? Clique ici pour l'ajouter !</p>
+            </Link>
+          </section>
         </div>
-        <p className='exerciceText'>{message}</p>
+        <div className="searchbarPosition">
+          <SearchBar searchProps={searchBarFunction} />
+        </div>
+        <div className="list">
+          {selection && (
+            <li className="listeRecherche">
+              <span className="li-text">{selection}</span>
+              <div className="formulaire">
+                <form className="form " onSubmit={eatenfoodSubmitFunction}>
+                  <label htmlFor="quantity" className="htmlForm-label" />
+                  <input
+                    className="quantity"
+                    type="number"
+                    id="quantity"
+                    placeholder="gr"
+                    onChange={quantityFunction}
+                  />
+                  {/* <span className="buttonValidate"> */}
+                  <AlimentAddButton />
+                  {/* </span> */}
+                </form>
+              </div>
+            </li>
+          )}
+          <p className="exerciceText">Suggestions</p>
+          <p> Clique sur ton aliment</p>
+          <div className="scroller">
+            {listBis.map((liste, index) => (
+              <button
+                key={index}
+                className="listeRechercheBis"
+                value={liste.id}
+                onClick={buttonFunction}
+                name={liste.name}
+              >
+                {liste.name}
+              </button>
+            ))}
+          </div>
+          <p className="exerciceText">{message}</p>
+        </div>
       </div>
     </div>
   );

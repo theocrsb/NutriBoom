@@ -56,7 +56,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <div id="#hautNavBar">
+        <div id="hautNavBar">
           <NavBar />
           {/* div mise en place pour test la bonne reception du token  */}
           {/* <div style={{ color: "white" }}>Saved : {savedToken}</div> */}
@@ -112,9 +112,7 @@ const App = () => {
                 <Navigate to="/connexion" />
               )
             }
-          >
-            
-          </Route>
+          ></Route>
           <Route
             path="/supprimercompte"
             element={
@@ -187,7 +185,9 @@ const App = () => {
           <Route path="/resetpass" element={<ResetPass />}></Route>
           <Route path="/mdo" element={<Mdpx />}></Route>
         </Routes>
-        <Footer />
+        <div className="footer-app">
+          <Footer />
+        </div>
       </BrowserRouter>
     </div>
   );
