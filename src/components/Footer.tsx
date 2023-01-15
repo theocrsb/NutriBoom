@@ -4,7 +4,7 @@ import image from "../nutriboom.png";
 
 const Footer = () => {
   return (
-    <div className=" text-center footer">
+    <div className=" text-center footer carotteFond">
       <div className="row container-footer">
         <div className="footer-img">
           <img className="logoFooter" src={image} alt="logo" />

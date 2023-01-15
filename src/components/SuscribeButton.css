@@ -1,7 +1,8 @@
 .inscription {
   color: #dfa530;
+  font-size: calc(10px + 0.390625vw);
   font-weight: bold;
-  margin: 20px;
+
   background-color: rgba(0, 0, 0, 0.505);
   border: solid 1mm #afb563;
   border-radius: 50px;
@@ -10,7 +11,7 @@
 .inscription:hover {
   color: #000000;
   font-weight: bold;
-  margin: 20px;
+
   background-color: #b0b563;
   border: solid 1mm #dfa530;
   border-radius: 50px;

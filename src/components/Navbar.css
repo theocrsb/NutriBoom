@@ -38,6 +38,7 @@
   color: #afb563;
   text-align: center;
   font-weight: bold;
+  border-radius: 20px;
   font-size: calc(10px + 0.390625vw);
   /* border: solid 0.7mm rgba(0, 0, 0, 0.25); */
   /* border-radius: 25% 10%; */
@@ -100,7 +101,9 @@
   border: solid 0.5mm rgba(255, 255, 255, 0.781);
 }
 .buttonStyle:hover {
-  transition: ease-in-out 0.25s;
+  transition: ease 0.4s;
+  background-color: rgba(255, 255, 255, 0.897);
+  border-radius: 20px;
   color: #dfa530;
 }
 .inscription-btn:hover {

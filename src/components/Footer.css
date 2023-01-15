@@ -1,5 +1,15 @@
 .footer-component {
 }
+.carotteFond {
+  background-image: url("/public/assets/bgFilRouge.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  -webkit-animation: bounce-in-right 1.1s both;
+  animation: bounce-in-right 1.1s both;
+}
 .footer {
   border-top: solid 1mm#dfa530;
   display: flex;
@@ -7,10 +17,13 @@
   border-right: solid 1mm#dfa530;
   border-radius: 10px 10px 0px 0px;
   background-color: rgba(0, 0, 0, 0.536);
-  margin-top: 3%;
+  margin-top: 2%;
   height: 150px;
   width: 100%;
   /* margin-top: 35px; */
+}
+.row {
+  --bs-gutter-x: 0;
 }
 
 .textFooter p {
@@ -25,7 +38,7 @@
   object-position: center;
   padding: 0;
   margin: 0;
-  /* background-color: #dfa530; */
+  background-color: rgba(0, 0, 0, 0.712);
   /* border-radius: 10px; */
   border-radius: 10px 0px 0px 0px;
 }
@@ -39,6 +52,10 @@
 .aPropos p {
   margin: 0;
   color: #afb563;
+  /* border: #dfa530 1mm solid; */
+  background-color: rgba(0, 0, 0, 0.705);
+  border-radius: 0 20px 20px 0;
+  padding: 10px;
 }
 
 .aPropos:visited {
@@ -51,6 +68,8 @@
   transition: ease-in-out 0.3s;
 }
 .container-footer {
+  background-color: rgba(0, 0, 0, 0.507);
+  /* backdrop-filter: blur(1px); */
   width: 100%;
 }
 .footer-p {

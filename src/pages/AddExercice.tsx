@@ -148,9 +148,11 @@ const AddExercice = () => {
             <h1 className="exerciceText"> Activité </h1>
 
             {/* lien pour soummettre aliment/activité */}
-            <Link className="aPropos" to="/ajout">
-              <p>
-                Tu ne trouves pas ton activité ? Clique ici pour l'ajouter !
+            <Link className="link-add" to="/ajout">
+              <p className="text-info">
+                Tu ne trouves pas ton activité ? <br />
+                <br />
+                <span className="click-add">Clique ici pour l'ajouter !</span>
               </p>
             </Link>
           </section>

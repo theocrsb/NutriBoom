@@ -1,9 +1,11 @@
+#root {
+  width: 100%;
+}
 body {
   background-color: #252525;
   height: 100vh;
-  scrollbar-color: #aaa transparent;
+  scrollbar-color: #dfa530 transparent;
   scrollbar-width: thin;
-  overflow-x: hidden;
   width: 100%;
 }
 

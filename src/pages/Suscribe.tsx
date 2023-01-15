@@ -156,18 +156,13 @@ const Suscribe = () => {
   console.log(ageOptions);
 
   return (
-    <div className="subscribe-page carotteFond">
+    <div className="subscribe-page  ">
       <section className="container-form-global">
-        <img
-          className="carotte-img-1"
-          src={process.env.PUBLIC_URL + `/assets/carotte heureux.png`}
-          alt="logo"
-        />{" "}
-        <div className="container-form-sub">
+        <div className="container-form-sub ">
           <div className="suscribe ">
             <h1>Inscris-toi gratuitement!</h1>
           </div>
-          {/* <form
+          <form
             method="POST"
             className="suscribeForm "
             onSubmit={submitFunction}
@@ -286,7 +281,7 @@ const Suscribe = () => {
               <select
                 name="height"
                 id="inputHeight"
-                className="htmlForm-label select"
+                className="htmlForm-label select selectSub"
                 value={heightState}
                 onChange={heightFunction}
               >
@@ -306,7 +301,7 @@ const Suscribe = () => {
               <select
                 name="gender"
                 id="inputGender"
-                className="htmlForm-label text-center select"
+                className="htmlForm-label text-center select selectSub"
                 value={sexState}
                 onChange={sexFunction}
               >
@@ -327,266 +322,53 @@ const Suscribe = () => {
               <select
                 name="ratio"
                 id="inputRatio"
-                className="htmlForm-label text-center select"
+                className="htmlForm-label text-center select selectSub"
                 value={ratioState}
                 onChange={ratioFunction}
               >
-                <option key={uuidv4()} value="">
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value=""
+                >
                   Sélectionne ton activité
                 </option>
-                <option key={uuidv4()} value="1.375">
-                  sédentaire (travail de bureau et faible activité physique)
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.375"
+                >
+                  faible activité physique
                 </option>
-                <option key={uuidv4()} value="1.56">
-                  activité physique légère (entraînement 1 à 3 fois par semaine)
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.56"
+                >
+                  entraînement 1 à 3 fois par semaine
                 </option>
-                <option key={uuidv4()} value="1.64">
-                  activité physique modérée (entraînement 4 à 6 fois par
-                  semaine)
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.64"
+                >
+                  entraînement 4 à 6 fois par semaine
                 </option>
-                <option key={uuidv4()} value="1.82">
-                  activité physique intense (plus de 6 entraînements par
-                  semaine)
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.82"
+                >
+                  plus de 6 entraînements par semaine
                 </option>
               </select>
             </div>
             <span className="messageDynamique">{champManquant}</span>
             <SuscribeButton />
-          </form> */}
-          {/* test pour sauver le css de la page ---------------------------- */}
-          <form
-            method="POST"
-            className="suscribeForm "
-            onSubmit={submitFunction}
-          >
-            <div className="mb-3">
-              <label htmlFor="firstname" className="form-label">
-                Firstname
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="firstname"
-                id="firstname"
-                aria-label="default input example"
-                onChange={firstNameFunction}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="firstname" className="form-label">
-                Lastname
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="firstname"
-                id="firstname"
-                aria-label="default input example"
-                onChange={lastNameFunction}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
-                Email address
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                onChange={mailFunction}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword1" className="form-label">
-                Mot de passe
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Mot de passe"
-                onChange={passwordFunction}
-              />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword2" className="form-label">
-                Confirme ton mot de passe
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="exampleInputPassword1"
-                placeholder="Confirmation Mot de passe"
-                onChange={passwordFunction2}
-              />
-            </div>
-            <div className="mb-3">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                value={ageState}
-                onChange={ageFunction}
-              >
-                <option key={uuidv4()} value="">
-                  Sélectionne ton âge{" "}
-                </option>
-                {ageOptions.map((ageOption) => (
-                  <option key={uuidv4()} value={ageOption}>
-                    {ageOption} ans
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-3">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                value={weightState}
-                onChange={weightFunction}
-              >
-                <option key={uuidv4()} value="">
-                  Sélectionne ton poids
-                </option>
-                {poidsOptions.map((poidsOption) => (
-                  <option key={uuidv4()} value={poidsOption}>
-                    {poidsOption} kg
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-3">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                value={heightState}
-                onChange={heightFunction}
-              >
-                <option key={uuidv4()} value="">
-                  Sélectionne ta taille
-                </option>
-                {tailleOptions.map((tailleOption) => (
-                  <option key={uuidv4()} value={tailleOption}>
-                    {tailleOption} m
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="mb-3">
-              <select
-                className="form-select text-center"
-                aria-label="Default select example"
-                value={sexState}
-                onChange={sexFunction}
-              >
-                <option key={uuidv4()} value="">
-                  Sélectionne ton genre
-                </option>
-                <option key={uuidv4()} value="femme">
-                  Femme
-                </option>
-                <option key={uuidv4()} value="homme">
-                  Homme
-                </option>
-              </select>
-            </div>
-            <div className="mb-3">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                value={ratioState}
-                onChange={ratioFunction}
-              >
-                <option key={uuidv4()} value="">
-                  Sélectionne ton activité
-                </option>
-                <option key={uuidv4()} value="1.375">
-                  sédentaire (travail de bureau et faible activité physique)
-                </option>
-                <option key={uuidv4()} value="1.56">
-                  activité physique légère (entraînement 1 à 3 fois par semaine)
-                </option>
-                <option key={uuidv4()} value="1.64">
-                  activité physique modérée (entraînement 4 à 6 fois par
-                  semaine)
-                </option>
-                <option key={uuidv4()} value="1.82">
-                  activité physique intense (plus de 6 entraînements par
-                  semaine)
-                </option>
-              </select>
-            </div>
-
-            <button type="submit" className="btn btn-success">
-              Confirmer
-            </button>
           </form>
         </div>
-        <img
-          className="carotte-img-2"
-          src={process.env.PUBLIC_URL + `/assets/missCarotte.png`}
-          alt="logo"
-        />{" "}
       </section>
     </div>
   );
 };
 export default Suscribe;
-{
-  /* <form>
-    <div className="mb-3" >
-<label htmlFor="firstname" className="form-label">Firstname</label>
-<input className="form-control" type="text" placeholder="firstname" id="firstname" aria-label="default input example"/>
-</div>
-  <div className="mb-3" >
-<label htmlFor="firstname" className="form-label">Lastname</label>
-<input className="form-control" type="text" placeholder="firstname" id="firstname" aria-label="default input example"/>
-</div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-    <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
-    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>
-    <div className="mb-3">
-    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-    <input type="password" className="form-control" id="exampleInputPassword1"/>
-  </div>
-  <div className="mb-3" >
-    <select className="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-</div>
-  <div className="mb-3" >
-    <select className="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-</div>
-  <div className="mb-3" >
-    <select className="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-</div>
-  <div className="mb-3" >
-    <select className="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
-</select>
-</div>
-  <button type="submit" className="btn btn-primary">Submit</button>
-</form> */
-}

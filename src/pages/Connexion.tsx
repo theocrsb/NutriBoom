@@ -66,7 +66,7 @@ const Connexion = () => {
   return (
     <div className="connexion-page">
       <div className="container-connexion">
-        <div className="fondCarotte">
+        <div className="fond-form-login">
           <div className="textConnect">
             <h1 className="title-connect">Connecte-toi !</h1>
             <p>Tu n'as pas encore de compte sur NutriBoom?</p>
@@ -79,7 +79,7 @@ const Connexion = () => {
           </div>
           <div>
             <form className="formConnexion" onSubmit={handleLoginForm}>
-              <div className="mb-3">
+              <div className="mb-3 mail-container">
                 <label htmlFor="inputMail" className="htmlForm-label" />
                 <input
                   type="mail"
@@ -93,7 +93,7 @@ const Connexion = () => {
                 <label htmlFor="inputPassword" className="htmlForm-label" />
                 <input
                   type="password"
-                  className="htmlForm-control"
+                  className="htmlForm-control password-container"
                   id="inputPassword"
                   placeholder="Mot de passe"
                   onInput={passwordFunction}

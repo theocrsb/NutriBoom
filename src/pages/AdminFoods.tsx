@@ -208,8 +208,8 @@ const AdminFoods = () => {
               //     )
               mesFoodsFilter.map((foodfiltered, i) => (
                 <li key={i}>
-                  <div className="container text-center">
-                    <div className="row">
+                  <div className="container text-center ">
+                    <div className="row test-li">
                       <div className="col">
                         {foodfiltered.validate === true ? (
                           <p className="text">
@@ -227,7 +227,7 @@ const AdminFoods = () => {
                         <select
                           name="food"
                           id="foodAdmin"
-                          className=" htmlForm-label select"
+                          className=" htmlForm-label select "
                           defaultValue=""
                           onInput={(
                             e: React.SyntheticEvent<HTMLSelectElement>
@@ -376,8 +376,8 @@ const AdminFoods = () => {
               ))
             : mesFoods.map((food, i) => (
                 <li key={i}>
-                  <div className="container text-center">
-                    <div className="row">
+                  <div className="container text-center ">
+                    <div className="row test-li">
                       <div className="col">
                         {" "}
                         {food.validate === true ? (
@@ -398,7 +398,7 @@ const AdminFoods = () => {
                         <select
                           name="food"
                           id="foodAdmin"
-                          className=" htmlForm-label select"
+                          className=" htmlForm-label select "
                           defaultValue=""
                           onInput={(
                             e: React.SyntheticEvent<HTMLSelectElement>

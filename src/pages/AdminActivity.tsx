@@ -268,7 +268,7 @@ const AdminActivity = () => {
               mesActivityFilter.map((activityfiltered, i) => (
                 <li key={i}>
                   <div className="container text-center">
-                    <div className="row">
+                    <div className="row test-li">
                       <div className="col">
                         {activityfiltered.validate === true ? (
                           <p className="text">
@@ -436,7 +436,7 @@ const AdminActivity = () => {
             : Activity.map((activite, i) => (
                 <li key={i}>
                   <div className="container text-center">
-                    <div className="row">
+                    <div className="row test-li">
                       <div className="col">
                         {" "}
                         {activite.validate === true ? (

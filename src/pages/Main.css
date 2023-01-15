@@ -231,6 +231,7 @@ ul {
   .container-chart {
     height: 100%;
   }
+
   .container-chartCal p {
     display: inline-block;
     color: #dfa530;
@@ -276,5 +277,10 @@ ul {
   .donutLip {
     height: 120px;
     width: 120px;
+  }
+}
+@media screen and (max-width: 475px) {
+  .container-chartCal {
+    margin-left: 30px;
   }
 }
