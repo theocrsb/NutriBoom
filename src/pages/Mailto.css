@@ -1,15 +1,37 @@
 .contact-page {
-  padding-top: 20%;
   display: inline-block;
-  position: relative;
   text-align: center;
   height: 100vh;
   width: 100%;
+}
+
+.title-contact {
+  font-size: calc(20px + 0.390625vw);
+  padding: 20px;
+}
+.container-contact {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.contact-us {
+  border: #dfa530 1mm solid;
+  border-radius: 30px;
 }
 .contact-us:focus {
   color: #dfa530;
 }
 
 .label-contact {
-  color: #afb630;
+  color: #afb563;
+}
+
+.submit-contact {
+  background-color: black;
+  color: #afb563;
+  font-weight: bold;
+  border: #dfa530 1mm solid;
+  border-radius: 20px;
 }
