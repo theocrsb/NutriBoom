@@ -138,6 +138,46 @@ p {
   -webkit-animation: vibrate-2 0.3s linear infinite both;
   animation: vibrate-2 0.3s linear infinite both;
 }
+
+.buttonValidate {
+  transition: ease-in-out 0.5s;
+  margin: 0;
+  padding: 0 5px;
+  display: inline-block;
+  background-color: transparent;
+  font-size: 2rem;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  border: none;
+}
+.iconNeutre {
+  color: rgb(175, 174, 174);
+}
+
+.trash {
+  color: rgb(211, 107, 107);
+}
+.trash:hover {
+  color: red;
+  transition: ease-in-out 0.5s;
+  -webkit-animation: vibrate-2 0.3s linear infinite both;
+  animation: vibrate-2 0.3s linear infinite both;
+}
+.btn-gestion {
+  display: flex;
+  justify-content: space-around;
+}
+.text {
+  margin: 0;
+  -webkit-animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53)
+    infinite alternate backwards;
+  animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite
+    alternate backwards;
+}
+.selectAdmin {
+  font-size: calc(15px + 0.390625vw);
+}
 @-webkit-keyframes vibrate-2 {
   0% {
     -webkit-transform: translate(0);
@@ -190,45 +230,7 @@ p {
     transform: translate(0);
   }
 }
-.buttonValidate {
-  transition: ease-in-out 0.5s;
-  margin: 0;
-  padding: 0 5px;
-  display: inline-block;
-  background-color: transparent;
-  font-size: 2rem;
-  height: 50px;
-  width: 50px;
-  text-align: center;
-  border: none;
-}
-.iconNeutre {
-  color: rgb(175, 174, 174);
-}
 
-.trash {
-  color: rgb(211, 107, 107);
-}
-.trash:hover {
-  color: red;
-  transition: ease-in-out 0.5s;
-  -webkit-animation: vibrate-2 0.3s linear infinite both;
-  animation: vibrate-2 0.3s linear infinite both;
-}
-.btn-gestion {
-  display: flex;
-  justify-content: space-around;
-}
-.text {
-  margin: 0;
-  -webkit-animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53)
-    infinite alternate backwards;
-  animation: text-blur-out 1.8s cubic-bezier(0.55, 0.085, 0.68, 0.53) infinite
-    alternate backwards;
-}
-.selectAdmin {
-  font-size: calc(15px + 0.390625vw);
-}
 @-webkit-keyframes text-blur-out {
   0% {
     -webkit-filter: blur(0.01);
