@@ -1,14 +1,35 @@
-.photoHomme{
-      background-image: url("/public/assets/man.jpg") ;
-       background-size: cover;
+.aboutus-page {
+  display: inline-block;
+  width: 100%;
+  height: 100vh;
+  padding: 0 20%;
+}
+.photoHomme {
+  background-image: url("/public/assets/bgFilRouge.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
-  margin-top: 30px;
-  margin-left: 35px;
   height: 230px;
-  width: 300px; 
+  width: 100%;
 }
 
-.textApropos{
-    padding-top : 30px;
-    color: #dfa530;
+.textApropos {
+  border: #dfa530 1mm solid;
+  border-radius: 10px;
+  background-color: black;
+  color: #afb563;
+}
+.container-aboutus {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.text-aboutus {
+  padding: 20px;
+  color: #afb563;
+  background-color: black;
+  border: #dfa530 1mm solid;
+  border-radius: 20px;
 }
