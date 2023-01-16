@@ -1,13 +1,23 @@
+.addfood-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.container-addfood {
+  width: 100%;
+  justify-content: space-around;
+  flex-direction: column;
+}
 .listeRecherche {
   display: flex;
   align-items: center;
   background-color: #dfa530;
   border: thick double black;
   border-radius: 10px;
-  /* margin-left: 20px; */
   width: 100%;
   height: 50px;
-  font-size: 1rem;
+  font-size: calc(15px + 0.390625vw);
   justify-content: space-around;
 }
 
@@ -21,6 +31,7 @@
 }
 .text-section {
   background-color: rgba(0, 0, 0, 0.505);
+
   padding: 10px;
   display: block;
   border: #dfa530 solid 1mm;
@@ -52,7 +63,7 @@ p {
   display: flex;
   width: 70px;
   height: 30px;
-  font-size: 15px;
+  font-size: calc(8px + 0.390625vw);
   font-weight: bold;
   align-items: center;
   text-align: center;
@@ -68,6 +79,7 @@ p {
 
 .form {
   display: flex;
+  align-items: center;
 }
 
 .croix {
@@ -83,27 +95,49 @@ p {
 }
 
 .exerciceText {
-  font-size: 2rem;
+  font-size: calc(20px + 0.390625vw);
   font-weight: bold;
   color: #afb563;
   text-align: center;
+  margin-bottom: 2%;
+}
+.text-info {
+  color: #dfa530 !important;
+  font-weight: bold;
+  font-size: calc(10px + 0.390625vw);
+}
+.link-add {
+  text-decoration: none;
+}
+.click-add {
+  background-color: #dfa530;
+  border: thick double black;
+  border-radius: 20px;
+  font-weight: bold;
+  color: black;
+  padding: 5px;
+}
+.click-add:hover {
+  transition: ease 0.3s;
+  background-color: #afb563;
 }
 
 .exerciceTextPetit {
-  font-size: 1.2rem;
+  font-size: calc(15px + 0.390625vw);
   font-weight: bold;
   color: #afb563;
   text-align: center;
 }
 
 .addButton {
+  margin-top: 2%;
   border: black solid;
 }
 .form-control {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: calc(15px + 0.390625vw);
   font-weight: 400;
   line-height: 1.5;
   color: #dfa530;
@@ -126,7 +160,7 @@ p {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 200px;
+  height: 400px;
   overflow: auto;
   scrollbar-color: rebeccapurple green;
   scrollbar-width: thin;
@@ -135,6 +169,16 @@ p {
   text-align: center;
   border: black thick double;
   border-radius: 10px;
+  scrollbar-color: #aaa transparent;
+  scrollbar-width: thin;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 8px;
+}
+.scroller::-webkit-scrollbar-thumb {
+  background: #afb563;
+  border-radius: 8px;
 }
 .scroller button {
   margin: 5px;

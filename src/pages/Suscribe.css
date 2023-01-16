@@ -1,16 +1,93 @@
+.subscribe-page {
+  display: inline-block;
+  margin-top: 2%;
+  height: 100vh;
+  width: 100%;
+}
+.container-form-global {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.container-form-sub {
+  background-color: rgba(0, 0, 0, 0.562);
+  backdrop-filter: blur(5px);
+  display: inline-block;
+  border: #dfa530 1mm solid;
+  border-radius: 10px;
+  width: 60%;
+  padding-top: 2%;
+  -webkit-animation: bounce-in-right 1.1s both;
+  animation: bounce-in-right 1.1s both;
+}
+
 .suscribe {
+  width: 100%;
   color: #afb563;
-  margin: 20px;
+}
+.suscribeForm {
+  display: inline-block;
+  padding: 0 10%;
+  width: 100%;
+}
+.suscribeForm input,
+select {
+  display: inline-block;
+  width: 100%;
+  overflow-wrap: break-word;
+  background-color: black;
+  border-radius: 20px;
+  border: #dfa530 solid 1mm;
+  color: #afb563;
+  font-weight: bold;
+}
+.text-option-activity {
+  overflow-wrap: break-word;
+}
+#inputHeight {
   text-align: center;
 }
 
-.carotteFond {
-  background-image: url('/public/assets/missCarottePenchee.svg');
+#inputWeight {
+  text-align: center;
+}
+
+.select {
+  font-size: calc(10px + 0.390625vw);
+}
+.messageDynamique {
+  text-align: center;
+  color: #dfa530;
+}
+
+/* .carotteFond {
+  background-image: url("/public/assets/bgFilRouge.png");
   background-repeat: no-repeat;
-  background-size: 500px;
-  background-position: 90px -90px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
   -webkit-animation: bounce-in-right 1.1s both;
   animation: bounce-in-right 1.1s both;
+} */
+
+@media screen and (max-width: 470px) {
+  .suscribeForm input,
+  select {
+    font-size: 10px;
+  }
+  .select {
+    font-size: calc(10px + 0.390625vw);
+    overflow-wrap: break-word;
+  }
+}
+
+@media screen and (min-width: 810px) {
 }
 
 @-webkit-keyframes bounce-in-right {
@@ -115,57 +192,5 @@
     transform: translateX(0);
     -webkit-animation-timing-function: ease-out;
     animation-timing-function: ease-out;
-  }
-}
-
-#inputHeight {
-  text-align: center;
-}
-
-#inputWeight {
-  text-align: center;
-}
-
-.suscribeForm {
-  text-align: center;
-}
-.suscribeForm input,
-select {
-  border-radius: 20px;
-  border: #dfa530 solid 1mm;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #afb563;
-  font-weight: bold;
-}
-
-.select {
-  width: 250px;
-}
-
-.messageDynamique {
-  text-align: center;
-  color: #dfa530;
-}
-
-@media screen and (min-width: 470px) {
-  .carotteFond {
-    background-image: url('/public/assets/bg-test.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* background-attachment: fixed; */
-    background-position: center;
-    -webkit-animation: bounce-in-right 1.1s both;
-    animation: bounce-in-right 1.1s both;
-  }
-}
-@media screen and (min-width: 810px) {
-  .carotteFond {
-    background-image: url('/public/assets/bg-test.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    /* background-attachment: fixed; */
-    background-position: center;
-    -webkit-animation: bounce-in-right 1.1s both;
-    animation: bounce-in-right 1.1s both;
   }
 }

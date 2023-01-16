@@ -148,191 +148,205 @@ const AdminFoods = () => {
 
   return (
     <div className="container-food">
-      <div className="triFood">
-        <h2>Gestion des aliments à afficher</h2>
-        <br />
-        <div className="checkbox-container">
-          <div className="checkbox">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="trueRadio"
-              name="select"
-              value="true"
-              onClick={handleCheck}
-            />
-            <label className="form-check-label" htmlFor="true">
-              Affiché(s)
-            </label>
-          </div>
+      {/* <div className="container-admin"> */}
+      <section className="container-admin">
+        <div className="triFood">
+          <h2>Gestion des aliments à afficher</h2>
+          <br />
+          <div className="checkbox-container">
+            <div className="checkbox">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="trueRadio"
+                name="select"
+                value="true"
+                onClick={handleCheck}
+              />
+              <label className="form-check-label" htmlFor="true">
+                Affiché(s)
+              </label>
+            </div>
 
-          <div className="checkbox">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="falseRadio"
-              name="select"
-              value="false"
-              onClick={handleCheck}
-            />
-            <label className="form-check-label" htmlFor="false">
-              Masqué(s)
-            </label>
-          </div>
-          <div className="checkbox">
-            <input
-              className="form-check-input"
-              type="radio"
-              id="allRadio"
-              name="select"
-              value="all"
-              defaultChecked
-              onInput={handleCheck}
-            />
-            <label className="form-check-label" htmlFor="all">
-              Tous
-            </label>
+            <div className="checkbox">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="falseRadio"
+                name="select"
+                value="false"
+                onClick={handleCheck}
+              />
+              <label className="form-check-label" htmlFor="false">
+                Masqué(s)
+              </label>
+            </div>
+            <div className="checkbox">
+              <input
+                className="form-check-input"
+                type="radio"
+                id="allRadio"
+                name="select"
+                value="all"
+                defaultChecked
+                onInput={handleCheck}
+              />
+              <label className="form-check-label" htmlFor="all">
+                Tous
+              </label>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* debut du UL */}
+        {/* debut du UL */}
 
-      <ul className="list-food">
-        {validateState === "true" || validateState === "false"
-          ? //  mesFoods
-            //     .filter((food) =>
-            //       food.validate.toString().includes(validateState)
-            //     )
-            mesFoodsFilter.map((foodfiltered, i) => (
-              <li key={i}>
-                <div className="container text-center">
-                  <div className="row">
-                    <div className="col">
-                      {foodfiltered.validate === true ? (
-                        <p className="text">
-                          <span style={{ color: "green" }}>visible</span>
-                        </p>
-                      ) : (
-                        <p className="text">
-                          <span style={{ color: "red" }}> invisible</span>
-                        </p>
-                      )}
-                    </div>
-                    <div className="col">{foodfiltered.name}</div>
-                    <div className="col">
-                      {" "}
-                      <select
-                        name="food"
-                        id="foodAdmin"
-                        className=" htmlForm-label select"
-                        defaultValue=""
-                        onInput={(
-                          e: React.SyntheticEvent<HTMLSelectElement>
-                        ) => {
-                          let convertValue;
-                          if (e.currentTarget.value) {
-                            if (e.currentTarget.value === "true") {
-                              convertValue = true;
-                            } else if (e.currentTarget.value === "false") {
-                              convertValue = false;
+        <ul className="list-food">
+          {validateState === "true" || validateState === "false"
+            ? //  mesFoods
+              //     .filter((food) =>
+              //       food.validate.toString().includes(validateState)
+              //     )
+              mesFoodsFilter.map((foodfiltered, i) => (
+                <li key={i}>
+                  <div className="container text-center ">
+                    <div className="row test-li">
+                      <div className="col">
+                        {foodfiltered.validate === true ? (
+                          <p className="text">
+                            <span style={{ color: "green" }}>visible</span>
+                          </p>
+                        ) : (
+                          <p className="text">
+                            <span style={{ color: "red" }}> invisible</span>
+                          </p>
+                        )}
+                      </div>
+                      <div className="col">{foodfiltered.name}</div>
+                      <div className="col">
+                        {" "}
+                        <select
+                          name="food"
+                          id="foodAdmin"
+                          className=" htmlForm-label select "
+                          defaultValue=""
+                          onInput={(
+                            e: React.SyntheticEvent<HTMLSelectElement>
+                          ) => {
+                            let convertValue;
+                            if (e.currentTarget.value) {
+                              if (e.currentTarget.value === "true") {
+                                convertValue = true;
+                              } else if (e.currentTarget.value === "false") {
+                                convertValue = false;
+                              }
                             }
-                          }
-                          console.log(
-                            "value moderate fonction -------------------",
-                            e.currentTarget.value
-                          );
-                          console.log("index", i);
-                          if (clickedIndexVisible && clickedIndexInvisible) {
-                            if (convertValue) {
-                              let newtab1 = clickedIndexInvisible.filter(
-                                (element) => element !== i
-                              );
-                              console.log("newtab 1", newtab1);
+                            console.log(
+                              "value moderate fonction -------------------",
+                              e.currentTarget.value
+                            );
+                            console.log("index", i);
+                            if (clickedIndexVisible && clickedIndexInvisible) {
+                              if (convertValue) {
+                                let newtab1 = clickedIndexInvisible.filter(
+                                  (element) => element !== i
+                                );
+                                console.log("newtab 1", newtab1);
 
-                              setClickedIndexInvisible(newtab1);
-                              setClickedIndexVisible([
-                                ...clickedIndexVisible,
-                                i,
-                              ]);
-                            } else {
-                              let newtab2 = clickedIndexVisible.filter(
-                                (element) => element !== i
-                              );
-                              console.log("newtab 2", newtab2);
+                                setClickedIndexInvisible(newtab1);
+                                setClickedIndexVisible([
+                                  ...clickedIndexVisible,
+                                  i,
+                                ]);
+                              } else {
+                                let newtab2 = clickedIndexVisible.filter(
+                                  (element) => element !== i
+                                );
+                                console.log("newtab 2", newtab2);
 
-                              setClickedIndexInvisible([
-                                ...clickedIndexInvisible,
-                                i,
-                              ]);
-                              setClickedIndexVisible(newtab2);
+                                setClickedIndexInvisible([
+                                  ...clickedIndexInvisible,
+                                  i,
+                                ]);
+                                setClickedIndexVisible(newtab2);
+                              }
                             }
-                          }
-                          setUpdateModerate(convertValue);
-                          setClickedIndex(i);
-                          console.log(
-                            "tableau verife avec decalage ",
-                            clickedIndexInvisible,
-                            clickedIndexVisible
-                          );
-                        }}
-                      >
-                        <option
-                          // key={i + 2}
-                          value=""
-                          disabled
+                            setUpdateModerate(convertValue);
+                            setClickedIndex(i);
+                            console.log(
+                              "tableau verife avec decalage ",
+                              clickedIndexInvisible,
+                              clickedIndexVisible
+                            );
+                          }}
                         >
-                          Sélectionner un choix
-                        </option>
-                        <option key={i + 1} value="true">
-                          Affiché
-                        </option>
+                          <option
+                            // key={i + 2}
+                            value=""
+                            disabled
+                          >
+                            Sélectionner un choix
+                          </option>
+                          <option key={i + 1} value="true">
+                            Affiché
+                          </option>
 
-                        <option key={i + 2} value="false">
-                          Masqué
-                        </option>
-                      </select>
-                    </div>
-                    <div className="col btn-gestion">
-                      {" "}
-                      <button
-                        className="buttonValidate"
-                        onClick={handleDeleteli}
-                        value={foodfiltered.id}
-                      >
-                        <BsTrashFill className="trash" />
-                      </button>
-                      {/* <button style={{ color: "red" }} onClick={fonctionTest}>
+                          <option key={i + 2} value="false">
+                            Masqué
+                          </option>
+                        </select>
+                      </div>
+                      <div className="col btn-gestion">
+                        {" "}
+                        <button
+                          className="buttonValidate"
+                          onClick={handleDeleteli}
+                          value={foodfiltered.id}
+                        >
+                          <BsTrashFill className="trash" />
+                        </button>
+                        {/* <button style={{ color: "red" }} onClick={fonctionTest}>
                         test update
                       </button> */}
-                      {updateModerate === false || updateModerate === true ? (
-                        clickedIndexVisible.find((element) => element === i) ===
-                          i ||
-                        clickedIndexInvisible.find(
-                          (element) => element === i
-                        ) === i ? (
+                        {updateModerate === false || updateModerate === true ? (
                           clickedIndexVisible.find(
                             (element) => element === i
+                          ) === i ||
+                          clickedIndexInvisible.find(
+                            (element) => element === i
                           ) === i ? (
-                            <button
-                              key={i + 5}
-                              className="buttonValidate"
-                              value={foodfiltered.id}
-                              onClick={updateFunction}
-                            >
-                              <ImEyePlus className="iconVisible" />
-                            </button>
-                          ) : clickedIndexInvisible.find(
+                            clickedIndexVisible.find(
                               (element) => element === i
                             ) === i ? (
-                            <button
-                              key={i + 6}
-                              className="buttonValidate"
-                              value={foodfiltered.id}
-                              onClick={updateFunction}
-                            >
-                              <ImEyeMinus className="iconInvisible" />
-                            </button>
+                              <button
+                                key={i + 5}
+                                className="buttonValidate"
+                                value={foodfiltered.id}
+                                onClick={updateFunction}
+                              >
+                                <ImEyePlus className="iconVisible" />
+                              </button>
+                            ) : clickedIndexInvisible.find(
+                                (element) => element === i
+                              ) === i ? (
+                              <button
+                                key={i + 6}
+                                className="buttonValidate"
+                                value={foodfiltered.id}
+                                onClick={updateFunction}
+                              >
+                                <ImEyeMinus className="iconInvisible" />
+                              </button>
+                            ) : (
+                              <button
+                                key={i + 7}
+                                className="buttonValidate"
+                                value={foodfiltered.id}
+                                disabled
+                                onClick={updateFunction}
+                              >
+                                <ImEye className="iconNeutre" />
+                              </button>
+                            )
                           ) : (
                             <button
                               key={i + 7}
@@ -354,155 +368,156 @@ const AdminFoods = () => {
                           >
                             <ImEye className="iconNeutre" />
                           </button>
-                        )
-                      ) : (
-                        <button
-                          key={i + 7}
-                          className="buttonValidate"
-                          value={foodfiltered.id}
-                          disabled
-                          onClick={updateFunction}
-                        >
-                          <ImEye className="iconNeutre" />
-                        </button>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            ))
-          : mesFoods.map((food, i) => (
-              <li key={i}>
-                <div className="container text-center">
-                  <div className="row">
-                    <div className="col">
-                      {" "}
-                      {food.validate === true ? (
-                        <p className="text">
-                          {" "}
-                          <span style={{ color: "green" }}>visible</span>
-                        </p>
-                      ) : (
-                        <p className="text">
-                          {" "}
-                          <span style={{ color: "red" }}>invisible</span>
-                        </p>
-                      )}
-                    </div>
-                    <div className="col">{food.name}</div>
-                    <div className="col">
-                      {" "}
-                      <select
-                        name="food"
-                        id="foodAdmin"
-                        className=" htmlForm-label select"
-                        defaultValue=""
-                        onInput={(
-                          e: React.SyntheticEvent<HTMLSelectElement>
-                        ) => {
-                          let convertValue;
-                          if (e.currentTarget.value) {
-                            if (e.currentTarget.value === "true") {
-                              convertValue = true;
-                            } else if (e.currentTarget.value === "false") {
-                              convertValue = false;
+                </li>
+              ))
+            : mesFoods.map((food, i) => (
+                <li key={i}>
+                  <div className="container text-center ">
+                    <div className="row test-li">
+                      <div className="col">
+                        {" "}
+                        {food.validate === true ? (
+                          <p className="text">
+                            {" "}
+                            <span style={{ color: "green" }}>visible</span>
+                          </p>
+                        ) : (
+                          <p className="text">
+                            {" "}
+                            <span style={{ color: "red" }}>invisible</span>
+                          </p>
+                        )}
+                      </div>
+                      <div className="col">{food.name}</div>
+                      <div className="col">
+                        {" "}
+                        <select
+                          name="food"
+                          id="foodAdmin"
+                          className=" htmlForm-label select "
+                          defaultValue=""
+                          onInput={(
+                            e: React.SyntheticEvent<HTMLSelectElement>
+                          ) => {
+                            let convertValue;
+                            if (e.currentTarget.value) {
+                              if (e.currentTarget.value === "true") {
+                                convertValue = true;
+                              } else if (e.currentTarget.value === "false") {
+                                convertValue = false;
+                              }
                             }
-                          }
-                          console.log(
-                            "value moderate fonction -------------------",
-                            e.currentTarget.value
-                          );
-                          console.log("index", i);
-                          if (clickedIndexVisible && clickedIndexInvisible) {
-                            if (convertValue) {
-                              let newtab1 = clickedIndexInvisible.filter(
-                                (element) => element !== i
-                              );
-                              console.log("newtab 1", newtab1);
+                            console.log(
+                              "value moderate fonction -------------------",
+                              e.currentTarget.value
+                            );
+                            console.log("index", i);
+                            if (clickedIndexVisible && clickedIndexInvisible) {
+                              if (convertValue) {
+                                let newtab1 = clickedIndexInvisible.filter(
+                                  (element) => element !== i
+                                );
+                                console.log("newtab 1", newtab1);
 
-                              setClickedIndexInvisible(newtab1);
-                              setClickedIndexVisible([
-                                ...clickedIndexVisible,
-                                i,
-                              ]);
-                            } else {
-                              let newtab2 = clickedIndexVisible.filter(
-                                (element) => element !== i
-                              );
-                              console.log("newtab 2", newtab2);
+                                setClickedIndexInvisible(newtab1);
+                                setClickedIndexVisible([
+                                  ...clickedIndexVisible,
+                                  i,
+                                ]);
+                              } else {
+                                let newtab2 = clickedIndexVisible.filter(
+                                  (element) => element !== i
+                                );
+                                console.log("newtab 2", newtab2);
 
-                              setClickedIndexInvisible([
-                                ...clickedIndexInvisible,
-                                i,
-                              ]);
-                              setClickedIndexVisible(newtab2);
+                                setClickedIndexInvisible([
+                                  ...clickedIndexInvisible,
+                                  i,
+                                ]);
+                                setClickedIndexVisible(newtab2);
+                              }
                             }
-                          }
-                          setUpdateModerate(convertValue);
-                          setClickedIndex(i);
-                          console.log(
-                            "tableau verife avec decalage ",
-                            clickedIndexInvisible,
-                            clickedIndexVisible
-                          );
-                        }}
-                      >
-                        <option
-                          // key={i + 2}
-                          value=""
-                          disabled
+                            setUpdateModerate(convertValue);
+                            setClickedIndex(i);
+                            console.log(
+                              "tableau verife avec decalage ",
+                              clickedIndexInvisible,
+                              clickedIndexVisible
+                            );
+                          }}
                         >
-                          Sélectionner un choix
-                        </option>
-                        <option key={i + 1} value="true">
-                          Affiché
-                        </option>
+                          <option
+                            // key={i + 2}
+                            value=""
+                            disabled
+                          >
+                            Sélectionner un choix
+                          </option>
+                          <option key={i + 1} value="true">
+                            Affiché
+                          </option>
 
-                        <option key={i + 2} value="false">
-                          Masqué
-                        </option>
-                      </select>
-                    </div>
-                    <div className="col btn-gestion">
-                      {" "}
-                      <button
-                        className="buttonValidate"
-                        onClick={handleDeleteli}
-                        value={food.id}
-                      >
-                        <BsTrashFill className="trash" />
-                      </button>
-                      {/* <button style={{ color: "red" }} onClick={fonctionTest}>
+                          <option key={i + 2} value="false">
+                            Masqué
+                          </option>
+                        </select>
+                      </div>
+                      <div className="col btn-gestion">
+                        {" "}
+                        <button
+                          className="buttonValidate"
+                          onClick={handleDeleteli}
+                          value={food.id}
+                        >
+                          <BsTrashFill className="trash" />
+                        </button>
+                        {/* <button style={{ color: "red" }} onClick={fonctionTest}>
                         test update
                       </button> */}
-                      {updateModerate === false || updateModerate === true ? (
-                        clickedIndexVisible.find((element) => element === i) ===
-                          i ||
-                        clickedIndexInvisible.find(
-                          (element) => element === i
-                        ) === i ? (
+                        {updateModerate === false || updateModerate === true ? (
                           clickedIndexVisible.find(
                             (element) => element === i
+                          ) === i ||
+                          clickedIndexInvisible.find(
+                            (element) => element === i
                           ) === i ? (
-                            <button
-                              key={i + 5}
-                              className="buttonValidate"
-                              value={food.id}
-                              onClick={updateFunction}
-                            >
-                              <ImEyePlus className="iconVisible" />
-                            </button>
-                          ) : clickedIndexInvisible.find(
+                            clickedIndexVisible.find(
                               (element) => element === i
                             ) === i ? (
-                            <button
-                              key={i + 6}
-                              className="buttonValidate"
-                              value={food.id}
-                              onClick={updateFunction}
-                            >
-                              <ImEyeMinus className="iconInvisible" />
-                            </button>
+                              <button
+                                key={i + 5}
+                                className="buttonValidate"
+                                value={food.id}
+                                onClick={updateFunction}
+                              >
+                                <ImEyePlus className="iconVisible" />
+                              </button>
+                            ) : clickedIndexInvisible.find(
+                                (element) => element === i
+                              ) === i ? (
+                              <button
+                                key={i + 6}
+                                className="buttonValidate"
+                                value={food.id}
+                                onClick={updateFunction}
+                              >
+                                <ImEyeMinus className="iconInvisible" />
+                              </button>
+                            ) : (
+                              <button
+                                key={i + 7}
+                                className="buttonValidate"
+                                value={food.id}
+                                disabled
+                                onClick={updateFunction}
+                              >
+                                <ImEye className="iconNeutre" />
+                              </button>
+                            )
                           ) : (
                             <button
                               key={i + 7}
@@ -524,24 +539,14 @@ const AdminFoods = () => {
                           >
                             <ImEye className="iconNeutre" />
                           </button>
-                        )
-                      ) : (
-                        <button
-                          key={i + 7}
-                          className="buttonValidate"
-                          value={food.id}
-                          disabled
-                          onClick={updateFunction}
-                        >
-                          <ImEye className="iconNeutre" />
-                        </button>
-                      )}
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
-            ))}
-      </ul>
+                </li>
+              ))}
+        </ul>
+      </section>
     </div>
   );
 };

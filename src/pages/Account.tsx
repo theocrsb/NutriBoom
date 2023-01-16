@@ -187,190 +187,193 @@ const Account = () => {
   }
 
   return (
-    <div>
-      <img
-        id="onglet"
-        src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-        alt=""
-      />
-      <div id="container">
-        <div id="modifProfil">
-          <p className="ProfilActuel">Modifie tes données personnelles</p>
+    <div className="account-page">
+      <div className="container-account">
+        <img
+          id="onglet"
+          src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
+          alt=""
+        />
+        <div id="container">
+          <div id="modifProfil">
+            <p className="ProfilActuel">Modifie tes données personnelles</p>
 
-          <form
-            id="mb-3"
-            method="POST"
-            className="ProfilActuel"
-            onSubmit={submitFunction}
-          >
-            <p className="Titre">Ton profil</p>
-            <div id="mb-3" className="mb-3">
-              
-              <label htmlFor="inputNom" className="htmlForm-label" />
-              <input
-                type="nom"
-                className="ProfilActuel"
-                id="inputNom"
-                placeholder= {UserProfile?.lastname}
-                onChange={lastNameFunction}
-              />
-            </div>
+            <form
+              id="mb-3"
+              method="POST"
+              className="ProfilActuel"
+              onSubmit={submitFunction}
+            >
+              <p className="Titre">Ton profil</p>
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputNom" className="htmlForm-label" />
+                <input
+                  type="nom"
+                  className="ProfilActuel"
+                  id="inputNom"
+                  placeholder={UserProfile?.lastname}
+                  onChange={lastNameFunction}
+                />
+              </div>
 
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputPrenom" />
-              <input
-                type="prenom"
-                className="ProfilActuel"
-                id="inputPrenom"
-                placeholder= {UserProfile?.firstname}
-                onChange={firstNameFunction}
-              />
-            </div>
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputPrenom" />
+                <input
+                  type="prenom"
+                  className="ProfilActuel"
+                  id="inputPrenom"
+                  placeholder={UserProfile?.firstname}
+                  onChange={firstNameFunction}
+                />
+              </div>
 
-            {/* <p id="li-actuel-mb3">
+              {/* <p id="li-actuel-mb3">
               {" "}
               Age actuel: <span className="manchette">{UserProfile?.age} </span>
             </p> */}
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputAge" className="htmlForm-label" />
-              <select
-                name="age"
-                id="inputAge"
-                className="ProfilActuel"
-                onChange={ageFunction}
-                value={updateage} 
-              >
-                <option key={uuidv4()} value="">
-                  {UserProfile?.age}{" ans "}
-                </option>
-                {ageOptions.map((ageOption) => (
-                  <option key={uuidv4()} value={ageOption}>
-                    {ageOption} ans
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputAge" className="htmlForm-label" />
+                <select
+                  name="age"
+                  id="inputAge"
+                  className="ProfilActuel"
+                  onChange={ageFunction}
+                  value={updateage}
+                >
+                  <option key={uuidv4()} value="">
+                    {UserProfile?.age}
+                    {" ans "}
                   </option>
-                ))}
-              </select>
-            </div>
-            {/* <p id="li-actuel-mb3">
+                  {ageOptions.map((ageOption) => (
+                    <option key={uuidv4()} value={ageOption}>
+                      {ageOption} ans
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {/* <p id="li-actuel-mb3">
               {" "}
               {UserProfile?.weight}:{" "}
               <span className="manchette">{UserProfile?.weight} </span>
             </p> */}
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputWeight" className="htmlForm-label" />
-              <select
-                name="weight"
-                id="inputWeight"
-                className="ProfilActuel"
-                value={updateWeight}
-                onChange={weightFunction}
-              >
-                <option key={uuidv4()} value="">
-                  {UserProfile?.weight} {" Kg "}
-                </option>
-                {poidsOptions.map((poidsOption) => (
-                  <option key={uuidv4()} value={poidsOption}>
-                    {poidsOption} Kg
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputWeight" className="htmlForm-label" />
+                <select
+                  name="weight"
+                  id="inputWeight"
+                  className="ProfilActuel"
+                  value={updateWeight}
+                  onChange={weightFunction}
+                >
+                  <option key={uuidv4()} value="">
+                    {UserProfile?.weight} {" Kg "}
                   </option>
-                ))}
-              </select>
-            </div>
-            {/* <p id="li-actuel-mb3">
+                  {poidsOptions.map((poidsOption) => (
+                    <option key={uuidv4()} value={poidsOption}>
+                      {poidsOption} Kg
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {/* <p id="li-actuel-mb3">
               {" "}
               Taille actuelle:{" "}
               <span className="manchette">{UserProfile?.height} </span>
             </p> */}
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputHeight" className="htmlForm-label" />
-              <select
-                name="height"
-                id="inputHeight"
-                className="ProfilActuel"
-                value={updateHeight}
-                onChange={heightFunction}
-              >
-                <option key={uuidv4()} value="">
-                  {UserProfile?.height}{" m"}
-                </option>
-                {tailleOptions.map((tailleOption) => (
-                  <option key={uuidv4()} value={tailleOption}>
-                    {tailleOption} M
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputHeight" className="htmlForm-label" />
+                <select
+                  name="height"
+                  id="inputHeight"
+                  className="ProfilActuel"
+                  value={updateHeight}
+                  onChange={heightFunction}
+                >
+                  <option key={uuidv4()} value="">
+                    {UserProfile?.height}
+                    {" m"}
                   </option>
-                ))}
-              </select>
-            </div>
-            {/* <p id="li-actuel-mb3">
+                  {tailleOptions.map((tailleOption) => (
+                    <option key={uuidv4()} value={tailleOption}>
+                      {tailleOption} M
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {/* <p id="li-actuel-mb3">
               {" "}
               Genre actuel:{" "}
               <span className="manchette">{UserProfile?.gender} </span>
             </p> */}
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputGender" className="htmlForm-label" />
-              <select
-                name="gender"
-                id="inputGender"
-                className="ProfilActuel"
-                value={updateGender}
-                onChange={sexFunction}
-              >
-                <option key={uuidv4()} value="">
-                  {UserProfile?.gender}
-                </option>
-                <option key={uuidv4()} value="femme">
-                  Femme
-                </option>
-                <option key={uuidv4()} value="homme">
-                  Homme
-                </option>
-              </select>
-            </div>
-            {/* <p id="li-actuel-mb3">
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputGender" className="htmlForm-label" />
+                <select
+                  name="gender"
+                  id="inputGender"
+                  className="ProfilActuel"
+                  value={updateGender}
+                  onChange={sexFunction}
+                >
+                  <option key={uuidv4()} value="">
+                    {UserProfile?.gender}
+                  </option>
+                  <option key={uuidv4()} value="femme">
+                    Femme
+                  </option>
+                  <option key={uuidv4()} value="homme">
+                    Homme
+                  </option>
+                </select>
+              </div>
+              {/* <p id="li-actuel-mb3">
               {" "}
               Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
             </p> */}
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputMail" className="htmlForm-label" />
-              <input
-                type="mail"
-                className="ProfilActuel"
-                id="inputMail"
-                placeholder={UserProfile?.email}
-                onChange={mailFunction}
-              />
-            </div>
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputMail" className="htmlForm-label" />
+                <input
+                  type="mail"
+                  className="ProfilActuel"
+                  id="inputMail"
+                  placeholder={UserProfile?.email}
+                  onChange={mailFunction}
+                />
+              </div>
 
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputPassword" className="htmlForm-label" />
-              <input
-                type="password"
-                className="ProfilActuel"
-                id="inputPassword"
-                placeholder="Nouveau mot de passe"
-                onChange={passwordFunction1}
-              />
-              {/* <i
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputPassword" className="htmlForm-label" />
+                <input
+                  type="password"
+                  className="ProfilActuel"
+                  id="inputPassword"
+                  placeholder="Nouveau mot de passe"
+                  onChange={passwordFunction1}
+                />
+                {/* <i
                 className="far fa-eye"
                 id="togglePassword"
                 style={{marginLeft: '-30px', cursor: "pointer"}}
               ></i> */}
-            </div>
-            <div id="mb-3" className="mb-3">
-              <label htmlFor="inputPassword" className="htmlForm-label" />
-              <input
-                type="password"
-                className="ProfilActuel"
-                id="inputPassword"
-                placeholder="Confirme le mot de passe"
-                onChange={passwordFunction2}
-              />
-            </div>
-            <span className="message">{message}</span>
-            <div className="button">
-              <button id="button-mb-3" className="btn btn-danger btn-sm m-1">
-                modifier
-              </button>
-            </div>
-          </form>
+              </div>
+              <div id="mb-3" className="mb-3">
+                <label htmlFor="inputPassword" className="htmlForm-label" />
+                <input
+                  type="password"
+                  className="ProfilActuel"
+                  id="inputPassword"
+                  placeholder="Confirme le mot de passe"
+                  onChange={passwordFunction2}
+                />
+              </div>
+              <span className="message">{message}</span>
+              <div className="button">
+                <button id="button-mb-3" className="btn btn-danger btn-sm m-1">
+                  modifier
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

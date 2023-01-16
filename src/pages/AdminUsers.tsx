@@ -124,92 +124,94 @@ const Admin = () => {
   };
 
   return (
-    <div className="encadrement">
-      <h1 className="ecriture">
-       Gestion des utilisateurs
-      </h1>
-      <p className="ecriture">
-        Tu peux ici gérer la liste des utilisateurs, changer leur rôle en
-        administrateur ou utilisateur lambda.
-      </p>
-      {/* <div className="sousEncadrement">
+    <div className="container-food">
+      <section className="container-admin">
+        <div className="encadrement">
+          <h1 className="ecriture">Gestion des utilisateurs</h1>
+          <p className="ecriture">
+            Tu peux ici gérer la liste des utilisateurs, changer leur rôle en
+            administrateur ou utilisateur lambda.
+          </p>
+          {/* <div className="sousEncadrement">
    
             <br />
   
       </div>      */}
-      <ul className="list-food">
-        {mesUsers.map((user: User, index) => (
-          <li key={index}>
-            <div className="container text-center">
-              <div className="row">
-                <div className="col">
-                  <p>
-                    <strong>
-                      {user.firstname} {user.lastname}
-                    </strong>
-                  </p>
+          <ul className="list-food">
+            {mesUsers.map((user: User, index) => (
+              <li key={index}>
+                <div className="container text-center">
+                  <div className="row test-li">
+                    <div className="col">
+                      <p>
+                        <strong>
+                          {user.firstname} {user.lastname}
+                        </strong>
+                      </p>
+                    </div>
+                    <div className="col">
+                      {user.email}{" "}
+                      {user.role.label === "user" ? (
+                        <span className="text" style={{ color: "green" }}>
+                          {user.role.label}
+                        </span>
+                      ) : (
+                        <span className="text" style={{ color: "purple" }}>
+                          {" "}
+                          {user.role.label}
+                        </span>
+                      )}
+                    </div>
+                    <div className="col btn-gestion">
+                      <div className="col"></div>
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        id="admin"
+                        name="drone"
+                        value="2"
+                        onChange={adminValue}
+                        // defaultChecked={user.role.label === "admin" ? true : false}
+                      />
+                      <label className="label" htmlFor="admin">
+                        admin
+                      </label>
+                      <input
+                        className="form-check-input "
+                        type="radio"
+                        id="user"
+                        name="drone"
+                        value="1"
+                        onChange={userValue}
+                        // defaultChecked={user.role.label === "user" ? true : false}
+                      />
+                      <label className="label" htmlFor="user">
+                        user
+                      </label>
+                    </div>
+                    <div className="col btn-gestion">
+                      <button
+                        className="buttonValidate"
+                        value={user.id}
+                        onClick={validateRole}
+                      >
+                        <BsCheckLg className="iconVisible" />
+                      </button>
+                      <button
+                        className="buttonValidate"
+                        onClick={suppAccount}
+                        value={user.id}
+                      >
+                        <BsPersonDashFill className="trash" />
+                      </button>{" "}
+                    </div>
+                  </div>
                 </div>
-                <div className="col">
-                  {user.email}{" "}
-                  {user.role.label === "user" ? (
-                    <span className="text" style={{ color: "green" }}>
-                      {user.role.label}
-                    </span>
-                  ) : (
-                    <span className="text" style={{ color: "purple" }}>
-                      {" "}
-                      {user.role.label}
-                    </span>
-                  )}
-                </div>
-                <div className="col btn-gestion">
-                  <div className="col"></div>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    id="admin"
-                    name="drone"
-                    value="2"
-                    onChange={adminValue}
-                    // defaultChecked={user.role.label === "admin" ? true : false}
-                  />
-                  <label className="label" htmlFor="admin">
-                    admin
-                  </label>
-                  <input
-                    className="form-check-input "
-                    type="radio"
-                    id="user"
-                    name="drone"
-                    value="1"
-                    onChange={userValue}
-                    // defaultChecked={user.role.label === "user" ? true : false}
-                  />
-                  <label className="label" htmlFor="user">
-                    user
-                  </label>
-                </div>
-                <div className="col btn-gestion">
-                  <button
-                    className="buttonValidate"
-                    value={user.id}
-                    onClick={validateRole}
-                  >
-                    <BsCheckLg className="iconVisible" />
-                  </button>
-                  <button
-                    className="buttonValidate"
-                    onClick={suppAccount}
-                    value={user.id}
-                  >
-                    <BsPersonDashFill className="trash" />
-                  </button>{" "}
-                </div>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </div>
   );
 };

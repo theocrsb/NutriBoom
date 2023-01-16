@@ -17,18 +17,29 @@
   height: 90px;
   width: 300px;
   border-radius: 0 0 10px 0;
-}
-.navbar {
-  background-color: transparent;
+
+  background-color: rgba(0, 0, 0, 0.536);
+  margin-top: 2;
   /* box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
   color: #afb563;
+}
+#navbarNav {
+  margin-top: 2%;
+}
+.dropdown-menu {
+  position: relative;
+
+  min-width: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.76);
+  border: #dfa530 solid 1mm;
 }
 
 .buttonStyle {
   color: #afb563;
   text-align: center;
   font-weight: bold;
-  font-size: small;
+  border-radius: 20px;
+  font-size: calc(10px + 0.390625vw);
   /* border: solid 0.7mm rgba(0, 0, 0, 0.25); */
   /* border-radius: 25% 10%; */
   /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
@@ -37,9 +48,66 @@
   /* margin: 20px; */
   padding: 6px;
 }
+.li-inscription {
+  border: #afb563 solid 1mm;
+  border-radius: 25px;
+  background-color: #afb563;
+  margin: 0 6px;
+}
+.li-connexion {
+  border: #afb563 solid 1mm;
+  border-radius: 25px;
+  margin: 0 6px;
+}
+.li-connexion:hover {
+  border: #dfa530 solid 1mm;
+}
+.li-inscription:hover {
+  transition: ease-in-out 0.5s;
+  background-color: #dfa530;
+  border: #dfa530 solid 1mm;
+}
+
+/* .li-connexion .nav-link.active {
+  border: #afb563 solid 1mm;
+  border-radius: 25px;
+} */
+
+.connexion-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #afb563;
+  text-decoration: none;
+}
+.inscription-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+#decoBtn {
+  color: rgba(255, 255, 255, 0.781);
+  background-color: black;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: ease-in-out 0.3s;
+}
+#decoBtn:hover {
+  background-color: rgba(220, 20, 60, 0.562);
+  color: rgba(255, 255, 255, 0.781);
+  border: solid 0.5mm rgba(255, 255, 255, 0.781);
+}
 .buttonStyle:hover {
-  transition: ease-in-out 0.25s;
+  transition: ease 0.4s;
+  background-color: rgba(255, 255, 255, 0.897);
+  border-radius: 20px;
   color: #dfa530;
+}
+.inscription-btn:hover {
+  color: black;
 }
 .navbar-toggler {
   border: solid 1mm #dfa530;
@@ -65,11 +133,14 @@
 }
 
 .navbar-toggler:focus {
-  color: #b0b56355;
+  color: #dfa530;
+}
+
+.nav-item:focus {
+  color: #dfa530;
 }
 
 .navbar-nav .nav-link.active {
-  text-decoration: underline 0.5mm;
   color: #dfa530;
 }
 
@@ -82,6 +153,7 @@
   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color); */
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
@@ -94,21 +166,33 @@
   background-color: transparent;
 }
 @media screen and (max-width: 520px) {
+  .container-logo {
+    background-image: url("/public/assets/nutriboom.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 60px;
+    width: 200px;
+  }
   .buttonStyle {
-    color: #afb563;
-    text-align: center;
-    font-weight: bold;
-    font-size: 10px;
+    font-size: calc(7px + 0.390625vw);
     padding: 4px;
   }
+
   #decoBtn {
-    font-size: 10px;
+    font-size: calc(7px + 0.390625vw);
     height: 25px;
   }
 }
 
 @media screen and (min-width: 650px) {
   .buttonStyle {
-    font-size: 1rem;
+    font-size: calc(7px + 0.390625vw);
+  }
+  .li-inscription {
+    display: flex;
+    align-items: center;
+  }
+  .li-connexion {
   }
 }

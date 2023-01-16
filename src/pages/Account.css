@@ -1,11 +1,26 @@
-#container {
-  display: flex;
-  justify-content: center;
+.account-page {
+  position: relative;
+  display: inline-block;
+  height: 100vh;
   width: 100%;
+}
+#onglet {
+  top: 0;
+}
+.container-account {
+  display: inline-block;
+  height: 100vh;
+  width: 100%;
+}
+#container {
+  display: inline-block;
+  width: 100%;
+  padding: 3% 0;
 }
 
 #modifProfil {
-  position: relative;
+  display: inline-block;
+
   text-align: center;
   width: 80%;
   margin-left: 15%;
@@ -33,9 +48,7 @@ p#li-actuel-mb3 {
 form#mb-3 {
   border: #dfa530 solid 1mm;
   border-radius: 20px;
-  margin-bottom: 10%;
   width: 100%;
-  /* margin-left: 20%; */
 }
 
 div#mb-3 {
@@ -50,7 +63,7 @@ div#mb-3 {
 }
 p.ProfilActuel {
   color: #dfa530;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
   font-weight: bold;
 }
@@ -97,17 +110,20 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   width: 80px;
 }
 
-.Titre{
-    color: #afb563;
-    font-size: 15px;
-    
+.Titre {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #dfa530;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  border-left: 1mm solid #dfa530;
+  border-right: 1mm solid #dfa530;
+  border-bottom: 1mm solid #dfa530;
 }
 
 @media (min-width: 650px) {
-  /* p#li-actuel-mb3 {
-    font-size: 1em;
-  } */
-
   input.ProfilActuel {
     font-size: 20px;
   }
@@ -115,7 +131,7 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
     font-size: 20px;
   }
 
-  .Titre{
+  .Titre {
     font-size: 20px;
   }
 }

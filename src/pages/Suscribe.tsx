@@ -33,10 +33,10 @@ const Suscribe = () => {
       e.currentTarget.value
         .toLocaleLowerCase()
         .trim()
-        .split(' ')
-        .join('')
-        .normalize('NFD')
-        .replace(/\p{Diacritic}/gu, '')
+        .split(" ")
+        .join("")
+        .normalize("NFD")
+        .replace(/\p{Diacritic}/gu, "")
       // normalize et replace pour les accent et autres le reste pour les espaces
     );
   };
@@ -127,7 +127,7 @@ const Suscribe = () => {
     console.log("ratio", ratioState);
   });
 
-  // creation de tableau avec les valeurs des options de nos select via une boucle for
+  // creation de tableau avec les valeurs des options de nos select via une boucle htmlFor
   let taille = 1.19;
   let tailleOptions = [];
 
@@ -155,211 +155,219 @@ const Suscribe = () => {
   }
   console.log(ageOptions);
 
-  
-
   return (
-    <div>
-      <div className="suscribe">
-        <h1>Inscris-toi gratuitement!</h1>
-      </div>
+    <div className="subscribe-page  ">
+      <section className="container-form-global">
+        <div className="container-form-sub ">
+          <div className="suscribe ">
+            <h1>Inscris-toi gratuitement!</h1>
+          </div>
+          <form
+            method="POST"
+            className="suscribeForm "
+            onSubmit={submitFunction}
+          >
+            <div className="mb-3">
+              <label
+                htmlFor="inputNom"
+                className="htmlForm-label text-center"
+              />{" "}
+              <input
+                type="nom"
+                className="htmlForm-control text-center "
+                id="inputNom"
+                placeholder="Nom"
+                onChange={lastNameFunction}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="inputPrenom"
+                className="htmlForm-label text-center"
+              />
+              <input
+                type="prenom"
+                className="htmlForm-control text-center"
+                id="inputPrenom"
+                placeholder="Prénom"
+                onChange={firstNameFunction}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="inputMail"
+                className="htmlForm-label text-center "
+              />
+              <input
+                type="email"
+                className="htmlForm-control text-center"
+                id="exampleInputAge"
+                placeholder="Email"
+                onChange={mailFunction}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="inputPassword"
+                className="htmlForm-label text-center"
+              />
+              <input
+                type="password"
+                className="htmlForm-control text-center"
+                id="inputPassword"
+                placeholder="Mot de passe"
+                onChange={passwordFunction}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="inputPassword2"
+                className="htmlForm-label text-center"
+              />
+              <input
+                type="password"
+                className="htmlForm-control text-center"
+                id="inputPassword2"
+                placeholder="Confirme le mot de passe"
+                onChange={passwordFunction2}
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="inputAge"
+                className="htmlForm-label text-center"
+              />
 
-      <form
-        method="POST"
-        className="suscribeForm carotteFond"
-        onSubmit={submitFunction}
-      >
-        <div className="mb-3">
-          <label htmlFor="inputNom" className="htmlForm-label text-center" />{" "}
-          <input
-            type="nom"
-            className="htmlForm-control text-center "
-            id="inputNom"
-            placeholder="Nom"
-            onChange={lastNameFunction}
-          />
+              <select
+                name="age"
+                id="inputAge"
+                className="htmlForm-label text-center select"
+                onChange={ageFunction}
+                value={ageState}
+              >
+                <option key={uuidv4()} value="">
+                  Sélectionne ton âge{" "}
+                </option>
+                {ageOptions.map((ageOption) => (
+                  <option key={uuidv4()} value={ageOption}>
+                    {ageOption} ans
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputWeight" className="htmlForm-label" />
+
+              <select
+                name="weight"
+                id="inputWeight"
+                className="htmlForm-label select"
+                value={weightState}
+                onChange={weightFunction}
+              >
+                <option key={uuidv4()} value="">
+                  Sélectionne ton poids
+                </option>
+                {poidsOptions.map((poidsOption) => (
+                  <option key={uuidv4()} value={poidsOption}>
+                    {poidsOption} kg
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputHeight" className="htmlForm-label" />
+
+              <select
+                name="height"
+                id="inputHeight"
+                className="htmlForm-label select selectSub"
+                value={heightState}
+                onChange={heightFunction}
+              >
+                <option key={uuidv4()} value="">
+                  Sélectionne ta taille
+                </option>
+                {tailleOptions.map((tailleOption) => (
+                  <option key={uuidv4()} value={tailleOption}>
+                    {tailleOption} m
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputGender" className="htmlForm-label" />
+
+              <select
+                name="gender"
+                id="inputGender"
+                className="htmlForm-label text-center select selectSub"
+                value={sexState}
+                onChange={sexFunction}
+              >
+                <option key={uuidv4()} value="">
+                  Sélectionne ton genre
+                </option>
+                <option key={uuidv4()} value="femme">
+                  Femme
+                </option>
+                <option key={uuidv4()} value="homme">
+                  Homme
+                </option>
+              </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="inputRation" className="htmlForm-label" />
+
+              <select
+                name="ratio"
+                id="inputRatio"
+                className="htmlForm-label text-center select selectSub"
+                value={ratioState}
+                onChange={ratioFunction}
+              >
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value=""
+                >
+                  Sélectionne ton activité
+                </option>
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.375"
+                >
+                  faible activité physique
+                </option>
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.56"
+                >
+                  entraînement 1 à 3 fois par semaine
+                </option>
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.64"
+                >
+                  entraînement 4 à 6 fois par semaine
+                </option>
+                <option
+                  className="text-option-activity"
+                  key={uuidv4()}
+                  value="1.82"
+                >
+                  plus de 6 entraînements par semaine
+                </option>
+              </select>
+            </div>
+            <span className="messageDynamique">{champManquant}</span>
+            <SuscribeButton />
+          </form>
         </div>
-        <div className="mb-3">
-          <label htmlFor="inputPrenom" className="htmlForm-label text-center" />
-          <input
-            type="prenom"
-            className="htmlForm-control text-center"
-            id="inputPrenom"
-            placeholder="Prénom"
-            onChange={firstNameFunction}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputMail" className="htmlForm-label text-center " />
-          <input
-            type="email"
-            className="htmlForm-control text-center"
-            id="exampleInputAge"
-            placeholder="Email"
-            onChange={mailFunction}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="inputPassword"
-            className="htmlForm-label text-center"
-          />
-          <input
-            type="password"
-            className="htmlForm-control text-center"
-            id="inputPassword"
-            placeholder="Mot de passe"
-            onChange={passwordFunction}
-          />
-        </div>
-        <div className="mb-3">
-          <label
-            htmlFor="inputPassword2"
-            className="htmlForm-label text-center"
-          />
-          <input
-            type="password"
-            className="htmlForm-control text-center"
-            id="inputPassword2"
-            placeholder="Confirme le mot de passe"
-            onChange={passwordFunction2}
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputAge" className="htmlForm-label text-center" />
-          {/* <input
-            type="age"
-            className="htmlForm-control text-center"
-            id="inputAge"
-            placeholder="âge"
-          /> */}
-          <select
-            name="age"
-            id="inputAge"
-            className="htmlForm-label text-center select"
-            onChange={ageFunction}
-            value={ageState}
-          >
-            <option key={uuidv4()} value="">
-              Sélectionne ton âge{" "}
-            </option>
-            {ageOptions.map((ageOption) => (
-              <option key={uuidv4()} value={ageOption}>
-                {ageOption} ans
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputWeight" className="htmlForm-label" />
-          {/* <input
-            type="weight"
-            className="htmlForm-control"
-            id="inputWeight"
-            placeholder="poids(kg)"
-          /> */}
-          <select
-            name="weight"
-            id="inputWeight"
-            className="htmlForm-label select"
-            value={weightState}
-            onChange={weightFunction}
-          >
-            <option key={uuidv4()} value="">
-              Sélectionne ton poids
-            </option>
-            {poidsOptions.map((poidsOption) => (
-              <option key={uuidv4()} value={poidsOption}>
-                {poidsOption} kg
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputHeight" className="htmlForm-label" />
-          {/* <input
-            type="height"
-            className="htmlForm-control"
-            id="inputHeight"
-            placeholder="taille(cm)"
-          /> */}
-          <select
-            name="height"
-            id="inputHeight"
-            className="htmlForm-label select"
-            value={heightState}
-            onChange={heightFunction}
-          >
-            <option key={uuidv4()} value="">
-              Sélectionne ta taille
-            </option>
-            {tailleOptions.map((tailleOption) => (
-              <option key={uuidv4()} value={tailleOption}>
-                {tailleOption} m
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputGender" className="htmlForm-label" />
-          {/* <input
-            type="gender"
-            className="htmlForm-control"
-            id="inputGender"
-            placeholder="sexe"
-          /> */}
-          <select
-            name="gender"
-            id="inputGender"
-            className="htmlForm-label text-center select"
-            value={sexState}
-            onChange={sexFunction}
-          >
-            <option key={uuidv4()} value="">
-              Sélectionne ton genre
-            </option>
-            <option key={uuidv4()} value="femme">
-              Femme
-            </option>
-            <option key={uuidv4()} value="homme">
-              Homme
-            </option>
-          </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="inputRation" className="htmlForm-label" />
-          {/* <input
-            type="gender"
-            className="htmlForm-control"
-            id="inputGender"
-            placeholder="sexe"
-          /> */}
-          <select
-            name="ratio"
-            id="inputRatio"
-            className="htmlForm-label text-center select"
-            value={ratioState}
-            onChange={ratioFunction}
-          >
-            <option key={uuidv4()} value="">
-              Sélectionne ton activité
-            </option>
-            <option key={uuidv4()} value="1.375">
-              sédentaire (travail de bureau et faible activité physique)
-            </option>
-            <option key={uuidv4()} value="1.56">
-              activité physique légère (entraînement 1 à 3 fois par semaine)
-            </option>
-            <option key={uuidv4()} value="1.64">
-              activité physique modérée (entraînement 4 à 6 fois par semaine)
-            </option>
-            <option key={uuidv4()} value="1.82">
-              activité physique intense (plus de 6 entraînements par semaine)
-            </option>
-          </select>
-        </div>
-        <span className='messageDynamique'>{champManquant}</span>
-        <SuscribeButton/>
-      </form>
+      </section>
     </div>
   );
 };
