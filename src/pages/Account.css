@@ -123,6 +123,13 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   border-bottom: 1mm solid #dfa530;
 }
 
+.supprimer {
+border: none;
+background-color:#252525;
+color: #dfa530;
+font-size: 13px;
+}
+
 @media (min-width: 650px) {
   input.ProfilActuel {
     font-size: 20px;
@@ -130,8 +137,16 @@ button#button-mb-3.btn.btn-danger.btn-sm.m-1 {
   select.ProfilActuel {
     font-size: 20px;
   }
+  .supprimer{
+    font-size: 15px;
+    margin-top: 20px;
+    padding-bottom: 5px;
+    
+  }
 
   .Titre {
     font-size: 20px;
   }
 }
+
+

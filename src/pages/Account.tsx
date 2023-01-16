@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { v4 as uuidv4 } from "uuid";
 import "./Account.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User } from "./Main";
 
 export interface PayloadToken {
@@ -184,6 +184,26 @@ const Account = () => {
     let res = Math.round(taille * 100) / 100;
     tailleOptions.push(res);
     // tailleOptions.push(taille.toFixed(2));
+  }
+
+  const deleteAccount =(e:React.MouseEvent)=>{
+    if(
+window.confirm("Veux-tu vraiment supprimer ton compte?")){
+  axios.delete(`http://localhost:8080/api/users/${searchUserIdValue}`,{
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            },
+          }).then((res)=>{
+          console.log("supp");
+          window.alert("compte supprimé");  
+          localStorage.removeItem("accesstoken")
+          window.location.reload()
+          }
+          ).catch((err)=>{
+            console.log("something went wrong", err)
+            window.location.reload()
+          })
+}
   }
 
   return (
@@ -373,6 +393,9 @@ const Account = () => {
                 </button>
               </div>
             </form>
+             <button className="supprimer" onClick={deleteAccount}>
+                  supprimer son compte
+                </button>
           </div>
         </div>
       </div>
