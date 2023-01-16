@@ -1,0 +1,15 @@
+.contact-page {
+  padding-top: 20%;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  height: 100vh;
+  width: 100%;
+}
+.contact-us:focus {
+  color: #dfa530;
+}
+
+.label-contact {
+  color: #afb630;
+}
