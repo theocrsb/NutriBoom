@@ -114,13 +114,7 @@ const App = () => {
                 <Navigate to="/connexion" />
               )
             }
-<<<<<<< HEAD
-          >
-
-          </Route>
-=======
           ></Route>
->>>>>>> feature/fontionaliteDivers
           <Route
             path="/supprimercompte"
             element={

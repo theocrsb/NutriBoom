@@ -23,22 +23,12 @@ const Navbar = () => {
   const { onAuthChange } = useContext(AuthContext);
 
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-<<<<<<< HEAD
-=======
   const tokenss = localStorage.getItem("accesstoken");
->>>>>>> feature/fontionaliteDivers
 
- 
   useEffect(() => {
-<<<<<<< HEAD
-   onAuthChange(savedToken)
-   tokenFunction(savedToken)
-console.log("voici le resultat pour savedToken", savedToken);
-=======
     onAuthChange(tokenss);
     tokenFunction(savedToken);
     console.log("voici le resultat pour savedToken", savedToken);
->>>>>>> feature/fontionaliteDivers
     if (savedToken) {
       const decoded: PayloadToken = jwt_decode(savedToken);
       console.log("le payload", decoded.role);

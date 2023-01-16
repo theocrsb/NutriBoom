@@ -4,13 +4,6 @@ import image from "../nutriboom.png";
 
 const Footer = () => {
   return (
-<<<<<<< HEAD
-    <div className="footer-component">
-      <div className="footer">
-        <img className="logoFooter" src={image} alt="logo" />
-        <div className="textFooter"> 
-          <Link className="aPropos" to="/aboutus">
-=======
     <div className=" text-center footer carotteFond">
       <div className="row container-footer">
         <div className="footer-img">
@@ -19,7 +12,6 @@ const Footer = () => {
         <div className=" footer-p">
           <Link className="aPropos" to="/aboutus">
             {" "}
->>>>>>> feature/fontionaliteDivers
             <p>À propos</p>
           </Link>
           <Link className="aPropos" to="/Tuto">
