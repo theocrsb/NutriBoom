@@ -23,10 +23,9 @@ const Navbar = () => {
   const { onAuthChange } = useContext(AuthContext);
 
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-  const tokenss = localStorage.getItem("accesstoken");
-
+ 
   useEffect(() => {
-    onAuthChange(tokenss);
+    onAuthChange(savedToken);
     tokenFunction(savedToken);
     console.log("voici le resultat pour savedToken", savedToken);
     if (savedToken) {
