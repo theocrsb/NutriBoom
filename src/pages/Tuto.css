@@ -1,12 +1,26 @@
+.tuto-page {
+  display: inline-block;
+  height: 100vh;
+  width: 100%;
+  padding: 0 20%;
+}
+.container-tuto {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
 .video {
-    margin-top:3%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.title-tuto {
+  color: #afb563;
   display: flex;
   justify-content: center;
   align-items: center;
-   margin-bottom:3%;
 }
- 
-H1{color: #afb563;;
-display: flex;
-  justify-content: center;
-  align-items: center;}
