@@ -23,7 +23,6 @@ const Navbar = () => {
   const{onAuthChange} = useContext(AuthContext)
   
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
-
  
   useEffect(() => {
    onAuthChange(savedToken)
