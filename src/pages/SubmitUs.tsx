@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Welcome.css';
+import './SubmitUs.css';
 
 const SubmitUs = () => {
   const nomElement = useRef<HTMLInputElement>(null);
@@ -31,10 +31,20 @@ const SubmitUs = () => {
         `http://localhost:8080/api/foods`,
         {
           name: nomElement.current?.value,
-          nombre_calories: calorieElement.current?.value,
-          lipides: lipidesElement.current?.value,
-          glucides: glucidesElement.current?.value,
-          proteines: proteinesElement.current?.value,
+          //Number
+          nombre_calories: calorieElement.current?.valueAsNumber
+            ? Math.abs(calorieElement.current?.valueAsNumber)
+            : calorieElement.current?.valueAsNumber,
+          lipides: lipidesElement.current?.valueAsNumber
+            ? Math.abs(lipidesElement.current?.valueAsNumber)
+            : lipidesElement.current?.valueAsNumber,
+          glucides: glucidesElement.current?.valueAsNumber
+            ? Math.abs(glucidesElement.current?.valueAsNumber)
+            : glucidesElement.current?.valueAsNumber,
+          proteines: proteinesElement.current?.valueAsNumber
+            ? Math.abs(proteinesElement.current?.valueAsNumber)
+            : proteinesElement.current?.valueAsNumber,
+          //fin Number
           validate: false,
         },
         {
@@ -74,7 +84,9 @@ const SubmitUs = () => {
         {
           // on recupere les inputs
           name: activiteeElement?.current?.value,
-          conso_cal_1h: consoKalElement?.current?.value,
+          conso_cal_1h: consoKalElement?.current?.valueAsNumber
+            ? Math.abs(consoKalElement?.current?.valueAsNumber)
+            : consoKalElement?.current?.valueAsNumber,
           // on rentre en brut pour ne pas afficher dans le front directement
           // attente validation Admin
           validate: false,
@@ -108,10 +120,7 @@ const SubmitUs = () => {
     <div className='App'>
       {/* <h2>Soumettez nous un aliment</h2> */}
       <div>
-        <h2
-          className='p-5 text-center'
-          style={{ color: '#dfa530', fontWeight: 'bold' }}
-        >
+        <h2 className='p-5 text-center title-submit'>
           Formulaire pour soumettre un aliment ou une activité
         </h2>
       </div>
@@ -121,13 +130,12 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='text'
-            className='form-control'
+            className='form-control text-submit'
             id='nameAliment'
-            // placeholder="nom de l'aliment"
             ref={nomElement}
             required
           />
-          <label htmlFor='nameAliment' style={{ color: 'white' }}>
+          <label htmlFor='nameAliment ' className='label-submit'>
             Nom de l'aliment
           </label>
         </div>
@@ -135,13 +143,12 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='number'
-            className='form-control'
+            className='form-control text-submit '
             id='calorieAliment'
-            // placeholder='Nombre de calories'
             ref={calorieElement}
             required
           />
-          <label htmlFor='calorieAliment' style={{ color: 'white' }}>
+          <label htmlFor='calorieAliment ' className='label-submit'>
             Nombre de calories
           </label>
         </div>
@@ -149,13 +156,12 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='number'
-            className='form-control'
+            className='form-control text-submit'
             id='lipidesAliment'
-            // placeholder='Nombre de lipides'
             ref={lipidesElement}
             required
           />
-          <label htmlFor='lipidesAliment' style={{ color: 'white' }}>
+          <label htmlFor='lipidesAliment' className='label-submit'>
             Nombre de lipides
           </label>
         </div>
@@ -163,13 +169,12 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='number'
-            className='form-control'
+            className='form-control text-submit'
             id='glucidesAliment'
-            // placeholder='Glucides'
             ref={glucidesElement}
             required
           />
-          <label htmlFor='ProteinesAliment' style={{ color: 'white' }}>
+          <label htmlFor='ProteinesAliment' className='label-submit'>
             Nombre de glucides
           </label>
         </div>
@@ -177,20 +182,18 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='number'
-            className='form-control'
+            className='form-control text-submit'
             id='ProteinesAliment'
-            // placeholder='Proteines'
             ref={proteinesElement}
             required
           />
-          <label htmlFor='glucidesAliment' style={{ color: 'white' }}>
+          <label htmlFor='glucidesAliment' className='label-submit'>
             Nombre de proteines
           </label>
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <button
             className='mt-3 btn btn-success btn inscription mb-4'
-            style={{ margin: '0' }}
             type='submit'
           >
             soumettre un aliment
@@ -204,24 +207,22 @@ const SubmitUs = () => {
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='text'
-            className='form-control'
+            className='form-control text-submit'
             id='nameAliment'
-            // placeholder="nom de l' aliment"
             ref={activiteeElement}
           />
-          <label style={{ color: 'white' }} htmlFor='nameAliment'>
+          <label className='label-submit' htmlFor='nameAliment'>
             Nom de l'activité
           </label>
         </div>
         <div className='form-floating mb-3 d-flex justify-content-center'>
           <input
             type='number'
-            className='form-control'
+            className='form-control text-submit'
             id='calorieAliment'
-            // placeholder='Calorie consomée/h'
             ref={consoKalElement}
           />
-          <label style={{ color: 'white' }} htmlFor='calorieAliment'>
+          <label className='label-submit' htmlFor='calorieAliment'>
             Calories consomées / heures
           </label>
         </div>

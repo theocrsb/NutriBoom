@@ -104,7 +104,7 @@ const Connexion = () => {
                 Se connecter
               </button>
             </form>
-            <Link className="linkSub" to="/mdo">
+            <Link className="linkSub" to="/mdpoubli">
               <p className="lienInscription"> Mot de passe oublié ?</p>
             </Link>
           </div>
