@@ -115,7 +115,7 @@ const Admin = () => {
         .then((resp) => {
           console.log("update");
           console.log("value state dans la requete", valueState);
-          window.location.reload();
+          window.location.reload()
         })
         .catch((error) => {
           console.log("pas update");
@@ -123,6 +123,7 @@ const Admin = () => {
         });
   };
 
+ 
   return (
     <div className="container-food">
       <section className="container-admin">

@@ -17,10 +17,8 @@ import { PayloadToken } from "../pages/Main";
 const Navbar = () => {
   const navigate = useNavigate();
   const [tokenRole, setTokenRole] = useState<string>();
-  const { savedToken } = useContext(AuthContext);
-  const { valideTimeToken } = useContext(AuthContext);
-  const { tokenFunction } = useContext(AuthContext);
-  const { onAuthChange } = useContext(AuthContext);
+  const { savedToken, valideTimeToken,tokenFunction, onAuthChange } = useContext(AuthContext);
+  
 
   console.log("TOKEN ROLE DANS NAVBAR", tokenRole);
  

@@ -43,6 +43,7 @@ import { useParams } from "react-router-dom";
 import PasswordForgotted from "./pages/PasswordForgotted";
 import SubmitUs from "./pages/SubmitUs";
 
+
 const App = () => {
   const { savedToken } = useContext(AuthContext);
   const { valideTimeToken } = useContext(AuthContext);
@@ -81,7 +82,7 @@ const App = () => {
             path="/petitdejeuner"
             element={
               savedToken !== null ? (
-                <AddBreakfast />
+                <AddBreakfast/>
               ) : (
                 <Navigate to="/connexion" />
               )
