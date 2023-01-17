@@ -43,6 +43,7 @@ const AdminFoods = () => {
       .then((res) => {
         console.log("mes foods", res.data);
         setMesFoods(res.data);
+
         console.log("mes  aliments dans mesfoods ", mesFoods);
       })
       .catch((error) => {
@@ -122,8 +123,15 @@ const AdminFoods = () => {
       )
       .then((response) => {
         console.log(response);
-
         console.log("patch ok!");
+        console.log(" test de rerender de mes foods", mesFoods);
+        if (mesFoods) {
+          for (let i = 0; i < mesFoods.length; i++) {
+            if (mesFoods[i].validate.toString() === validateState) {
+              mesFoodsFilter.push(mesFoods[i]);
+            }
+          }
+        }
 
         alert("Modifications sauvegardées !");
         window.location.reload();
@@ -138,7 +146,7 @@ const AdminFoods = () => {
       });
   };
 
-  let mesFoodsFilter = [];
+  let mesFoodsFilter: Food[] = [];
   if (mesFoods) {
     for (let i = 0; i < mesFoods.length; i++) {
       if (mesFoods[i].validate.toString() === validateState) {
@@ -207,7 +215,7 @@ const AdminFoods = () => {
               //     .filter((food) =>
               //       food.validate.toString().includes(validateState)
               //     )
-              mesFoodsFilter.map((foodfiltered, i) => (
+              mesFoodsFilter?.map((foodfiltered, i) => (
                 <li key={i}>
                   <div className="container text-center ">
                     <div className="row test-li">
