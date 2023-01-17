@@ -126,6 +126,7 @@ const AdminFoods = () => {
         console.log("patch ok!");
 
         alert("Modifications sauvegardées !");
+        window.location.reload();
       })
       .catch((error) => {
         console.log("tu est dans le catch error", error);
