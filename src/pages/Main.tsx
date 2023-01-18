@@ -334,7 +334,7 @@ const Main = () => {
   console.log("voici les activités physique", tabActivity);
   // Mise en place de la logique de calcul pour avoir un rendu precis de notre consomation et depense sur nos besoin journalier
   let tabActivityDepense = tabActivity?.map(
-    (exercice) => exercice.activity.conso_cal_1h * (exercice.time / 60)
+    (exercice) => (exercice.activity.conso_cal_1h / 60) * exercice.time
   );
   console.log(
     "voici le tableau avec le resultat des  depense de chaque activité en fonction du temps",
@@ -812,10 +812,10 @@ const Main = () => {
                     <ul className="petit-dej">
                       {tabActivity?.map((sport) => (
                         <li key={uuidv4()}>
-                          {sport.activity.name}x {sport.time}min{" "}
+                          {sport.activity.name} {sport.time}min{" "}
                           {/* calcul de la depense energetique en fonction de la durée implementée pour affichage */}
                           {Math.floor(
-                            sport.activity.conso_cal_1h * (sport.time / 60)
+                            (sport.activity.conso_cal_1h / 60) * sport.time
                           )}
                           kcal
                           <button

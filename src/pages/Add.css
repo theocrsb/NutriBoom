@@ -3,8 +3,8 @@
   width: 100%;
   height: 100vh;
 }
+
 .container-addfood {
-  display: inline-block;
   position: relative;
   top: 50%;
   left: 50%;
@@ -25,15 +25,14 @@
 
 .buttonValidate {
   display: flex;
-  width: 0px;
-  margin-right: 20px;
+  /* width: 0px;
+  margin-right: 20px; */
 }
 .text-container {
   padding: 20px 10%;
 }
 .text-section {
   background-color: rgba(0, 0, 0, 0.505);
-
   padding: 10px;
   display: block;
   border: #dfa530 solid 1mm;
@@ -41,7 +40,6 @@
 }
 
 .li-text {
-  display: inline-block;
   text-align: center;
   font-weight: bold;
   color: black;
@@ -56,10 +54,9 @@ p {
 
 .list {
   padding: 0 10%;
-  display: flex;
-  flex-direction: column;
+  height: 100%;
   width: 100%;
-  height: 400px;
+  overflow: auto;
 }
 
 .quantity {

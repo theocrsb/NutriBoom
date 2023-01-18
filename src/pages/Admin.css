@@ -95,7 +95,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(12px + 0.390625vw);
+  font-size: calc(8px + 0.390625vw);
 }
 .ecriture {
   text-align: center;

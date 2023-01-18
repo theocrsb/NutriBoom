@@ -115,7 +115,7 @@ const Admin = () => {
         .then((resp) => {
           console.log("update");
           console.log("value state dans la requete", valueState);
-          window.location.reload()
+          window.location.reload();
         })
         .catch((error) => {
           console.log("pas update");
@@ -123,7 +123,6 @@ const Admin = () => {
         });
   };
 
- 
   return (
     <div className="container-food">
       <section className="container-admin">
@@ -151,15 +150,14 @@ const Admin = () => {
                       </p>
                     </div>
                     <div className="col">
-                      {user.email}{" "}
+                      {user.email}
                       {user.role.label === "user" ? (
                         <span className="text" style={{ color: "green" }}>
-                          {user.role.label}
+                          [ {user.role.label} ]
                         </span>
                       ) : (
                         <span className="text" style={{ color: "purple" }}>
-                          {" "}
-                          {user.role.label}
+                          [ {user.role.label} ]
                         </span>
                       )}
                     </div>
