@@ -537,59 +537,62 @@ const Main = () => {
               <Doughnut data={dataCal} />
             </section>
           </div>
-          <div className="d-flex container-nutri">
-            <section className="donutProt text-center">
-              <p className="infoUserTitle">
-                Protéines <br /> {sumConsoProt}/
-                {resultUserProt
-                  ? Math.floor(resultUserProt) + (protDepense ? protDepense : 0)
-                  : 0}
-                g
-              </p>
-              <Doughnut data={dataProt} />
-              {/* <p className="infoUser">
+          <section className="test-container">
+            <div className="d-flex container-nutri">
+              <section className="donutProt text-center">
+                <p className="infoUserTitle">
+                  Protéines <br /> {sumConsoProt}/
+                  {resultUserProt
+                    ? Math.floor(resultUserProt) +
+                      (protDepense ? protDepense : 0)
+                    : 0}
+                  g
+                </p>
+                <Doughnut data={dataProt} />
+                {/* <p className="infoUser">
                 {sumConsoProt}/
                 {resultUserProt
                   ? Math.floor(resultUserProt) + (protDepense ? protDepense : 0)
                   : 0}
                 g
               </p> */}
-            </section>
-            <section className="donutGlu text-center ">
-              <p className="infoUserTitle">
-                Glucides <br /> {sumConsoGlu}/
-                {resultUserGlu
-                  ? Math.floor(resultUserGlu) + (gluDepense ? gluDepense : 0)
-                  : 0}
-                g
-              </p>
-              <Doughnut data={dataGlu} />
-              {/* <p className="infoUser">
+              </section>
+              <section className="donutGlu text-center ">
+                <p className="infoUserTitle">
+                  Glucides <br /> {sumConsoGlu}/
+                  {resultUserGlu
+                    ? Math.floor(resultUserGlu) + (gluDepense ? gluDepense : 0)
+                    : 0}
+                  g
+                </p>
+                <Doughnut data={dataGlu} />
+                {/* <p className="infoUser">
                 {sumConsoGlu}/
                 {resultUserGlu
                   ? Math.floor(resultUserGlu) + (gluDepense ? gluDepense : 0)
                   : 0}
                 g
               </p> */}
-            </section>
-            <section className="donutLip text-center">
-              <p className="infoUserTitle">
-                Lipides <br /> {sumConsoLip}/
-                {resultUserLip
-                  ? Math.floor(resultUserLip) + (lipDepense ? lipDepense : 0)
-                  : 0}
-                g
-              </p>
-              <Doughnut data={dataLip} />
-              {/* <p className="infoUser">
+              </section>
+              <section className="donutLip text-center">
+                <p className="infoUserTitle">
+                  Lipides <br /> {sumConsoLip}/
+                  {resultUserLip
+                    ? Math.floor(resultUserLip) + (lipDepense ? lipDepense : 0)
+                    : 0}
+                  g
+                </p>
+                <Doughnut data={dataLip} />
+                {/* <p className="infoUser">
                 {sumConsoLip}/
                 {resultUserLip
                   ? Math.floor(resultUserLip) + (lipDepense ? lipDepense : 0)
                   : 0}
                 g
               </p> */}
-            </section>
-          </div>
+              </section>
+            </div>
+          </section>
         </div>
         <section className="section-accordion">
           <div className="accordion " id="accordionExample">

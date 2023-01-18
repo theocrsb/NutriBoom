@@ -3,8 +3,7 @@
 } */
 .main-page {
   position: relative;
-  display: inline;
-  height: 100vh;
+  display: inline-block;
   width: 100%;
   align-items: center;
 }
@@ -65,8 +64,12 @@
 .container-chart {
   display: inline-block;
   width: 100%;
+  overflow: hidden;
 
   text-align: center;
+}
+.test-container {
+  display: contents;
 }
 .container-nutri {
   display: inline-block;
