@@ -46,7 +46,7 @@ const AddExercice = () => {
 
     axios
       .post(
-        `http://localhost:8080/api/exercices`,
+        `http://api-nutriboom.dev-formation.fr/api/exercices`,
         {
           activity: sport,
           time: quantity ? Math.abs(quantity) : quantity,
@@ -118,7 +118,7 @@ const AddExercice = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/activity`, {
+      .get(`http://api-nutriboom.dev-formation.fr/api/activity`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },

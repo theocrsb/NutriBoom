@@ -1,7 +1,7 @@
-import axios from "axios";
-import { FormEvent, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./SubmitUs.css";
+import axios from 'axios';
+import { FormEvent, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './SubmitUs.css';
 
 const SubmitUs = () => {
   const nomElement = useRef<HTMLInputElement>(null);
@@ -9,7 +9,7 @@ const SubmitUs = () => {
   const lipidesElement = useRef<HTMLInputElement>(null);
   const glucidesElement = useRef<HTMLInputElement>(null);
   const proteinesElement = useRef<HTMLInputElement>(null);
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const SubmitUs = () => {
 
   const handleSubmitForm1 = (e: FormEvent) => {
     e.preventDefault();
-    console.log("button form clicked");
+    console.log('button form clicked');
     console.log(nomElement.current?.value);
     console.log(calorieElement.current?.value);
     console.log(lipidesElement.current?.value);
@@ -28,7 +28,7 @@ const SubmitUs = () => {
 
     axios
       .post(
-        `http://localhost:8080/api/foods`,
+        `http://api-nutriboom.dev-formation.fr/api/foods`,
         {
           name: nomElement.current?.value,
           //Number
@@ -49,38 +49,38 @@ const SubmitUs = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
           },
         }
       )
       .then((response) => {
-        console.log("response", response);
+        console.log('response', response);
         setMessage(
-          "Aliment ajouté avec succès. Merci d attendre la validation d un administeur"
+          'Aliment ajouté avec succès. Merci d attendre la validation d un administeur'
         );
         setTimeout(() => {
-          navigate("/main");
+          navigate('/main');
         }, 0);
       })
       .catch((error) => {
         console.log(error);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
         }
       });
   };
 
   const handleSubmitForm2 = (e: FormEvent) => {
     e.preventDefault();
-    console.log("button form clicked");
+    console.log('button form clicked');
     console.log(activiteeElement?.current?.value);
     console.log(consoKalElement?.current?.value);
 
     axios
       .post(
-        `http://localhost:8080/api/activity`,
+        `http://api-nutriboom.dev-formation.fr/api/activity`,
         {
           // on recupere les inputs
           name: activiteeElement?.current?.value,
@@ -93,38 +93,38 @@ const SubmitUs = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
           },
         }
       )
       .then((response) => {
-        console.log("response", response);
+        console.log('response', response);
         setMessage(
-          "Activité ajouté avec succès. Merci d attendre la validation d un administeur"
+          'Activité ajouté avec succès. Merci d attendre la validation d un administeur'
         );
         setTimeout(() => {
-          navigate("/main");
+          navigate('/main');
         }, 0);
       })
       .catch((error) => {
         console.log(error);
         setMessage(error.response.data.message);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
         }
       });
   };
 
   return (
-    <div className="submitus-page">
+    <div className='submitus-page'>
       {/* <h2>Soumettez nous un aliment</h2> */}
-      <div className="container-submitus">
+      <div className='container-submitus'>
         <div>
-          <h2 className=" text-center title-submit">
+          <h2 className=' text-center title-submit'>
             Soumet ton aliment ou ton activité
           </h2>
-          <p className="text-submitus">
+          <p className='text-submitus'>
             <strong>
               Ta proposition sera disponible après validation de l'équipe
               NutriBoom
@@ -133,75 +133,75 @@ const SubmitUs = () => {
         </div>
 
         {/*<form onSubmit={(e) =>{handleSubmitForm(e)}}>*/}
-        <form className="w-50 m-auto " onSubmit={handleSubmitForm1}>
-          <div className="form-floating mb-3 d-flex justify-content-center">
+        <form className='w-50 m-auto ' onSubmit={handleSubmitForm1}>
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="text"
-              className="form-control text-submit"
-              id="nameAliment"
+              type='text'
+              className='form-control text-submit'
+              id='nameAliment'
               ref={nomElement}
               required
             />
-            <label htmlFor="nameAliment " className="label-submit">
+            <label htmlFor='nameAliment ' className='label-submit'>
               Nom de l'aliment
             </label>
           </div>
 
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="number"
-              className="form-control text-submit "
-              id="calorieAliment"
+              type='number'
+              className='form-control text-submit '
+              id='calorieAliment'
               ref={calorieElement}
               required
             />
-            <label htmlFor="calorieAliment " className="label-submit">
+            <label htmlFor='calorieAliment ' className='label-submit'>
               Nombre de calories
             </label>
           </div>
 
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="number"
-              className="form-control text-submit"
-              id="lipidesAliment"
+              type='number'
+              className='form-control text-submit'
+              id='lipidesAliment'
               ref={lipidesElement}
               required
             />
-            <label htmlFor="lipidesAliment" className="label-submit">
+            <label htmlFor='lipidesAliment' className='label-submit'>
               Nombre de lipides
             </label>
           </div>
 
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="number"
-              className="form-control text-submit"
-              id="glucidesAliment"
+              type='number'
+              className='form-control text-submit'
+              id='glucidesAliment'
               ref={glucidesElement}
               required
             />
-            <label htmlFor="ProteinesAliment" className="label-submit">
+            <label htmlFor='ProteinesAliment' className='label-submit'>
               Nombre de glucides
             </label>
           </div>
 
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="number"
-              className="form-control text-submit"
-              id="ProteinesAliment"
+              type='number'
+              className='form-control text-submit'
+              id='ProteinesAliment'
               ref={proteinesElement}
               required
             />
-            <label htmlFor="glucidesAliment" className="label-submit">
+            <label htmlFor='glucidesAliment' className='label-submit'>
               Nombre de proteines
             </label>
           </div>
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <button
-              className="mt-3 btn btn-success btn inscription mb-4"
-              type="submit"
+              className='mt-3 btn btn-success btn inscription mb-4'
+              type='submit'
             >
               soumettre un aliment
             </button>
@@ -210,34 +210,34 @@ const SubmitUs = () => {
           {/* Soummettre activitée */}
         </form>
         {/* <h2>Soumettre une activité</h2> */}
-        <form className="w-50 m-auto" onSubmit={handleSubmitForm2}>
-          <div className="form-floating mb-3 d-flex justify-content-center">
+        <form className='w-50 m-auto' onSubmit={handleSubmitForm2}>
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="text"
-              className="form-control text-submit"
-              id="nameAliment"
+              type='text'
+              className='form-control text-submit'
+              id='nameAliment'
               ref={activiteeElement}
             />
-            <label className="label-submit" htmlFor="nameAliment">
+            <label className='label-submit' htmlFor='nameAliment'>
               Nom de l'activité
             </label>
           </div>
-          <div className="form-floating mb-3 d-flex justify-content-center">
+          <div className='form-floating mb-3 d-flex justify-content-center'>
             <input
-              type="number"
-              className="form-control text-submit"
-              id="calorieAliment"
+              type='number'
+              className='form-control text-submit'
+              id='calorieAliment'
               ref={consoKalElement}
             />
-            <label className="label-submit" htmlFor="calorieAliment">
+            <label className='label-submit' htmlFor='calorieAliment'>
               Calories consomées / heures
             </label>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className='d-flex justify-content-center'>
             <button
-              className="mt-3 btn btn-success btn inscription mb-4"
-              style={{ margin: "0" }}
-              type="submit"
+              className='mt-3 btn btn-success btn inscription mb-4'
+              style={{ margin: '0' }}
+              type='submit'
             >
               soumettre une activité
             </button>

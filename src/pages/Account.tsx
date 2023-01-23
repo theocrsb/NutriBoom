@@ -1,10 +1,10 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import jwt_decode from "jwt-decode";
-import { v4 as uuidv4 } from "uuid";
-import "./Account.css";
-import { Link, useNavigate } from "react-router-dom";
-import { User } from "./Main";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import jwt_decode from 'jwt-decode';
+import { v4 as uuidv4 } from 'uuid';
+import './Account.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { User } from './Main';
 
 export interface PayloadToken {
   exp: number;
@@ -29,40 +29,43 @@ const Account = () => {
   const [message, setMessage] = useState<string>();
   const navigate = useNavigate();
   //  ------------------------------ récupération des infos de l'utilisateur--------------------------------
-  let token = localStorage.getItem("accesstoken");
+  let token = localStorage.getItem('accesstoken');
 
   const searchUserId = () => {
     if (token) {
       let tokenDecoded: PayloadToken = jwt_decode(token);
-      console.log("tokenDecoded.-------------------", tokenDecoded);
-      console.log("tokenDecoded.id-------------------", tokenDecoded.id);
+      console.log('tokenDecoded.-------------------', tokenDecoded);
+      console.log('tokenDecoded.id-------------------', tokenDecoded.id);
       return tokenDecoded.id;
     }
   };
   let searchUserIdValue: string | undefined = searchUserId();
 
-  console.log("userSearch-----------------", searchUserIdValue);
+  console.log('userSearch-----------------', searchUserIdValue);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/users/${searchUserIdValue}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-        },
-      })
+      .get(
+        `http://api-nutriboom.dev-formation.fr/api/users/${searchUserIdValue}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+          },
+        }
+      )
       .then((res) => {
-        console.log("res--------------------------", res.data);
+        console.log('res--------------------------', res.data);
         setUserProfile(res.data);
       })
       .catch((error) => {
-        console.log("something went wrong", error);
+        console.log('something went wrong', error);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
         }
       });
   }, []);
-  console.log("UserProfile-------------------", UserProfile?.firstname);
+  console.log('UserProfile-------------------', UserProfile?.firstname);
   //--------------------------------------------------------------------------------------
 
   // Mise à jour des infos de l'utilisateur
@@ -97,10 +100,10 @@ const Account = () => {
       e.currentTarget.value
         .toLocaleLowerCase()
         .trim()
-        .split(" ")
-        .join("")
-        .normalize("NFD")
-        .replace(/\p{Diacritic}/gu, "")
+        .split(' ')
+        .join('')
+        .normalize('NFD')
+        .replace(/\p{Diacritic}/gu, '')
     );
     // normalize et replace pour les accent et autres le reste pour les espaces);
   };
@@ -113,15 +116,15 @@ const Account = () => {
   };
   const submitFunction = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("cliké");
-    console.log("id du user a patch", searchUserIdValue);
+    console.log('cliké');
+    console.log('id du user a patch', searchUserIdValue);
     // fonction de verification du mot de passe
     if (passwordState !== passwordState2) {
-      alert("Les mots de passe ne correspondent pas.");
+      alert('Les mots de passe ne correspondent pas.');
     } else {
       axios
         .patch(
-          `http://localhost:8080/api/users/${searchUserIdValue}`,
+          `http://api-nutriboom.dev-formation.fr/api/users/${searchUserIdValue}`,
           {
             id: searchUserIdValue,
             lastname: updateLastname,
@@ -135,25 +138,25 @@ const Account = () => {
           },
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+              Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
             },
           }
         )
         .then((response) => {
           console.log(response);
-          console.log("id du user a patch dans le response", searchUserIdValue);
+          console.log('id du user a patch dans le response', searchUserIdValue);
           setTimeout(() => {
-            navigate("/main");
+            navigate('/main');
           }, 1000);
-          setMessage("Modifications sauvegardées !");
+          setMessage('Modifications sauvegardées !');
         })
         .catch((error) => {
           console.log(error);
-          console.log("id du user a patch dans le catch", searchUserIdValue);
+          console.log('id du user a patch dans le catch', searchUserIdValue);
           setMessage(error.response.data.message);
           if (error.response.data.statusCode === 401) {
-            localStorage.removeItem("accesstoken");
-            navigate("/connexion");
+            localStorage.removeItem('accesstoken');
+            navigate('/connexion');
           }
         });
     }
@@ -186,62 +189,66 @@ const Account = () => {
     // tailleOptions.push(taille.toFixed(2));
   }
 
-  const deleteAccount =(e:React.MouseEvent)=>{
-    if(
-window.confirm("Veux-tu vraiment supprimer ton compte?")){
-  axios.delete(`http://localhost:8080/api/users/${searchUserIdValue}`,{
+  const deleteAccount = (e: React.MouseEvent) => {
+    if (window.confirm('Veux-tu vraiment supprimer ton compte?')) {
+      axios
+        .delete(
+          `http://api-nutriboom.dev-formation.fr/api/users/${searchUserIdValue}`,
+          {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+              Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
             },
-          }).then((res)=>{
-          console.log("supp");
-          window.alert("compte supprimé");  
-          localStorage.removeItem("accesstoken")
-          window.location.reload()
           }
-          ).catch((err)=>{
-            console.log("something went wrong", err)
-            window.location.reload()
-          })
-}
-  }
+        )
+        .then((res) => {
+          console.log('supp');
+          window.alert('compte supprimé');
+          localStorage.removeItem('accesstoken');
+          window.location.reload();
+        })
+        .catch((err) => {
+          console.log('something went wrong', err);
+          window.location.reload();
+        });
+    }
+  };
 
   return (
-    <div className="account-page">
-      <div className="container-account">
+    <div className='account-page'>
+      <div className='container-account'>
         <img
-          id="onglet"
+          id='onglet'
           src={process.env.PUBLIC_URL + `/assets/bandeau mon compte.svg`}
-          alt=""
+          alt=''
         />
-        <div id="container">
-          <div id="modifProfil">
-            <p className="ProfilActuel">Modifie tes données personnelles</p>
+        <div id='container'>
+          <div id='modifProfil'>
+            <p className='ProfilActuel'>Modifie tes données personnelles</p>
 
             <form
-              id="mb-3"
-              method="POST"
-              className="ProfilActuel"
+              id='mb-3'
+              method='POST'
+              className='ProfilActuel'
               onSubmit={submitFunction}
             >
-              <p className="Titre">Ton profil</p>
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputNom" className="htmlForm-label" />
+              <p className='Titre'>Ton profil</p>
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputNom' className='htmlForm-label' />
                 <input
-                  type="nom"
-                  className="ProfilActuel"
-                  id="inputNom"
+                  type='nom'
+                  className='ProfilActuel'
+                  id='inputNom'
                   placeholder={UserProfile?.lastname}
                   onChange={lastNameFunction}
                 />
               </div>
 
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputPrenom" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputPrenom' />
                 <input
-                  type="prenom"
-                  className="ProfilActuel"
-                  id="inputPrenom"
+                  type='prenom'
+                  className='ProfilActuel'
+                  id='inputPrenom'
                   placeholder={UserProfile?.firstname}
                   onChange={firstNameFunction}
                 />
@@ -251,18 +258,18 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
               {" "}
               Age actuel: <span className="manchette">{UserProfile?.age} </span>
             </p> */}
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputAge" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputAge' className='htmlForm-label' />
                 <select
-                  name="age"
-                  id="inputAge"
-                  className="ProfilActuel"
+                  name='age'
+                  id='inputAge'
+                  className='ProfilActuel'
                   onChange={ageFunction}
                   value={updateage}
                 >
-                  <option key={uuidv4()} value="">
+                  <option key={uuidv4()} value=''>
                     {UserProfile?.age}
-                    {" ans "}
+                    {' ans '}
                   </option>
                   {ageOptions.map((ageOption) => (
                     <option key={uuidv4()} value={ageOption}>
@@ -276,17 +283,17 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
               {UserProfile?.weight}:{" "}
               <span className="manchette">{UserProfile?.weight} </span>
             </p> */}
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputWeight" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputWeight' className='htmlForm-label' />
                 <select
-                  name="weight"
-                  id="inputWeight"
-                  className="ProfilActuel"
+                  name='weight'
+                  id='inputWeight'
+                  className='ProfilActuel'
                   value={updateWeight}
                   onChange={weightFunction}
                 >
-                  <option key={uuidv4()} value="">
-                    {UserProfile?.weight} {" Kg "}
+                  <option key={uuidv4()} value=''>
+                    {UserProfile?.weight} {' Kg '}
                   </option>
                   {poidsOptions.map((poidsOption) => (
                     <option key={uuidv4()} value={poidsOption}>
@@ -300,18 +307,18 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
               Taille actuelle:{" "}
               <span className="manchette">{UserProfile?.height} </span>
             </p> */}
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputHeight" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputHeight' className='htmlForm-label' />
                 <select
-                  name="height"
-                  id="inputHeight"
-                  className="ProfilActuel"
+                  name='height'
+                  id='inputHeight'
+                  className='ProfilActuel'
                   value={updateHeight}
                   onChange={heightFunction}
                 >
-                  <option key={uuidv4()} value="">
+                  <option key={uuidv4()} value=''>
                     {UserProfile?.height}
-                    {" m"}
+                    {' m'}
                   </option>
                   {tailleOptions.map((tailleOption) => (
                     <option key={uuidv4()} value={tailleOption}>
@@ -325,22 +332,22 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
               Genre actuel:{" "}
               <span className="manchette">{UserProfile?.gender} </span>
             </p> */}
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputGender" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputGender' className='htmlForm-label' />
                 <select
-                  name="gender"
-                  id="inputGender"
-                  className="ProfilActuel"
+                  name='gender'
+                  id='inputGender'
+                  className='ProfilActuel'
                   value={updateGender}
                   onChange={sexFunction}
                 >
-                  <option key={uuidv4()} value="">
+                  <option key={uuidv4()} value=''>
                     {UserProfile?.gender}
                   </option>
-                  <option key={uuidv4()} value="femme">
+                  <option key={uuidv4()} value='femme'>
                     Femme
                   </option>
-                  <option key={uuidv4()} value="homme">
+                  <option key={uuidv4()} value='homme'>
                     Homme
                   </option>
                 </select>
@@ -350,24 +357,24 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
               Mail actuel:{" "}
               <span className="manchette">{UserProfile?.email} </span>
             </p> */}
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputMail" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputMail' className='htmlForm-label' />
                 <input
-                  type="mail"
-                  className="ProfilActuel"
-                  id="inputMail"
+                  type='mail'
+                  className='ProfilActuel'
+                  id='inputMail'
                   placeholder={UserProfile?.email}
                   onChange={mailFunction}
                 />
               </div>
 
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputPassword" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputPassword' className='htmlForm-label' />
                 <input
-                  type="password"
-                  className="ProfilActuel"
-                  id="inputPassword"
-                  placeholder="Nouveau mot de passe"
+                  type='password'
+                  className='ProfilActuel'
+                  id='inputPassword'
+                  placeholder='Nouveau mot de passe'
                   onChange={passwordFunction1}
                 />
                 {/* <i
@@ -376,26 +383,26 @@ window.confirm("Veux-tu vraiment supprimer ton compte?")){
                 style={{marginLeft: '-30px', cursor: "pointer"}}
               ></i> */}
               </div>
-              <div id="mb-3" className="mb-3">
-                <label htmlFor="inputPassword" className="htmlForm-label" />
+              <div id='mb-3' className='mb-3'>
+                <label htmlFor='inputPassword' className='htmlForm-label' />
                 <input
-                  type="password"
-                  className="ProfilActuel"
-                  id="inputPassword"
-                  placeholder="Confirme le mot de passe"
+                  type='password'
+                  className='ProfilActuel'
+                  id='inputPassword'
+                  placeholder='Confirme le mot de passe'
                   onChange={passwordFunction2}
                 />
               </div>
-              <span className="message">{message}</span>
-              <div className="button">
-                <button id="button-mb-3" className="btn btn-danger btn-sm m-1">
+              <span className='message'>{message}</span>
+              <div className='button'>
+                <button id='button-mb-3' className='btn btn-danger btn-sm m-1'>
                   modifier
                 </button>
               </div>
             </form>
-             <button className="supprimer" onClick={deleteAccount}>
-                  supprimer son compte
-                </button>
+            <button className='supprimer' onClick={deleteAccount}>
+              supprimer son compte
+            </button>
           </div>
         </div>
       </div>

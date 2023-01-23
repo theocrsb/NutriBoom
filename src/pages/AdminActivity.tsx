@@ -31,7 +31,7 @@ const AdminActivity = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/activity', {
+      .get('http://api-nutriboom.dev-formation.fr/api/activity', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },
@@ -73,7 +73,7 @@ const AdminActivity = () => {
   };
   // axios
   //   .patch(
-  //     `http://localhost:8080/api/activity`,
+  //     `http://api-nutriboom.dev-formation.fr/api/activity`,
   //     {
   //       validate: patchState,
   //     },
@@ -98,11 +98,14 @@ const AdminActivity = () => {
     console.log(e.currentTarget.value);
     if (window.confirm('Veux-tu vraiment supprimer cette activité?')) {
       axios
-        .delete(`http://localhost:8080/api/activity/${e.currentTarget.value}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
-          },
-        })
+        .delete(
+          `http://api-nutriboom.dev-formation.fr/api/activity/${e.currentTarget.value}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            },
+          }
+        )
         .then((response) => {
           window.location.reload();
           // navigate('/main');
@@ -144,7 +147,7 @@ const AdminActivity = () => {
 
     axios
       .patch(
-        `http://localhost:8080/api/activity/${e.currentTarget.value}`,
+        `http://api-nutriboom.dev-formation.fr/api/activity/${e.currentTarget.value}`,
         {
           // id: e.currentTarget.value,
           // updateActivity: { validate: validateState },

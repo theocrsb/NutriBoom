@@ -41,7 +41,7 @@ const AddDinner = () => {
     // }
     axios
       .post(
-        `http://localhost:8080/api/meals`,
+        `http://api-nutriboom.dev-formation.fr/api/meals`,
         {
           //name en fixe
           name: 'Aliment consommé :',
@@ -111,7 +111,7 @@ const AddDinner = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/foods`, {
+      .get(`http://api-nutriboom.dev-formation.fr/api/foods`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },

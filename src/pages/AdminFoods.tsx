@@ -1,16 +1,16 @@
-import React from "react";
-import { useEffect, useState, useContext } from "react";
-import axios from "axios";
-import { Food } from "./Main";
-import "./Admin.css";
-import { useNavigate } from "react-router-dom";
-import { ImEyeMinus } from "react-icons/im";
-import { ImEyePlus } from "react-icons/im";
-import { ImEye } from "react-icons/im";
-import { BsTrashFill } from "react-icons/bs";
+import React from 'react';
+import { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import { Food } from './Main';
+import './Admin.css';
+import { useNavigate } from 'react-router-dom';
+import { ImEyeMinus } from 'react-icons/im';
+import { ImEyePlus } from 'react-icons/im';
+import { ImEye } from 'react-icons/im';
+import { BsTrashFill } from 'react-icons/bs';
 
 // let convertValue: boolean;
-import { AuthContext } from "../contexts/Auth-context";
+import { AuthContext } from '../contexts/Auth-context';
 let convertValue: boolean;
 let allFoods: Food[] = [];
 const AdminFoods = () => {
@@ -20,7 +20,7 @@ const AdminFoods = () => {
   const { savedToken } = useContext(AuthContext);
   //  Vérification dans la page de la validité du token
   const { valideTimeToken } = useContext(AuthContext);
-  if (valideTimeToken === "token") {
+  if (valideTimeToken === 'token') {
     window.location.reload();
   }
 
@@ -35,20 +35,20 @@ const AdminFoods = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/foods/admin", {
+      .get('http://api-nutriboom.dev-formation.fr/api/foods/admin', {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },
       })
       .then((res) => {
-        console.log("mes foods", res.data);
+        console.log('mes foods', res.data);
         setMesFoods(res.data);
 
-        console.log("mes  aliments dans mesfoods ", mesFoods);
+        console.log('mes  aliments dans mesfoods ', mesFoods);
       })
       .catch((error) => {
-        console.log("something went wrong", error);
-        localStorage.removeItem("accesstoken");
+        console.log('something went wrong', error);
+        localStorage.removeItem('accesstoken');
         window.location.reload();
       });
   }, []);
@@ -71,7 +71,7 @@ const AdminFoods = () => {
   // };
   const fonctionTest = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(
-      "voici le resultat du test valeur du state update moderate",
+      'voici le resultat du test valeur du state update moderate',
       updateModerate
     );
   };
@@ -82,59 +82,62 @@ const AdminFoods = () => {
 
   const handleDeleteli = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log(e.currentTarget.value);
-    if (window.confirm("Veux-tu vraiment supprimer cet aliment?")) {
+    if (window.confirm('Veux-tu vraiment supprimer cet aliment?')) {
       axios
-        .delete(`http://localhost:8080/api/foods/${e.currentTarget.value}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
-          },
-        })
+        .delete(
+          `http://api-nutriboom.dev-formation.fr/api/foods/${e.currentTarget.value}`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           window.location.reload();
           // navigate('/main');
         })
         .catch((error) => {
-          console.log("tu ne peux pas poster", error);
+          console.log('tu ne peux pas poster', error);
           if (error.response.data.statusCode === 401) {
-            localStorage.removeItem("accesstoken");
-            navigate("/connexion");
+            localStorage.removeItem('accesstoken');
+            navigate('/connexion');
           }
         });
     }
   };
   const updateFunction = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("cliké");
-    console.log("id du Food a patch", e.currentTarget.value);
-    console.log("update moderate", updateModerate);
+    console.log('cliké');
+    console.log('id du Food a patch', e.currentTarget.value);
+    console.log('update moderate', updateModerate);
 
     axios
       .patch(
-        `http://localhost:8080/api/foods/${e.currentTarget.value}`,
+        `http://api-nutriboom.dev-formation.fr/api/foods/${e.currentTarget.value}`,
         {
           validate: updateModerate,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+            Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
           },
         }
       )
       .then((response) => {
         console.log(response);
 
-        console.log("patch ok!");
+        console.log('patch ok!');
 
-        alert("Modifications sauvegardées !");
+        alert('Modifications sauvegardées !');
         window.location.reload();
       })
       .catch((error) => {
-        console.log("tu est dans le catch error", error);
+        console.log('tu est dans le catch error', error);
         alert(`${error.response.data.message}`);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
-          navigate("/connexion");
+          localStorage.removeItem('accesstoken');
+          navigate('/connexion');
         }
       });
   };
@@ -149,51 +152,51 @@ const AdminFoods = () => {
   }
 
   return (
-    <div className="container-food">
+    <div className='container-food'>
       {/* <div className="container-admin"> */}
-      <section className="container-admin">
-        <div className="triFood">
+      <section className='container-admin'>
+        <div className='triFood'>
           <h2>Gestion des aliments à afficher</h2>
           <br />
-          <div className="checkbox-container">
-            <div className="checkbox">
+          <div className='checkbox-container'>
+            <div className='checkbox'>
               <input
-                className="form-check-input"
-                type="radio"
-                id="trueRadio"
-                name="select"
-                value="true"
+                className='form-check-input'
+                type='radio'
+                id='trueRadio'
+                name='select'
+                value='true'
                 onClick={handleCheck}
               />
-              <label className="form-check-label" htmlFor="true">
+              <label className='form-check-label' htmlFor='true'>
                 Affiché(s)
               </label>
             </div>
 
-            <div className="checkbox">
+            <div className='checkbox'>
               <input
-                className="form-check-input"
-                type="radio"
-                id="falseRadio"
-                name="select"
-                value="false"
+                className='form-check-input'
+                type='radio'
+                id='falseRadio'
+                name='select'
+                value='false'
                 onClick={handleCheck}
               />
-              <label className="form-check-label" htmlFor="false">
+              <label className='form-check-label' htmlFor='false'>
                 Masqué(s)
               </label>
             </div>
-            <div className="checkbox">
+            <div className='checkbox'>
               <input
-                className="form-check-input"
-                type="radio"
-                id="allRadio"
-                name="select"
-                value="all"
+                className='form-check-input'
+                type='radio'
+                id='allRadio'
+                name='select'
+                value='all'
                 defaultChecked
                 onInput={handleCheck}
               />
-              <label className="form-check-label" htmlFor="all">
+              <label className='form-check-label' htmlFor='all'>
                 Tous
               </label>
             </div>
@@ -202,62 +205,62 @@ const AdminFoods = () => {
 
         {/* debut du UL */}
 
-        <ul className="list-food">
-          {validateState === "true" || validateState === "false"
+        <ul className='list-food'>
+          {validateState === 'true' || validateState === 'false'
             ? //  mesFoods
               //     .filter((food) =>
               //       food.validate.toString().includes(validateState)
               //     )
               mesFoodsFilter?.map((foodfiltered, i) => (
                 <li key={i}>
-                  <div className="container text-center ">
-                    <div className="row test-li">
-                      <div className="col">
+                  <div className='container text-center '>
+                    <div className='row test-li'>
+                      <div className='col'>
                         {foodfiltered.validate === true ? (
-                          <p className="text">
-                            <span style={{ color: "green" }}>visible</span>
+                          <p className='text'>
+                            <span style={{ color: 'green' }}>visible</span>
                           </p>
                         ) : (
-                          <p className="text">
-                            <span style={{ color: "red" }}> invisible</span>
+                          <p className='text'>
+                            <span style={{ color: 'red' }}> invisible</span>
                           </p>
                         )}
                       </div>
-                      <div className="col">
-                        {foodfiltered.name}, {foodfiltered.nombre_calories}{" "}
-                        kcal, {foodfiltered.glucides}glu,{" "}
+                      <div className='col'>
+                        {foodfiltered.name}, {foodfiltered.nombre_calories}{' '}
+                        kcal, {foodfiltered.glucides}glu,{' '}
                         {foodfiltered.proteines}prot, {foodfiltered.lipides}
                         lip
                       </div>
-                      <div className="col">
-                        {" "}
+                      <div className='col'>
+                        {' '}
                         <select
-                          name="food"
-                          id="foodAdmin"
-                          className=" htmlForm-label select "
-                          defaultValue=""
+                          name='food'
+                          id='foodAdmin'
+                          className=' htmlForm-label select '
+                          defaultValue=''
                           onInput={(
                             e: React.SyntheticEvent<HTMLSelectElement>
                           ) => {
                             let convertValue;
                             if (e.currentTarget.value) {
-                              if (e.currentTarget.value === "true") {
+                              if (e.currentTarget.value === 'true') {
                                 convertValue = true;
-                              } else if (e.currentTarget.value === "false") {
+                              } else if (e.currentTarget.value === 'false') {
                                 convertValue = false;
                               }
                             }
                             console.log(
-                              "value moderate fonction -------------------",
+                              'value moderate fonction -------------------',
                               e.currentTarget.value
                             );
-                            console.log("index", i);
+                            console.log('index', i);
                             if (clickedIndexVisible && clickedIndexInvisible) {
                               if (convertValue) {
                                 let newtab1 = clickedIndexInvisible.filter(
                                   (element) => element !== i
                                 );
-                                console.log("newtab 1", newtab1);
+                                console.log('newtab 1', newtab1);
 
                                 setClickedIndexInvisible(newtab1);
                                 setClickedIndexVisible([
@@ -268,7 +271,7 @@ const AdminFoods = () => {
                                 let newtab2 = clickedIndexVisible.filter(
                                   (element) => element !== i
                                 );
-                                console.log("newtab 2", newtab2);
+                                console.log('newtab 2', newtab2);
 
                                 setClickedIndexInvisible([
                                   ...clickedIndexInvisible,
@@ -280,7 +283,7 @@ const AdminFoods = () => {
                             setUpdateModerate(convertValue);
                             setClickedIndex(i);
                             console.log(
-                              "tableau verife avec decalage ",
+                              'tableau verife avec decalage ',
                               clickedIndexInvisible,
                               clickedIndexVisible
                             );
@@ -288,28 +291,28 @@ const AdminFoods = () => {
                         >
                           <option
                             // key={i + 2}
-                            value=""
+                            value=''
                             disabled
                           >
                             Sélectionner un choix
                           </option>
-                          <option key={i + 1} value="true">
+                          <option key={i + 1} value='true'>
                             Affiché
                           </option>
 
-                          <option key={i + 2} value="false">
+                          <option key={i + 2} value='false'>
                             Masqué
                           </option>
                         </select>
                       </div>
-                      <div className="col btn-gestion">
-                        {" "}
+                      <div className='col btn-gestion'>
+                        {' '}
                         <button
-                          className="buttonValidate"
+                          className='buttonValidate'
                           onClick={handleDeleteli}
                           value={foodfiltered.id}
                         >
-                          <BsTrashFill className="trash" />
+                          <BsTrashFill className='trash' />
                         </button>
                         {/* <button style={{ color: "red" }} onClick={fonctionTest}>
                         test update
@@ -326,54 +329,54 @@ const AdminFoods = () => {
                             ) === i ? (
                               <button
                                 key={i + 5}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={foodfiltered.id}
                                 onClick={updateFunction}
                               >
-                                <ImEyePlus className="iconVisible" />
+                                <ImEyePlus className='iconVisible' />
                               </button>
                             ) : clickedIndexInvisible.find(
                                 (element) => element === i
                               ) === i ? (
                               <button
                                 key={i + 6}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={foodfiltered.id}
                                 onClick={updateFunction}
                               >
-                                <ImEyeMinus className="iconInvisible" />
+                                <ImEyeMinus className='iconInvisible' />
                               </button>
                             ) : (
                               <button
                                 key={i + 7}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={foodfiltered.id}
                                 disabled
                                 onClick={updateFunction}
                               >
-                                <ImEye className="iconNeutre" />
+                                <ImEye className='iconNeutre' />
                               </button>
                             )
                           ) : (
                             <button
                               key={i + 7}
-                              className="buttonValidate"
+                              className='buttonValidate'
                               value={foodfiltered.id}
                               disabled
                               onClick={updateFunction}
                             >
-                              <ImEye className="iconNeutre" />
+                              <ImEye className='iconNeutre' />
                             </button>
                           )
                         ) : (
                           <button
                             key={i + 7}
-                            className="buttonValidate"
+                            className='buttonValidate'
                             value={foodfiltered.id}
                             disabled
                             onClick={updateFunction}
                           >
-                            <ImEye className="iconNeutre" />
+                            <ImEye className='iconNeutre' />
                           </button>
                         )}
                       </div>
@@ -383,57 +386,57 @@ const AdminFoods = () => {
               ))
             : mesFoods.map((food, i) => (
                 <li key={i}>
-                  <div className="container text-center ">
-                    <div className="row test-li">
-                      <div className="col">
-                        {" "}
+                  <div className='container text-center '>
+                    <div className='row test-li'>
+                      <div className='col'>
+                        {' '}
                         {food.validate === true ? (
-                          <p className="text">
-                            {" "}
-                            <span style={{ color: "green" }}>visible</span>
+                          <p className='text'>
+                            {' '}
+                            <span style={{ color: 'green' }}>visible</span>
                           </p>
                         ) : (
-                          <p className="text">
-                            {" "}
-                            <span style={{ color: "red" }}>invisible</span>
+                          <p className='text'>
+                            {' '}
+                            <span style={{ color: 'red' }}>invisible</span>
                           </p>
                         )}
                       </div>
-                      <div className="col">
-                        {food.name}, {food.nombre_calories} kcal,{" "}
+                      <div className='col'>
+                        {food.name}, {food.nombre_calories} kcal,{' '}
                         {food.glucides}glu, {food.proteines}
                         prot, {food.lipides}
                         lip
                       </div>
-                      <div className="col">
-                        {" "}
+                      <div className='col'>
+                        {' '}
                         <select
-                          name="food"
-                          id="foodAdmin"
-                          className=" htmlForm-label select "
-                          defaultValue=""
+                          name='food'
+                          id='foodAdmin'
+                          className=' htmlForm-label select '
+                          defaultValue=''
                           onInput={(
                             e: React.SyntheticEvent<HTMLSelectElement>
                           ) => {
                             let convertValue;
                             if (e.currentTarget.value) {
-                              if (e.currentTarget.value === "true") {
+                              if (e.currentTarget.value === 'true') {
                                 convertValue = true;
-                              } else if (e.currentTarget.value === "false") {
+                              } else if (e.currentTarget.value === 'false') {
                                 convertValue = false;
                               }
                             }
                             console.log(
-                              "value moderate fonction -------------------",
+                              'value moderate fonction -------------------',
                               e.currentTarget.value
                             );
-                            console.log("index", i);
+                            console.log('index', i);
                             if (clickedIndexVisible && clickedIndexInvisible) {
                               if (convertValue) {
                                 let newtab1 = clickedIndexInvisible.filter(
                                   (element) => element !== i
                                 );
-                                console.log("newtab 1", newtab1);
+                                console.log('newtab 1', newtab1);
 
                                 setClickedIndexInvisible(newtab1);
                                 setClickedIndexVisible([
@@ -444,7 +447,7 @@ const AdminFoods = () => {
                                 let newtab2 = clickedIndexVisible.filter(
                                   (element) => element !== i
                                 );
-                                console.log("newtab 2", newtab2);
+                                console.log('newtab 2', newtab2);
 
                                 setClickedIndexInvisible([
                                   ...clickedIndexInvisible,
@@ -456,7 +459,7 @@ const AdminFoods = () => {
                             setUpdateModerate(convertValue);
                             setClickedIndex(i);
                             console.log(
-                              "tableau verife avec decalage ",
+                              'tableau verife avec decalage ',
                               clickedIndexInvisible,
                               clickedIndexVisible
                             );
@@ -464,28 +467,28 @@ const AdminFoods = () => {
                         >
                           <option
                             // key={i + 2}
-                            value=""
+                            value=''
                             disabled
                           >
                             Sélectionner un choix
                           </option>
-                          <option key={i + 1} value="true">
+                          <option key={i + 1} value='true'>
                             Affiché
                           </option>
 
-                          <option key={i + 2} value="false">
+                          <option key={i + 2} value='false'>
                             Masqué
                           </option>
                         </select>
                       </div>
-                      <div className="col btn-gestion">
-                        {" "}
+                      <div className='col btn-gestion'>
+                        {' '}
                         <button
-                          className="buttonValidate"
+                          className='buttonValidate'
                           onClick={handleDeleteli}
                           value={food.id}
                         >
-                          <BsTrashFill className="trash" />
+                          <BsTrashFill className='trash' />
                         </button>
                         {/* <button style={{ color: "red" }} onClick={fonctionTest}>
                         test update
@@ -502,54 +505,54 @@ const AdminFoods = () => {
                             ) === i ? (
                               <button
                                 key={i + 5}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={food.id}
                                 onClick={updateFunction}
                               >
-                                <ImEyePlus className="iconVisible" />
+                                <ImEyePlus className='iconVisible' />
                               </button>
                             ) : clickedIndexInvisible.find(
                                 (element) => element === i
                               ) === i ? (
                               <button
                                 key={i + 6}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={food.id}
                                 onClick={updateFunction}
                               >
-                                <ImEyeMinus className="iconInvisible" />
+                                <ImEyeMinus className='iconInvisible' />
                               </button>
                             ) : (
                               <button
                                 key={i + 7}
-                                className="buttonValidate"
+                                className='buttonValidate'
                                 value={food.id}
                                 disabled
                                 onClick={updateFunction}
                               >
-                                <ImEye className="iconNeutre" />
+                                <ImEye className='iconNeutre' />
                               </button>
                             )
                           ) : (
                             <button
                               key={i + 7}
-                              className="buttonValidate"
+                              className='buttonValidate'
                               value={food.id}
                               disabled
                               onClick={updateFunction}
                             >
-                              <ImEye className="iconNeutre" />
+                              <ImEye className='iconNeutre' />
                             </button>
                           )
                         ) : (
                           <button
                             key={i + 7}
-                            className="buttonValidate"
+                            className='buttonValidate'
                             value={food.id}
                             disabled
                             onClick={updateFunction}
                           >
-                            <ImEye className="iconNeutre" />
+                            <ImEye className='iconNeutre' />
                           </button>
                         )}
                       </div>

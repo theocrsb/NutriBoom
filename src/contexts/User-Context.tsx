@@ -1,8 +1,8 @@
-import axios from "axios";
-import React, { createContext, ReactElement, useEffect, useState } from "react";
-import useContext from "react";
-import { PayloadToken, User } from "../pages/Main";
-import jwt_decode from "jwt-decode";
+import axios from 'axios';
+import React, { createContext, ReactElement, useEffect, useState } from 'react';
+import useContext from 'react';
+import { PayloadToken, User } from '../pages/Main';
+import jwt_decode from 'jwt-decode';
 
 // Mise en place d'un context afin de recuperer les données de l'utilisateur connecté sur l'ensemble des composants et page de l'APP
 
@@ -27,7 +27,7 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
   const [user, setUser] = useState<User | null | undefined>(
     userCo ? userCo : null
   );
-  let recupToken = localStorage.getItem("accesstoken");
+  let recupToken = localStorage.getItem('accesstoken');
   const searchUser = () => {
     if (recupToken) {
       let tokenDecoded: PayloadToken = jwt_decode(recupToken);
@@ -40,24 +40,24 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/users/${userSearchId}`, {
+      .get(`http://api-nutriboom.dev-formation.fr/api/users/${userSearchId}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accesstoken")}`,
+          Authorization: `Bearer ${localStorage.getItem('accesstoken')}`,
         },
       })
       .then((response) => {
-        console.log("response", response);
+        console.log('response', response);
         setUser(response.data);
       })
       //si erreur token expiré -> on supprumer le token du localstorage pour gerer l'affichage
       .catch((error) => {
-        console.log("error", error.response.data.statusCode);
+        console.log('error', error.response.data.statusCode);
         if (error.response.data.statusCode === 401) {
-          localStorage.removeItem("accesstoken");
+          localStorage.removeItem('accesstoken');
         }
       });
   }, []);
-  console.log("verification de user", user);
+  console.log('verification de user', user);
 
   // mise en place de la fonction qui recupera l'utilisateur co dans la main de facon dynamique
 
