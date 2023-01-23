@@ -70,5 +70,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           source: './build/*'
-          target: '/var/www/html'
+          target: '/var/www/html/nutriboom.dev-formation.fr'
           strip_components: 1
