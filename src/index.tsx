@@ -19,6 +19,4 @@ root.render(
       </UserContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
-  //Test 1 deploy
-  // 2
 );
